@@ -1,8 +1,9 @@
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--modus-wc-color-base-page);
+  --foreground: var(--modus-wc-color-base-content);
 }
 
 @theme inline {
@@ -14,8 +15,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--modus-wc-color-base-page);
+    --foreground: var(--modus-wc-color-base-content);
   }
 }
 

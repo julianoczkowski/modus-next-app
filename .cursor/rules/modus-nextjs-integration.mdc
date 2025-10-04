@@ -1,0 +1,829 @@
+---
+alwaysApply: true
+---
+
+# Modus Web Components + Next.js Integration Guide
+
+## 🎯 Overview
+
+This project integrates **Modus Web Components** with **Next.js 15** using React 19. The integration follows specific patterns to handle server-side rendering, client-side interactivity, and proper component registration.
+
+## 📦 Package Dependencies
+
+### Required Packages
+
+```json
+{
+  "@trimble-oss/moduswebcomponents-react": "^1.0.0-react19",
+  "@trimble-oss/modus-icons": "^1.17.1"
+}
+```
+
+### Key Points
+
+- **React 19 Compatibility**: Uses the `-react19` variant of the Modus package
+- **Icons Package**: Separate package for Modus icon fonts
+- **Version Alignment**: Ensure React 19 compatibility across all Modus packages
+
+## 🏗️ Architecture Patterns
+
+### 1. Provider Pattern for Component Registration
+
+**File**: `app/components/ModusProvider.tsx`
+
+```tsx
+"use client";
+
+import "@trimble-oss/moduswebcomponents-react/modus-wc-styles.css";
+
+export default function ModusProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Client Component**: Must be `"use client"` directive
+- ✅ **CSS Import**: Imports Modus styles directly
+- ✅ **No useEffect**: React package handles component registration automatically
+- ❌ **No defineCustomElements**: Not needed with React wrapper package
+
+### 2. Layout Integration
+
+**File**: `app/layout.tsx`
+
+```tsx
+import ModusProvider from "./components/ModusProvider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <ModusProvider>{children}</ModusProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Wraps All Pages**: Provider must wrap all app content
+- ✅ **Server Component**: Layout remains server-side
+- ✅ **Single Provider**: Only one ModusProvider needed
+
+### 3. Client Component Pattern for Interactivity
+
+**File**: `app/components/ModusButtonDemo.tsx`
+
+```tsx
+"use client";
+
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function ModusButtonDemo() {
+  const handleButtonClick = () => {
+    console.log("Modus button clicked!");
+    alert("Modus button clicked!");
+  };
+
+  return (
+    <ModusWcButton
+      color="primary"
+      variant="filled"
+      size="md"
+      onButtonClick={handleButtonClick}
+    >
+      <i
+        className="modus-icons"
+        style={{ fontSize: "1.2rem", marginRight: "8px" }}
+      >
+        apps
+      </i>
+      Test Modus Button
+    </ModusWcButton>
+  );
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Client Component**: Must be `"use client"` for event handlers
+- ✅ **React Import**: Use `ModusWcButton` from React package, not raw web component
+- ✅ **Event Handlers**: Can use `onButtonClick` and other event props
+- ❌ **No Raw Web Components**: Don't use `<modus-wc-button>` directly
+
+## 🎨 CSS Integration
+
+### 1. Icons CSS Import
+
+**File**: `app/globals.css`
+
+```css
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+```
+
+**Critical Notes**:
+
+- ✅ **Import Order**: Icons CSS must come BEFORE Tailwind CSS
+- ✅ **CDN Import**: Uses CDN for icon fonts
+- ✅ **Field Systems**: Uses field-systems icon set (623 icons)
+- ❌ **Wrong Order**: `@import` rules must precede all other CSS rules
+
+### 2. Icon Usage Pattern
+
+```tsx
+<i className="modus-icons" style={{ fontSize: "1.2rem", marginRight: "8px" }}>
+  apps
+</i>
+```
+
+**Critical Notes**:
+
+- ✅ **Class Name**: Always use `modus-icons` class
+- ✅ **Icon Names**: Use exact icon names (e.g., `apps`, `user_permissions`)
+- ✅ **Styling**: Use `fontSize` and `color` for customization
+- ✅ **Spacing**: Add `marginRight` for text spacing
+
+## 🔧 TypeScript Configuration
+
+### 1. Type Declarations
+
+**File**: `types/modus.d.ts`
+
+```typescript
+declare namespace JSX {
+  interface IntrinsicElements {
+    "modus-wc-button": {
+      color?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
+      variant?: "filled" | "outlined" | "borderless";
+      size?: "xs" | "sm" | "md" | "lg";
+      shape?: "rectangle" | "square" | "circle";
+      type?: "button" | "submit" | "reset";
+      disabled?: boolean;
+      "full-width"?: boolean;
+      pressed?: boolean;
+      "custom-class"?: string;
+      onButtonClick?: (event: CustomEvent) => void;
+      children?: React.ReactNode;
+    };
+  }
+}
+```
+
+### 2. TypeScript Config
+
+**File**: `tsconfig.json`
+
+```json
+{
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "types/**/*.d.ts"
+  ]
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Include Types**: Must include `types/**/*.d.ts` in tsconfig
+- ✅ **Component Props**: Define all available props and events
+- ✅ **Event Types**: Use `CustomEvent` for component events
+
+## 🚨 Common Pitfalls & Solutions
+
+### 1. Server/Client Component Issues
+
+**❌ Problem**: Event handlers in server components
+
+```
+Error: Event handlers cannot be passed to Client Component props.
+```
+
+**✅ Solution**: Create separate client components for interactivity
+
+```tsx
+// ❌ Wrong - Server component with event handler
+export default function Page() {
+  return <ModusWcButton onButtonClick={() => {}}>Click me</ModusWcButton>;
+}
+
+// ✅ Correct - Client component for interactivity
+("use client");
+export default function InteractiveButton() {
+  return <ModusWcButton onButtonClick={() => {}}>Click me</ModusWcButton>;
+}
+```
+
+### 2. CSS Import Order Issues
+
+**❌ Problem**: CSS parsing errors
+
+```
+@import rules must precede all rules aside from @charset and @layer statements
+```
+
+**✅ Solution**: Put all `@import` statements at the top of CSS files
+
+```css
+/* ✅ Correct order */
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+
+/* ❌ Wrong - @import after other rules */
+:root {
+  --color: red;
+}
+@import "tailwindcss";
+```
+
+### 3. Component Registration Issues
+
+**❌ Problem**: Components not rendering
+
+```
+Module not found: Can't resolve '@trimble-oss/moduswebcomponents-react/loader'
+```
+
+**✅ Solution**: Use React package directly, no loader needed
+
+```tsx
+// ❌ Wrong - Trying to use loader
+import { defineCustomElements } from "@trimble-oss/moduswebcomponents-react/loader";
+
+// ✅ Correct - Import components directly
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+```
+
+### 4. Icon Not Displaying
+
+**❌ Problem**: Icons show as text or don't appear
+
+**✅ Solution**: Check CSS import and class name
+
+```tsx
+// ✅ Correct icon usage
+<i className="modus-icons">apps</i>
+
+// ❌ Wrong - Missing class or wrong name
+<i>apps</i>
+<i className="modus-icon">apps</i>
+```
+
+## 🧪 Testing with Chrome DevTools
+
+### 1. Component Verification
+
+```bash
+# Use Chrome DevTools MCP to test
+mcp_chrome-devtools_navigate_page(url="http://localhost:3000")
+mcp_chrome-devtools_take_snapshot()
+```
+
+### 2. Event Testing
+
+```bash
+# Test button clicks
+mcp_chrome-devtools_click(uid="button_uid")
+mcp_chrome-devtools_list_console_messages()
+```
+
+### 3. Visual Verification
+
+```bash
+# Take screenshots for visual confirmation
+mcp_chrome-devtools_take_screenshot(fullPage=true)
+```
+
+## 📋 Development Checklist
+
+### Before Adding Modus Components:
+
+- [ ] ✅ **Provider Setup**: ModusProvider wraps app in layout
+- [ ] ✅ **CSS Import**: Icons CSS imported before Tailwind
+- [ ] ✅ **TypeScript**: Type declarations included in tsconfig
+- [ ] ✅ **Client Components**: Interactive components marked `"use client"`
+
+### When Creating Interactive Components:
+
+- [ ] ✅ **Client Directive**: Use `"use client"` for event handlers
+- [ ] ✅ **React Import**: Import from `@trimble-oss/moduswebcomponents-react`
+- [ ] ✅ **Event Props**: Use proper event prop names (`onButtonClick`)
+- [ ] ✅ **Icon Integration**: Use `modus-icons` class for icons
+
+### Testing Requirements:
+
+- [ ] ✅ **Visual Test**: Components render correctly
+- [ ] ✅ **Interaction Test**: Event handlers work
+- [ ] ✅ **Icon Test**: Icons display properly
+- [ ] ✅ **Responsive Test**: Works on different screen sizes
+
+## 🔄 Component Patterns
+
+### Basic Button with Icon
+
+```tsx
+"use client";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function IconButton() {
+  return (
+    <ModusWcButton color="primary" variant="filled" size="md">
+      <i className="modus-icons" style={{ marginRight: "8px" }}>
+        apps
+      </i>
+      Button Text
+    </ModusWcButton>
+  );
+}
+```
+
+### Interactive Button
+
+```tsx
+"use client";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function InteractiveButton() {
+  const handleClick = () => {
+    console.log("Button clicked!");
+  };
+
+  return (
+    <ModusWcButton
+      color="primary"
+      variant="filled"
+      size="md"
+      onButtonClick={handleClick}
+    >
+      Click Me
+    </ModusWcButton>
+  );
+}
+```
+
+### Icon-Only Button
+
+```tsx
+"use client";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function IconOnlyButton() {
+  return (
+    <ModusWcButton
+      color="primary"
+      variant="borderless"
+      shape="circle"
+      size="sm"
+      aria-label="Settings"
+    >
+      <i className="modus-icons">settings</i>
+    </ModusWcButton>
+  );
+}
+```
+
+## 🎯 Key Takeaways
+
+1. **Architecture**: Use provider pattern for component registration
+2. **Client Components**: Interactive features require `"use client"` directive
+3. **CSS Order**: Icons CSS must import before Tailwind CSS
+4. **React Package**: Use React wrapper components, not raw web components
+5. **TypeScript**: Include type declarations for proper IntelliSense
+6. **Testing**: Use Chrome DevTools MCP for comprehensive testing
+
+## 📚 Resources
+
+- **Modus Web Components**: [Storybook](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/components-button--docs)
+- **Modus Icons**: [Documentation](https://modus-icons.trimble.com/field-systems/#install)
+- **React Integration**: Use MCP `modus-docs` for component documentation
+- **Testing**: Use Chrome DevTools MCP for browser testing
+
+---
+
+**Remember**: This integration pattern ensures proper SSR compatibility, client-side interactivity, and follows Next.js 15 + React 19 best practices with Modus Web Components.
+
+# Modus Web Components + Next.js Integration Guide
+
+## 🎯 Overview
+
+This project integrates **Modus Web Components** with **Next.js 15** using React 19. The integration follows specific patterns to handle server-side rendering, client-side interactivity, and proper component registration.
+
+## 📦 Package Dependencies
+
+### Required Packages
+
+```json
+{
+  "@trimble-oss/moduswebcomponents-react": "^1.0.0-react19",
+  "@trimble-oss/modus-icons": "^1.17.1"
+}
+```
+
+### Key Points
+
+- **React 19 Compatibility**: Uses the `-react19` variant of the Modus package
+- **Icons Package**: Separate package for Modus icon fonts
+- **Version Alignment**: Ensure React 19 compatibility across all Modus packages
+
+## 🏗️ Architecture Patterns
+
+### 1. Provider Pattern for Component Registration
+
+**File**: `app/components/ModusProvider.tsx`
+
+```tsx
+"use client";
+
+import "@trimble-oss/moduswebcomponents-react/modus-wc-styles.css";
+
+export default function ModusProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Client Component**: Must be `"use client"` directive
+- ✅ **CSS Import**: Imports Modus styles directly
+- ✅ **No useEffect**: React package handles component registration automatically
+- ❌ **No defineCustomElements**: Not needed with React wrapper package
+
+### 2. Layout Integration
+
+**File**: `app/layout.tsx`
+
+```tsx
+import ModusProvider from "./components/ModusProvider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <ModusProvider>{children}</ModusProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Wraps All Pages**: Provider must wrap all app content
+- ✅ **Server Component**: Layout remains server-side
+- ✅ **Single Provider**: Only one ModusProvider needed
+
+### 3. Client Component Pattern for Interactivity
+
+**File**: `app/components/ModusButtonDemo.tsx`
+
+```tsx
+"use client";
+
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function ModusButtonDemo() {
+  const handleButtonClick = () => {
+    console.log("Modus button clicked!");
+    alert("Modus button clicked!");
+  };
+
+  return (
+    <ModusWcButton
+      color="primary"
+      variant="filled"
+      size="md"
+      onButtonClick={handleButtonClick}
+    >
+      <i
+        className="modus-icons"
+        style={{ fontSize: "1.2rem", marginRight: "8px" }}
+      >
+        apps
+      </i>
+      Test Modus Button
+    </ModusWcButton>
+  );
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Client Component**: Must be `"use client"` for event handlers
+- ✅ **React Import**: Use `ModusWcButton` from React package, not raw web component
+- ✅ **Event Handlers**: Can use `onButtonClick` and other event props
+- ❌ **No Raw Web Components**: Don't use `<modus-wc-button>` directly
+
+## 🎨 CSS Integration
+
+### 1. Icons CSS Import
+
+**File**: `app/globals.css`
+
+```css
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+```
+
+**Critical Notes**:
+
+- ✅ **Import Order**: Icons CSS must come BEFORE Tailwind CSS
+- ✅ **CDN Import**: Uses CDN for icon fonts
+- ✅ **Field Systems**: Uses field-systems icon set (623 icons)
+- ❌ **Wrong Order**: `@import` rules must precede all other CSS rules
+
+### 2. Icon Usage Pattern
+
+```tsx
+<i className="modus-icons" style={{ fontSize: "1.2rem", marginRight: "8px" }}>
+  apps
+</i>
+```
+
+**Critical Notes**:
+
+- ✅ **Class Name**: Always use `modus-icons` class
+- ✅ **Icon Names**: Use exact icon names (e.g., `apps`, `user_permissions`)
+- ✅ **Styling**: Use `fontSize` and `color` for customization
+- ✅ **Spacing**: Add `marginRight` for text spacing
+
+## 🔧 TypeScript Configuration
+
+### 1. Type Declarations
+
+**File**: `types/modus.d.ts`
+
+```typescript
+declare namespace JSX {
+  interface IntrinsicElements {
+    "modus-wc-button": {
+      color?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
+      variant?: "filled" | "outlined" | "borderless";
+      size?: "xs" | "sm" | "md" | "lg";
+      shape?: "rectangle" | "square" | "circle";
+      type?: "button" | "submit" | "reset";
+      disabled?: boolean;
+      "full-width"?: boolean;
+      pressed?: boolean;
+      "custom-class"?: string;
+      onButtonClick?: (event: CustomEvent) => void;
+      children?: React.ReactNode;
+    };
+  }
+}
+```
+
+### 2. TypeScript Config
+
+**File**: `tsconfig.json`
+
+```json
+{
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "types/**/*.d.ts"
+  ]
+}
+```
+
+**Critical Notes**:
+
+- ✅ **Include Types**: Must include `types/**/*.d.ts` in tsconfig
+- ✅ **Component Props**: Define all available props and events
+- ✅ **Event Types**: Use `CustomEvent` for component events
+
+## 🚨 Common Pitfalls & Solutions
+
+### 1. Server/Client Component Issues
+
+**❌ Problem**: Event handlers in server components
+
+```
+Error: Event handlers cannot be passed to Client Component props.
+```
+
+**✅ Solution**: Create separate client components for interactivity
+
+```tsx
+// ❌ Wrong - Server component with event handler
+export default function Page() {
+  return <ModusWcButton onButtonClick={() => {}}>Click me</ModusWcButton>;
+}
+
+// ✅ Correct - Client component for interactivity
+("use client");
+export default function InteractiveButton() {
+  return <ModusWcButton onButtonClick={() => {}}>Click me</ModusWcButton>;
+}
+```
+
+### 2. CSS Import Order Issues
+
+**❌ Problem**: CSS parsing errors
+
+```
+@import rules must precede all rules aside from @charset and @layer statements
+```
+
+**✅ Solution**: Put all `@import` statements at the top of CSS files
+
+```css
+/* ✅ Correct order */
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+
+/* ❌ Wrong - @import after other rules */
+:root {
+  --color: red;
+}
+@import "tailwindcss";
+```
+
+### 3. Component Registration Issues
+
+**❌ Problem**: Components not rendering
+
+```
+Module not found: Can't resolve '@trimble-oss/moduswebcomponents-react/loader'
+```
+
+**✅ Solution**: Use React package directly, no loader needed
+
+```tsx
+// ❌ Wrong - Trying to use loader
+import { defineCustomElements } from "@trimble-oss/moduswebcomponents-react/loader";
+
+// ✅ Correct - Import components directly
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+```
+
+### 4. Icon Not Displaying
+
+**❌ Problem**: Icons show as text or don't appear
+
+**✅ Solution**: Check CSS import and class name
+
+```tsx
+// ✅ Correct icon usage
+<i className="modus-icons">apps</i>
+
+// ❌ Wrong - Missing class or wrong name
+<i>apps</i>
+<i className="modus-icon">apps</i>
+```
+
+## 🧪 Testing with Chrome DevTools
+
+### 1. Component Verification
+
+```bash
+# Use Chrome DevTools MCP to test
+mcp_chrome-devtools_navigate_page(url="http://localhost:3000")
+mcp_chrome-devtools_take_snapshot()
+```
+
+### 2. Event Testing
+
+```bash
+# Test button clicks
+mcp_chrome-devtools_click(uid="button_uid")
+mcp_chrome-devtools_list_console_messages()
+```
+
+### 3. Visual Verification
+
+```bash
+# Take screenshots for visual confirmation
+mcp_chrome-devtools_take_screenshot(fullPage=true)
+```
+
+## 📋 Development Checklist
+
+### Before Adding Modus Components:
+
+- [ ] ✅ **Provider Setup**: ModusProvider wraps app in layout
+- [ ] ✅ **CSS Import**: Icons CSS imported before Tailwind
+- [ ] ✅ **TypeScript**: Type declarations included in tsconfig
+- [ ] ✅ **Client Components**: Interactive components marked `"use client"`
+
+### When Creating Interactive Components:
+
+- [ ] ✅ **Client Directive**: Use `"use client"` for event handlers
+- [ ] ✅ **React Import**: Import from `@trimble-oss/moduswebcomponents-react`
+- [ ] ✅ **Event Props**: Use proper event prop names (`onButtonClick`)
+- [ ] ✅ **Icon Integration**: Use `modus-icons` class for icons
+
+### Testing Requirements:
+
+- [ ] ✅ **Visual Test**: Components render correctly
+- [ ] ✅ **Interaction Test**: Event handlers work
+- [ ] ✅ **Icon Test**: Icons display properly
+- [ ] ✅ **Responsive Test**: Works on different screen sizes
+
+## 🔄 Component Patterns
+
+### Basic Button with Icon
+
+```tsx
+"use client";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function IconButton() {
+  return (
+    <ModusWcButton color="primary" variant="filled" size="md">
+      <i className="modus-icons" style={{ marginRight: "8px" }}>
+        apps
+      </i>
+      Button Text
+    </ModusWcButton>
+  );
+}
+```
+
+### Interactive Button
+
+```tsx
+"use client";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function InteractiveButton() {
+  const handleClick = () => {
+    console.log("Button clicked!");
+  };
+
+  return (
+    <ModusWcButton
+      color="primary"
+      variant="filled"
+      size="md"
+      onButtonClick={handleClick}
+    >
+      Click Me
+    </ModusWcButton>
+  );
+}
+```
+
+### Icon-Only Button
+
+```tsx
+"use client";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function IconOnlyButton() {
+  return (
+    <ModusWcButton
+      color="primary"
+      variant="borderless"
+      shape="circle"
+      size="sm"
+      aria-label="Settings"
+    >
+      <i className="modus-icons">settings</i>
+    </ModusWcButton>
+  );
+}
+```
+
+## 🎯 Key Takeaways
+
+1. **Architecture**: Use provider pattern for component registration
+2. **Client Components**: Interactive features require `"use client"` directive
+3. **CSS Order**: Icons CSS must import before Tailwind CSS
+4. **React Package**: Use React wrapper components, not raw web components
+5. **TypeScript**: Include type declarations for proper IntelliSense
+6. **Testing**: Use Chrome DevTools MCP for comprehensive testing
+
+## 📚 Resources
+
+- **Modus Web Components**: [Storybook](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/components-button--docs)
+- **Modus Icons**: [Documentation](https://modus-icons.trimble.com/field-systems/#install)
+- **React Integration**: Use MCP `modus-docs` for component documentation
+- **Testing**: Use Chrome DevTools MCP for browser testing
+
+---
+
+**Remember**: This integration pattern ensures proper SSR compatibility, client-side interactivity, and follows Next.js 15 + React 19 best practices with Modus Web Components.

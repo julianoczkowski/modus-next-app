@@ -2,26 +2,48 @@
   "name": "modus-next-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:colors": "node scripts/check-modus-colors.js",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@trimble-oss/modus-icons": "^1.17.1",
+    "@trimble-oss/moduswebcomponents-react": "^1.0.0-react19",
+    "next": "15.5.4",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-    "@eslint/eslintrc": "^3"
+    "glob": "^11.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "app/**/*.{tsx,ts,js,css,scss}": [
+      "npm run lint:colors"
+    ],
+    "components/**/*.{tsx,ts,js,css,scss}": [
+      "npm run lint:colors"
+    ],
+    "src/**/*.{tsx,ts,js,css,scss}": [
+      "npm run lint:colors"
+    ],
+    "styles/**/*.{css,scss}": [
+      "npm run lint:colors"
+    ]
   }
 }
