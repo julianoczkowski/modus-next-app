@@ -18,7 +18,7 @@ export default function Home() {
       >
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 mt-12 max-w-2xl mx-auto">
             <div className="mb-8 flex justify-center items-center">
               <Image
                 src="/nextjs-icon.svg"
@@ -48,7 +48,7 @@ export default function Home() {
               Welcome to Modus 2.0 Next.js App
             </h1>
             <p
-              className="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-80"
+              className="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-80 text-center"
               style={{ color: "var(--modus-wc-color-base-content)" }}
             >
               A boilerplate for building Next.js applications with Modus. If you
