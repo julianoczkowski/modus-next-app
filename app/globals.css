@@ -25,3 +25,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Theme-based logo switching */
+.nextjs-logo-light {
+  display: block;
+}
+
+.nextjs-logo-dark {
+  display: none;
+}
+
+.github-icon-light {
+  display: block;
+}
+
+.github-icon-dark {
+  display: none;
+}
+
+/* Dark theme logo switching */
+[data-theme="modus-classic-dark"] .nextjs-logo-light,
+[data-theme="modus-modern-dark"] .nextjs-logo-light {
+  display: none;
+}
+
+[data-theme="modus-classic-dark"] .nextjs-logo-dark,
+[data-theme="modus-modern-dark"] .nextjs-logo-dark {
+  display: block;
+}
+
+[data-theme="modus-classic-dark"] .github-icon-light,
+[data-theme="modus-modern-dark"] .github-icon-light {
+  display: none;
+}
+
+[data-theme="modus-classic-dark"] .github-icon-dark,
+[data-theme="modus-modern-dark"] .github-icon-dark {
+  display: block;
+}

@@ -1,95 +1,180 @@
-import ModusButtonDemo from "./components/ModusButtonDemo";
-import ModusButtonSecondary from "./components/ModusButtonSecondary";
-import ModusButtonWarning from "./components/ModusButtonWarning";
-import ModusButtonDanger from "./components/ModusButtonDanger";
+import AppHeader from "./components/AppHeader";
+import AppFooter from "./components/AppFooter";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8" style={{ backgroundColor: 'var(--modus-wc-color-base-100)' }}>
-      <main className="flex flex-col items-center gap-8 max-w-4xl w-full">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4" style={{ color: 'var(--modus-wc-color-base-content)' }}>
-            Modus Web Components Demo
-          </h1>
-          <p className="text-lg" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.8 }}>
-            Next.js 15 + React 19 + Modus Design System
-          </p>
-        </div>
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}
+    >
+      <AppHeader />
 
-        {/* Button Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-3xl">
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg shadow-md" style={{ backgroundColor: 'var(--modus-wc-color-base-page)' }}>
-            <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.8 }}>
-              Primary
-            </h3>
-            <ModusButtonDemo />
-            <p className="text-xs text-center" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.6 }}>
-              Filled variant with apps icon
+      <main
+        className="flex-1 max-w-6xl mx-auto px-4 py-8 w-full"
+        style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}
+      >
+        <div className="max-w-6xl mx-auto">
+          {/* Hero Section */}
+          <div className="text-center mb-12">
+            <div className="mb-8 flex justify-center items-center">
+              <Image
+                src="/nextjs-icon.svg"
+                alt="Next.js Logo"
+                width={120}
+                height={120}
+                className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-light"
+                style={{
+                  filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))",
+                }}
+              />
+              <Image
+                src="/nextjs-icon.svg"
+                alt="Next.js Logo"
+                width={120}
+                height={120}
+                className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-dark hidden"
+                style={{
+                  filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)) invert(1)",
+                }}
+              />
+            </div>
+            <h1
+              className="text-4xl md:text-5xl font-semibold mb-4"
+              style={{ color: "var(--modus-wc-color-base-content)" }}
+            >
+              Welcome to Modus 2.0 Next.js App
+            </h1>
+            <p
+              className="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-80"
+              style={{ color: "var(--modus-wc-color-base-content)" }}
+            >
+              A boilerplate for building Next.js applications with Modus. If you
+              can see this page, example components, icons and theme switching
+              you have successfully installed the boilerplate.
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg shadow-md" style={{ backgroundColor: 'var(--modus-wc-color-base-page)' }}>
-            <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.8 }}>
-              Secondary
-            </h3>
-            <ModusButtonSecondary />
-            <p className="text-xs text-center" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.6 }}>
-              Outlined variant with download icon
-            </p>
+          {/* Features Section */}
+          <div className="mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              <div
+                className="rounded-xl p-6 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                style={{
+                  backgroundColor: "var(--modus-wc-color-base-100)",
+                  border: "1px solid var(--modus-wc-color-base-200)",
+                }}
+              >
+                <div className="flex items-start gap-4 flex-1">
+                  <i
+                    className="modus-icons text-2xl flex-shrink-0 mt-1"
+                    style={{ color: "var(--modus-wc-color-base-content)" }}
+                  >
+                    coffee_cup
+                  </i>
+                  <div className="flex-1">
+                    <h4
+                      className="text-lg font-semibold mb-2 m-0"
+                      style={{ color: "var(--modus-wc-color-base-content)" }}
+                    >
+                      Rich Components
+                    </h4>
+                    <p
+                      className="text-sm leading-relaxed m-0 opacity-80"
+                      style={{ color: "var(--modus-wc-color-base-content)" }}
+                    >
+                      40+ production-ready components
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-end mt-2">
+                  <Link href="/button-demo" className="no-underline">
+                    <ModusWcButton color="primary">Check Buttons</ModusWcButton>
+                  </Link>
+                </div>
+              </div>
+
+              <div
+                className="rounded-xl p-6 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                style={{
+                  backgroundColor: "var(--modus-wc-color-base-100)",
+                  border: "1px solid var(--modus-wc-color-base-200)",
+                }}
+              >
+                <div className="flex items-start gap-4 flex-1">
+                  <i
+                    className="modus-icons text-2xl flex-shrink-0 mt-1"
+                    style={{ color: "var(--modus-wc-color-base-content)" }}
+                  >
+                    palette
+                  </i>
+                  <div className="flex-1">
+                    <h4
+                      className="text-lg font-semibold mb-2 m-0"
+                      style={{ color: "var(--modus-wc-color-base-content)" }}
+                    >
+                      Theme Support
+                    </h4>
+                    <p
+                      className="text-sm leading-relaxed m-0 opacity-80"
+                      style={{ color: "var(--modus-wc-color-base-content)" }}
+                    >
+                      Light & dark themes with variants
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-end mt-2">
+                  <ModusWcButton color="secondary" size="sm">
+                    <i className="modus-icons" style={{ marginRight: "6px" }}>
+                      brightness
+                    </i>
+                    Try Themes
+                  </ModusWcButton>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg shadow-md" style={{ backgroundColor: 'var(--modus-wc-color-base-page)' }}>
-            <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.8 }}>
-              Warning
-            </h3>
-            <ModusButtonWarning />
-            <p className="text-xs text-center" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.6 }}>
-              Filled variant with warning icon
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center gap-3 p-6 rounded-lg shadow-md" style={{ backgroundColor: 'var(--modus-wc-color-base-page)' }}>
-            <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.8 }}>
-              Danger
-            </h3>
-            <ModusButtonDanger />
-            <p className="text-xs text-center" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.6 }}>
-              Borderless variant with delete icon
-            </p>
-          </div>
-        </div>
-
-        {/* Info Section */}
-        <div className="mt-8 text-center max-w-2xl">
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--modus-wc-color-base-content)' }}>
-            Modus Web Components Integration
-          </h2>
-          <p className="mb-4" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.8 }}>
-            This demo showcases Modus Web Components integrated with Next.js 15
-            and React 19. Each button demonstrates different color variants,
-            styles, and icon usage patterns.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm" style={{ color: 'var(--modus-wc-color-base-content)', opacity: 0.6 }}>
-            <span className="flex items-center gap-1">
-              <i className="modus-icons">check_circle</i>
-              React 19 Compatible
-            </span>
-            <span className="flex items-center gap-1">
-              <i className="modus-icons">check_circle</i>
-              TypeScript Support
-            </span>
-            <span className="flex items-center gap-1">
-              <i className="modus-icons">check_circle</i>
-              SSR Ready
-            </span>
-            <span className="flex items-center gap-1">
-              <i className="modus-icons">check_circle</i>
-              Dark Mode Support
-            </span>
+          {/* Video Section */}
+          <div className="mt-16 mb-12">
+            <div className="text-center mb-8">
+              <h2
+                className="text-3xl md:text-4xl font-semibold mb-4"
+                style={{ color: "var(--modus-wc-color-base-content)" }}
+              >
+                About this Boilerplate
+              </h2>
+              <p
+                className="text-lg max-w-2xl mx-auto opacity-80"
+                style={{ color: "var(--modus-wc-color-base-content)" }}
+              >
+                Watch this video to discover more about this boilerplate
+              </p>
+            </div>
+            <div
+              className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video"
+              style={{
+                backgroundColor: "var(--modus-wc-color-base-100)",
+                border: "1px solid var(--modus-wc-color-base-200)",
+              }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/aG7Eu7SkKZA?si=KDI-XcSlRNr70bS5"
+                title="Boilerplate Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full border-none rounded-xl"
+              ></iframe>
+            </div>
           </div>
         </div>
       </main>
+
+      <AppFooter />
     </div>
   );
 }

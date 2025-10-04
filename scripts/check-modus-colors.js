@@ -67,7 +67,12 @@ const FILE_PATTERNS = [
 ];
 
 // Files to exclude
-const EXCLUDE_PATTERNS = ["node_modules/**", ".next/**", "dist/**", "**/*.d.ts"];
+const EXCLUDE_PATTERNS = [
+  "node_modules/**",
+  ".next/**",
+  "dist/**",
+  "**/*.d.ts",
+];
 
 async function checkFile(filePath) {
   const content = fs.readFileSync(filePath, "utf8");

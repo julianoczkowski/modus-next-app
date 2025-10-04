@@ -34,6 +34,7 @@ The script runs automatically before each commit to ensure design system consist
 ## Modus Color System (9 Colors Only)
 
 ### Base Colors (5 total):
+
 1. **Base Page**: `var(--modus-wc-color-base-page)` - #fff (light) / #000 (dark)
 2. **Base 100**: `var(--modus-wc-color-base-100)` - #f1f1f6 (light) / #252a2e (dark)
 3. **Base 200**: `var(--modus-wc-color-base-200)` - #cbcdd6 (light) / #464b52 (dark)
@@ -41,12 +42,14 @@ The script runs automatically before each commit to ensure design system consist
 5. **Base Content**: `var(--modus-wc-color-base-content)` - #171c1e (light) / #cbcdd6 (dark)
 
 ### Semantic Colors (4 total - same in both themes):
+
 6. **Info**: `var(--modus-wc-color-info)` - #0063a3
 7. **Success**: `var(--modus-wc-color-success)` - #1e8a44
 8. **Error**: `var(--modus-wc-color-error)` - #da212c
 9. **Warning**: `var(--modus-wc-color-warning)` - #fbad26
 
 ### Component Props:
+
 - **Buttons**: `primary`, `secondary`, `tertiary`, `warning`, `danger`
 - **Alerts**: `info`, `success`, `warning`, `error`
 

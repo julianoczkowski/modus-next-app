@@ -1,0 +1,407 @@
+# Modus Web Components Dropdown Event Handling in Next.js
+
+This rule documents the critical patterns and solutions discovered when implementing interactive Modus Web Components (specifically dropdown menus) in Next.js applications with React 19.
+
+## 🎯 Core Problem: React Event Props vs Native Web Component Events
+
+### The Challenge
+
+Modus Web Components use native DOM events that don't always map perfectly to React's synthetic event system. When using the React wrapper package (`@trimble-oss/moduswebcomponents-react`), event handlers passed as props (like `onItemSelect`) may not fire reliably.
+
+### Common Symptoms
+
+- Event handlers defined as React props don't execute
+- No console logs or debug output from event handlers
+- Components appear to work visually but lack interactivity
+- No TypeScript errors, but functionality is missing
+
+## 🔧 Solution: Hybrid Event Handling Pattern
+
+### Primary Approach: Direct DOM Event Listeners
+
+Use `useEffect` with `addEventListener` to attach event listeners directly to the web component DOM element:
+
+```tsx
+"use client";
+
+import { useRef, useEffect } from "react";
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+
+export default function InteractiveDropdown() {
+  const dropdownRef = useRef<any>(null);
+
+  useEffect(() => {
+    const dropdown = dropdownRef.current;
+    if (dropdown) {
+      const handleItemSelect = (event: CustomEvent) => {
+        const selectedValue = event.detail?.value;
+        console.log("Item selected:", selectedValue);
+        // Handle the selection
+      };
+
+      // Attach event listener directly to DOM element
+      dropdown.addEventListener("itemSelect", handleItemSelect);
+
+      // Cleanup function to prevent memory leaks
+      return () => {
+        dropdown.removeEventListener("itemSelect", handleItemSelect);
+      };
+    }
+  }, []); // Empty dependency array for component mount/unmount only
+
+  return (
+    <ModusWcDropdownMenu ref={dropdownRef}>
+      <div slot="button">Select Option</div>
+      <div slot="menu">
+        <ModusWcMenuItem label="Option 1" value="option1" />
+        <ModusWcMenuItem label="Option 2" value="option2" />
+      </div>
+    </ModusWcDropdownMenu>
+  );
+}
+```
+
+### Secondary Approach: React Event Props (Backup)
+
+Keep React event props as a fallback, even if they don't work reliably:
+
+```tsx
+<ModusWcDropdownMenu
+  ref={dropdownRef}
+  onItemSelect={handleItemSelect} // Backup approach
+  onMenuVisibilityChange={handleMenuVisibility}
+>
+```
+
+## 🎨 Complete Implementation Pattern
+
+### Theme Switcher Example
+
+```tsx
+"use client";
+
+import { useTheme, type Theme } from "../contexts/ThemeContext";
+import { useState, useEffect, useRef } from "react";
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+
+interface ThemeSwitcherDropdownProps {
+  className?: string;
+}
+
+function ThemeSwitcherDropdownContent({
+  className = "",
+}: ThemeSwitcherDropdownProps) {
+  const { theme, setTheme } = useTheme();
+  const dropdownRef = useRef<any>(null);
+
+  const themes: { value: Theme; label: string }[] = [
+    { value: "modus-classic-light", label: "Classic Light" },
+    { value: "modus-classic-dark", label: "Classic Dark" },
+    { value: "modus-modern-light", label: "Modern Light" },
+    { value: "modus-modern-dark", label: "Modern Dark" },
+  ];
+
+  // Primary event handling with direct DOM listeners
+  useEffect(() => {
+    const dropdown = dropdownRef.current;
+    if (dropdown) {
+      const handleItemSelect = (event: CustomEvent) => {
+        const selectedValue = event.detail?.value as Theme;
+        if (selectedValue && selectedValue !== theme) {
+          setTheme(selectedValue);
+          dropdown.menuVisible = false; // Close dropdown
+        }
+      };
+
+      dropdown.addEventListener("itemSelect", handleItemSelect);
+
+      return () => {
+        dropdown.removeEventListener("itemSelect", handleItemSelect);
+      };
+    }
+  }, [theme, setTheme]); // Include dependencies that affect the handler
+
+  const getCurrentThemeLabel = () => {
+    const currentTheme = themes.find((t) => t.value === theme);
+    return currentTheme ? currentTheme.label : "Theme";
+  };
+
+  return (
+    <div className={`theme-switcher-dropdown ${className}`}>
+      <ModusWcDropdownMenu
+        ref={dropdownRef}
+        button-size="md"
+        button-variant="primary"
+        menu-placement="bottom-end"
+        // Backup React event props (may not work reliably)
+        onItemSelect={handleItemSelect}
+        onMenuVisibilityChange={handleMenuVisibility}
+      >
+        <div slot="button" className="theme-button-content">
+          <span className="theme-label">{getCurrentThemeLabel()}</span>
+          <i className="modus-icons theme-arrow">expand_more</i>
+        </div>
+        <div slot="menu">
+          {themes.map((themeOption) => (
+            <ModusWcMenuItem
+              key={themeOption.value}
+              label={themeOption.label}
+              value={themeOption.value}
+              selected={theme === themeOption.value}
+            />
+          ))}
+        </div>
+      </ModusWcDropdownMenu>
+    </div>
+  );
+}
+
+// Hydration-safe wrapper
+export default function ThemeSwitcherDropdown(
+  props: ThemeSwitcherDropdownProps
+) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className={`theme-switcher-dropdown ${props.className || ""}`}>
+        <div className="animate-pulse">
+          <div
+            className="h-8 w-32 rounded"
+            style={{ backgroundColor: "var(--modus-wc-color-base-200)" }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return <ThemeSwitcherDropdownContent {...props} />;
+}
+```
+
+## 🔍 Debugging Event Handling
+
+### Debug Pattern
+
+Add comprehensive logging to identify event flow:
+
+```tsx
+useEffect(() => {
+  const dropdown = dropdownRef.current;
+  if (dropdown) {
+    const handleItemSelect = (event: CustomEvent) => {
+      console.log("🎯 Event received:", event);
+      console.log("📋 Event detail:", event.detail);
+      console.log("🔍 Event type:", event.type);
+
+      const selectedValue = event.detail?.value;
+      if (selectedValue) {
+        console.log("✅ Processing selection:", selectedValue);
+        // Handle selection
+      } else {
+        console.log("❌ No value in event detail");
+      }
+    };
+
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+
+    return () => {
+      dropdown.removeEventListener("itemSelect", handleItemSelect);
+    };
+  }
+}, []);
+```
+
+### Common Event Names
+
+Different Modus components use different event names:
+
+- **Dropdown Menu**: `itemSelect`
+- **Button**: `buttonClick`
+- **Modal**: `modalClose`, `modalOpen`
+- **Alert**: `alertDismiss`
+
+Always check the Modus documentation or use browser dev tools to inspect the actual event names.
+
+## ⚠️ Critical Implementation Rules
+
+### 1. Always Use Refs for DOM Access
+
+```tsx
+// ✅ Correct
+const dropdownRef = useRef<any>(null);
+
+// ❌ Wrong - Don't try to access DOM without refs
+const dropdown = document.querySelector("modus-wc-dropdown-menu");
+```
+
+### 2. Proper Cleanup is Essential
+
+```tsx
+useEffect(() => {
+  const element = ref.current;
+  if (element) {
+    const handler = (event) => {
+      /* handle event */
+    };
+    element.addEventListener("eventName", handler);
+
+    // ✅ Always return cleanup function
+    return () => {
+      element.removeEventListener("eventName", handler);
+    };
+  }
+}, []);
+```
+
+### 3. Include Dependencies in useEffect
+
+```tsx
+// ✅ Include dependencies that affect the handler
+useEffect(() => {
+  // Handler logic
+}, [theme, setTheme]); // Dependencies that the handler uses
+
+// ❌ Missing dependencies can cause stale closures
+useEffect(() => {
+  // Handler logic
+}, []); // Empty array when handler uses external state
+```
+
+### 4. Hydration Safety for Next.js
+
+```tsx
+// ✅ Always use hydration-safe wrapper for client components
+export default function Component() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <LoadingSkeleton />;
+  }
+
+  return <InteractiveComponent />;
+}
+```
+
+## 🎯 TypeScript Considerations
+
+### Event Type Definitions
+
+```tsx
+// Custom event types for better type safety
+interface ItemSelectEvent extends CustomEvent {
+  detail: {
+    value: string;
+    label?: string;
+  };
+}
+
+const handleItemSelect = (event: ItemSelectEvent) => {
+  const { value, label } = event.detail;
+  // Type-safe access to event data
+};
+```
+
+### Ref Types
+
+```tsx
+// More specific ref typing when possible
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+
+// Fallback to any when specific types aren't available
+const dropdownRef = useRef<any>(null);
+```
+
+## 🚀 Performance Considerations
+
+### Event Listener Optimization
+
+```tsx
+// ✅ Use useCallback for stable handler references
+const handleItemSelect = useCallback(
+  (event: CustomEvent) => {
+    const selectedValue = event.detail?.value;
+    // Handle selection
+  },
+  [theme, setTheme]
+); // Dependencies
+
+useEffect(() => {
+  const dropdown = dropdownRef.current;
+  if (dropdown) {
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => {
+      dropdown.removeEventListener("itemSelect", handleItemSelect);
+    };
+  }
+}, [handleItemSelect]); // Include callback in dependencies
+```
+
+### Conditional Event Attachment
+
+```tsx
+useEffect(() => {
+  const dropdown = dropdownRef.current;
+  if (dropdown && isInteractive) {
+    // Only attach when needed
+    const handler = (event) => {
+      /* handle event */
+    };
+    dropdown.addEventListener("itemSelect", handler);
+    return () => {
+      dropdown.removeEventListener("itemSelect", handler);
+    };
+  }
+}, [isInteractive]);
+```
+
+## 🔧 Troubleshooting Checklist
+
+When dropdown events aren't working:
+
+- [ ] ✅ **Ref is properly attached**: `ref={dropdownRef}`
+- [ ] ✅ **Event listener is attached**: `addEventListener("itemSelect", handler)`
+- [ ] ✅ **Cleanup function exists**: `removeEventListener` in return
+- [ ] ✅ **Dependencies are correct**: Include all used variables in useEffect deps
+- [ ] ✅ **Component is client-side**: `"use client"` directive present
+- [ ] ✅ **Hydration is handled**: Mounted state prevents SSR mismatches
+- [ ] ✅ **Event name is correct**: Check Modus docs for exact event names
+- [ ] ✅ **Debug logs are added**: Console.log to verify event firing
+- [ ] ✅ **TypeScript types are correct**: Proper event and ref typing
+
+## 📚 Related Patterns
+
+This pattern applies to all interactive Modus Web Components:
+
+- **Buttons**: `buttonClick` events
+- **Modals**: `modalClose`, `modalOpen` events
+- **Alerts**: `alertDismiss` events
+- **Tabs**: `tabChange` events
+- **Accordions**: `accordionChange` events
+
+The key principle is: **Use direct DOM event listeners as the primary approach, with React event props as backup**.
+
+## 🎯 Key Takeaways
+
+1. **React event props are unreliable** for Modus Web Components
+2. **Direct DOM event listeners are the solution** for reliable event handling
+3. **Always include proper cleanup** to prevent memory leaks
+4. **Hydration safety is critical** in Next.js applications
+5. **Debug logging is essential** for troubleshooting event issues
+6. **Hybrid approach provides maximum compatibility** and reliability
+
+This pattern ensures robust, reliable event handling for all interactive Modus Web Components in Next.js applications.
