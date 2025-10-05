@@ -100,3 +100,4 @@ interface HTMLModusWcButtonElement extends HTMLElement {
   variant: string;
   size: string;
 }
+}
