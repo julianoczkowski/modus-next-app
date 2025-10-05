@@ -43,20 +43,51 @@ export default function AppHeader() {
             </Link>
             <Link
               href="/button-demo"
-              className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base"
+              className="px-3 py-2 md:px-4 rounded transition-colors duration-200 hover:bg-opacity-10 text-sm md:text-base"
               style={{
                 color: "var(--modus-wc-color-base-content)",
                 textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor =
+                  "var(--modus-wc-color-base-100)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
             >
               Button Demo
             </Link>
             <Link
-              href="/about"
-              className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base"
+              href="/color-palette"
+              className="px-3 py-2 md:px-4 rounded transition-colors duration-200 hover:bg-opacity-10 text-sm md:text-base"
               style={{
                 color: "var(--modus-wc-color-base-content)",
                 textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor =
+                  "var(--modus-wc-color-base-100)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              Colors
+            </Link>
+            <Link
+              href="/about"
+              className="px-3 py-2 md:px-4 rounded transition-colors duration-200 hover:bg-opacity-10 text-sm md:text-base"
+              style={{
+                color: "var(--modus-wc-color-base-content)",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor =
+                  "var(--modus-wc-color-base-100)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
             >
               About
@@ -126,6 +157,23 @@ export default function AppHeader() {
             }}
           >
             Button Demo
+          </Link>
+          <Link
+            href="/color-palette"
+            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 hover:bg-opacity-10 text-sm md:text-base"
+            style={{
+              color: "var(--modus-wc-color-base-content)",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor =
+                "var(--modus-wc-color-base-100)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
+          >
+            Colors
           </Link>
           <Link
             href="/about"

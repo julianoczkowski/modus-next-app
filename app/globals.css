@@ -1,14 +1,108 @@
 @import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
+  /* Typography variables */
+  --font-size: 14px;
+  --text-3xl: 36px; /* h1 */
+  --text-2xl: 30px; /* h2 */
+  --text-xl: 24px; /* h3 */
+  --text-lg: 20px; /* h4 */
+  --text-base: 14px; /* p, span, button, input */
+  --text-xs: 12px; /* label */
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  /* Map Figma colors to Modus 9-color system */
   --background: var(--modus-wc-color-base-page);
   --foreground: var(--modus-wc-color-base-content);
+  --card: var(--modus-wc-color-base-100);
+  --card-foreground: var(--modus-wc-color-base-content);
+  --popover: var(--modus-wc-color-base-page);
+  --popover-foreground: var(--modus-wc-color-base-content);
+  --primary: var(--modus-wc-color-info);
+  --primary-foreground: var(--modus-wc-color-base-page);
+  --secondary: var(--modus-wc-color-base-300);
+  --secondary-foreground: var(--modus-wc-color-base-content);
+  --muted: var(--modus-wc-color-base-200);
+  --muted-foreground: var(--modus-wc-color-base-content);
+  --accent: var(--modus-wc-color-info);
+  --accent-foreground: var(--modus-wc-color-base-page);
+  --destructive: var(--modus-wc-color-error);
+  --destructive-foreground: var(--modus-wc-color-base-page);
+  --warning: var(--modus-wc-color-warning);
+  --warning-foreground: var(--modus-wc-color-base-content);
+  --success: var(--modus-wc-color-success);
+  --success-foreground: var(--modus-wc-color-base-page);
+  --border: var(--modus-wc-color-base-200);
+  --input: var(--modus-wc-color-base-page);
+  --input-background: var(--modus-wc-color-base-page);
+  --ring: var(--modus-wc-color-info);
+  --elevation-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  --chart-1: var(--modus-wc-color-info);
+  --chart-2: var(--modus-wc-color-warning);
+  --chart-3: var(--modus-wc-color-success);
+  --chart-4: var(--modus-wc-color-error);
+  --chart-5: var(--modus-wc-color-info);
+  --radius: 8px;
+  --radius-card: 16px;
+  --radius-badge: 4px;
+  --sidebar: var(--modus-wc-color-base-page);
+  --sidebar-foreground: var(--modus-wc-color-base-content);
+  --sidebar-primary: var(--modus-wc-color-info);
+  --sidebar-primary-foreground: var(--modus-wc-color-base-page);
+  --sidebar-accent: var(--modus-wc-color-info);
+  --sidebar-accent-foreground: var(--modus-wc-color-base-page);
+  --sidebar-border: var(--modus-wc-color-base-200);
+  --sidebar-ring: var(--modus-wc-color-info);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --elevation-sm: var(--elevation-sm);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-card);
+  --radius-badge: var(--radius-badge);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -20,10 +114,21 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Open Sans", sans-serif;
+    font-size: var(--font-size);
+  }
+
+  html {
+    font-size: var(--font-size);
+    font-family: "Open Sans", sans-serif;
+  }
 }
 
 /* Theme-based logo switching */
@@ -62,4 +167,59 @@ body {
 [data-theme="modus-classic-dark"] .github-icon-dark,
 [data-theme="modus-modern-dark"] .github-icon-dark {
   display: block;
+}
+
+/* Remove all default heading styles to let Tailwind work */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography utilities using Tailwind classes */
+.text-xs {
+  font-size: var(--text-xs);
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-base {
+  font-size: var(--text-base);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+}
+
+.text-2xl {
+  font-size: var(--text-2xl);
+}
+
+.text-3xl {
+  font-size: var(--text-3xl);
+}
+
+.text-4xl {
+  font-size: 48px;
+}
+
+.text-5xl {
+  font-size: 60px;
+}
+
+.text-6xl {
+  font-size: 72px;
 }

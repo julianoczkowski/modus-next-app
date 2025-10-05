@@ -502,6 +502,206 @@ declare namespace JSX {
 }
 ```
 
+## 🎨 Working with Colors in Practice
+
+### Color Palette Reference
+
+**Always reference the color palette page** at `/color-palette` to see all available colors and their proper usage. This page shows:
+
+- ✅ **Visual color swatches** for all design system colors
+- ✅ **CSS variable names** (e.g., `--primary`, `--destructive`)
+- ✅ **Tailwind class names** (e.g., `bg-primary`, `text-destructive-foreground`)
+- ✅ **Theme adaptation** - colors change automatically in light/dark themes
+- ✅ **Usage examples** for both custom UI and Modus Web Components
+
+### Loading States and Skeletons
+
+**✅ CORRECT - Use Modus design system colors:**
+
+```tsx
+// Loading skeleton with proper Modus colors
+if (!mounted) {
+  return (
+    <div className="max-w-6xl mx-auto p-8">
+      <div className="animate-pulse">
+        <div className="h-8 bg-muted rounded mb-8" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+            <div key={i} className="h-32 bg-muted rounded-lg" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+**❌ WRONG - Don't use hardcoded Tailwind colors:**
+
+```tsx
+// DON'T DO THIS - violates color rules
+<div className="h-8 bg-gray-200 rounded mb-8" />
+<div key={i} className="h-32 bg-gray-200 rounded-lg" />
+```
+
+### Card and Container Styling
+
+**✅ CORRECT - Use design system colors with opacity:**
+
+```tsx
+// Semi-transparent cards for layered UI
+<div className="bg-card/50 border border-border rounded-lg p-6">
+  <div className="text-foreground">Content</div>
+</div>
+
+// Solid cards for primary content
+<div className="bg-card border border-border rounded-lg p-6">
+  <div className="text-foreground">Content</div>
+</div>
+```
+
+### Status and Feedback Colors
+
+**✅ CORRECT - Use semantic colors for status:**
+
+```tsx
+// Success states
+<div className="bg-success text-success-foreground p-4 rounded-lg">
+  <i className="modus-icons">check_circle</i>
+  Success message
+</div>
+
+// Error states
+<div className="bg-destructive text-destructive-foreground p-4 rounded-lg">
+  <i className="modus-icons">error</i>
+  Error message
+</div>
+
+// Warning states
+<div className="bg-warning text-warning-foreground p-4 rounded-lg">
+  <i className="modus-icons">warning</i>
+  Warning message
+</div>
+
+// Info states
+<div className="bg-primary text-primary-foreground p-4 rounded-lg">
+  <i className="modus-icons">info</i>
+  Info message
+</div>
+```
+
+### Interactive Elements
+
+**✅ CORRECT - Use hover states with Modus colors:**
+
+```tsx
+// Interactive cards
+<div className="bg-card border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-lg hover:bg-card/80">
+  <div className="text-foreground">Interactive content</div>
+</div>
+
+// Interactive buttons (custom UI)
+<button className="bg-primary text-primary-foreground px-4 py-2 rounded transition-colors hover:bg-primary/90">
+  Custom Button
+</button>
+```
+
+### Form Elements
+
+**✅ CORRECT - Use input colors from design system:**
+
+```tsx
+// Form inputs
+<input
+  className="bg-input border border-border rounded px-3 py-2 text-foreground placeholder:text-muted-foreground"
+  placeholder="Enter text..."
+/>
+
+// Form labels
+<label className="text-foreground text-sm font-medium">
+  Field Label
+</label>
+
+// Form validation
+<div className="text-destructive text-sm">
+  {error && "This field is required"}
+</div>
+```
+
+### Navigation and Sidebar
+
+**✅ CORRECT - Use sidebar colors:**
+
+```tsx
+// Sidebar container
+<aside className="bg-sidebar border-r border-sidebar-border min-h-screen">
+  <nav className="p-4">
+    <div className="text-sidebar-foreground">Navigation</div>
+  </nav>
+</aside>
+
+// Active navigation items
+<Link
+  href="/dashboard"
+  className="bg-sidebar-primary text-sidebar-primary-foreground px-3 py-2 rounded"
+>
+  Dashboard
+</Link>
+```
+
+### Data Visualization
+
+**✅ CORRECT - Use chart colors:**
+
+```tsx
+// Chart elements
+<div className="bg-chart-1 h-4 w-full rounded"></div>
+<div className="bg-chart-2 h-4 w-full rounded"></div>
+<div className="bg-chart-3 h-4 w-full rounded"></div>
+<div className="bg-chart-4 h-4 w-full rounded"></div>
+<div className="bg-chart-5 h-4 w-full rounded"></div>
+```
+
+### Color Testing and Validation
+
+**Always test your colors:**
+
+1. **Visit `/color-palette`** to see all available colors
+2. **Test theme switching** - ensure colors work in both light and dark themes
+3. **Check contrast** - ensure text is readable on colored backgrounds
+4. **Validate accessibility** - use proper color combinations for WCAG compliance
+
+### Common Color Patterns
+
+**Background + Text combinations:**
+
+```tsx
+// Primary content
+<div className="bg-background text-foreground">Main content</div>
+
+// Secondary content
+<div className="bg-card text-card-foreground">Card content</div>
+
+// Muted content
+<div className="bg-muted text-muted-foreground">Subtle content</div>
+
+// Interactive content
+<div className="bg-primary text-primary-foreground">Interactive element</div>
+```
+
+**Border patterns:**
+
+```tsx
+// Standard borders
+<div className="border border-border">Content</div>
+
+// Focus rings
+<input className="focus:ring-2 focus:ring-ring" />
+
+// Sidebar borders
+<div className="border-r border-sidebar-border">Sidebar</div>
+```
+
 ---
 
 **Remember: Consistency is key! Stick to the 9 approved Modus colors for a cohesive, theme-compatible design system. The pre-commit linting will catch violations automatically in your Next.js project.**

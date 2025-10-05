@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ModusProvider from "./components/ModusProvider";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import AppHeader from "./components/AppHeader";
+import AppFooter from "./components/AppFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +36,11 @@ export default function RootLayout({
         }}
       >
         <ThemeProvider>
-          <ModusProvider>{children}</ModusProvider>
+          <ModusProvider>
+            <AppHeader />
+            <main style={{ minHeight: "calc(100vh - 200px)" }}>{children}</main>
+            <AppFooter />
+          </ModusProvider>
         </ThemeProvider>
       </body>
     </html>
