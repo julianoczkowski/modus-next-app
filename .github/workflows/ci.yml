@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
 
   security:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
 
   validate:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -73,7 +73,7 @@ jobs:
       - name: Validate project structure
         run: |
           echo "🔍 Validating project structure..."
-          
+
           # Check required directories
           required_dirs=("app" "app/components" "types")
           for dir in "${required_dirs[@]}"; do
@@ -83,7 +83,7 @@ jobs:
             fi
             echo "✅ Found directory: $dir"
           done
-          
+
           # Check required files
           required_files=("package.json" "tsconfig.json" "next.config.ts")
           for file in "${required_files[@]}"; do
@@ -93,7 +93,7 @@ jobs:
             fi
             echo "✅ Found file: $file"
           done
-          
+
           echo "✅ Project structure validation passed"
 
       - name: Validate package.json
