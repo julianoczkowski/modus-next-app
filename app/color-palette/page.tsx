@@ -189,11 +189,11 @@ export default function ColorPalettePage() {
   return (
     <div className="max-w-6xl mx-auto p-8">
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="flex flex-col text-center mb-12 p-8 items-center justify-center">
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Color Palette
         </div>
-        <p className="text-lg max-w-3xl mx-auto leading-relaxed text-foreground">
+        <p className="text-lg max-w-3xl mx-auto leading-relaxed text-foreground text-center justify-center">
           Visual reference for all colors in the Modus Design System. These
           colors automatically adapt to the current theme (Classic Light/Dark,
           Modern Light/Dark).
