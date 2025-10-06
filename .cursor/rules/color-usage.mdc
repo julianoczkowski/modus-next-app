@@ -1,5 +1,5 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Color Usage Rules for Next.js
@@ -701,6 +701,244 @@ if (!mounted) {
 // Sidebar borders
 <div className="border-r border-sidebar-border">Sidebar</div>
 ```
+
+## 🎨 Custom Utility Classes for Better DX
+
+### The Problem with Inline Styles
+
+While Modus CSS variables work perfectly, using inline `style={{}}` objects everywhere creates verbose and hard-to-maintain code:
+
+```tsx
+// ❌ VERBOSE - Inline style objects everywhere
+<div
+  className="p-6"
+  style={{
+    backgroundColor: "var(--card)",
+    border: "1px solid var(--border)",
+    borderRadius: "var(--radius-lg)",
+  }}
+>
+  Content
+</div>
+```
+
+### ✅ Solution: Reusable Utility Classes
+
+Define reusable utility classes in `app/globals.css` that use Modus colors:
+
+```css
+/* app/globals.css */
+
+/* Card utilities with proper borders */
+.card {
+  background-color: var(--card) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.card-bordered {
+  background-color: var(--card) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.code-block {
+  background-color: var(--background) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Color swatch with border */
+.color-swatch {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+}
+```
+
+### Why `!important` is Needed
+
+**Critical**: The `!important` flag is required to override Tailwind's default border styles. Without it, Tailwind's `border` utility class (which has `border-width: 0px` by default) will override your custom styles.
+
+**Browser behavior:**
+
+- Tailwind's `border` class sets `border-width: 0px` and requires additional classes like `border-2` to show
+- Our utility classes explicitly set `border: 1px solid` but get overridden without `!important`
+- Using `!important` ensures our Modus colors and borders always apply correctly
+
+### Clean Usage in Components
+
+```tsx
+// ✅ CLEAN - Simple utility class
+<div className="card-bordered p-6">
+  Content
+</div>
+
+// ✅ CLEAN - Code block styling
+<div className="code-block p-2 font-mono">
+  <code>Sample code</code>
+</div>
+
+// ✅ CLEAN - Color swatch
+<div className="color-swatch w-full h-24">
+  Color preview
+</div>
+```
+
+### When to Use Each Approach
+
+**1. Utility Classes** (Preferred for common patterns):
+
+```tsx
+// ✅ For repeated patterns like cards, code blocks, swatches
+<div className="card-bordered p-6">Content</div>
+```
+
+**2. Tailwind Classes** (For layout and spacing):
+
+```tsx
+// ✅ For layout, spacing, typography
+<div className="flex items-center gap-4 p-6 rounded-lg">Content</div>
+```
+
+**3. Inline Styles** (Only for dynamic values):
+
+```tsx
+// ✅ Only when values are computed or dynamic
+<div
+  style={{ backgroundColor: isActive ? "var(--primary)" : "var(--background)" }}
+>
+  Content
+</div>
+```
+
+### Creating New Utility Classes
+
+When creating new utility classes, follow this pattern:
+
+```css
+/* globals.css */
+
+.my-utility {
+  /* Use Modus CSS variables */
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+
+  /* Use design system tokens */
+  border-radius: var(--radius-md) !important;
+  padding: 1rem;
+}
+```
+
+**Rules for utility classes:**
+
+1. ✅ **Always use Modus CSS variables** for colors
+2. ✅ **Add `!important`** to color and border properties
+3. ✅ **Use design system tokens** for radius, spacing, etc.
+4. ✅ **Name descriptively** (e.g., `.card-bordered`, `.code-block`)
+5. ✅ **Keep it simple** - one purpose per utility class
+
+### Common Utility Class Patterns
+
+```css
+/* Interactive cards */
+.card-interactive {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  transition: all 0.2s ease;
+}
+
+.card-interactive:hover {
+  box-shadow: var(--elevation-sm);
+  transform: translateY(-2px);
+}
+
+/* Status badges */
+.badge-success {
+  background-color: var(--success) !important;
+  color: var(--success-foreground) !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-badge) !important;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-error {
+  background-color: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-badge) !important;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Form elements */
+.input-field {
+  background-color: var(--input-background) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--foreground) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 0.5rem 0.75rem;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--ring) !important;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+```
+
+### Testing Your Utility Classes
+
+After creating utility classes, verify they work:
+
+1. **Check the browser DevTools:**
+
+```javascript
+// In browser console
+const el = document.querySelector(".card-bordered");
+const styles = window.getComputedStyle(el);
+console.log({
+  borderWidth: styles.borderWidth, // Should be "1px"
+  borderColor: styles.borderColor, // Should be Modus color
+  backgroundColor: styles.backgroundColor,
+});
+```
+
+2. **Visual verification:**
+
+   - Open the page in browser
+   - Check that borders are visible
+   - Toggle themes to ensure colors adapt
+   - Inspect element to verify styles are applied
+
+3. **Hard reload if needed:**
+   - CSS changes may require hard refresh (Cmd+Shift+R or Ctrl+Shift+R)
+   - Clear cache if styles don't update
+   - Restart dev server if necessary
+
+### Migration Checklist
+
+When converting from inline styles to utility classes:
+
+- [ ] ✅ Create utility class in `globals.css` with Modus variables
+- [ ] ✅ Add `!important` to color and border properties
+- [ ] ✅ Test utility class in browser DevTools
+- [ ] ✅ Replace inline styles with utility class
+- [ ] ✅ Verify visual appearance matches
+- [ ] ✅ Test with all 4 Modus themes
+- [ ] ✅ Hard reload browser to clear CSS cache
+
+### Benefits of This Approach
+
+1. **✅ Clean Code**: No verbose inline style objects
+2. **✅ DRY Principle**: Define once, use everywhere
+3. **✅ Type Safety**: No TypeScript complexity for styles
+4. **✅ Theme Compatible**: Automatic theme switching
+5. **✅ Maintainable**: Change style in one place
+6. **✅ Performance**: No runtime style calculations
+7. **✅ Consistent**: Same styling patterns across app
 
 ---
 

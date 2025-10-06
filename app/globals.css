@@ -116,7 +116,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply outline-ring/50;
   }
 
   body {
@@ -129,6 +129,31 @@
     font-size: var(--font-size);
     font-family: "Open Sans", sans-serif;
   }
+}
+
+/* Card utilities with proper borders */
+.card {
+  background-color: var(--card) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.card-bordered {
+  background-color: var(--card) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.code-block {
+  background-color: var(--background) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Color swatch with border */
+.color-swatch {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
 }
 
 /* Theme-based logo switching */

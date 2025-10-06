@@ -217,13 +217,13 @@ export default function ColorPalettePage() {
               {group.colors.map((color, colorIndex) => (
                 <div
                   key={colorIndex}
-                  className="bg-card/50 border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-lg"
+                  className="card-bordered p-6 transition-all duration-200 hover:shadow-lg"
                 >
                   {/* Color Swatch */}
                   <div
-                    className={`w-full h-24 rounded-lg mb-4 border border-border ${
+                    className={`color-swatch w-full h-24 mb-4 ${
                       color.name.includes("foreground")
-                        ? "bg-background"
+                        ? ""
                         : color.tailwindClass
                     }`}
                     style={{
@@ -283,7 +283,7 @@ export default function ColorPalettePage() {
       </div>
 
       {/* Modus Web Component Colors Reference */}
-      <div className="mt-16 p-8 bg-card/50 border border-border rounded-lg">
+      <div className="card-bordered mt-16 p-8 ">
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Modus Web Component Colors
         </div>
@@ -316,10 +316,7 @@ export default function ColorPalettePage() {
             { name: "modus-wc-color-warning", description: "Warning" },
             { name: "modus-wc-color-error", description: "Error/danger" },
           ].map((color, index) => (
-            <div
-              key={index}
-              className="bg-card border border-border rounded-lg p-4"
-            >
+            <div key={index} className="card-bordered p-4">
               <div
                 className="w-full h-16 rounded mb-3"
                 style={{ backgroundColor: `var(--${color.name})` }}
@@ -336,30 +333,30 @@ export default function ColorPalettePage() {
       </div>
 
       {/* Usage Instructions */}
-      <div className="mt-12 p-8 bg-card border border-border rounded-lg">
+      <div className="card-bordered mt-12 p-8">
         <div className="text-2xl font-semibold mb-4 text-foreground">
           How to Use These Colors
         </div>
         <div className="space-y-4 text-foreground">
           <div>
             <div className="font-medium mb-2">✅ For Custom UI Elements:</div>
-            <div className="text-sm font-mono bg-background p-2 rounded border">
+            <div className="code-block text-sm font-mono p-2">
               &lt;div className=&quot;bg-primary
               text-primary-foreground&quot;&gt;Content&lt;/div&gt;
             </div>
           </div>
           <div>
             <div className="font-medium mb-2">✅ For Modus Web Components:</div>
-            <div className="text-sm font-mono bg-background p-2 rounded border">
+            <div className="code-block text-sm font-mono p-2">
               &lt;modus-wc-button
               color=&quot;primary&quot;&gt;Button&lt;/modus-wc-button&gt;
             </div>
           </div>
           <div>
             <div className="font-medium mb-2">
-              ❌ Don&apos; t mix the systems:
+              ❌ Don&apos;t mix the systems:
             </div>
-            <div className="text-sm font-mono bg-background p-2 rounded border opacity-70">
+            <div className="code-block text-sm font-mono p-2 opacity-70">
               &lt;div className=&quot;bg-secondary&quot;&gt;Custom
               UI&lt;/div&gt; + &lt;modus-wc-button
               color=&quot;secondary&quot;&gt;Button&lt;/modus-wc-button&gt;
