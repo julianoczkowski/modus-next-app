@@ -59,7 +59,7 @@ export default function ModusDropdownMenu({
       onItemSelect?.(event as CustomEvent<{ value: string }>);
 
       // Close the menu after item selection
-      const dropdown = event.target as HTMLModusWcDropdownMenuElement;
+      const dropdown = dropdownRef.current;
       if (dropdown) {
         dropdown.menuVisible = false;
       }

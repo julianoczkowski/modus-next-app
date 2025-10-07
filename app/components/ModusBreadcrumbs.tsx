@@ -12,7 +12,7 @@ export interface ModusBreadcrumbsProps {
   items: BreadcrumbItem[];
   size?: "sm" | "md" | "lg";
   customClass?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   onBreadcrumbClick?: (event: CustomEvent<BreadcrumbItem>) => void;
 }
 
@@ -20,7 +20,7 @@ export default function ModusBreadcrumbs({
   items,
   size = "md",
   customClass,
-  ariaLabel,
+  "aria-label": ariaLabel,
   onBreadcrumbClick,
 }: ModusBreadcrumbsProps) {
   const breadcrumbsRef = useRef<HTMLModusWcBreadcrumbsElement>(null);
@@ -46,7 +46,7 @@ export default function ModusBreadcrumbs({
       items={items}
       size={size}
       customClass={customClass}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
     />
   );
 }

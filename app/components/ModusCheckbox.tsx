@@ -14,7 +14,7 @@ export interface ModusCheckboxProps {
   inputId?: string;
   inputTabIndex?: number;
   customClass?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   onInputChange?: (event: CustomEvent<InputEvent>) => void;
   onInputFocus?: (event: CustomEvent<FocusEvent>) => void;
   onInputBlur?: (event: CustomEvent<FocusEvent>) => void;
@@ -31,7 +31,7 @@ export default function ModusCheckbox({
   inputId,
   inputTabIndex,
   customClass,
-  ariaLabel,
+  "aria-label": ariaLabel,
   onInputChange,
   onInputFocus,
   onInputBlur,
@@ -80,7 +80,7 @@ export default function ModusCheckbox({
       inputId={inputId}
       inputTabIndex={inputTabIndex}
       customClass={customClass}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
     />
   );
 }

@@ -11,8 +11,9 @@ export interface AutocompleteItem {
 }
 
 export interface AutocompleteNoResults {
-  text: string;
-  icon?: string;
+  label: string;
+  subLabel: string;
+  severity?: "error" | "info" | "success" | "warning";
 }
 
 export interface ModusAutocompleteProps {
@@ -35,7 +36,7 @@ export interface ModusAutocompleteProps {
   inputId?: string;
   inputTabIndex?: number;
   name?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   onInputChange?: (event: CustomEvent<Event>) => void;
   onInputFocus?: (event: CustomEvent<FocusEvent>) => void;
   onInputBlur?: (event: CustomEvent<FocusEvent>) => void;
@@ -64,7 +65,7 @@ export default function ModusAutocomplete({
   inputId,
   inputTabIndex,
   name,
-  ariaLabel,
+  "aria-label": ariaLabel,
   onInputChange,
   onInputFocus,
   onInputBlur,
@@ -152,7 +153,7 @@ export default function ModusAutocomplete({
       inputId={inputId}
       inputTabIndex={inputTabIndex}
       name={name}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
     >
       {children}
     </ModusWcAutocomplete>

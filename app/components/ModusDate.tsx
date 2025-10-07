@@ -23,7 +23,7 @@ export interface ModusDateProps {
   required?: boolean;
   size?: "sm" | "md" | "lg";
   customClass?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   onInputChange?: (event: CustomEvent<InputEvent>) => void;
   onInputFocus?: (event: CustomEvent<FocusEvent>) => void;
   onInputBlur?: (event: CustomEvent<FocusEvent>) => void;
@@ -44,7 +44,7 @@ export default function ModusDate({
   required = false,
   size = "md",
   customClass,
-  ariaLabel,
+  "aria-label": ariaLabel,
   onInputChange,
   onInputFocus,
   onInputBlur,
@@ -95,7 +95,7 @@ export default function ModusDate({
       required={required}
       size={size}
       customClass={customClass}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
     />
   );
 }

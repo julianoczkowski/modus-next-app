@@ -93,6 +93,54 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Icon",
+    description:
+      "Icon component with various sizes, accessibility options, and styling",
+    url: "/icon-demo",
+    category: "Display",
+    status: "ready",
+  },
+  {
+    name: "Input Feedback",
+    description:
+      "Contextual feedback for form fields with error, success, warning, and info messages",
+    url: "/input-feedback-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Input Label",
+    description:
+      "Labels for form controls with sub-labels, required indicators, and custom content",
+    url: "/input-label-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Text Input",
+    description:
+      "Single-line text fields with various types, validation, and interactive features",
+    url: "/text-input-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Loader",
+    description:
+      "Visual loading indicators with 6 animation variants, 4 sizes, and 8 colors",
+    url: "/loader-demo",
+    category: "Feedback",
+    status: "ready",
+  },
+  {
+    name: "Menu",
+    description:
+      "Integrated menu system with container and menu items for navigation and toolbars",
+    url: "/menu-demo",
+    category: "Navigation",
+    status: "ready",
+  },
+  {
     name: "Table",
     description: "Data tables with sorting, pagination, and selection",
     url: "/table-demo",

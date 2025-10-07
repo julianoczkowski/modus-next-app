@@ -36,6 +36,12 @@ function DropdownWithEvents({
     };
     const handleSelect = (event: Event) => {
       onSelect?.(event as CustomEvent<{ value: string }>);
+
+      // Close the menu after item selection
+      const dropdown = dropdownRef.current;
+      if (dropdown) {
+        dropdown.menuVisible = false;
+      }
     };
 
     if (onMenuVisibilityChange)
@@ -109,12 +115,6 @@ export default function DropdownDemoPage() {
         [dropdownId]: value,
       }));
       logEvent(`Dropdown "${dropdownId}" selected: "${value}"`, "success");
-
-      // Close the menu after item selection
-      const dropdown = event.target as HTMLModusWcDropdownMenuElement;
-      if (dropdown) {
-        dropdown.menuVisible = false;
-      }
     },
     [logEvent]
   );

@@ -13,7 +13,7 @@ export interface ModusChipProps {
   size?: "sm" | "md" | "lg";
   variant?: "filled" | "outline";
   customClass?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   onChipClick?: (event: CustomEvent<MouseEvent | KeyboardEvent>) => void;
   onChipRemove?: (event: CustomEvent<MouseEvent | KeyboardEvent>) => void;
 }
@@ -28,7 +28,7 @@ export default function ModusChip({
   size = "md",
   variant = "filled",
   customClass,
-  ariaLabel,
+  "aria-label": ariaLabel,
   onChipClick,
   onChipRemove,
 }: ModusChipProps) {
@@ -66,7 +66,7 @@ export default function ModusChip({
       size={size}
       variant={variant}
       customClass={customClass}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
     >
       {children}
     </ModusWcChip>

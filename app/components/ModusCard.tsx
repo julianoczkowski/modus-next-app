@@ -10,7 +10,7 @@ export interface ModusCardProps {
   layout?: "vertical" | "horizontal";
   padding?: "normal" | "compact";
   customClass?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   header?: ReactNode;
   title?: ReactNode;
   subtitle?: ReactNode;
@@ -25,7 +25,7 @@ export default function ModusCard({
   layout = "vertical",
   padding = "normal",
   customClass,
-  ariaLabel,
+  "aria-label": ariaLabel,
   header,
   title,
   subtitle,
@@ -39,7 +39,7 @@ export default function ModusCard({
       layout={layout}
       padding={padding}
       customClass={customClass}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
     >
       {header && <div slot="header">{header}</div>}
       {title && <div slot="title">{title}</div>}
