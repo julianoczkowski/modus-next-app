@@ -66,68 +66,21 @@ function ThemeSwitcherDropdownContent({
     return currentTheme ? currentTheme.label : "Theme";
   };
 
-  const handleThemeSelect = (event: React.SyntheticEvent) => {
-    const customEvent = event.nativeEvent as CustomEvent;
-    const selectedValue = customEvent.detail?.value as Theme;
-    if (selectedValue && selectedValue !== theme) {
-      setTheme(selectedValue);
-
-      // Close the dropdown
-      if (dropdownRef.current) {
-        dropdownRef.current.menuVisible = false;
-      }
-    }
-  };
-
-  const handleMenuVisibility = () => {
-    // Optional: Add any logic when menu opens/closes
-  };
-
   return (
-    <div className={`theme-switcher-dropdown ${className}`}>
+    <div className={className}>
       <ModusWcDropdownMenu
         ref={dropdownRef}
-        buttonSize="md"
         buttonVariant="filled"
         menuPlacement="bottom-end"
-        onMenuVisibilityChange={handleMenuVisibility}
-        onSelect={handleThemeSelect}
-        className="theme-dropdown"
       >
         <div
           slot="button"
-          className="theme-button-content"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-            minWidth: "140px",
-            padding: "0 12px",
-            gap: "8px",
-          }}
+          className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
         >
-          <span
-            className="theme-label"
-            style={{
-              flex: "1",
-              textAlign: "left",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
+          <div className="flex-1 text-left text-sm font-medium">
             {getCurrentThemeLabel()}
-          </span>
-          <i
-            className="modus-icons theme-arrow"
-            style={{
-              fontSize: "16px",
-              flexShrink: "0",
-              marginLeft: "auto",
-            }}
-          >
-            expand_more
-          </i>
+          </div>
+          <i className="modus-icons text-base flex-shrink-0">expand_more</i>
         </div>
         <div slot="menu">
           {themes.map((themeOption) => (
@@ -136,7 +89,6 @@ function ThemeSwitcherDropdownContent({
               label={themeOption.label}
               value={themeOption.value}
               selected={theme === themeOption.value}
-              onSelect={handleThemeSelect}
             />
           ))}
         </div>
@@ -157,12 +109,9 @@ export default function ThemeSwitcherDropdown(
 
   if (!mounted) {
     return (
-      <div className={`theme-switcher-dropdown ${props.className || ""}`}>
+      <div className={props.className || ""}>
         <div className="animate-pulse">
-          <div
-            className="h-8 w-32 rounded"
-            style={{ backgroundColor: "var(--modus-wc-color-base-200)" }}
-          />
+          <div className="h-8 w-32 rounded bg-muted" />
         </div>
       </div>
     );

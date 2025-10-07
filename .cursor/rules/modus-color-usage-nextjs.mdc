@@ -1,17 +1,141 @@
 ---
+description: When applying Modus colors use this rule
 alwaysApply: false
 ---
 
 # Color Usage Rules for Next.js
 
-## 🎨 Approved Modus Colors (9 Total)
+## 🎯 Precise Usage Rules: Tailwind vs Modus vs Design System
 
-### ✅ ONLY Use These Modus CSS Variables
+### The Three Systems Working Together
+
+**1. Tailwind CSS** → Layout, spacing, typography, responsive design
+**2. Design System Colors** → Mapped colors for custom UI (via Tailwind classes)
+**3. Modus Web Components** → Pre-built components with color props
+
+### 📝 Complete Example Showing All Three Systems
+
+```tsx
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+
+export default function ProductCard() {
+  return (
+    {/* Tailwind: layout, spacing, responsive */}
+    <div className="flex flex-col md:flex-row items-center gap-4 p-6 rounded-lg border transition-all duration-200 hover:shadow-lg bg-card border-border">
+
+      {/* Tailwind: typography, spacing */}
+      {/* Design System: text color */}
+      <h3 className="text-lg font-semibold text-foreground">
+        Product Name
+      </h3>
+
+      {/* Tailwind: typography */}
+      {/* Design System: muted text color */}
+      <p className="text-sm text-muted-foreground">
+        Product description
+      </p>
+
+      {/* Tailwind: layout, spacing, hover states */}
+      {/* Design System: colors */}
+      <button className="px-4 py-2 rounded bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+        Custom Button
+      </button>
+
+      {/* Modus Web Component: uses color props */}
+      <ModusWcButton color="primary" variant="filled">
+        Modus Button
+      </ModusWcButton>
+    </div>
+  );
+}
+```
+
+**Breakdown:**
+
+- **Tailwind** handles: `flex`, `gap-4`, `p-6`, `rounded-lg`, `text-lg`, `hover:shadow-lg`
+- **Design System** handles: `bg-card`, `border-border`, `text-foreground`, `bg-primary`
+- **Modus Components** use: `color="primary"`, `variant="filled"`
+
+### ✅ What to Use When
+
+| **Use Case**           | **What to Use**       | **Example**                                            |
+| ---------------------- | --------------------- | ------------------------------------------------------ |
+| **Layout**             | Tailwind classes      | `flex`, `grid`, `items-center`, `gap-4`                |
+| **Spacing**            | Tailwind classes      | `p-4`, `m-2`, `px-8`, `py-6`                           |
+| **Typography**         | Tailwind classes      | `text-lg`, `font-semibold`, `leading-relaxed`          |
+| **Responsive**         | Tailwind classes      | `md:flex-row`, `lg:grid-cols-3`                        |
+| **Transitions**        | Tailwind classes      | `transition-colors`, `duration-200`, `hover:shadow-lg` |
+| **Colors (Custom UI)** | Design system classes | `bg-background`, `text-foreground`, `border-border`    |
+| **Hover States**       | Tailwind prefixes     | `hover:bg-card`, `hover:opacity-80`                    |
+| **Focus States**       | Tailwind prefixes     | `focus:ring-2`, `focus:ring-ring`                      |
+| **Modus Components**   | Color props           | `color="primary"`, `variant="filled"`                  |
+
+### 🎨 Design System Colors (Available as Tailwind Classes)
+
+Our design system maps Modus variables to easy-to-use Tailwind classes:
+
+**Background Colors:**
+
+```tsx
+bg - background; // Page background
+bg - card; // Card/section background
+bg - muted; // Subtle background
+bg - primary; // Primary brand color
+bg - secondary; // Secondary color
+bg - destructive; // Error/danger background
+```
+
+**Text Colors:**
+
+```tsx
+text - foreground; // Primary text
+text - muted - foreground; // Subtle text
+text - primary; // Primary text
+text - primary - foreground; // Text on primary background
+text - destructive; // Error text
+```
+
+**Border Colors:**
+
+```tsx
+border - border; // Standard borders
+border - input; // Input borders
+border - ring; // Focus rings
+```
+
+**Interactive States:**
+
+```tsx
+hover:bg-card              // Hover background
+hover:opacity-80           // Hover opacity
+focus:ring-2 focus:ring-ring  // Focus ring
+```
+
+### 🚫 DO NOT Use Raw Modus CSS Variables
+
+**❌ Don't access Modus variables directly:**
+
+```tsx
+// ❌ WRONG - Raw Modus variables
+style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}
+style={{ color: "var(--modus-wc-color-base-content)" }}
+style={{ borderColor: "var(--modus-wc-color-base-200)" }}
+```
+
+**✅ Use design system classes instead:**
+
+```tsx
+// ✅ CORRECT - Design system classes
+className = "bg-background text-foreground border-border";
+```
+
+### 📋 Original Modus Colors (For Reference Only)
+
+These are the underlying Modus variables that power our design system. **You should NOT use these directly** - use the design system classes above instead.
 
 **Base Colors (5 total):**
 
 ```css
-/* Light Theme → Dark Theme */
 var(--modus-wc-color-base-page)     /* #fff → #000 */
 var(--modus-wc-color-base-100)      /* #f1f1f6 → #252a2e */
 var(--modus-wc-color-base-200)      /* #cbcdd6 → #464b52 */
@@ -19,7 +143,7 @@ var(--modus-wc-color-base-300)      /* #b7b9c3 → #353a40 */
 var(--modus-wc-color-base-content)  /* #171c1e → #cbcdd6 */
 ```
 
-**Semantic Colors (4 total - same in both themes):**
+**Semantic Colors (4 total):**
 
 ```css
 var(--modus-wc-color-info)          /* #0063a3 */
@@ -28,58 +152,92 @@ var(--modus-wc-color-error)         /* #da212c */
 var(--modus-wc-color-warning)       /* #fbad26 */
 ```
 
-**Note:** `primary`, `secondary`, `tertiary`, and `danger` are component-specific color props that map to these CSS variables internally.
+**Mapping to Design System:**
+
+- `--modus-wc-color-base-page` → `bg-background`
+- `--modus-wc-color-base-content` → `text-foreground`
+- `--modus-wc-color-base-100` → `bg-card`
+- `--modus-wc-color-base-200` → `border-border`
+- `--modus-wc-color-info` → `bg-primary`
+- `--modus-wc-color-error` → `bg-destructive`
+- `--modus-wc-color-success` → `bg-success`
+- `--modus-wc-color-warning` → `bg-warning`
 
 ### 🎯 Next.js Color Usage Patterns
 
-#### Correct Implementation with Inline Styles:
+#### ✅ BEST Practice: Tailwind Classes with Design System Colors
+
+**This is the preferred approach** - uses Tailwind utility classes with our design system colors:
 
 ```tsx
+// ✅ BEST - Pure Tailwind with design system colors
 export default function Component() {
   return (
-    <div
-      className="component"
-      style={{
-        backgroundColor: "var(--modus-wc-color-base-page)",
-        border: "1px solid var(--modus-wc-color-base-200)",
-        color: "var(--modus-wc-color-base-content)",
-      }}
-    >
+    <div className="p-6 bg-background border border-border text-foreground rounded-lg">
+      <div className="bg-card p-4 rounded-lg hover:bg-card/90 transition-colors">
+        <h2 className="text-foreground text-lg font-semibold">Title</h2>
+        <p className="text-muted-foreground">Description</p>
+      </div>
+
+      {/* Modus Web Components still use color props */}
       <ModusWcButton color="primary">Primary Button</ModusWcButton>
       <ModusWcButton color="secondary">Secondary Button</ModusWcButton>
-      <ModusWcButton color="warning">Warning Button</ModusWcButton>
-      <ModusWcButton color="danger">Danger Button</ModusWcButton>
     </div>
   );
 }
 ```
 
-#### Correct Implementation with CSS Modules:
+**Why this is better:**
+
+- ✅ No custom CSS needed
+- ✅ Self-documenting (all styling visible)
+- ✅ Tailwind purges unused classes automatically
+- ✅ Better DX (no file jumping)
+- ✅ Scalable (won't bloat `globals.css`)
+
+#### ⚠️ Acceptable: Inline Styles (Only for Dynamic Values)
+
+Use inline styles ONLY when values are computed/dynamic:
 
 ```tsx
-// Component.tsx
+export default function Component({ isActive }) {
+  return (
+    <div
+      className="p-6"
+      style={{
+        backgroundColor: isActive ? "var(--primary)" : "var(--background)",
+        // Only use inline styles for dynamic values
+      }}
+    >
+      <ModusWcButton color="primary">Primary Button</ModusWcButton>
+    </div>
+  );
+}
+```
+
+#### ❌ Avoid: CSS Modules (Legacy Approach)
+
+CSS Modules add unnecessary complexity. Use Tailwind instead:
+
+```tsx
+// ❌ DON'T DO THIS - Unnecessary CSS module
 import styles from "./Component.module.css";
 
 export default function Component() {
   return (
     <div className={styles.component}>
       <ModusWcButton color="primary">Primary Button</ModusWcButton>
-      <ModusWcButton color="secondary">Secondary Button</ModusWcButton>
     </div>
   );
 }
 ```
 
 ```css
-/* Component.module.css */
+/* ❌ DON'T CREATE THIS - Use Tailwind instead */
 .component {
   background-color: var(--modus-wc-color-base-page);
   border: 1px solid var(--modus-wc-color-base-200);
   color: var(--modus-wc-color-base-content);
-}
-
-.component:hover {
-  background-color: var(--modus-wc-color-base-100);
 }
 ```
 
@@ -111,17 +269,31 @@ border-color: rgb(0, 99, 163);
 .text-red-500 .bg-blue-400 .border-gray-300 .text-green-600 .bg-slate-100;
 ```
 
-### ❌ Non-Modus CSS Variables
+### ❌ Don't Use Raw Modus CSS Variables Directly
 
-```css
-/* FORBIDDEN - These don't exist in our system */
-var(--secondary)
-var(--tertiary)
-var(--danger)  /* Use --modus-wc-color-error instead */
-var(--border)
-var(--text-primary)
-var(--bg-secondary)
+**Use Tailwind classes instead of raw Modus variables:**
+
+```tsx
+// ❌ WRONG - Raw Modus variables
+<div
+  style={{
+    backgroundColor: "var(--modus-wc-color-base-page)",
+    borderColor: "var(--modus-wc-color-base-200)",
+    color: "var(--modus-wc-color-base-content)",
+  }}
+>
+
+// ✅ CORRECT - Tailwind classes with design system
+<div className="bg-background border-border text-foreground">
 ```
+
+**Our design system maps Modus variables to Tailwind classes:**
+
+- `var(--modus-wc-color-base-page)` → `bg-background`
+- `var(--modus-wc-color-base-content)` → `text-foreground`
+- `var(--modus-wc-color-base-200)` → `border-border`
+- `var(--modus-wc-color-info)` → `bg-primary`
+- `var(--modus-wc-color-error)` → `bg-destructive`
 
 ### ❌ Custom Color Variables
 
@@ -264,31 +436,22 @@ Using Modus CSS variables ensures your components work with all 4 themes:
 
 ### Testing Requirements
 
-Always test your components with:
+Always test your components with all 4 themes using Tailwind classes:
 
 ```tsx
 export default function ThemeTest() {
   return (
-    <div
-      className="theme-test"
-      style={{
-        backgroundColor: "var(--modus-wc-color-base-page)",
-        color: "var(--modus-wc-color-base-content)",
-      }}
-    >
+    <div className="bg-background text-foreground p-6 border border-border rounded-lg">
       {/* Your component here */}
+      <h2 className="text-xl font-semibold text-foreground mb-4">
+        Test Component
+      </h2>
+      <p className="text-muted-foreground">This text adapts to the theme</p>
+      <div className="mt-4 p-4 bg-card border border-border rounded">
+        <span className="text-foreground">Card content</span>
+      </div>
     </div>
   );
-}
-```
-
-Or with CSS Modules:
-
-```tsx
-import styles from "./ThemeTest.module.css";
-
-export default function ThemeTest() {
-  return <div className={styles.themeTest}>{/* Your component here */}</div>;
 }
 ```
 
@@ -345,27 +508,25 @@ For every component with colors:
 }
 ```
 
-### ✅ Correct Approach with Inline Styles
+### ✅ Correct Approach: Pure Tailwind with Design System Colors
 
 ```tsx
 import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 
 export default function Card() {
   return (
-    <div
-      className="card"
-      style={{
-        backgroundColor: "var(--modus-wc-color-base-page)",
-        color: "var(--modus-wc-color-base-content)",
-        border: "1px solid var(--modus-wc-color-base-200)",
-        padding: "1rem",
-      }}
-    >
+    <div className="p-4 bg-background border border-border text-foreground rounded-lg">
       <ModusWcButton color="primary">Button</ModusWcButton>
     </div>
   );
 }
 ```
+
+**What's happening here:**
+
+- ✅ **Tailwind for layout/spacing**: `p-4`, `rounded-lg`
+- ✅ **Design system for colors**: `bg-background`, `border-border`, `text-foreground`
+- ✅ **Modus components use color props**: `color="primary"`
 
 ### ✅ Correct Approach with CSS Modules
 
@@ -445,7 +606,7 @@ export default function Card() {
 // app/page.tsx - Server Component
 export default function HomePage() {
   return (
-    <div style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}>
+    <div className="bg-background text-foreground p-6">
       <ModusButtonDemo /> {/* Client Component */}
     </div>
   );
@@ -704,12 +865,12 @@ if (!mounted) {
 
 ## 🎨 Custom Utility Classes for Better DX
 
-### The Problem with Inline Styles
+### ❌ OLD Approach: Inline Styles (DEPRECATED)
 
-While Modus CSS variables work perfectly, using inline `style={{}}` objects everywhere creates verbose and hard-to-maintain code:
+**Don't use inline `style={{}}` objects:**
 
 ```tsx
-// ❌ VERBOSE - Inline style objects everywhere
+// ❌ WRONG - Verbose inline styles
 <div
   className="p-6"
   style={{
@@ -722,9 +883,18 @@ While Modus CSS variables work perfectly, using inline `style={{}}` objects ever
 </div>
 ```
 
-### ✅ Solution: Reusable Utility Classes
+### ✅ NEW Approach: Pure Tailwind Classes
 
-Define reusable utility classes in `app/globals.css` that use Modus colors:
+**Use Tailwind classes with design system colors:**
+
+```tsx
+// ✅ CORRECT - Clean Tailwind classes
+<div className="p-6 bg-card border border-border rounded-lg">Content</div>
+```
+
+### 🎯 When Custom CSS is Still Needed
+
+Only create custom utility classes for cases where Tailwind can't help:
 
 ```css
 /* app/globals.css */
@@ -851,7 +1021,7 @@ When creating new utility classes, follow this pattern:
 
 .card-interactive:hover {
   box-shadow: var(--elevation-sm);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* Status badges */
@@ -885,7 +1055,7 @@ When creating new utility classes, follow this pattern:
 .input-field:focus {
   outline: none;
   border-color: var(--ring) !important;
-  box-shadow: 0 0 0 2px var(--ring);
+  box-shadow: 0 0 0 1px var(--ring);
 }
 ```
 

@@ -4,19 +4,16 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div
-      className="max-w-6xl mx-auto px-4 py-8 w-full"
-      style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}
-    >
+    <div className="max-w-6xl mx-auto px-4 py-8 w-full bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center mb-12 mt-12 max-w-2xl mx-auto">
+        <div className="text-center mb-12">
           <div className="mb-8 flex justify-center items-center">
             <Image
               src="/nextjs-icon.svg"
               alt="Next.js Logo"
-              width={120}
-              height={120}
+              width={80}
+              height={80}
               className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-light"
               style={{
                 filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))",
@@ -25,18 +22,18 @@ export default function Home() {
             <Image
               src="/nextjs-icon.svg"
               alt="Next.js Logo"
-              width={120}
-              height={120}
+              width={80}
+              height={80}
               className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-dark hidden"
               style={{
                 filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)) invert(1)",
               }}
             />
           </div>
-          <div className="text-2xl font-semibold mb-12 text-foreground">
+          <div className="text-4xl font-semibold mb-4 text-foreground">
             Welcome to Modus 2.0 Next.js Apps
           </div>
-          <p className="text-lg max-w-2xl mx-auto mb-8 opacity-80 text-center text-foreground">
+          <p className="text-lg leading-relaxed text-foreground text-center">
             A boilerplate for building Next.js applications with Modus. If you
             can see this page, example components, icons and theme switching you
             have successfully installed the boilerplate.
@@ -46,7 +43,10 @@ export default function Home() {
         {/* Features Section */}
         <div className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-            <div className="rounded-xl p-6 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg bg-card border border-border">
+            <div
+              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-start gap-4 flex-1">
                 <i className="modus-icons text-2xl flex-shrink-0 mt-1 text-foreground">
                   coffee_cup
@@ -67,7 +67,10 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-xl p-6 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg bg-card border border-border">
+            <div
+              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-start gap-4 flex-1">
                 <i className="modus-icons text-2xl flex-shrink-0 mt-1 text-foreground">
                   palette
@@ -105,7 +108,10 @@ export default function Home() {
               Watch this video to discover more about this boilerplate
             </p>
           </div>
-          <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video bg-card border border-border">
+          <div
+            className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video bg-card"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <iframe
               src="https://www.youtube.com/embed/aG7Eu7SkKZA?si=KDI-XcSlRNr70bS5"
               title="Boilerplate Video"

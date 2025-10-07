@@ -3,334 +3,328 @@ description: Use when adding Modus icons
 alwaysApply: false
 ---
 
-# Modus Icons Usage Rules
+# Modus Icons Usage Rules for Next.js
 
 ## 🎯 Core Principle: Use Valid Icon Names Only
 
-**Always use valid Modus icon names.** Only the icons defined in the `ModusIconName` type are guaranteed to render properly. Invalid icon names will not display correctly.
+**Always use valid Modus icon names.** Only the icons defined in the Modus icon library are guaranteed to render properly. Invalid icon names will not display correctly.
 
 ## 🚀 Icon Implementation Patterns
 
-### ✅ Preferred: Use ModusIcon Component
+### ✅ Preferred: Direct HTML Usage with Tailwind Classes
 
-```vue
-<template>
-  <div>
-    <!-- Basic icon usage -->
-    <ModusIcon name="save_disk" />
+```tsx
+// ✅ CORRECT - Basic icon usage
+<i className="modus-icons">save_disk</i>
 
-    <!-- Icon with custom size -->
-    <ModusIcon name="download" size="lg" />
+// ✅ CORRECT - Icon with text in button
+<ModusWcButton color="primary">
+  <i className="modus-icons mr-2">download</i>
+  Download File
+</ModusWcButton>
 
-    <!-- Icon with custom color -->
-    <ModusIcon name="warning" color="var(--modus-wc-color-warning)" />
-
-    <!-- Non-decorative icon with aria-label -->
-    <ModusIcon name="delete" :decorative="false" aria-label="Delete item" />
-  </div>
-</template>
-
-<script setup lang="ts">
-import ModusIcon from "@/components/ModusIcon.vue";
-</script>
+// ✅ CORRECT - Icon-only button
+<ModusWcButton shape="circle" aria-label="Delete item">
+  <i className="modus-icons">delete</i>
+</ModusWcButton>
 ```
 
-### ✅ Alternative: Direct HTML Usage
+### ✅ Alternative: Using ModusButton Component
 
-```vue
-<template>
-  <!-- Basic icon -->
-  <i class="modus-icons">save_disk</i>
+```tsx
+// ✅ CORRECT - Using ModusButton with icon prop
+<ModusButton
+  icon="save_disk"
+  iconPosition="left"
+  color="primary"
+  onButtonClick={handleSave}
+>
+  Save File
+</ModusButton>
 
-  <!-- Icon with text in button -->
-  <modus-wc-button color="primary">
-    <i class="modus-icons" style="margin-right: 8px">download</i>
-    Download File
-  </modus-wc-button>
-
-  <!-- Icon-only button -->
-  <modus-wc-button shape="circle" aria-label="Delete item">
-    <i class="modus-icons">delete</i>
-  </modus-wc-button>
-</template>
+// ✅ CORRECT - Icon-only button
+<ModusButton
+  icon="delete"
+  iconPosition="only"
+  color="danger"
+  aria-label="Delete item"
+/>
 ```
 
 ## 📏 Icon Sizing
 
-### Predefined Sizes (Recommended)
+### Using Tailwind Classes (Recommended)
 
-```vue
-<template>
-  <!-- Using ModusIcon component -->
-  <ModusIcon name="star" size="xs" />
-  <!-- 12px -->
-  <ModusIcon name="star" size="sm" />
-  <!-- 14px -->
-  <ModusIcon name="star" size="md" />
-  <!-- 16px (default) -->
-  <ModusIcon name="star" size="lg" />
-  <!-- 20px -->
-  <ModusIcon name="star" size="xl" />
-  <!-- 24px -->
-
-  <!-- Custom size -->
-  <ModusIcon name="star" size="32px" />
-</template>
+```tsx
+// ✅ CORRECT - Using Tailwind text size classes
+<i className="modus-icons text-xs">star</i>  {/* 11px */}
+<i className="modus-icons text-sm">star</i>  {/* 14px */}
+<i className="modus-icons text-base">star</i> {/* 16px (default) */}
+<i className="modus-icons text-lg">star</i>   {/* 20px */}
+<i className="modus-icons text-xl">star</i>   {/* 24px */}
+<i className="modus-icons text-2xl">star</i>  {/* 30px */}
 ```
 
-### Direct HTML Sizing
+### Using Inline Styles
 
-```vue
-<template>
-  <!-- Using CSS classes -->
-  <i class="modus-icons icon-lg">star</i>
+```tsx
+// ✅ CORRECT - Custom size with inline styles
+<i className="modus-icons" style={{ fontSize: "24px" }}>star</i>
 
-  <!-- Using inline styles -->
-  <i class="modus-icons" style="font-size: 24px">star</i>
-</template>
-
-<style scoped>
-.icon-lg {
-  font-size: 20px;
-}
-</style>
+// ✅ CORRECT - Using ModusButton with custom sizing
+<ModusButton
+  icon="star"
+  iconPosition="only"
+  className="text-2xl"
+/>
 ```
 
 ## 🎨 Icon Colors
 
 ### Using Modus Color Variables
 
-```vue
-<template>
-  <!-- Using ModusIcon component -->
-  <ModusIcon name="check" color="var(--modus-wc-color-success)" />
-  <ModusIcon name="warning" color="var(--modus-wc-color-warning)" />
-  <ModusIcon name="error" color="var(--modus-wc-color-error)" />
+```tsx
+// ✅ CORRECT - Using inline styles with Modus color variables
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-success)" }}>check</i>
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-warning)" }}>warning</i>
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-error)" }}>error</i>
 
-  <!-- Using CSS classes -->
-  <i class="modus-icons icon-success">check</i>
-  <i class="modus-icons icon-warning">warning</i>
-</template>
+// ✅ CORRECT - Using Tailwind classes with design system colors
+<i className="modus-icons text-success">check</i>
+<i className="modus-icons text-warning">warning</i>
+<i className="modus-icons text-destructive">error</i>
+```
 
-<style scoped>
-.icon-success {
-  color: var(--modus-wc-color-success);
-}
+### Using Design System Colors
 
-.icon-warning {
-  color: var(--modus-wc-color-warning);
-}
-</style>
+```tsx
+// ✅ CORRECT - Using design system colors
+<i className="modus-icons text-foreground">home</i>
+<i className="modus-icons text-muted-foreground">info</i>
+<i className="modus-icons text-primary">star</i>
 ```
 
 ## ♿ Accessibility Guidelines
 
 ### Decorative Icons (Default)
 
-```vue
-<template>
-  <!-- Decorative icons (hidden from screen readers) -->
-  <ModusIcon name="star" />
-  <!-- decorative=true by default -->
-  <i class="modus-icons" aria-hidden="true">star</i>
-</template>
+```tsx
+// ✅ CORRECT - Decorative icons (hidden from screen readers)
+<i className="modus-icons">star</i>
+<i className="modus-icons" aria-hidden="true">star</i>
+
+// ✅ CORRECT - Using ModusButton for decorative icons
+<ModusButton icon="star" iconPosition="only" />
 ```
 
 ### Functional Icons
 
-```vue
-<template>
-  <!-- Icons that convey meaning -->
-  <ModusIcon name="delete" :decorative="false" aria-label="Delete item" />
+```tsx
+// ✅ CORRECT - Icons that convey meaning
+<ModusWcButton shape="circle" aria-label="Delete item">
+  <i className="modus-icons">delete</i>
+</ModusWcButton>
 
-  <!-- Icon-only buttons -->
-  <modus-wc-button shape="circle" aria-label="Close dialog">
-    <i class="modus-icons">close</i>
-  </modus-wc-button>
-</template>
+// ✅ CORRECT - Using ModusButton with proper accessibility
+<ModusButton
+  icon="delete"
+  iconPosition="only"
+  aria-label="Delete item"
+  color="danger"
+/>
 ```
 
 ## 📋 Common Icon Usage Patterns
 
 ### Navigation Icons
 
-```vue
-<template>
-  <!-- Back/Forward navigation -->
-  <ModusIcon name="arrow_left" />
-  <ModusIcon name="arrow_right" />
-  <ModusIcon name="arrow_back" />
+```tsx
+// ✅ CORRECT - Back/Forward navigation
+<i className="modus-icons">arrow_left</i>
+<i className="modus-icons">arrow_right</i>
+<i className="modus-icons">arrow_back</i>
 
-  <!-- Menu and navigation -->
-  <ModusIcon name="menu" />
-  <ModusIcon name="home" />
-  <ModusIcon name="settings" />
-</template>
+// ✅ CORRECT - Menu and navigation
+<i className="modus-icons">menu</i>
+<i className="modus-icons">home</i>
+<i className="modus-icons">settings</i>
 ```
 
 ### Action Icons
 
-```vue
-<template>
-  <!-- File operations -->
-  <ModusIcon name="save_disk" />
-  <ModusIcon name="download" />
-  <ModusIcon name="upload" />
-  <ModusIcon name="copy_content" />
+```tsx
+// ✅ CORRECT - File operations
+<i className="modus-icons">save_disk</i>
+<i className="modus-icons">download</i>
+<i className="modus-icons">upload</i>
+<i className="modus-icons">copy_content</i>
 
-  <!-- CRUD operations -->
-  <ModusIcon name="add" />
-  <ModusIcon name="edit_combination" />
-  <ModusIcon name="delete" />
-  <ModusIcon name="search" />
-</template>
+// ✅ CORRECT - CRUD operations
+<i className="modus-icons">add</i>
+<i className="modus-icons">edit_combination</i>
+<i className="modus-icons">delete</i>
+<i className="modus-icons">search</i>
 ```
 
 ### Status Icons
 
-```vue
-<template>
-  <!-- Success/Error states -->
-  <ModusIcon name="check_circle" color="var(--modus-wc-color-success)" />
-  <ModusIcon name="warning" color="var(--modus-wc-color-warning)" />
-  <ModusIcon name="cancel_circle" color="var(--modus-wc-color-error)" />
-  <ModusIcon name="info" color="var(--modus-wc-color-info)" />
-</template>
+```tsx
+// ✅ CORRECT - Success/Error states
+<i className="modus-icons text-success">check_circle</i>
+<i className="modus-icons text-warning">warning</i>
+<i className="modus-icons text-destructive">cancel_circle</i>
+<i className="modus-icons text-primary">info</i>
 ```
 
 ### UI Control Icons
 
-```vue
-<template>
-  <!-- Expand/Collapse -->
-  <ModusIcon name="expand_more" />
-  <ModusIcon name="expand_less" />
-  <ModusIcon name="chevron_right" />
-  <ModusIcon name="chevron_down" />
+```tsx
+// ✅ CORRECT - Expand/Collapse
+<i className="modus-icons">expand_more</i>
+<i className="modus-icons">expand_less</i>
+<i className="modus-icons">chevron_right</i>
+<i className="modus-icons">chevron_down</i>
 
-  <!-- Visibility -->
-  <ModusIcon name="visibility_on" />
-  <ModusIcon name="visibility_off" />
-</template>
+// ✅ CORRECT - Visibility
+<i className="modus-icons">visibility_on</i>
+<i className="modus-icons">visibility_off</i>
 ```
 
 ## 🔧 Icon Spacing and Layout
 
 ### Icons with Text
 
-```vue
-<template>
-  <!-- Icon before text -->
-  <modus-wc-button color="primary">
-    <i class="modus-icons" style="margin-right: 8px">save_disk</i>
-    Save Changes
-  </modus-wc-button>
+```tsx
+// ✅ CORRECT - Icon before text using Tailwind classes
+<ModusWcButton color="primary">
+  <i className="modus-icons mr-2">save_disk</i>
+  Save Changes
+</ModusWcButton>
 
-  <!-- Icon after text -->
-  <modus-wc-button color="secondary">
-    Next Step
-    <i class="modus-icons" style="margin-left: 8px">arrow_right</i>
-  </modus-wc-button>
+// ✅ CORRECT - Icon after text using Tailwind classes
+<ModusWcButton color="secondary">
+  Next Step
+  <i className="modus-icons ml-2">arrow_right</i>
+</ModusWcButton>
 
-  <!-- Using ModusIcon with spacing -->
-  <div class="action-item">
-    <ModusIcon name="check" className="icon-spacing-right" />
-    <span>Task completed</span>
-  </div>
-</template>
-
-<style scoped>
-.action-item {
-  display: flex;
-  align-items: center;
-}
-</style>
+// ✅ CORRECT - Using ModusButton with proper spacing
+<ModusButton
+  icon="check"
+  iconPosition="left"
+  color="success"
+>
+  Task completed
+</ModusButton>
 ```
 
 ### Icon Grids and Lists
 
-```vue
-<template>
-  <div class="icon-grid">
-    <div class="icon-item">
-      <ModusIcon name="file" size="lg" />
-      <span>Documents</span>
-    </div>
-    <div class="icon-item">
-      <ModusIcon name="image" size="lg" />
-      <span>Images</span>
-    </div>
-    <div class="icon-item">
-      <ModusIcon name="video" size="lg" />
-      <span>Videos</span>
-    </div>
+```tsx
+// ✅ CORRECT - Icon grid using Tailwind classes
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div className="flex flex-col items-center gap-2 p-4 border border-border rounded-lg">
+    <i className="modus-icons text-2xl">file</i>
+    <span>Documents</span>
   </div>
-</template>
-
-<style scoped>
-.icon-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
-}
-
-.icon-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 1px solid var(--modus-wc-color-base-200);
-  border-radius: 8px;
-}
-</style>
+  <div className="flex flex-col items-center gap-2 p-4 border border-border rounded-lg">
+    <i className="modus-icons text-2xl">image</i>
+    <span>Images</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 p-4 border border-border rounded-lg">
+    <i className="modus-icons text-2xl">video</i>
+    <span>Videos</span>
+  </div>
+</div>
 ```
 
 ## 🚫 Icon Usage Anti-Patterns
 
 ### ❌ Don't Use Invalid Icon Names
 
-```vue
-<!-- WRONG: These icons don't exist -->
-<ModusIcon name="invalid-icon" />
-<i class="modus-icons">non_existent_icon</i>
-<i class="modus-icons">custom-icon</i>
+```tsx
+// ❌ WRONG: These icons don't exist
+<i className="modus-icons">invalid-icon</i>
+<i className="modus-icons">non_existent_icon</i>
+<i className="modus-icons">custom-icon</i>
 ```
 
 ### ❌ Don't Use Non-Modus Icon Libraries
 
-```vue
-<!-- WRONG: Don't mix icon libraries -->
-<i class="fa fa-star"></i>
-<!-- Font Awesome -->
-<i class="material-icons">star</i>
-<!-- Material Icons -->
+```tsx
+// ❌ WRONG: Don't mix icon libraries
+<i className="fa fa-star"></i>  {/* Font Awesome */}
+<i className="material-icons">star</i>  {/* Material Icons */}
 ```
 
 ### ❌ Don't Hardcode Colors
 
-```vue
-<!-- WRONG: Hardcoded colors -->
-<ModusIcon name="star" color="#ff0000" />
-<i class="modus-icons" style="color: blue">star</i>
+```tsx
+// ❌ WRONG: Hardcoded colors
+<i className="modus-icons" style={{ color: "#ff0000" }}>star</i>
+<i className="modus-icons" style={{ color: "blue" }}>star</i>
 
-<!-- CORRECT: Use Modus color variables -->
-<ModusIcon name="star" color="var(--modus-wc-color-error)" />
+// ✅ CORRECT: Use Modus color variables
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-error)" }}>star</i>
+<i className="modus-icons text-destructive">star</i>
 ```
 
 ### ❌ Don't Forget Accessibility
 
-```vue
-<!-- WRONG: Missing aria-label for functional icon -->
-<modus-wc-button shape="circle">
-  <i class="modus-icons">delete</i>
-</modus-wc-button>
+```tsx
+// ❌ WRONG: Missing aria-label for functional icon
+<ModusWcButton shape="circle">
+  <i className="modus-icons">delete</i>
+</ModusWcButton>
 
-<!-- CORRECT: Include aria-label -->
-<modus-wc-button shape="circle" aria-label="Delete item">
-  <i class="modus-icons">delete</i>
-</modus-wc-button>
+// ✅ CORRECT: Include aria-label
+<ModusWcButton shape="circle" aria-label="Delete item">
+  <i className="modus-icons">delete</i>
+</ModusWcButton>
+
+// ✅ CORRECT: Using ModusButton with proper accessibility
+<ModusButton
+  icon="delete"
+  iconPosition="only"
+  aria-label="Delete item"
+  color="danger"
+/>
 ```
+
+## 📋 Icons Used in This Next.js App
+
+Based on the current implementation, these are the icons actively used:
+
+### Icons in Components
+
+- `apps` - Used in ModusButton component
+- `download` - Used in ModusButton component
+- `warning` - Used in ModusButton component
+- `delete` - Used in ModusButton component
+- `brightness` - Used in homepage theme button
+
+### Icons in Button Demo Page
+
+- `star` - Used in button builder and examples
+- `add` - Used in square button example
+- `close` - Used in circle button example
+- `save_disk` - Used in form buttons
+- `download` - Used in form buttons
+- `upload` - Used in form buttons
+- `edit_combination` - Used in icon-only buttons
+- `delete` - Used in icon-only buttons
+- `settings` - Used in icon-only buttons
+- `search` - Used in icon-only buttons
+- `arrow_right` - Used in text+icon buttons
+- `arrow_left` - Used in text+icon buttons
+- `launch` - Used in text+icon buttons
+- `check` - Used in form submit button
+- `refresh` - Used in form reset button
+- `cancel_circle` - Used in form cancel button
+
+### Icons in Homepage
+
+- `coffee_cup` - Used in features section
+- `palette` - Used in features section
 
 ## 📋 Complete Icon Names List
 
@@ -390,21 +384,47 @@ table, tablet, tag, tag_disabled, template, text_align_left, text_align_right, t
 
 `bar_graph`, `line_graph`, `dashboard`
 
-## 📋 Icon Implementation Checklist
+## 📋 Icon Implementation Checklist for Next.js
 
 For every icon implementation:
 
-- [ ] ✅ **Valid Icon Name**: Used only icons from `ModusIconName` type
-- [ ] ✅ **Proper Component**: Used `ModusIcon` component or direct HTML with `modus-icons` class
-- [ ] ✅ **Appropriate Size**: Used predefined sizes (xs, sm, md, lg, xl) when possible
-- [ ] ✅ **Modus Colors**: Used only Modus CSS color variables
+- [ ] ✅ **Valid Icon Name**: Used only valid Modus icon names
+- [ ] ✅ **Proper Implementation**: Used `<i className="modus-icons">` or `ModusButton` component
+- [ ] ✅ **Tailwind Classes**: Used Tailwind classes for sizing (`text-xs`, `text-sm`, `text-lg`, etc.)
+- [ ] ✅ **Modus Colors**: Used only Modus CSS color variables or design system colors
 - [ ] ✅ **Accessibility**: Added `aria-label` for functional icons, kept decorative icons hidden
-- [ ] ✅ **Proper Spacing**: Used appropriate margins for icons with text
+- [ ] ✅ **Proper Spacing**: Used Tailwind spacing classes (`mr-2`, `ml-2`) for icons with text
 - [ ] ✅ **Semantic Usage**: Chose icons that match their intended meaning
 - [ ] ✅ **Consistent Style**: Maintained consistent icon usage patterns across the app
+- [ ] ✅ **CSS Import**: Ensured Modus icons CSS is imported in `globals.css`
+- [ ] ✅ **Client Components**: Used `"use client"` directive when needed for interactive icons
+
+## 🎯 Next.js Specific Requirements
+
+### CSS Import Setup
+
+```css
+/* In globals.css - MUST be first */
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+```
+
+### Component Usage Patterns
+
+```tsx
+// ✅ CORRECT - Direct HTML usage
+<i className="modus-icons">icon_name</i>
+
+// ✅ CORRECT - With Tailwind spacing
+<i className="modus-icons mr-2">icon_name</i>
+
+// ✅ CORRECT - Using ModusButton component
+<ModusButton icon="icon_name" iconPosition="left">
+  Button Text
+</ModusButton>
+```
 
 ---
 
-**Remember: Icons should enhance usability and provide visual clarity. Always choose icons that clearly represent their function and maintain consistency throughout your application.**
+**Remember: Icons should enhance usability and provide visual clarity. Always choose icons that clearly represent their function and maintain consistency throughout your Next.js application.**
 
-**Icon Reference:** Check `src/types/modus.d.ts` for the complete list of available `ModusIconName` values.
+**Icon Reference:** Check the Modus Icons documentation for the complete list of available icon names.

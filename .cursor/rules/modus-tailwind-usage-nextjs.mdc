@@ -1,0 +1,581 @@
+---
+alwaysApply: true
+---
+
+# Tailwind CSS Usage Rules for Next.js + Modus
+
+## 🎯 Overview
+
+This document outlines the proper usage of Tailwind CSS in Next.js applications with Modus Design System. The goal is to **maximize Tailwind utility classes** and **eliminate custom CSS classes** for better maintainability, consistency, and scalability.
+
+**Key Principle**: Use Tailwind's built-in utilities (including `hover:`, `focus:`, `bg-*`, `text-*`, `border-*`) inline instead of creating custom CSS classes. This keeps your codebase lean and prevents `globals.css` from growing unmanageably.
+
+## 🚫 NEVER Create Custom CSS Classes
+
+**❌ DO NOT create custom CSS classes for styling:**
+
+```css
+/* ❌ NEVER DO THIS - Don't create custom classes */
+.app-header {
+  ...;
+}
+.nav-link {
+  ...;
+}
+.card-bordered {
+  ...;
+}
+.custom-button {
+  ...;
+}
+```
+
+**✅ ALWAYS use Tailwind inline:**
+
+```tsx
+// ✅ CORRECT - Pure Tailwind
+<header className="bg-background border-border text-foreground">
+<Link className="hover:bg-card">
+<div className="bg-card border border-border rounded-lg">
+<button className="bg-primary text-primary-foreground">
+```
+
+## 🎨 Core Principles
+
+### ✅ ALWAYS Use Tailwind Classes Inline (Preferred)
+
+**Best Approach - Pure Tailwind with Design System Colors:**
+
+```tsx
+// ✅ BEST - Pure Tailwind with design system colors
+<div className="flex items-center justify-between p-4 rounded-lg border bg-background border-border text-foreground">
+  Content
+</div>
+
+// ✅ BEST - Hover states inline with Tailwind
+<Link
+  href="/page"
+  className="px-4 py-2 rounded transition-colors duration-200 text-foreground hover:bg-card no-underline"
+>
+  Link
+</Link>
+
+// ✅ BEST - Header/Footer with design system colors
+<header className="w-full border-b bg-background border-border text-foreground">
+  <nav className="max-w-6xl mx-auto px-4 py-4">Navigation</nav>
+</header>
+
+<footer className="text-center py-4 border-t-2 bg-card border-border text-foreground">
+  <div className="max-w-6xl mx-auto px-4">Footer content</div>
+</footer>
+```
+
+### Why This Approach?
+
+1. **✅ No Custom CSS Bloat**: Tailwind purges unused classes automatically
+2. **✅ Self-Documenting**: All styling visible in the component
+3. **✅ Better DX**: No jumping between files to understand styles
+4. **✅ Scalable**: Won't grow unmanageably like custom CSS
+5. **✅ Maintainable**: Easy to modify inline
+6. **✅ Design System Integration**: Works perfectly with Modus colors
+
+### ❌ NEVER Create Custom CSS Classes for Styling
+
+**Only create custom CSS for these 2 cases:**
+
+1. **Theme-based logo/icon switching** (can't be done with Tailwind)
+2. **Complex animations** requiring `@keyframes`
+
+**That's it. Everything else uses Tailwind inline.**
+
+```css
+/* ❌ NEVER DO THIS - Don't create custom classes */
+.custom-header {
+  background-color: var(--background);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.card-bordered {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+.nav-link:hover {
+  background-color: var(--card);
+}
+
+/* ✅ INSTEAD - Use Tailwind inline */
+<header className="bg-background border-border text-foreground">
+<div className="bg-card border border-border">
+<Link className="hover:bg-card">
+```
+
+## 🎨 Modus Design System Color Integration
+
+### ✅ Use Tailwind Classes with Design System Colors
+
+Tailwind v4's `@theme inline` automatically makes our design system colors available as Tailwind classes:
+
+```tsx
+// ✅ Background colors
+<div className="bg-background">Page background</div>
+<div className="bg-card">Card background</div>
+<div className="bg-muted">Muted background</div>
+<div className="bg-primary">Primary background</div>
+
+// ✅ Text colors
+<div className="text-foreground">Main text</div>
+<div className="text-muted-foreground">Subtle text</div>
+<div className="text-primary">Primary text</div>
+<div className="text-destructive">Error text</div>
+
+// ✅ Border colors
+<div className="border border-border">Standard border</div>
+<div className="border border-input">Input border</div>
+<div className="focus:ring-2 focus:ring-ring">Focus ring</div>
+
+// ✅ Hover states
+<button className="bg-primary text-primary-foreground hover:bg-primary/90">
+  Hover effect
+</button>
+<Link className="text-foreground hover:bg-card">
+  Link with hover
+</Link>
+```
+
+### Available Design System Colors
+
+```tsx
+// Background colors
+bg - background, bg - foreground, bg - card, bg - popover;
+bg - primary, bg - secondary, bg - muted, bg - accent;
+bg - destructive, bg - border, bg - input, bg - ring;
+
+// Text colors
+text - background, text - foreground, text - card - foreground;
+text - primary, text - primary - foreground;
+text - secondary, text - secondary - foreground;
+text - muted, text - muted - foreground;
+text - accent, text - accent - foreground;
+text - destructive, text - destructive - foreground;
+
+// Border colors
+border - border, border - input, border - ring;
+```
+
+### ❌ NEVER Use Original Modus CSS Variables Directly
+
+```tsx
+// ❌ Wrong - Don't use raw Modus variables
+<div style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}>
+
+// ✅ Correct - Use design system colors
+<div className="bg-background">
+```
+
+## 🏗️ Common Patterns
+
+### Header Component
+
+```tsx
+// ✅ CORRECT - Pure Tailwind
+export default function AppHeader() {
+  return (
+    <header className="w-full border-b bg-background border-border text-foreground">
+      <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+        <h2 className="text-xl font-semibold text-foreground">App Name</h2>
+        <div className="flex gap-4">
+          <Link
+            href="/"
+            className="px-4 py-2 rounded transition-colors duration-200 text-foreground hover:bg-card no-underline"
+          >
+            Home
+          </Link>
+        </div>
+      </nav>
+    </header>
+  );
+}
+```
+
+### Footer Component
+
+```tsx
+// ✅ CORRECT - Pure Tailwind
+export default function AppFooter() {
+  return (
+    <footer className="text-center py-4 border-t-2 bg-card border-border text-foreground">
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
+        <span className="text-sm text-foreground">© 2025 App Name</span>
+        <a
+          href="https://github.com"
+          className="text-sm flex items-center text-foreground hover:opacity-80 no-underline"
+        >
+          GitHub
+        </a>
+      </div>
+    </footer>
+  );
+}
+```
+
+### Card Component
+
+```tsx
+// ✅ CORRECT - Pure Tailwind
+export default function Card({ children }) {
+  return (
+    <div className="bg-card border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-lg">
+      <div className="text-foreground">{children}</div>
+    </div>
+  );
+}
+```
+
+### Interactive Button
+
+```tsx
+// ✅ CORRECT - Pure Tailwind with hover states
+export default function Button({ children }) {
+  return (
+    <button className="px-4 py-2 rounded bg-primary text-primary-foreground transition-colors hover:bg-primary/90">
+      {children}
+    </button>
+  );
+}
+```
+
+## 🎨 Borders with Tailwind v4
+
+### ⚠️ Important: Tailwind v4 Border Behavior
+
+In Tailwind v4, the `border` class alone sets `border-width: 0px`. To make borders visible, you need to explicitly set the width.
+
+### ✅ Correct Border Pattern
+
+**Use `border border-{color}` + inline `style={{ borderWidth: '1px' }}`:**
+
+```tsx
+// ✅ CORRECT - Visible borders with Tailwind v4
+<div className="bg-card border border-border rounded-lg p-6" style={{ borderWidth: '1px' }}>
+  Content with visible 1px border
+</div>
+
+// ✅ CORRECT - Different border widths
+<div className="border border-border" style={{ borderWidth: '1px' }}>1px border</div>
+<div className="border border-border" style={{ borderWidth: '1px' }}>1px border</div>
+<div className="border border-border" style={{ borderWidth: '4px' }}>4px border</div>
+```
+
+### ❌ Wrong Border Patterns
+
+```tsx
+// ❌ WRONG - No visible border (width is 0px)
+<div className="border border-border">
+  No visible border!
+</div>
+
+// ❌ WRONG - border-2 doesn't work in Tailwind v4
+<div className="border-2 border-border">
+  Still no visible border!
+</div>
+
+// ❌ WRONG - Full inline border (avoid for static values)
+<div style={{ border: '1px solid var(--border)' }}>
+  Works but violates Tailwind-first principle
+</div>
+```
+
+### 📋 Border Best Practices
+
+1. **Always use `border border-{color}`** for border style and color
+2. **Always add `style={{ borderWidth: '...' }}`** for visible borders
+3. **Use design system colors** like `border-border`, `border-input`, `border-ring`
+4. **Keep border width in inline style** - it's acceptable for this specific case
+
+### 🎨 Common Border Patterns
+
+```tsx
+// Card with border
+<div className="bg-card border border-border rounded-lg p-6" style={{ borderWidth: '1px' }}>
+  Card content
+</div>
+
+// Input with border
+<input className="border border-input rounded px-3 py-2" style={{ borderWidth: '1px' }} />
+
+// Focus state with ring
+<button className="border border-border focus:ring-2 focus:ring-ring" style={{ borderWidth: '1px' }}>
+  Button with focus ring
+</button>
+
+// Different sides
+<div className="border-t border-border" style={{ borderTopWidth: '1px' }}>
+  Top border only
+</div>
+```
+
+## 🎨 Responsive Design
+
+```tsx
+// ✅ Mobile-first responsive design
+<div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 p-4 md:p-8">
+  <div className="w-full md:w-auto">
+    <h1 className="text-2xl md:text-4xl font-bold text-foreground">Title</h1>
+  </div>
+  <div className="flex gap-2 md:gap-4">
+    <button className="px-3 py-2 md:px-4 md:py-3 text-sm md:text-base bg-primary text-primary-foreground">
+      Action
+    </button>
+  </div>
+</div>
+```
+
+## 🎨 Interactive States
+
+### Hover States
+
+```tsx
+// ✅ CORRECT - Inline hover with Tailwind
+<Link
+  href="/page"
+  className="px-4 py-2 rounded text-foreground hover:bg-card transition-colors duration-200"
+>
+  Link
+</Link>
+
+<button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded">
+  Button
+</button>
+
+<div className="bg-card hover:shadow-lg hover:-translate-y-1 transition-all duration-200 p-6 rounded-lg">
+  Interactive Card
+</div>
+```
+
+### Focus States
+
+```tsx
+// ✅ CORRECT - Focus rings with Tailwind
+<input className="px-3 py-2 border border-input rounded focus:ring-2 focus:ring-ring focus:outline-none bg-background text-foreground" />
+
+<button className="bg-primary text-primary-foreground focus:ring-2 focus:ring-ring focus:ring-offset-2 px-4 py-2 rounded">
+  Button
+</button>
+```
+
+### Loading States
+
+```tsx
+// ✅ CORRECT - Loading with Tailwind
+<div className="animate-pulse">
+  <div className="h-4 bg-muted rounded mb-2" />
+  <div className="h-8 w-32 bg-muted rounded" />
+</div>
+```
+
+## 🚫 Anti-Patterns to Avoid
+
+### ❌ Don't Create Custom CSS for Simple Patterns
+
+```css
+/* ❌ WRONG - Unnecessary custom CSS */
+.app-header {
+  background-color: var(--background);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.nav-link:hover {
+  background-color: var(--card);
+}
+
+.text-foreground {
+  color: var(--foreground);
+}
+```
+
+```tsx
+// ✅ CORRECT - Use Tailwind inline instead
+<header className="bg-background border-border text-foreground">
+<Link className="hover:bg-card">
+<span className="text-foreground">
+```
+
+### ❌ Don't Use Event Handlers for Hover States
+
+```tsx
+// ❌ WRONG - JavaScript for hover states
+<Link
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = "var(--card)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = "transparent";
+  }}
+>
+  Link
+</Link>
+
+// ✅ CORRECT - CSS hover with Tailwind
+<Link className="hover:bg-card transition-colors duration-200">
+  Link
+</Link>
+```
+
+### ❌ Don't Use Inline Style Objects for Static Values
+
+```tsx
+// ❌ WRONG - Inline style objects
+<div
+  style={{
+    backgroundColor: "var(--modus-wc-color-base-page)",
+    borderColor: "var(--modus-wc-color-base-200)",
+    color: "var(--modus-wc-color-base-content)",
+  }}
+>
+
+// ✅ CORRECT - Tailwind classes
+<div className="bg-background border-border text-foreground">
+```
+
+## ✅ Only 2 Valid Reasons for Custom CSS
+
+### 1. Theme-Based Logo/Icon Switching
+
+**✅ This is acceptable** - Tailwind can't handle theme-specific display logic:
+
+```css
+/* ✅ CORRECT - Theme-based visibility (can't be done with Tailwind) */
+.nextjs-logo-light {
+  display: block;
+}
+.nextjs-logo-dark {
+  display: none;
+}
+
+[data-theme="modus-classic-dark"] .nextjs-logo-light,
+[data-theme="modus-modern-dark"] .nextjs-logo-light {
+  display: none;
+}
+
+[data-theme="modus-classic-dark"] .nextjs-logo-dark,
+[data-theme="modus-modern-dark"] .nextjs-logo-dark {
+  display: block;
+}
+```
+
+### 2. Complex Animations
+
+**✅ This is acceptable** - Requires `@keyframes` which Tailwind doesn't support:
+
+```css
+/* ✅ CORRECT - Complex @keyframes animation */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideInFromRight 0.3s ease-out;
+}
+```
+
+### ❌ Everything Else Uses Tailwind
+
+**❌ DO NOT create custom classes for:**
+
+- Colors (use `bg-*`, `text-*`, `border-*`)
+- Spacing (use `p-*`, `m-*`, `gap-*`)
+- Layout (use `flex`, `grid`, `items-*`)
+- Hover states (use `hover:bg-*`)
+- Focus states (use `focus:ring-*`)
+- Borders (use `border`, `rounded-*`)
+- Typography (use `text-*`, `font-*`)
+- Responsive design (use `md:*`, `lg:*`)
+
+```tsx
+// ❌ WRONG - Custom CSS class
+.color-swatch {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+// ✅ CORRECT - Tailwind inline
+<div className="rounded-lg border border-border">
+```
+
+## 📋 Migration Checklist
+
+When refactoring from custom CSS to Tailwind:
+
+- [ ] ✅ **Replace `.app-header`** → `bg-background border-border text-foreground`
+- [ ] ✅ **Replace `.app-footer`** → `bg-card border-border text-foreground`
+- [ ] ✅ **Replace `.nav-link:hover`** → `hover:bg-card`
+- [ ] ✅ **Replace `.text-foreground`** → `text-foreground`
+- [ ] ✅ **Remove `onMouseEnter/Leave`** → Use `hover:` classes
+- [ ] ✅ **Replace inline style objects** → Tailwind classes
+- [ ] ✅ **Test all interactive states** (hover, focus, active)
+- [ ] ✅ **Verify theme switching** (light/dark themes)
+- [ ] ✅ **Check responsive design** (mobile, tablet, desktop)
+
+## 🎯 Benefits Summary
+
+### Using Tailwind Inline:
+
+1. **✅ No CSS Bloat**: Tailwind purges unused classes
+2. **✅ Self-Documenting**: All styling visible in component
+3. **✅ Better DX**: No file jumping to understand styles
+4. **✅ Scalable**: Won't grow unmanageably
+5. **✅ Maintainable**: Easy to modify inline
+6. **✅ Performance**: No runtime style calculations
+7. **✅ Type Safety**: Autocomplete for class names
+8. **✅ Consistency**: Standard Tailwind patterns
+
+### Minimizing Custom CSS:
+
+1. **✅ Smaller Bundle**: Less CSS to parse and download
+2. **✅ Easier Maintenance**: Fewer files to manage
+3. **✅ Better Collaboration**: Standard Tailwind patterns everyone knows
+4. **✅ Faster Development**: No need to name CSS classes
+5. **✅ Less Conflicts**: No CSS specificity issues
+
+## 🎯 Key Takeaways
+
+1. **Use Tailwind inline** for 99% of styling
+2. **NEVER create custom CSS classes** for colors, spacing, layout, hover states, etc.
+3. **ONLY 2 exceptions**: Theme switching and complex `@keyframes` animations
+4. **Use `hover:`, `focus:`, `active:`** prefixes instead of JavaScript or custom CSS
+5. **Use design system colors** (`bg-background`, `text-foreground`, etc.)
+6. **Borders require width**: Use `border border-{color}` + `style={{ borderWidth: '1px' }}`
+7. **Keep `globals.css` minimal** - aim for <50 lines
+8. **Test responsively** with Tailwind's `md:`, `lg:` prefixes
+9. **Verify theme compatibility** - ensure light/dark themes work
+
+---
+
+## 🚨 The Golden Rule
+
+**If Tailwind can do it, NEVER create custom CSS for it.**
+
+Only create custom CSS for:
+
+1. ✅ Theme-based logo/icon switching
+2. ✅ Complex `@keyframes` animations
+
+Everything else? **Pure Tailwind inline classes.**
+
+This approach:
+
+- ✅ Scales infinitely
+- ✅ Is easier to maintain
+- ✅ Prevents CSS bloat
+- ✅ Self-documents styling
+- ✅ Eliminates file jumping

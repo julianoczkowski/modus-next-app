@@ -1,0 +1,181 @@
+---
+description: Common accordion and collapse state management issues with Modus Web Components
+alwaysApply: false
+---
+
+# Modus Accordion/Collapse State Management
+
+## 🚨 Common Issue: Accordion Not Expanding/Collapsing
+
+### ❌ The Problem
+
+When using Modus Web Components like `ModusWcAccordion` and `ModusWcCollapse`, the expand/collapse functionality may not work properly if you try to control the state from React.
+
+**Symptoms:**
+
+- Accordion headers appear but clicking doesn't expand/collapse items
+- Event handlers fire but UI doesn't update
+- Components render but are not interactive
+
+### 🔍 Root Cause
+
+**State Management Conflict**: Modus Web Components manage their own internal state, and trying to control this from React creates conflicts.
+
+```tsx
+// ❌ WRONG - This causes the accordion to not work
+<ModusWcCollapse
+  expanded={isExpanded} // React state conflicts with internal state
+  options={item.options}
+>
+  <div slot="content">Content</div>
+</ModusWcCollapse>
+```
+
+### ✅ The Solution
+
+**Let Modus Web Components handle their own state:**
+
+```tsx
+// ✅ CORRECT - No expanded prop, let component manage its own state
+<ModusWcCollapse
+  options={item.options} // Only pass configuration
+>
+  <div slot="content">Content</div>
+</ModusWcCollapse>
+```
+
+### 🎯 Best Practices
+
+#### 1. Event Listening (Not Control)
+
+```tsx
+// ✅ CORRECT - Listen to events for tracking/analytics
+useEffect(() => {
+  const accordion = accordionRef.current;
+  if (accordion) {
+    const handleExpandedChange = (event: Event) => {
+      const customEvent = event as CustomEvent<{
+        expanded: boolean;
+        index: number;
+      }>;
+      // Track for logging/analytics, don't try to control
+      console.log(
+        "Item",
+        customEvent.detail.index,
+        "is",
+        customEvent.detail.expanded ? "open" : "closed"
+      );
+    };
+
+    accordion.addEventListener("expandedChange", handleExpandedChange);
+    return () =>
+      accordion.removeEventListener("expandedChange", handleExpandedChange);
+  }
+}, []);
+```
+
+#### 2. Component Structure
+
+```tsx
+// ✅ CORRECT - Proper accordion implementation
+export default function ModusAccordion({ items, onExpandedChange }) {
+  const accordionRef = useRef<HTMLModusWcAccordionElement>(null);
+
+  useEffect(() => {
+    const accordion = accordionRef.current;
+    if (accordion && onExpandedChange) {
+      const handleExpandedChange = (event: Event) => {
+        const customEvent = event as CustomEvent<{
+          expanded: boolean;
+          index: number;
+        }>;
+        onExpandedChange(customEvent.detail);
+      };
+
+      accordion.addEventListener("expandedChange", handleExpandedChange);
+      return () =>
+        accordion.removeEventListener("expandedChange", handleExpandedChange);
+    }
+  }, [onExpandedChange]);
+
+  return (
+    <ModusWcAccordion ref={accordionRef}>
+      {items.map((item) => (
+        <ModusWcCollapse
+          key={item.id}
+          collapse-id={item.id}
+          options={item.options} // No expanded prop
+        >
+          <div slot="content">{item.content}</div>
+        </ModusWcCollapse>
+      ))}
+    </ModusWcAccordion>
+  );
+}
+```
+
+### 🚫 What NOT to Do
+
+```tsx
+// ❌ DON'T - Control state from React
+const [expandedItems, setExpandedItems] = useState([0]);
+
+<ModusWcCollapse
+  expanded={expandedItems.includes(index)}  // This breaks functionality
+  options={item.options}
+>
+
+// ❌ DON'T - Use React synthetic events
+<ModusWcCollapse
+  onExpandedChange={(event) => {}}  // This won't work
+>
+
+// ❌ DON'T - Try to programmatically control expansion
+useEffect(() => {
+  if (shouldExpand) {
+    collapseRef.current.expanded = true;  // This won't work reliably
+  }
+}, [shouldExpand]);
+```
+
+### ✅ What TO Do
+
+```tsx
+// ✅ DO - Let components handle their own state
+<ModusWcCollapse
+  options={item.options}  // Only configuration
+>
+
+// ✅ DO - Use native DOM events
+accordion.addEventListener("expandedChange", handleExpandedChange);
+
+// ✅ DO - Track state for analytics/logging only
+const handleExpandedChange = (event: Event) => {
+  const customEvent = event as CustomEvent<{expanded: boolean; index: number}>;
+  // Log for analytics, don't try to control
+  analytics.track('accordion_toggle', {
+    index: customEvent.detail.index,
+    expanded: customEvent.detail.expanded
+  });
+};
+```
+
+### 🔧 Debugging Tips
+
+1. **Check Console**: Look for event logs to see if events are firing
+2. **Verify Event Listeners**: Ensure `addEventListener` is properly set up
+3. **Remove State Props**: Remove any `expanded` props from Modus components
+4. **Use Native Events**: Use `addEventListener` instead of React event handlers
+
+### 📋 Checklist
+
+- [ ] ✅ **No `expanded` props** on Modus Web Components
+- [ ] ✅ **Event listeners** use `addEventListener` not React handlers
+- [ ] ✅ **State tracking** for analytics only, not control
+- [ ] ✅ **Native DOM events** for Modus component interactions
+- [ ] ✅ **Component refs** for accessing DOM elements
+- [ ] ✅ **Cleanup listeners** in useEffect return function
+
+---
+
+**Remember**: Modus Web Components are designed to be self-contained. Let them manage their own state and only listen to their events for tracking purposes.

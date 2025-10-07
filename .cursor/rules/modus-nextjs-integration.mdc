@@ -1,5 +1,6 @@
 ---
-alwaysApply: true
+description: Use when adding Modus Web Components
+alwaysApply: false
 ---
 
 # Modus Web Components + Next.js Integration Guide

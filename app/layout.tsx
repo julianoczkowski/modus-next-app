@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
         style={{
           backgroundColor: "var(--modus-wc-color-base-page)",
           color: "var(--modus-wc-color-base-content)",
@@ -38,7 +38,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ModusProvider>
             <AppHeader />
-            <main style={{ minHeight: "calc(100vh - 200px)" }}>{children}</main>
+            <main className="flex-1">{children}</main>
             <AppFooter />
           </ModusProvider>
         </ThemeProvider>

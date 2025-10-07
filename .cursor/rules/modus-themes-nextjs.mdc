@@ -1,5 +1,6 @@
 ---
-alwaysApply: true
+description: Use when adding or changing Modus theme
+alwaysApply: false
 ---
 
 # Modus Themes with Next.js Integration Guide
@@ -390,9 +391,9 @@ export default function ThemedComponent() {
         color: "var(--modus-wc-color-base-content)",
         // Conditional styling based on theme properties
         border: isModern
-          ? "2px solid var(--modus-wc-color-info)"
+          ? "1px solid var(--modus-wc-color-info)"
           : "1px solid var(--modus-wc-color-base-200)",
-        borderRadius: isModern ? "12px" : "4px",
+        borderRadius: isModern ? "11px" : "4px",
       }}
     >
       <h2>Theme-aware Component</h2>

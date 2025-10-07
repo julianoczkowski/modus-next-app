@@ -189,11 +189,11 @@ export default function ColorPalettePage() {
   return (
     <div className="max-w-6xl mx-auto p-8">
       {/* Header */}
-      <div className="flex flex-col text-center mb-12 p-8 items-center justify-center">
+      <div className="text-center mb-12">
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Color Palette
         </div>
-        <p className="text-lg max-w-3xl mx-auto leading-relaxed text-foreground text-center justify-center">
+        <p className="text-lg leading-relaxed text-foreground text-center">
           Visual reference for all colors in the Modus Design System. These
           colors automatically adapt to the current theme (Classic Light/Dark,
           Modern Light/Dark).
@@ -217,11 +217,12 @@ export default function ColorPalettePage() {
               {group.colors.map((color, colorIndex) => (
                 <div
                   key={colorIndex}
-                  className="card-bordered p-6 transition-all duration-200 hover:shadow-lg"
+                  className="bg-card rounded-lg p-6 color-card"
+                  style={{ border: "1px solid var(--border)" }}
                 >
                   {/* Color Swatch */}
                   <div
-                    className={`color-swatch w-full h-24 mb-4 ${
+                    className={`rounded-lg w-full h-24 mb-4 ${
                       color.name.includes("foreground")
                         ? ""
                         : color.tailwindClass
@@ -242,10 +243,10 @@ export default function ColorPalettePage() {
                             ? `var(--primary)`
                             : `var(--background)`
                           : undefined,
-                      borderColor:
+                      border:
                         color.name === "border"
-                          ? `var(${color.cssVar})`
-                          : undefined,
+                          ? `1px solid var(${color.cssVar})`
+                          : "1px solid var(--border)",
                       boxShadow:
                         color.name === "ring"
                           ? `0 0 0 2px var(${color.cssVar})`
@@ -283,7 +284,10 @@ export default function ColorPalettePage() {
       </div>
 
       {/* Modus Web Component Colors Reference */}
-      <div className="card-bordered mt-16 p-8 ">
+      <div
+        className="bg-card rounded-lg mt-16 p-8"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Modus Web Component Colors
         </div>
@@ -316,7 +320,11 @@ export default function ColorPalettePage() {
             { name: "modus-wc-color-warning", description: "Warning" },
             { name: "modus-wc-color-error", description: "Error/danger" },
           ].map((color, index) => (
-            <div key={index} className="card-bordered p-4">
+            <div
+              key={index}
+              className="bg-card rounded-lg p-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div
                 className="w-full h-16 rounded mb-3"
                 style={{ backgroundColor: `var(--${color.name})` }}
@@ -333,21 +341,30 @@ export default function ColorPalettePage() {
       </div>
 
       {/* Usage Instructions */}
-      <div className="card-bordered mt-12 p-8">
+      <div
+        className="bg-card rounded-lg mt-12 p-8"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           How to Use These Colors
         </div>
         <div className="space-y-4 text-foreground">
           <div>
             <div className="font-medium mb-2">✅ For Custom UI Elements:</div>
-            <div className="code-block text-sm font-mono p-2">
+            <div
+              className="bg-background rounded-md text-sm font-mono p-2"
+              style={{ border: "1px solid var(--border)" }}
+            >
               &lt;div className=&quot;bg-primary
               text-primary-foreground&quot;&gt;Content&lt;/div&gt;
             </div>
           </div>
           <div>
             <div className="font-medium mb-2">✅ For Modus Web Components:</div>
-            <div className="code-block text-sm font-mono p-2">
+            <div
+              className="bg-background rounded-md text-sm font-mono p-2"
+              style={{ border: "1px solid var(--border)" }}
+            >
               &lt;modus-wc-button
               color=&quot;primary&quot;&gt;Button&lt;/modus-wc-button&gt;
             </div>
@@ -356,7 +373,10 @@ export default function ColorPalettePage() {
             <div className="font-medium mb-2">
               ❌ Don&apos;t mix the systems:
             </div>
-            <div className="code-block text-sm font-mono p-2 opacity-70">
+            <div
+              className="bg-background rounded-md text-sm font-mono p-2 opacity-70"
+              style={{ border: "1px solid var(--border)" }}
+            >
               &lt;div className=&quot;bg-secondary&quot;&gt;Custom
               UI&lt;/div&gt; + &lt;modus-wc-button
               color=&quot;secondary&quot;&gt;Button&lt;/modus-wc-button&gt;

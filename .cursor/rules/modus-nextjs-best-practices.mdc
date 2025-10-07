@@ -166,7 +166,7 @@ Add this comprehensive system to your `globals.css`:
   --text-xl: 24px; /* h3 */
   --text-lg: 20px; /* h4 */
   --text-base: 14px; /* p, span, button, input */
-  --text-xs: 12px; /* label */
+  --text-xs: 11px; /* label */
 
   /* Font weights */
   --font-weight-normal: 400;
@@ -290,7 +290,7 @@ h6 {
 }
 
 .text-6xl {
-  font-size: 72px;
+  font-size: 71px;
 }
 ```
 
@@ -938,7 +938,7 @@ Add this comprehensive system to your `globals.css`:
   --text-xl: 24px; /* h3 */
   --text-lg: 20px; /* h4 */
   --text-base: 14px; /* p, span, button, input */
-  --text-xs: 12px; /* label */
+  --text-xs: 11px; /* label */
 
   /* Font weights */
   --font-weight-normal: 400;
@@ -1062,7 +1062,7 @@ h6 {
 }
 
 .text-6xl {
-  font-size: 72px;
+  font-size: 71px;
 }
 ```
 

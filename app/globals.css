@@ -10,7 +10,7 @@
   --text-xl: 24px; /* h3 */
   --text-lg: 20px; /* h4 */
   --text-base: 14px; /* p, span, button, input */
-  --text-xs: 12px; /* label */
+  --text-xs: 11px; /* label */
 
   /* Font weights */
   --font-weight-normal: 400;
@@ -41,7 +41,7 @@
   --input: var(--modus-wc-color-base-page);
   --input-background: var(--modus-wc-color-base-page);
   --ring: var(--modus-wc-color-info);
-  --elevation-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  --elevation-sm: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
   --chart-1: var(--modus-wc-color-info);
   --chart-2: var(--modus-wc-color-warning);
   --chart-3: var(--modus-wc-color-success);
@@ -131,29 +131,15 @@
   }
 }
 
-/* Card utilities with proper borders */
-.card {
-  background-color: var(--card) !important;
-  border-radius: var(--radius-lg) !important;
-  border: 1px solid var(--border) !important;
+/* Color card hover effects */
+.color-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-bordered {
-  background-color: var(--card) !important;
-  border-radius: var(--radius-lg) !important;
-  border: 1px solid var(--border) !important;
-}
-
-.code-block {
-  background-color: var(--background) !important;
-  border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border) !important;
-}
-
-/* Color swatch with border */
-.color-swatch {
-  border-radius: var(--radius-lg) !important;
-  border: 1px solid var(--border) !important;
+.color-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 /* Theme-based logo switching */
@@ -246,5 +232,5 @@ h6 {
 }
 
 .text-6xl {
-  font-size: 72px;
+  font-size: 71px;
 }

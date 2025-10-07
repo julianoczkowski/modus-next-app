@@ -115,11 +115,11 @@ export default function ButtonDemoPage() {
 
   return (
     <div className="max-w-5xl mx-auto p-8">
-      <div className="text-center mb-12 mt-12">
-        <div className="text-2xl font-semibold mb-4 text-foreground">
+      <div className="text-center mb-12">
+        <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Button Demo
         </div>
-        <p className="text-lg max-w-3xl mx-auto leading-relaxed text-foreground">
+        <p className="text-lg leading-relaxed text-foreground text-center">
           Explore all the variants, colors, sizes, and features of the Modus
           Button component. This page demonstrates both direct web component
           usage and React integration patterns. If you can see this page, you
