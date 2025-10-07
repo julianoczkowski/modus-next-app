@@ -34,34 +34,19 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "app/components/AppHeader.tsx": [
+    "app/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run lint:colors"
     ],
-    "app/components/AppFooter.tsx": [
+    "components/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run lint:colors"
     ],
-    "app/components/ThemeSwitcherDropdown.tsx": [
-      "npm run lint:colors"
-    ],
-    "app/contexts/ThemeContext.tsx": [
-      "npm run lint:colors"
-    ],
-    "app/globals.css": [
-      "npm run lint:colors"
-    ],
-    "app/layout.tsx": [
-      "npm run lint:colors"
-    ],
-    "app/page.tsx": [
-      "npm run lint:colors"
-    ],
-    "components/**/*.{tsx,ts,js,css,scss}": [
-      "npm run lint:colors"
-    ],
-    "src/**/*.{tsx,ts,js,css,scss}": [
+    "src/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run lint:colors"
     ],
     "styles/**/*.{css,scss}": [
+      "npm run lint:colors"
+    ],
+    "*.{css,scss}": [
       "npm run lint:colors"
     ]
   }

@@ -299,18 +299,18 @@ export default function LoaderDemo() {
             <div className="flex items-center justify-center gap-6">
               <ModusLoader
                 variant="spinner"
-                customClass="text-purple-500"
-                ariaLabel="Purple loader"
+                customClass="text-info"
+                ariaLabel="Info colored loader"
               />
               <ModusLoader
                 variant="dots"
-                customClass="text-pink-500"
-                ariaLabel="Pink loader"
+                customClass="text-destructive"
+                ariaLabel="Error colored loader"
               />
               <ModusLoader
                 variant="ring"
-                customClass="text-cyan-500"
-                ariaLabel="Cyan loader"
+                customClass="text-accent"
+                ariaLabel="Accent colored loader"
               />
             </div>
           </div>
