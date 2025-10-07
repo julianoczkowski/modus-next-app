@@ -97,82 +97,10 @@ export default function AppHeader() {
             Colors
           </Link>
           <Link
-            href="/accordion-demo"
+            href="/components-demo"
             className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
           >
-            Accordion
-          </Link>
-          <Link
-            href="/table-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Table
-          </Link>
-          <Link
-            href="/alert-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Alert
-          </Link>
-          <Link
-            href="/autocomplete-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Autocomplete
-          </Link>
-          <Link
-            href="/avatar-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Avatar
-          </Link>
-          <Link
-            href="/badge-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Badge
-          </Link>
-          <Link
-            href="/breadcrumbs-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Breadcrumbs
-          </Link>
-          <Link
-            href="/card-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Card
-          </Link>
-          <Link
-            href="/checkbox-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Checkbox
-          </Link>
-          <Link
-            href="/chip-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Chip
-          </Link>
-          <Link
-            href="/date-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Date
-          </Link>
-          <Link
-            href="/dropdown-demo"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            Dropdown
-          </Link>
-          <Link
-            href="/about"
-            className="px-3 py-2 md:px-4 rounded transition-colors duration-200 text-sm md:text-base no-underline text-foreground hover:bg-card"
-          >
-            About
+            Components
           </Link>
         </div>
         <div className="flex items-center min-w-[140px] order-1 md:order-2">
