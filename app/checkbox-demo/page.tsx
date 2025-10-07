@@ -354,7 +354,7 @@ export default function CheckboxDemoPage() {
         <div className="space-y-4">
           <div className="flex items-center gap-4">
             <ModusCheckbox
-              ariaLabel="Standalone checkbox without visible label"
+              aria-label="Standalone checkbox without visible label"
               onInputChange={() =>
                 logEvent("Standalone checkbox changed", "info")
               }

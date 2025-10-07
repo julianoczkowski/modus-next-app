@@ -31,7 +31,7 @@ export default function ChipDemoPage() {
   };
 
   const handleChipClick = useCallback(
-    (chipId: string) => (event: CustomEvent<MouseEvent | KeyboardEvent>) => {
+    (chipId: string) => () => {
       setSelectedChips((prev) => {
         const newSet = new Set(prev);
         if (newSet.has(chipId)) {
@@ -48,7 +48,7 @@ export default function ChipDemoPage() {
   );
 
   const handleChipRemove = useCallback(
-    (chipId: string) => (event: CustomEvent<MouseEvent | KeyboardEvent>) => {
+    (chipId: string) => () => {
       setRemovedChips((prev) => new Set(prev).add(chipId));
       logEvent(`Chip "${chipId}" removed`, "warning");
     },
@@ -317,7 +317,7 @@ export default function ChipDemoPage() {
 
           {/* Icon-only Chip */}
           <ModusChip
-            ariaLabel="Settings chip"
+            aria-label="Settings chip"
             showRemove
             onChipClick={handleChipClick("settings-chip")}
             onChipRemove={handleChipRemove("settings-chip")}

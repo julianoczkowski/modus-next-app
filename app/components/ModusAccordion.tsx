@@ -62,7 +62,7 @@ export default function ModusAccordion({
   return (
     <div className={className}>
       <ModusWcAccordion ref={accordionRef} custom-class={customClass}>
-        {items.map((item, index) => (
+        {items.map((item) => (
           <ModusWcCollapse
             key={item.id}
             id={`collapse-${item.id}`}

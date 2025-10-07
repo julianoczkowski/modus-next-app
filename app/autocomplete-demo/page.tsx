@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import ModusAutocomplete, {
   AutocompleteItem,
 } from "../components/ModusAutocomplete";
@@ -52,18 +52,21 @@ export default function AutocompleteDemoPage() {
     { label: "Raspberry", value: "raspberry", visibleInMenu: true },
   ];
 
-  const countries: AutocompleteItem[] = [
-    { label: "United States", value: "us", visibleInMenu: true },
-    { label: "Canada", value: "ca", visibleInMenu: true },
-    { label: "United Kingdom", value: "uk", visibleInMenu: true },
-    { label: "Germany", value: "de", visibleInMenu: true },
-    { label: "France", value: "fr", visibleInMenu: true },
-    { label: "Japan", value: "jp", visibleInMenu: true },
-    { label: "Australia", value: "au", visibleInMenu: true },
-    { label: "Brazil", value: "br", visibleInMenu: true },
-    { label: "India", value: "in", visibleInMenu: true },
-    { label: "China", value: "cn", visibleInMenu: true },
-  ];
+  const countries: AutocompleteItem[] = useMemo(
+    () => [
+      { label: "United States", value: "us", visibleInMenu: true },
+      { label: "Canada", value: "ca", visibleInMenu: true },
+      { label: "United Kingdom", value: "uk", visibleInMenu: true },
+      { label: "Germany", value: "de", visibleInMenu: true },
+      { label: "France", value: "fr", visibleInMenu: true },
+      { label: "Japan", value: "jp", visibleInMenu: true },
+      { label: "Australia", value: "au", visibleInMenu: true },
+      { label: "Brazil", value: "br", visibleInMenu: true },
+      { label: "India", value: "in", visibleInMenu: true },
+      { label: "China", value: "cn", visibleInMenu: true },
+    ],
+    []
+  );
 
   const skills: AutocompleteItem[] = [
     { label: "JavaScript", value: "javascript", visibleInMenu: true },
@@ -108,19 +111,13 @@ export default function AutocompleteDemoPage() {
     [logEvent]
   );
 
-  const handleInputFocus = useCallback(
-    (event: CustomEvent<FocusEvent>) => {
-      logEvent("Input focused", "info");
-    },
-    [logEvent]
-  );
+  const handleInputFocus = useCallback(() => {
+    logEvent("Input focused", "info");
+  }, [logEvent]);
 
-  const handleInputBlur = useCallback(
-    (event: CustomEvent<FocusEvent>) => {
-      logEvent("Input blurred", "info");
-    },
-    [logEvent]
-  );
+  const handleInputBlur = useCallback(() => {
+    logEvent("Input blurred", "info");
+  }, [logEvent]);
 
   // Simulate remote search
   const handleRemoteSearch = useCallback(
@@ -174,7 +171,7 @@ export default function AutocompleteDemoPage() {
           label="Select a Fruit"
           placeholder="Type to search fruits..."
           items={fruits}
-          ariaLabel="Fruit selection"
+          aria-label="Fruit selection"
           onInputChange={handleInputChange}
           onItemSelect={handleItemSelect}
           onInputFocus={handleInputFocus}
@@ -196,7 +193,7 @@ export default function AutocompleteDemoPage() {
           items={skills}
           multiSelect
           leaveMenuOpen
-          ariaLabel="Skills selection"
+          aria-label="Skills selection"
           onInputChange={handleInputChange}
           onItemSelect={(event) => {
             const item = event.detail;
@@ -232,7 +229,7 @@ export default function AutocompleteDemoPage() {
           showSpinner={isLoading}
           debounceMs={500}
           minChars={2}
-          ariaLabel="Country search"
+          aria-label="Country search"
           onInputChange={handleRemoteSearch}
           onItemSelect={handleItemSelect}
           onInputFocus={handleInputFocus}
@@ -305,15 +302,15 @@ export default function AutocompleteDemoPage() {
           Custom No Results
         </div>
         <p className="text-foreground mb-6">
-          Autocomplete with custom "no results" message and icon.
+          Autocomplete with custom &quot;no results&quot; message and icon.
         </p>
         <ModusAutocomplete
           label="Search with Custom No Results"
           placeholder="Type something that won't match..."
           items={[]}
           noResults={{
-            text: "No matching items found. Try a different search term.",
-            icon: "search_off",
+            label: "No matching items found. Try a different search term.",
+            subLabel: "Please try a different search term.",
           }}
           onInputChange={handleInputChange}
           onItemSelect={handleItemSelect}
@@ -364,7 +361,7 @@ export default function AutocompleteDemoPage() {
             </h4>
             <div className="bg-background p-4 rounded text-sm text-foreground">
               <div>
-                <strong>Search Value:</strong> "{searchValue}"
+                <strong>Search Value:</strong> &quot;{searchValue}&quot;
               </div>
               <div>
                 <strong>Selected Items:</strong> {selectedItems.length}

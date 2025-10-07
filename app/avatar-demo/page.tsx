@@ -364,7 +364,8 @@ export default function AvatarDemoPage() {
             <div>
               <div className="font-medium text-foreground">Good Alt Text</div>
               <div className="text-sm text-muted-foreground">
-                "John Doe, Software Engineer" - Descriptive and meaningful
+                &quot;John Doe, Software Engineer&quot; - Descriptive and
+                meaningful
               </div>
             </div>
           </div>
@@ -380,7 +381,7 @@ export default function AvatarDemoPage() {
                 Generic Alt Text
               </div>
               <div className="text-sm text-muted-foreground">
-                "User avatar" - Less descriptive but acceptable
+                &quot;User avatar&quot; - Less descriptive but acceptable
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ export default function TableDemoPage() {
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [, setPageSize] = useState(10);
 
   const logEvent = useCallback(
     (message: string, type: EventLog["type"] = "info") => {
@@ -215,7 +215,9 @@ export default function TableDemoPage() {
 
   // Event handlers
   const handleRowSelectionChange = useCallback(
-    (event: CustomEvent<{ selectedRows: any[]; selectedRowIds: string[] }>) => {
+    (
+      event: CustomEvent<{ selectedRows: unknown[]; selectedRowIds: string[] }>
+    ) => {
       const { selectedRowIds } = event.detail;
       setSelectedRows(selectedRowIds);
       logEvent(
@@ -252,9 +254,13 @@ export default function TableDemoPage() {
   );
 
   const handleRowClick = useCallback(
-    (event: CustomEvent<{ row: any; index: number }>) => {
+    (event: CustomEvent<{ row: unknown; index: number }>) => {
       const { row, index } = event.detail;
-      logEvent(`Row ${index + 1} clicked: ${row.name || row.id}`, "info");
+      const rowData = row as TableData;
+      logEvent(
+        `Row ${index + 1} clicked: ${rowData.name || rowData.id}`,
+        "info"
+      );
     },
     [logEvent]
   );
@@ -264,8 +270,8 @@ export default function TableDemoPage() {
       event: CustomEvent<{
         rowIndex: number;
         colId: string;
-        newValue: any;
-        updatedRow: any;
+        newValue: unknown;
+        updatedRow: unknown;
       }>
     ) => {
       const { rowIndex, colId, newValue } = event.detail;
@@ -302,7 +308,7 @@ export default function TableDemoPage() {
         <ModusTable
           columns={employeeColumns}
           data={employeeData}
-          ariaLabel="Employee table"
+          aria-label="Employee table"
           onSortChange={handleSortChange}
           onRowClick={handleRowClick}
         />
@@ -326,7 +332,7 @@ export default function TableDemoPage() {
           currentPage={currentPage}
           pageSizeOptions={[5, 10, 15]}
           selectedRowIds={selectedRows}
-          ariaLabel="Paginated employee table"
+          aria-label="Paginated employee table"
           onPaginationChange={handlePaginationChange}
           onRowSelectionChange={handleRowSelectionChange}
           onSortChange={handleSortChange}
@@ -356,7 +362,7 @@ export default function TableDemoPage() {
           selectable="single"
           density="compact"
           hover
-          ariaLabel="Product table"
+          aria-label="Product table"
           onRowSelectionChange={handleRowSelectionChange}
           onSortChange={handleSortChange}
           onRowClick={handleRowClick}
@@ -404,7 +410,7 @@ export default function TableDemoPage() {
           data={productData}
           editable
           hover
-          ariaLabel="Editable product table"
+          aria-label="Editable product table"
           onCellEditStart={(event) => {
             const { rowIndex, colId } = event.detail;
             logEvent(
@@ -475,7 +481,7 @@ export default function TableDemoPage() {
               {`<ModusTable
   columns={columns}
   data={data}
-  ariaLabel="My table"
+  aria-label="My table"
   onSortChange={handleSort}
   onRowClick={handleRowClick}
 />`}

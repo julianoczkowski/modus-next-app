@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import ModusCard from "../components/ModusCard";
 import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 
@@ -65,7 +66,7 @@ export default function CardDemoPage() {
           <ModusCard
             title="Simple Card"
             subtitle="Basic card with title and content"
-            ariaLabel="Simple card example"
+            aria-label="Simple card example"
           >
             <p className="text-foreground">
               This is a simple card with just a title, subtitle, and body
@@ -77,7 +78,7 @@ export default function CardDemoPage() {
           <ModusCard
             title="Card with Actions"
             subtitle="Includes action buttons"
-            ariaLabel="Card with actions example"
+            aria-label="Card with actions example"
             actions={
               <div className="flex gap-2">
                 <ModusWcButton size="sm" color="primary">
@@ -98,7 +99,7 @@ export default function CardDemoPage() {
           <ModusCard
             title="Card with Footer"
             subtitle="Includes footer content"
-            ariaLabel="Card with footer example"
+            aria-label="Card with footer example"
             footer={
               <div className="text-sm text-muted-foreground">
                 Last updated: 2 hours ago
@@ -131,16 +132,18 @@ export default function CardDemoPage() {
                 layout="vertical"
                 header={
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=200&fit=crop"
                       alt="Coding workspace"
+                      width={400}
+                      height={200}
                       className="w-full h-48 object-cover rounded"
                     />
                   </figure>
                 }
                 title="Vertical Card"
                 subtitle="Image above content"
-                ariaLabel="Vertical card with image"
+                aria-label="Vertical card with image"
               >
                 <p className="text-foreground">
                   This card uses vertical layout with the image positioned above
@@ -152,9 +155,11 @@ export default function CardDemoPage() {
                 layout="vertical"
                 header={
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop"
                       alt="Technology"
+                      width={400}
+                      height={200}
                       className="w-full h-48 object-cover rounded"
                     />
                   </figure>
@@ -166,7 +171,7 @@ export default function CardDemoPage() {
                     Learn More
                   </ModusWcButton>
                 }
-                ariaLabel="Vertical card with actions"
+                aria-label="Vertical card with actions"
               >
                 <p className="text-foreground">
                   Vertical cards work well for most content layouts and are the
@@ -186,16 +191,18 @@ export default function CardDemoPage() {
                 layout="horizontal"
                 header={
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop"
                       alt="Team collaboration"
+                      width={300}
+                      height={200}
                       className="w-full h-32 object-cover rounded"
                     />
                   </figure>
                 }
                 title="Horizontal Card"
                 subtitle="Image beside content"
-                ariaLabel="Horizontal card with image"
+                aria-label="Horizontal card with image"
               >
                 <p className="text-foreground">
                   This card uses horizontal layout with the image positioned
@@ -221,16 +228,18 @@ export default function CardDemoPage() {
             backgroundFigure
             header={
               <figure>
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=300&fit=crop"
                   alt="Mountain landscape"
+                  width={600}
+                  height={300}
                   className="w-full h-64 object-cover"
                 />
               </figure>
             }
             title="Hero Card"
             subtitle="Background image with overlaid text"
-            ariaLabel="Hero card with background image"
+            aria-label="Hero card with background image"
           >
             <p
               className="text-white"
@@ -245,9 +254,11 @@ export default function CardDemoPage() {
             backgroundFigure
             header={
               <figure>
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=300&fit=crop"
                   alt="Technology workspace"
+                  width={600}
+                  height={300}
                   className="w-full h-64 object-cover"
                 />
               </figure>
@@ -275,7 +286,7 @@ export default function CardDemoPage() {
                 </ModusWcButton>
               </div>
             }
-            ariaLabel="Featured content card"
+            aria-label="Featured content card"
           >
             <p
               className="text-white"
@@ -301,7 +312,7 @@ export default function CardDemoPage() {
           <ModusCard
             title="Normal Card"
             subtitle="Standard padding and no border"
-            ariaLabel="Normal card example"
+            aria-label="Normal card example"
           >
             <p className="text-foreground">
               This is a normal card with standard padding and no border.
@@ -313,7 +324,7 @@ export default function CardDemoPage() {
             bordered
             title="Bordered Card"
             subtitle="With border for separation"
-            ariaLabel="Bordered card example"
+            aria-label="Bordered card example"
           >
             <p className="text-foreground">
               This card has a border which is useful for separating cards on
@@ -326,7 +337,7 @@ export default function CardDemoPage() {
             padding="compact"
             title="Compact Card"
             subtitle="Reduced padding for dense layouts"
-            ariaLabel="Compact card example"
+            aria-label="Compact card example"
           >
             <p className="text-foreground">
               This card uses compact padding, ideal for dense dashboards and
@@ -340,7 +351,7 @@ export default function CardDemoPage() {
             padding="compact"
             title="Compact Bordered"
             subtitle="Both compact and bordered"
-            ariaLabel="Compact bordered card example"
+            aria-label="Compact bordered card example"
           >
             <p className="text-foreground">
               This card combines compact padding with a border for maximum space
@@ -363,7 +374,7 @@ export default function CardDemoPage() {
                 Created 2 days ago
               </div>
             }
-            ariaLabel="Feature-rich card example"
+            aria-label="Feature-rich card example"
           >
             <p className="text-foreground">
               This card demonstrates all available features: title, subtitle,
@@ -372,7 +383,7 @@ export default function CardDemoPage() {
           </ModusCard>
 
           {/* Empty Card */}
-          <ModusCard bordered ariaLabel="Empty card example">
+          <ModusCard bordered aria-label="Empty card example">
             <p className="text-foreground">
               Cards can also be used without titles or subtitles for simple
               content containers.
@@ -488,9 +499,11 @@ export default function CardDemoPage() {
               header={
                 showBackgroundFigure ? (
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=200&fit=crop"
                       alt="Preview image"
+                      width={400}
+                      height={200}
                       className="w-full h-32 object-cover"
                     />
                   </figure>
@@ -505,7 +518,7 @@ export default function CardDemoPage() {
                   Action
                 </ModusWcButton>
               }
-              ariaLabel="Interactive card preview"
+              aria-label="Interactive card preview"
             >
               <p className="text-foreground">
                 This is a preview of your card configuration. Adjust the
@@ -535,9 +548,11 @@ export default function CardDemoPage() {
               <ModusCard
                 header={
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop"
                       alt="Laptop"
+                      width={300}
+                      height={200}
                       className="w-full h-48 object-cover"
                     />
                   </figure>
@@ -549,7 +564,7 @@ export default function CardDemoPage() {
                     Add to Cart
                   </ModusWcButton>
                 }
-                ariaLabel="MacBook Pro product card"
+                aria-label="MacBook Pro product card"
               >
                 <p className="text-foreground">
                   16-inch MacBook Pro with M2 Pro chip. Perfect for professional
@@ -560,9 +575,11 @@ export default function CardDemoPage() {
               <ModusCard
                 header={
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=200&fit=crop"
                       alt="Headphones"
+                      width={300}
+                      height={200}
                       className="w-full h-48 object-cover"
                     />
                   </figure>
@@ -574,7 +591,7 @@ export default function CardDemoPage() {
                     Add to Cart
                   </ModusWcButton>
                 }
-                ariaLabel="Wireless headphones product card"
+                aria-label="Wireless headphones product card"
               >
                 <p className="text-foreground">
                   Premium wireless headphones with noise cancellation and
@@ -585,9 +602,11 @@ export default function CardDemoPage() {
               <ModusCard
                 header={
                   <figure>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop"
                       alt="Smartwatch"
+                      width={300}
+                      height={200}
                       className="w-full h-48 object-cover"
                     />
                   </figure>
@@ -599,7 +618,7 @@ export default function CardDemoPage() {
                     Add to Cart
                   </ModusWcButton>
                 }
-                ariaLabel="Smart watch product card"
+                aria-label="Smart watch product card"
               >
                 <p className="text-foreground">
                   Advanced smartwatch with health monitoring, GPS, and 5-day
@@ -619,7 +638,7 @@ export default function CardDemoPage() {
                 padding="compact"
                 bordered
                 title="Total Users"
-                ariaLabel="Total users dashboard card"
+                aria-label="Total users dashboard card"
               >
                 <div className="text-3xl font-bold text-foreground">1,234</div>
                 <div className="text-sm text-muted-foreground">
@@ -631,7 +650,7 @@ export default function CardDemoPage() {
                 padding="compact"
                 bordered
                 title="Revenue"
-                ariaLabel="Revenue dashboard card"
+                aria-label="Revenue dashboard card"
               >
                 <div className="text-3xl font-bold text-foreground">
                   $45,678
@@ -645,7 +664,7 @@ export default function CardDemoPage() {
                 padding="compact"
                 bordered
                 title="Orders"
-                ariaLabel="Orders dashboard card"
+                aria-label="Orders dashboard card"
               >
                 <div className="text-3xl font-bold text-foreground">567</div>
                 <div className="text-sm text-muted-foreground">
@@ -657,7 +676,7 @@ export default function CardDemoPage() {
                 padding="compact"
                 bordered
                 title="Conversion"
-                ariaLabel="Conversion dashboard card"
+                aria-label="Conversion dashboard card"
               >
                 <div className="text-3xl font-bold text-foreground">3.2%</div>
                 <div className="text-sm text-muted-foreground">
@@ -683,7 +702,7 @@ export default function CardDemoPage() {
               {`<ModusCard
   title="Card Title"
   subtitle="Card subtitle"
-  ariaLabel="Card description"
+  aria-label="Card description"
 >
   <p>Card content goes here</p>
 </ModusCard>`}
@@ -698,12 +717,12 @@ export default function CardDemoPage() {
   layout="horizontal"
   bordered
   padding="compact"
-  header={<img src="image.jpg" alt="Header" />}
+  header={<Image src="image.jpg" alt="Header" width={300} height={200} />}
   title="Card Title"
   subtitle="Card subtitle"
   actions={<button>Action</button>}
   footer={<div>Footer content</div>}
-  ariaLabel="Advanced card"
+  aria-label="Advanced card"
 >
   <p>Card content</p>
 </ModusCard>`}

@@ -34,21 +34,24 @@ export default function AlertDemoPage() {
     logEvent(`Alert ${alertId} shown`, "info");
   };
 
-  const hideAlert = (alertId: string) => {
-    setVisibleAlerts((prev) => {
-      const newSet = new Set(prev);
-      newSet.delete(alertId);
-      return newSet;
-    });
-    logEvent(`Alert ${alertId} dismissed`, "info");
-  };
+  const hideAlert = useCallback(
+    (alertId: string) => {
+      setVisibleAlerts((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(alertId);
+        return newSet;
+      });
+      logEvent(`Alert ${alertId} dismissed`, "info");
+    },
+    [logEvent]
+  );
 
   const handleDismissClick = useCallback(
-    (alertId: string) => (event: CustomEvent<void>) => {
+    (alertId: string) => () => {
       logEvent(`Alert ${alertId} dismiss button clicked`, "info");
       hideAlert(alertId);
     },
-    [logEvent]
+    [logEvent, hideAlert]
   );
 
   const showAllAlerts = () => {

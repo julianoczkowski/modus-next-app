@@ -3,7 +3,6 @@
 import { useState } from "react";
 import ModusTextInput from "../components/ModusTextInput";
 import ModusInputLabel from "../components/ModusInputLabel";
-import ModusInputFeedback from "../components/ModusInputFeedback";
 
 export default function TextInputDemo() {
   const [formData, setFormData] = useState({

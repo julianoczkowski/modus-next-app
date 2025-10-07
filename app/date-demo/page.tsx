@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import ModusDate, { InputFeedbackProp } from "../components/ModusDate";
+import ModusDate from "../components/ModusDate";
 import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 
 interface EventLog {

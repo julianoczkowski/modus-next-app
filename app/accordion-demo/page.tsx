@@ -62,7 +62,7 @@ export default function AccordionDemoPage() {
             </div>
             <p className="text-base leading-relaxed mb-4">
               This is a comprehensive guide to help you get started with our
-              platform. We'll cover everything from basic setup to advanced
+              platform. We&apos;ll cover everything from basic setup to advanced
               features.
             </p>
             <div className="flex gap-2">
@@ -309,7 +309,7 @@ export default function AccordionDemoPage() {
                 <div className="font-medium mb-2">How do I get started?</div>
                 <p className="text-sm text-foreground opacity-80">
                   Simply sign up for an account and follow our onboarding
-                  process. We'll guide you through each step.
+                  process. We&apos;ll guide you through each step.
                 </p>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">

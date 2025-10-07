@@ -144,7 +144,7 @@ export default function BreadcrumbsDemoPage() {
               </h4>
               <ModusBreadcrumbs
                 items={items}
-                ariaLabel={`${key} navigation`}
+                aria-label={`${key} navigation`}
                 onBreadcrumbClick={handleBreadcrumbClick}
               />
             </div>
@@ -169,7 +169,7 @@ export default function BreadcrumbsDemoPage() {
               <ModusBreadcrumbs
                 items={breadcrumbExamples.basic}
                 size={size.value}
-                ariaLabel={`${size.label} navigation`}
+                aria-label={`${size.label} navigation`}
                 onBreadcrumbClick={handleBreadcrumbClick}
               />
             </div>
@@ -251,7 +251,7 @@ export default function BreadcrumbsDemoPage() {
             <div className="p-4 bg-background rounded border border-border">
               <ModusBreadcrumbs
                 items={generateBreadcrumbs(currentPath)}
-                ariaLabel="Current navigation path"
+                aria-label="Current navigation path"
                 onBreadcrumbClick={handleBreadcrumbClick}
               />
             </div>
@@ -281,7 +281,7 @@ export default function BreadcrumbsDemoPage() {
             <ModusBreadcrumbs
               items={breadcrumbExamples.ecommerce}
               customClass="underline-links"
-              ariaLabel="E-commerce navigation with underlined links"
+              aria-label="E-commerce navigation with underlined links"
               onBreadcrumbClick={handleBreadcrumbClick}
             />
             <div className="mt-2 text-sm text-muted-foreground">
@@ -296,7 +296,7 @@ export default function BreadcrumbsDemoPage() {
               items={breadcrumbExamples.admin}
               size="lg"
               customClass="custom-spacing"
-              ariaLabel="Admin navigation with custom spacing"
+              aria-label="Admin navigation with custom spacing"
               onBreadcrumbClick={handleBreadcrumbClick}
             />
             <div className="mt-2 text-sm text-muted-foreground">
@@ -329,7 +329,7 @@ export default function BreadcrumbsDemoPage() {
                   { label: "Laptops", url: "/electronics/computers/laptops" },
                   { label: "MacBook Pro 16-inch" },
                 ]}
-                ariaLabel="Product navigation"
+                aria-label="Product navigation"
                 onBreadcrumbClick={handleBreadcrumbClick}
               />
             </div>
@@ -349,7 +349,7 @@ export default function BreadcrumbsDemoPage() {
                   { label: "Edit Profile" },
                 ]}
                 size="sm"
-                ariaLabel="Admin navigation"
+                aria-label="Admin navigation"
                 onBreadcrumbClick={handleBreadcrumbClick}
               />
             </div>
@@ -372,7 +372,7 @@ export default function BreadcrumbsDemoPage() {
                   { label: "Next.js Setup" },
                 ]}
                 size="lg"
-                ariaLabel="Documentation navigation"
+                aria-label="Documentation navigation"
                 onBreadcrumbClick={handleBreadcrumbClick}
               />
             </div>
@@ -440,7 +440,7 @@ export default function BreadcrumbsDemoPage() {
     { label: "Products", url: "/products" },
     { label: "Current Page" }
   ]}
-  ariaLabel="Site navigation"
+  aria-label="Site navigation"
   onBreadcrumbClick={handleClick}
 />`}
             </pre>
@@ -454,7 +454,7 @@ export default function BreadcrumbsDemoPage() {
   items={breadcrumbItems}
   size="lg"
   customClass="underline-links"
-  ariaLabel="Main navigation"
+  aria-label="Main navigation"
   onBreadcrumbClick={handleNavigation}
 />`}
             </pre>
