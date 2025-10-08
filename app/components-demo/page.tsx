@@ -141,6 +141,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Modal",
+    description:
+      "Blocking dialog overlays for forms, confirmations, and detailed content",
+    url: "/modal-demo",
+    category: "Overlays",
+    status: "ready",
+  },
+  {
     name: "Table",
     description: "Data tables with sorting, pagination, and selection",
     url: "/table-demo",
@@ -156,6 +164,7 @@ const categories = [
   { name: "Navigation", value: "navigation" },
   { name: "Display", value: "display" },
   { name: "Feedback", value: "feedback" },
+  { name: "Overlays", value: "overlays" },
   { name: "Data", value: "data" },
 ];
 
