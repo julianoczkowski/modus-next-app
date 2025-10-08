@@ -141,11 +141,27 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Navbar",
+    description:
+      "Full-width application bar with navigation menus, search, notifications, apps launcher, AI button and user profile controls",
+    url: "/navbar-demo",
+    category: "Navigation",
+    status: "ready",
+  },
+  {
     name: "Modal",
     description:
       "Blocking dialog overlays for forms, confirmations, and detailed content",
     url: "/modal-demo",
     category: "Overlays",
+    status: "ready",
+  },
+  {
+    name: "Number Input",
+    description:
+      "Numeric input controls with validation, currency support, range sliders, and comprehensive form integration",
+    url: "/number-input-demo",
+    category: "Forms",
     status: "ready",
   },
   {
