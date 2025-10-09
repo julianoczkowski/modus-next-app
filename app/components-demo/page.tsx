@@ -205,6 +205,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Skeleton",
+    description:
+      "Animated loading placeholders for typography, cards, and dashboards",
+    url: "/skeleton-demo",
+    category: "Feedback",
+    status: "ready",
+  },
+  {
     name: "Pagination",
     description:
       "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
