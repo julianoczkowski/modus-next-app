@@ -199,6 +199,29 @@ h6 {
   font-size: var(--text-xs);
 }
 
+/* Modus Divider thickness helpers */
+.modus-divider-thickness-md::before,
+.modus-divider-thickness-md::after {
+  height: 0.25rem;
+}
+
+.modus-divider-thickness-lg::before,
+.modus-divider-thickness-lg::after {
+  height: 0.375rem;
+}
+
+.modus-wc-divider-horizontal.modus-divider-thickness-md::before,
+.modus-wc-divider-horizontal.modus-divider-thickness-md::after {
+  width: 0.25rem;
+  height: 100%;
+}
+
+.modus-wc-divider-horizontal.modus-divider-thickness-lg::before,
+.modus-wc-divider-horizontal.modus-divider-thickness-lg::after {
+  width: 0.375rem;
+  height: 100%;
+}
+
 .text-sm {
   font-size: 14px;
 }

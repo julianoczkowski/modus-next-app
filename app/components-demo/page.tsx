@@ -93,6 +93,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Divider",
+    description:
+      "Dividers for separating content with optional labels and horizontal or vertical orientation",
+    url: "/divider-demo",
+    category: "Layout",
+    status: "ready",
+  },
+  {
     name: "Icon",
     description:
       "Icon component with various sizes, accessibility options, and styling",
