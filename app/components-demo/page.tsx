@@ -133,6 +133,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Progress",
+    description:
+      "Linear and radial progress indicators for task completion and live updates",
+    url: "/progress-demo",
+    category: "Feedback",
+    status: "ready",
+  },
+  {
     name: "Menu",
     description:
       "Integrated menu system with container and menu items for navigation and toolbars",
@@ -162,6 +170,38 @@ const componentDemos: ComponentDemo[] = [
       "Numeric input controls with validation, currency support, range sliders, and comprehensive form integration",
     url: "/number-input-demo",
     category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Radio",
+    description:
+      "Exclusive choice control with multiple sizes, required state, and layout customization",
+    url: "/radio-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Rating",
+    description:
+      "Star, smiley, heart, and thumb ratings with events, half-steps, and accessibility helpers",
+    url: "/rating-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Select",
+    description:
+      "Single-select dropdown with dynamic options arrays, validation feedback, and async loading patterns",
+    url: "/select-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Side Navigation",
+    description:
+      "Collapsible left navigation with controlled expansion and Modus navbar integration",
+    url: "/side-navigation-demo",
+    category: "Navigation",
     status: "ready",
   },
   {
