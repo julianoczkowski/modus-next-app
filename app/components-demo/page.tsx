@@ -101,6 +101,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Utility Panel",
+    description:
+      "Collapsible side panel for contextual filters, tools, and secondary content with optional push layout",
+    url: "/utility-panel-demo",
+    category: "Layout",
+    status: "ready",
+  },
+  {
     name: "Icon",
     description:
       "Icon component with various sizes, accessibility options, and styling",

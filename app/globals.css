@@ -222,6 +222,32 @@ h6 {
   height: 100%;
 }
 
+/* Utility panel positioning helpers */
+modus-wc-utility-panel.modus-utility-panel--left .modus-wc-utility-panel {
+  left: calc(var(--modus-wc-utility-panel-width, 312px) * -1 - 12px);
+  right: auto;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+modus-wc-utility-panel.modus-utility-panel--left .modus-wc-utility-panel.open {
+  left: 0;
+  right: auto;
+}
+
+.modus-wc-utility-panel-push-target-left {
+  transition: margin-inline-start
+    var(--modus-wc-utility-panel-transition-duration, 0.3s) ease-out;
+}
+
+.modus-wc-utility-panel-push-target-left.modus-wc-utility-panel-pushed {
+  margin-inline-start: var(--modus-wc-utility-panel-width, 312px);
+  margin-inline-end: 0;
+}
+
+.modus-wc-utility-panel-push-target-left {
+  margin-inline-end: 0 !important;
+}
+
 .text-sm {
   font-size: 14px;
 }
