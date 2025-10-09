@@ -221,6 +221,38 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Stepper",
+    description:
+      "Progress indicator for multi-step workflows with horizontal and vertical orientations",
+    url: "/stepper-demo",
+    category: "Navigation",
+    status: "ready",
+  },
+  {
+    name: "Switch",
+    description:
+      "Binary toggle control with required, disabled, and indeterminate states",
+    url: "/switch-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Tabs",
+    description:
+      "Tab navigation with icons, disabled states, and multiple visual styles",
+    url: "/tabs-demo",
+    category: "Navigation",
+    status: "ready",
+  },
+  {
+    name: "Textarea",
+    description:
+      "Multi-line text field with helper messages, validation, and clearable controls",
+    url: "/textarea-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
     name: "Pagination",
     description:
       "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
