@@ -133,6 +133,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Progress",
+    description:
+      "Linear and radial progress indicators with determinate, indeterminate, and custom slot support",
+    url: "/progress-demo",
+    category: "Feedback",
+    status: "ready",
+  },
+  {
     name: "Menu",
     description:
       "Integrated menu system with container and menu items for navigation and toolbars",
@@ -162,6 +170,14 @@ const componentDemos: ComponentDemo[] = [
       "Numeric input controls with validation, currency support, range sliders, and comprehensive form integration",
     url: "/number-input-demo",
     category: "Forms",
+    status: "ready",
+  },
+  {
+    name: "Pagination",
+    description:
+      "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
+    url: "/pagination-demo",
+    category: "Navigation",
     status: "ready",
   },
   {
