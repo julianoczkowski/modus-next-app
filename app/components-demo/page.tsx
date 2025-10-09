@@ -269,6 +269,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Toast",
+    description:
+      "Transient notifications that stack by position and pair with alerts for content",
+    url: "/toast-demo",
+    category: "Feedback",
+    status: "ready",
+  },
+  {
     name: "Pagination",
     description:
       "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
