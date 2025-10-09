@@ -10,6 +10,7 @@
     "lint": "eslint",
     "type-check": "tsc --noEmit",
     "lint:colors": "node scripts/check-modus-colors.js",
+    "lint:icons": "node scripts/check-modus-icons.js",
     "prepare": "husky"
   },
   "dependencies": {
@@ -35,19 +36,24 @@
   },
   "lint-staged": {
     "app/**/*.{tsx,ts,jsx,js,css,scss}": [
-      "npm run lint:colors"
+      "npm run lint:colors",
+      "npm run lint:icons"
     ],
     "components/**/*.{tsx,ts,jsx,js,css,scss}": [
-      "npm run lint:colors"
+      "npm run lint:colors",
+      "npm run lint:icons"
     ],
     "src/**/*.{tsx,ts,jsx,js,css,scss}": [
-      "npm run lint:colors"
+      "npm run lint:colors",
+      "npm run lint:icons"
     ],
     "styles/**/*.{css,scss}": [
-      "npm run lint:colors"
+      "npm run lint:colors",
+      "npm run lint:icons"
     ],
     "*.{css,scss}": [
-      "npm run lint:colors"
+      "npm run lint:colors",
+      "npm run lint:icons"
     ]
   }
 }
