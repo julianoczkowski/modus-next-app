@@ -1,4 +1,4 @@
-# AGENT.md
+# AGENTS.md
 
 This file provides comprehensive guidance for AI coding agents working with this Modus Web Components + Next.js project. It complements the README.md and CLAUDE.md by focusing on automated development workflows, coding standards, and agent-specific instructions.
 
