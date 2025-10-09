@@ -269,10 +269,26 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Toolbar",
+    description:
+      "Three-slot layout container for building application headers and action bars",
+    url: "/toolbar-demo",
+    category: "Layout",
+    status: "ready",
+  },
+  {
     name: "Toast",
     description:
       "Transient notifications that stack by position and pair with alerts for content",
     url: "/toast-demo",
+    category: "Feedback",
+    status: "ready",
+  },
+  {
+    name: "Tooltip",
+    description:
+      "Contextual helper messages that appear on hover or focus around any trigger",
+    url: "/tooltip-demo",
     category: "Feedback",
     status: "ready",
   },
