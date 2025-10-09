@@ -213,6 +213,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Slider",
+    description:
+      "Interactive range input with min/max bounds, step control, and live feedback",
+    url: "/slider-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
     name: "Pagination",
     description:
       "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
