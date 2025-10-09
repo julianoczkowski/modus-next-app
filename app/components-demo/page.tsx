@@ -253,6 +253,22 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Theme Switcher",
+    description:
+      "Toggle between light and dark Modus themes with persisted preferences",
+    url: "/theme-switcher-demo",
+    category: "Appearance",
+    status: "ready",
+  },
+  {
+    name: "Time Input",
+    description:
+      "Single-field time picker with min/max limits, seconds support, and datalist suggestions",
+    url: "/time-input-demo",
+    category: "Forms",
+    status: "ready",
+  },
+  {
     name: "Pagination",
     description:
       "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
@@ -278,6 +294,7 @@ const categories = [
   { name: "Feedback", value: "feedback" },
   { name: "Overlays", value: "overlays" },
   { name: "Data", value: "data" },
+  { name: "Appearance", value: "appearance" },
 ];
 
 export default function ComponentsDemoPage() {
