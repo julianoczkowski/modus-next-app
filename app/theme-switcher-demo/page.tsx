@@ -22,32 +22,57 @@ const themes = [
   },
 ];
 
+const toConfig = (themeName: string): ModusThemeConfig => {
+  const parts = themeName.split("-");
+  const mode = (parts.pop() ?? "light") as ModusThemeConfig["mode"];
+  const theme = parts.join("-") as ModusThemeConfig["theme"];
+  return { theme, mode };
+};
+
+const toThemeName = (config: ModusThemeConfig) =>
+  `${config.theme}-${config.mode}`;
+
 export default function ThemeSwitcherDemoPage() {
   const [currentTheme, setCurrentTheme] = useState<string | null>(null);
   const [themeIndex, setThemeIndex] = useState(0);
   const [eventLog, setEventLog] = useState<string[]>([]);
 
   const themeSet = themes[themeIndex];
+  const appliedThemeName = currentTheme ?? themeSet.light;
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("modus-theme");
-    if (savedTheme) {
-      setCurrentTheme(savedTheme);
+    if (typeof window !== "undefined") {
+      try {
+        const savedTheme = window.localStorage.getItem("modus-theme");
+        if (savedTheme) {
+          setCurrentTheme(savedTheme);
+        }
+      } catch (error) {
+        console.warn("Unable to read stored demo theme preference:", error);
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (currentTheme) {
-      document.documentElement.setAttribute("data-theme", currentTheme);
+    if (typeof document === "undefined") {
+      return;
     }
-  }, [currentTheme]);
+    document.documentElement.setAttribute("data-theme", appliedThemeName);
+  }, [appliedThemeName]);
 
   const handleThemeChange = (config: ModusThemeConfig) => {
-    setCurrentTheme(config.name);
-    localStorage.setItem("modus-theme", config.name);
+    const themeName = toThemeName(config);
+    setCurrentTheme(themeName);
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem("modus-theme", themeName);
+      } catch (error) {
+        console.warn("Unable to persist demo theme preference:", error);
+      }
+    }
     const timestamp = new Date().toLocaleTimeString();
     setEventLog((previous) =>
-      [`${timestamp} — switched to ${config.name}`, ...previous].slice(0, 18)
+      [`${timestamp} — switched to ${themeName}`, ...previous].slice(0, 18)
     );
   };
 
@@ -55,12 +80,7 @@ export default function ThemeSwitcherDemoPage() {
     setThemeIndex((current) => (current + 1) % themes.length);
   };
 
-  const deriveThemeConfig = (name: string): ModusThemeConfig => ({
-    name,
-    mode: name.endsWith("dark") ? "dark" : "light",
-  });
-
-  const appliedTheme = deriveThemeConfig(currentTheme ?? themeSet.light);
+  const appliedTheme = toConfig(appliedThemeName);
 
   return (
     <div className="max-w-6xl mx-auto p-8">
@@ -102,9 +122,7 @@ export default function ThemeSwitcherDemoPage() {
               color="primary"
               variant="outlined"
               size="sm"
-              onButtonClick={() =>
-                handleThemeChange({ name: themeSet.light, mode: "light" })
-              }
+              onButtonClick={() => handleThemeChange(toConfig(themeSet.light))}
             >
               Switch to Light
             </ModusWcButton>
@@ -112,9 +130,7 @@ export default function ThemeSwitcherDemoPage() {
               color="primary"
               variant="filled"
               size="sm"
-              onButtonClick={() =>
-                handleThemeChange({ name: themeSet.dark, mode: "dark" })
-              }
+              onButtonClick={() => handleThemeChange(toConfig(themeSet.dark))}
             >
               Switch to Dark
             </ModusWcButton>

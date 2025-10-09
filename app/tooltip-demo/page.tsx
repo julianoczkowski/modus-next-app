@@ -220,7 +220,7 @@ export default function TooltipDemoPage() {
           </div>
           <div className="text-sm text-foreground opacity-75 leading-relaxed max-w-3xl">
             Reference tooltips outside of direct triggers using `tooltip-id`.
-            The tooltip applies `role="tooltip"` and connects assistive
+            The tooltip applies `role=&quot;tooltip&quot;` and connects assistive
             technology through `aria-describedby`.
           </div>
         </div>

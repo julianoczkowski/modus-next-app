@@ -35,6 +35,13 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
+const VALID_THEMES: Theme[] = [
+  "modus-classic-light",
+  "modus-classic-dark",
+  "modus-modern-light",
+  "modus-modern-dark",
+];
+
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>("modus-classic-light");
   const [mounted, setMounted] = useState(false);
@@ -45,17 +52,18 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   // Load theme from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("preferred-theme") as Theme;
-    if (
-      savedTheme &&
-      [
-        "modus-classic-light",
-        "modus-classic-dark",
-        "modus-modern-light",
-        "modus-modern-dark",
-      ].includes(savedTheme)
-    ) {
-      setThemeState(savedTheme);
+    if (typeof window !== "undefined") {
+      try {
+        const savedTheme = window.localStorage.getItem(
+          "preferred-theme"
+        ) as Theme | null;
+
+        if (savedTheme && VALID_THEMES.includes(savedTheme)) {
+          setThemeState(savedTheme);
+        }
+      } catch (error) {
+        console.warn("Unable to read stored theme preference:", error);
+      }
     }
     setMounted(true);
   }, []);
@@ -69,10 +77,17 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     // Set theme attributes
     html.setAttribute("data-theme", theme);
     html.setAttribute("data-mode", isDark ? "dark" : "light");
-    html.className = isDark ? "dark" : "light";
+    html.classList.remove("light", "dark");
+    html.classList.add(isDark ? "dark" : "light");
 
     // Save to localStorage
-    localStorage.setItem("preferred-theme", theme);
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem("preferred-theme", theme);
+      } catch (error) {
+        console.warn("Unable to persist theme preference:", error);
+      }
+    }
   }, [theme, isDark, mounted]);
 
   const setTheme = (newTheme: Theme) => {

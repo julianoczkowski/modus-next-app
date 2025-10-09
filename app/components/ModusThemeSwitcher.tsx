@@ -2,11 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { ModusWcThemeSwitcher } from "@trimble-oss/moduswebcomponents-react";
+import type { IThemeConfig } from "@trimble-oss/moduswebcomponents";
 
-export interface ModusThemeConfig {
-  mode: "light" | "dark";
-  name: string;
-}
+export type ModusThemeConfig = IThemeConfig;
 
 export interface ModusThemeSwitcherProps {
   customClass?: string;
@@ -28,7 +26,7 @@ export default function ModusThemeSwitcher({
     }
 
     const handleThemeChange = (event: Event) => {
-      const customEvent = event as CustomEvent<ModusThemeConfig>;
+      const customEvent = event as CustomEvent<IThemeConfig>;
       onThemeChange(customEvent.detail);
     };
 

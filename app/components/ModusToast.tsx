@@ -121,9 +121,10 @@ export default function ModusToast({
   }, [toasts, resolveDelay, handleDismiss]);
 
   useEffect(() => {
+    const timersMap = timers.current;
     return () => {
-      timers.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
-      timers.current.clear();
+      timersMap.forEach((timeoutId) => window.clearTimeout(timeoutId));
+      timersMap.clear();
     };
   }, []);
 

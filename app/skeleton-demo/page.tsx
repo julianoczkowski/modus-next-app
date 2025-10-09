@@ -3,15 +3,36 @@
 import ModusSkeleton from "../components/ModusSkeleton";
 
 const paragraphSkeleton = [
-  { width: "90%", height: "1rem" },
-  { width: "85%", height: "1rem" },
-  { width: "70%", height: "1rem" },
+  { id: "paragraph-line-1", order: 1, width: "90%", height: "1rem" },
+  { id: "paragraph-line-2", order: 2, width: "85%", height: "1rem" },
+  { id: "paragraph-line-3", order: 3, width: "70%", height: "1rem" },
 ];
 
 const dashboardCards = [
-  { title: "Project overview", lines: ["80%", "60%", "45%"] },
-  { title: "Field updates", lines: ["75%", "55%", "35%"] },
-  { title: "Upcoming milestones", lines: ["85%", "65%", "40%"] },
+  {
+    title: "Project overview",
+    lines: [
+      { id: "project-overview-line-1", order: 1, width: "80%" },
+      { id: "project-overview-line-2", order: 2, width: "60%" },
+      { id: "project-overview-line-3", order: 3, width: "45%" },
+    ],
+  },
+  {
+    title: "Field updates",
+    lines: [
+      { id: "field-updates-line-1", order: 1, width: "75%" },
+      { id: "field-updates-line-2", order: 2, width: "55%" },
+      { id: "field-updates-line-3", order: 3, width: "35%" },
+    ],
+  },
+  {
+    title: "Upcoming milestones",
+    lines: [
+      { id: "upcoming-milestones-line-1", order: 1, width: "85%" },
+      { id: "upcoming-milestones-line-2", order: 2, width: "65%" },
+      { id: "upcoming-milestones-line-3", order: 3, width: "40%" },
+    ],
+  },
 ];
 
 export default function SkeletonDemoPage() {
@@ -110,13 +131,12 @@ export default function SkeletonDemoPage() {
               </div>
               <div className="flex flex-col gap-3">
                 <ModusSkeleton width="60%" height="1.25rem" ariaLabel="Title skeleton" />
-                {paragraphSkeleton.map((item, index) => (
+                {paragraphSkeleton.map((item) => (
                   <ModusSkeleton
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={index}
+                    key={item.id}
                     width={item.width}
                     height={item.height}
-                    ariaLabel={`Paragraph line ${index + 1} skeleton`}
+                    ariaLabel={`Paragraph line ${item.order} skeleton`}
                   />
                 ))}
               </div>
@@ -142,13 +162,12 @@ export default function SkeletonDemoPage() {
                 <ModusSkeleton width="35%" height="0.9rem" ariaLabel={`${card.title} subtitle skeleton`} />
                 <ModusSkeleton height="6rem" ariaLabel={`${card.title} chart skeleton`} />
                 <div className="flex flex-col gap-2">
-                  {card.lines.map((width, index) => (
+                  {card.lines.map((line) => (
                     <ModusSkeleton
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={`${card.title}-${index}`}
-                      width={width}
+                      key={line.id}
+                      width={line.width}
                       height="0.75rem"
-                      ariaLabel={`${card.title} detail line ${index + 1}`}
+                      ariaLabel={`${card.title} detail line ${line.order}`}
                     />
                   ))}
                 </div>
