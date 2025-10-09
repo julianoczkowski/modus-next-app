@@ -165,6 +165,14 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Pagination",
+    description:
+      "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
+    url: "/pagination-demo",
+    category: "Navigation",
+    status: "ready",
+  },
+  {
     name: "Table",
     description: "Data tables with sorting, pagination, and selection",
     url: "/table-demo",

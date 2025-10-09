@@ -71,6 +71,26 @@ declare global {
       onItemSelect?: (event: CustomEvent<{ value: string }>) => void;
       children?: React.ReactNode;
     };
+    "modus-wc-pagination": {
+      "aria-label"?: string;
+      ariaLabelValues?: {
+        firstPage?: string;
+        previousPage?: string;
+        page?: string;
+        nextPage?: string;
+        lastPage?: string;
+      };
+      count?: number;
+      "custom-class"?: string;
+      nextButtonText?: string;
+      page?: number;
+      prevButtonText?: string;
+      size?: "sm" | "md" | "lg";
+      onPageChange?: (
+        event: CustomEvent<{ newPage: number; prevPage: number }>
+      ) => void;
+      children?: React.ReactNode;
+    };
   }
 }
 
@@ -80,6 +100,7 @@ declare global {
     "modus-wc-dropdown-menu": HTMLModusWcDropdownMenuElement;
     "modus-wc-menu-item": HTMLModusWcMenuItemElement;
     "modus-wc-button": HTMLModusWcButtonElement;
+    "modus-wc-pagination": HTMLModusWcPaginationElement;
   }
 }
 
@@ -99,5 +120,18 @@ interface HTMLModusWcButtonElement extends HTMLElement {
   color: string;
   variant: string;
   size: string;
+}
+
+interface HTMLModusWcPaginationElement extends HTMLElement {
+  page: number;
+  count: number;
+  addEventListener(
+    type: "pageChange",
+    listener: (event: CustomEvent<{ newPage: number; prevPage: number }>) => void
+  ): void;
+  removeEventListener(
+    type: "pageChange",
+    listener: (event: CustomEvent<{ newPage: number; prevPage: number }>) => void
+  ): void;
 }
 }
