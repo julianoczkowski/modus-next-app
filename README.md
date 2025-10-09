@@ -153,6 +153,8 @@ modus-next-app/
 
 ### Available Modus Components
 
+![Modus Components](readme_assets/modus_comp.png)
+
 This boilerplate includes 40+ pre-built Modus components ready to use:
 
 #### **Form Components**
