@@ -38,7 +38,7 @@ export default function ToolbarDemoPage() {
         color="secondary"
         customClass="flex items-center gap-1"
       >
-        <span>{filter}</span>
+        <div>{filter}</div>
         <ModusWcButton
           color="primary"
           variant="borderless"
@@ -51,7 +51,7 @@ export default function ToolbarDemoPage() {
           }
         >
           x
-        </button>
+        </ModusWcButton>
       </ModusBadge>
     ));
 
@@ -62,9 +62,9 @@ export default function ToolbarDemoPage() {
           Modus Toolbar Component Demo
         </div>
         <div className="text-lg text-foreground opacity-80 max-w-3xl mx-auto leading-relaxed">
-          Arrange header content into start, center, and end slots. Toolbars power
-          bespoke application shells, sticky page actions, and compact utility
-          strips while staying aligned with Modus spacing tokens.
+          Arrange header content into start, center, and end slots. Toolbars
+          power bespoke application shells, sticky page actions, and compact
+          utility strips while staying aligned with Modus spacing tokens.
         </div>
       </div>
 
@@ -154,8 +154,9 @@ export default function ToolbarDemoPage() {
         />
 
         <div className="text-sm text-foreground opacity-70 leading-relaxed">
-          Toolbar flex regions grow or shrink with their contents. The search input
-          uses a max width to avoid overwhelming the layout on large screens.
+          Toolbar flex regions grow or shrink with their contents. The search
+          input uses a max width to avoid overwhelming the layout on large
+          screens.
         </div>
       </div>
 
@@ -166,8 +167,9 @@ export default function ToolbarDemoPage() {
               Page level actions
             </div>
             <div className="text-sm text-foreground opacity-75 leading-relaxed max-w-xl">
-              Secondary toolbars sit beneath the global header to expose contextual
-              controls, active filters, and view toggles without crowding the page.
+              Secondary toolbars sit beneath the global header to expose
+              contextual controls, active filters, and view toggles without
+              crowding the page.
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -183,7 +185,9 @@ export default function ToolbarDemoPage() {
                 setCompactMode(Boolean(switchEl?.value));
               }}
             />
-            <div className="text-sm text-foreground opacity-75">Compact layout</div>
+            <div className="text-sm text-foreground opacity-75">
+              Compact layout
+            </div>
           </div>
         </div>
 
@@ -253,9 +257,9 @@ export default function ToolbarDemoPage() {
 
         <div className="bg-background border border-dashed border-border rounded-lg p-6">
           <div className="text-sm text-foreground opacity-70 leading-relaxed">
-            Selected view: <span className="font-semibold">{projectView}</span>. Use
-            the toggle buttons above to simulate view switching while the toolbar
-            keeps actions aligned across breakpoints.
+            Selected view: <span className="font-semibold">{projectView}</span>.
+            Use the toggle buttons above to simulate view switching while the
+            toolbar keeps actions aligned across breakpoints.
           </div>
         </div>
       </div>
@@ -266,8 +270,9 @@ export default function ToolbarDemoPage() {
             Utility and footer toolbars
           </div>
           <div className="text-sm text-foreground opacity-75 leading-relaxed max-w-3xl">
-            Toolbars make lightweight status bars and footers. Stack multiple rows
-            to present metadata without dedicating an entire layout section.
+            Toolbars make lightweight status bars and footers. Stack multiple
+            rows to present metadata without dedicating an entire layout
+            section.
           </div>
         </div>
 

@@ -106,7 +106,7 @@ export default function AppHeader() {
         <div className="flex items-center min-w-[140px] order-1 md:order-2">
           <ThemeSwitcherDropdown />
         </div>
-      </nav>
+      </div>
     </header>
   );
 }

@@ -170,8 +170,8 @@ export default function LoaderDemo() {
                 <ModusLoader size="sm" color="primary" />
                 Loading...
               </ModusWcButton>
-              <ModusWcButton color="success" disabled>
-                <ModusLoader size="sm" color="success" />
+              <ModusWcButton color="secondary" disabled>
+                <ModusLoader size="sm" color="secondary" />
                 Saving...
               </ModusWcButton>
             </div>
@@ -219,7 +219,7 @@ export default function LoaderDemo() {
           </div>
           <div className="p-6 bg-muted rounded-lg">
             <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="bars" size="sm" color="success" />
+              <ModusLoader variant="bars" size="sm" color="secondary" />
               <div className="text-foreground font-medium">Saving Changes</div>
             </div>
             <div className="text-sm text-foreground opacity-70">
@@ -237,7 +237,7 @@ export default function LoaderDemo() {
           </div>
           <div className="p-6 bg-muted rounded-lg">
             <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="ring" size="sm" color="accent" />
+              <ModusLoader variant="ring" size="sm" color="secondary" />
               <div className="text-foreground font-medium">Connecting</div>
             </div>
             <div className="text-sm text-foreground opacity-70">
@@ -246,7 +246,7 @@ export default function LoaderDemo() {
           </div>
           <div className="p-6 bg-muted rounded-lg">
             <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="infinity" size="sm" color="error" />
+              <ModusLoader variant="infinity" size="sm" color="secondary" />
               <div className="text-foreground font-medium">Retrying</div>
             </div>
             <div className="text-sm text-foreground opacity-70">
@@ -299,12 +299,12 @@ export default function LoaderDemo() {
               />
               <ModusLoader
                 variant="dots"
-                customClass="text-destructive"
+                customClass="text-secondary"
                 ariaLabel="Error colored loader"
               />
               <ModusLoader
                 variant="ring"
-                customClass="text-accent"
+                customClass="text-secondary"
                 ariaLabel="Accent colored loader"
               />
             </div>
@@ -437,7 +437,7 @@ export default function LoaderDemo() {
             <div className="bg-muted p-4 rounded text-sm font-mono text-foreground">
               {`<ModusLoader 
   variant="infinity" 
-  color="success" 
+  color="secondary" 
   customClass="w-16 h-16"
   ariaLabel="Loading data"
 />`}
