@@ -23,6 +23,7 @@ npm run type-check
 ```
 
 **Success Output:**
+
 ```
 🔍 TypeScript Type Check for Next.js App
 
@@ -35,6 +36,7 @@ npm run type-check
 ```
 
 **Error Output:**
+
 ```
 ❌ Found 3 TypeScript errors:
 
