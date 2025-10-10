@@ -121,10 +121,10 @@ export default function CheckboxDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Checkbox Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Checkbox component with different states, sizes, and
           form integration patterns.
-        </p>
+        </div>
       </div>
 
       {/* Basic Examples */}
@@ -132,9 +132,9 @@ export default function CheckboxDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Checkbox Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simple checkboxes with different configurations.
-        </p>
+        </div>
         <div className="space-y-4">
           <div className="flex items-center gap-4">
             <ModusCheckbox
@@ -183,9 +183,9 @@ export default function CheckboxDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different checkbox sizes for various contexts and importance levels.
-        </p>
+        </div>
         <div className="space-y-4">
           {sizes.map((size) => (
             <div key={size.value} className="flex items-center gap-4">
@@ -207,9 +207,9 @@ export default function CheckboxDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Form Integration
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Checkboxes integrated into forms with proper naming and validation.
-        </p>
+        </div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -218,9 +218,9 @@ export default function CheckboxDemoPage() {
           className="space-y-6"
         >
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Newsletter Subscription
-            </h4>
+            </div>
             <div className="space-y-3">
               <ModusCheckbox
                 value={checkboxStates.newsletter}
@@ -242,9 +242,9 @@ export default function CheckboxDemoPage() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Terms and Conditions
-            </h4>
+            </div>
             <div className="space-y-3">
               <ModusCheckbox
                 value={checkboxStates.terms}
@@ -259,9 +259,9 @@ export default function CheckboxDemoPage() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Notification Preferences
-            </h4>
+            </div>
             <div className="space-y-3">
               <ModusCheckbox
                 value={checkboxStates.notifications}
@@ -295,10 +295,10 @@ export default function CheckboxDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Tree View Example
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Demonstrates indeterminate state for parent-child checkbox
           relationships.
-        </p>
+        </div>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <ModusCheckbox
@@ -348,9 +348,9 @@ export default function CheckboxDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Accessibility Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Checkboxes with proper accessibility attributes and labels.
-        </p>
+        </div>
         <div className="space-y-4">
           <div className="flex items-center gap-4">
             <ModusCheckbox
@@ -359,9 +359,9 @@ export default function CheckboxDemoPage() {
                 logEvent("Standalone checkbox changed", "info")
               }
             />
-            <span className="text-foreground">
+            <div className="text-foreground">
               Standalone checkbox (aria-label only)
-            </span>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <ModusCheckbox
@@ -389,9 +389,9 @@ export default function CheckboxDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Control all checkboxes programmatically.
-        </p>
+        </div>
         <div className="flex gap-4 mb-6">
           <ModusWcButton color="primary" onButtonClick={selectAllCheckboxes}>
             <i className="modus-icons mr-2">check_box</i>
@@ -412,29 +412,29 @@ export default function CheckboxDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Current States
-            </h4>
+            </div>
             <div className="space-y-2 text-sm">
               {Object.entries(checkboxStates).map(([key, value]) => (
                 <div key={key} className="flex justify-between">
-                  <span className="text-foreground capitalize">{key}:</span>
-                  <span
+                  <div className="text-foreground capitalize">{key}:</div>
+                  <div
                     className={`font-mono ${
                       value ? "text-success" : "text-destructive"
                     }`}
                   >
                     {value ? "checked" : "unchecked"}
-                  </span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Form Data
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {JSON.stringify(
                 Object.fromEntries(
                   Object.entries(checkboxStates).filter(([key]) =>
@@ -449,7 +449,7 @@ export default function CheckboxDemoPage() {
                 null,
                 2
               )}
-            </pre>
+            </div>
           </div>
         </div>
       </div>
@@ -473,8 +473,8 @@ export default function CheckboxDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -486,7 +486,7 @@ export default function CheckboxDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -504,21 +504,21 @@ export default function CheckboxDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusCheckbox
   label="Subscribe to newsletter"
   onInputChange={handleChange}
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusCheckbox
   value={isChecked}
   disabled={isDisabled}
@@ -531,7 +531,7 @@ export default function CheckboxDemoPage() {
   onInputFocus={handleFocus}
   onInputBlur={handleBlur}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

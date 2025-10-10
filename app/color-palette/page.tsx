@@ -193,11 +193,11 @@ export default function ColorPalettePage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Color Palette
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Visual reference for all colors in the Modus Design System. These
           colors automatically adapt to the current theme (Classic Light/Dark,
           Modern Light/Dark).
-        </p>
+        </div>
       </div>
 
       {/* Color Groups */}
@@ -208,9 +208,9 @@ export default function ColorPalettePage() {
               <div className="text-2xl font-semibold mb-2 text-foreground">
                 {group.title}
               </div>
-              <p className="text-base text-foreground opacity-80">
+              <div className="text-base text-foreground opacity-80">
                 {group.description}
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -291,10 +291,10 @@ export default function ColorPalettePage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Modus Web Component Colors
         </div>
-        <p className="text-base mb-6 text-foreground opacity-80">
+        <div className="text-base mb-6 text-foreground opacity-80">
           These are the original Modus Web Component colors that our design
           system maps to:
-        </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[

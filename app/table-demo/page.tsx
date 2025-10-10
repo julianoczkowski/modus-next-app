@@ -291,10 +291,10 @@ export default function TableDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Table Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Table component with sorting, pagination, selection,
           and editing capabilities.
-        </p>
+        </div>
       </div>
 
       {/* Basic Table */}
@@ -302,9 +302,9 @@ export default function TableDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Sortable Table
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           A simple table with sorting enabled. Click column headers to sort.
-        </p>
+        </div>
         <ModusTable
           columns={employeeColumns}
           data={employeeData}
@@ -319,9 +319,9 @@ export default function TableDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Paginated Table with Selection
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Table with pagination, row selection, and zebra striping.
-        </p>
+        </div>
         <ModusTable
           columns={employeeColumns}
           data={employeeData}
@@ -353,9 +353,9 @@ export default function TableDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Compact Product Table
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Compact density table with hover effects and single row selection.
-        </p>
+        </div>
         <ModusTable
           columns={productColumns}
           data={productData}
@@ -374,9 +374,9 @@ export default function TableDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Editable Table
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Table with inline editing capabilities. Click on cells to edit them.
-        </p>
+        </div>
         <ModusTable
           columns={[
             {
@@ -443,8 +443,8 @@ export default function TableDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -456,7 +456,7 @@ export default function TableDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -474,10 +474,10 @@ export default function TableDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusTable
   columns={columns}
   data={data}
@@ -485,13 +485,13 @@ export default function TableDemoPage() {
   onSortChange={handleSort}
   onRowClick={handleRowClick}
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusTable
   columns={columns}
   data={data}
@@ -503,7 +503,7 @@ export default function TableDemoPage() {
   onRowSelectionChange={handleSelection}
   onCellEditCommit={handleEdit}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

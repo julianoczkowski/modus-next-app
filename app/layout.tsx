@@ -29,16 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
-        style={{
-          backgroundColor: "var(--modus-wc-color-base-page)",
-          color: "var(--modus-wc-color-base-content)",
-        }}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-background text-foreground`}
       >
         <ThemeProvider>
           <ModusProvider>
             <AppHeader />
-            <main className="flex-1">{children}</main>
+            <div className="flex-1">{children}</div>
             <AppFooter />
           </ModusProvider>
         </ThemeProvider>

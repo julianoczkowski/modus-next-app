@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 import ModusToolbar from "../components/ModusToolbar";
 import ModusButton from "../components/ModusButton";
 import ModusTextInput from "../components/ModusTextInput";
@@ -38,11 +39,12 @@ export default function ToolbarDemoPage() {
         customClass="flex items-center gap-1"
       >
         <span>{filter}</span>
-        <button
-          type="button"
-          className="border border-transparent rounded-sm px-1 py-0 text-xs text-primary hover:border-border hover:bg-card transition-colors"
+        <ModusWcButton
+          color="primary"
+          variant="borderless"
+          size="xs"
           aria-label={`Remove filter ${filter}`}
-          onClick={() =>
+          onButtonClick={() =>
             setActiveFilters((previous) =>
               previous.filter((value) => value !== filter)
             )
@@ -307,24 +309,27 @@ export default function ToolbarDemoPage() {
             startContent={
               <div className="flex items-center gap-3 text-sm text-foreground opacity-75">
                 <div>© {new Date().getFullYear()} Trimble Inc.</div>
-                <button
-                  type="button"
-                  className="text-primary hover:underline"
+                <ModusWcButton
+                  color="primary"
+                  variant="borderless"
+                  onButtonClick={() => {}}
                 >
                   Privacy
-                </button>
-                <button
-                  type="button"
-                  className="text-primary hover:underline"
+                </ModusWcButton>
+                <ModusWcButton
+                  color="primary"
+                  variant="borderless"
+                  onButtonClick={() => {}}
                 >
                   Terms
-                </button>
-                <button
-                  type="button"
-                  className="text-primary hover:underline"
+                </ModusWcButton>
+                <ModusWcButton
+                  color="primary"
+                  variant="borderless"
+                  onButtonClick={() => {}}
                 >
                   Contact
-                </button>
+                </ModusWcButton>
               </div>
             }
             endContent={

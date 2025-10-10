@@ -11,6 +11,8 @@
     "type-check": "tsc --noEmit",
     "lint:colors": "node scripts/check-modus-colors.js",
     "lint:icons": "node scripts/check-modus-icons.js",
+    "lint:styles": "node scripts/check-inline-styles.js",
+    "lint:semantic": "node scripts/check-semantic-html.js",
     "prepare": "husky"
   },
   "dependencies": {
@@ -37,23 +39,31 @@
   "lint-staged": {
     "app/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run lint:colors",
-      "npm run lint:icons"
+      "npm run lint:icons",
+      "npm run lint:styles",
+      "npm run lint:semantic"
     ],
     "components/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run lint:colors",
-      "npm run lint:icons"
+      "npm run lint:icons",
+      "npm run lint:styles",
+      "npm run lint:semantic"
     ],
     "src/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run lint:colors",
-      "npm run lint:icons"
+      "npm run lint:icons",
+      "npm run lint:styles",
+      "npm run lint:semantic"
     ],
     "styles/**/*.{css,scss}": [
       "npm run lint:colors",
-      "npm run lint:icons"
+      "npm run lint:icons",
+      "npm run lint:styles"
     ],
     "*.{css,scss}": [
       "npm run lint:colors",
-      "npm run lint:icons"
+      "npm run lint:icons",
+      "npm run lint:styles"
     ]
   }
 }

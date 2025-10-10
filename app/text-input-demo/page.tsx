@@ -137,10 +137,10 @@ export default function TextInputDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Text Input Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Single-line text fields with various types, validation feedback, and
           interactive features
-        </p>
+        </div>
       </div>
 
       {/* Basic Usage */}

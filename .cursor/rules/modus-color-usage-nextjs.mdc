@@ -25,21 +25,21 @@ export default function ProductCard() {
 
       {/* Tailwind: typography, spacing */}
       {/* Design System: text color */}
-      <h3 className="text-lg font-semibold text-foreground">
+      <div className="text-lg font-semibold text-foreground">
         Product Name
-      </h3>
+      </div>
 
       {/* Tailwind: typography */}
       {/* Design System: muted text color */}
-      <p className="text-sm text-muted-foreground">
+      <div className="text-sm text-muted-foreground">
         Product description
-      </p>
+      </div>
 
       {/* Tailwind: layout, spacing, hover states */}
       {/* Design System: colors */}
-      <button className="px-4 py-2 rounded bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+      <ModusWcButton color="primary">
         Custom Button
-      </button>
+      </ModusWcButton>
 
       {/* Modus Web Component: uses color props */}
       <ModusWcButton color="primary" variant="filled">
@@ -175,8 +175,8 @@ export default function Component() {
   return (
     <div className="p-6 bg-background border border-border text-foreground rounded-lg">
       <div className="bg-card p-4 rounded-lg hover:bg-card/90 transition-colors">
-        <h2 className="text-foreground text-lg font-semibold">Title</h2>
-        <p className="text-muted-foreground">Description</p>
+        <div className="text-foreground text-lg font-semibold">Title</div>
+        <div className="text-muted-foreground">Description</div>
       </div>
 
       {/* Modus Web Components still use color props */}
@@ -762,9 +762,9 @@ if (!mounted) {
 </div>
 
 // Interactive buttons (custom UI)
-<button className="bg-primary text-primary-foreground px-4 py-2 rounded transition-colors hover:bg-primary/90">
+<ModusWcButton color="primary">
   Custom Button
-</button>
+</ModusWcButton>
 ```
 
 ### Form Elements

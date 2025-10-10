@@ -237,10 +237,10 @@ export default function DropdownDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Dropdown Menu Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Dropdown Menu component with different
           configurations, placements, and interactive features.
-        </p>
+        </div>
       </div>
 
       {/* Test Simple Dropdown */}
@@ -248,9 +248,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Test Simple Dropdown
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Testing basic dropdown functionality.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           <DropdownWithEvents>
             <div slot="button">Test Dropdown</div>
@@ -267,9 +267,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Dropdown Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simple dropdown menus with different configurations.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           <DropdownWithEvents
             onMenuVisibilityChange={handleMenuVisibilityChange("basic")}
@@ -279,7 +279,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Actions</span>
+              <div className="flex-1 text-left">Actions</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -299,7 +299,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Options</span>
+              <div className="flex-1 text-left">Options</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -344,7 +344,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Disabled</span>
+              <div className="flex-1 text-left">Disabled</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -360,9 +360,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different dropdown button sizes for various contexts.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           {sizes.map((size) => (
             <DropdownWithEvents
@@ -377,7 +377,7 @@ export default function DropdownDemoPage() {
                 slot="button"
                 className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
               >
-                <span className="flex-1 text-left">{size.label} Dropdown</span>
+                <div className="flex-1 text-left">{size.label} Dropdown</div>
                 <i className="modus-icons text-base flex-shrink-0">
                   expand_more
                 </i>
@@ -397,9 +397,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Color Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different dropdown button colors for various actions.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           {colors.map((color) => (
             <DropdownWithEvents
@@ -414,7 +414,7 @@ export default function DropdownDemoPage() {
                 slot="button"
                 className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
               >
-                <span className="flex-1 text-left">{color.label} Action</span>
+                <div className="flex-1 text-left">{color.label} Action</div>
                 <i className="modus-icons text-base flex-shrink-0">
                   expand_more
                 </i>
@@ -434,9 +434,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Variant Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different button variants for various visual styles.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           {variants.map((variant) => (
             <DropdownWithEvents
@@ -451,7 +451,7 @@ export default function DropdownDemoPage() {
                 slot="button"
                 className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
               >
-                <span className="flex-1 text-left">{variant.label} Button</span>
+                <div className="flex-1 text-left">{variant.label} Button</div>
                 <i className="modus-icons text-base flex-shrink-0">
                   expand_more
                 </i>
@@ -471,9 +471,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Placement Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different menu placement options relative to the button.
-        </p>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {placements.slice(0, 8).map((placement) => (
             <DropdownWithEvents
@@ -488,7 +488,7 @@ export default function DropdownDemoPage() {
                 slot="button"
                 className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
               >
-                <span className="flex-1 text-left">{placement.label}</span>
+                <div className="flex-1 text-left">{placement.label}</div>
                 <i className="modus-icons text-base flex-shrink-0">
                   expand_more
                 </i>
@@ -508,9 +508,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Menu Size Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different menu sizes for various content densities.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           <DropdownWithEvents
             menuSize="sm"
@@ -521,7 +521,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Small Menu</span>
+              <div className="flex-1 text-left">Small Menu</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -540,7 +540,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Medium Menu</span>
+              <div className="flex-1 text-left">Medium Menu</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -559,7 +559,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Large Menu</span>
+              <div className="flex-1 text-left">Large Menu</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -576,15 +576,15 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common dropdown patterns used in applications.
-        </p>
+        </div>
         <div className="space-y-8">
           {/* User Profile Menu */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               User Profile Menu
-            </h4>
+            </div>
             <DropdownWithEvents
               buttonSize="lg"
               menuSize="lg"
@@ -596,7 +596,7 @@ export default function DropdownDemoPage() {
                 slot="button"
                 className="flex items-center justify-between w-full min-w-[160px] px-3 py-2 gap-2"
               >
-                <span className="flex-1 text-left">User Profile</span>
+                <div className="flex-1 text-left">User Profile</div>
                 <i className="modus-icons text-base flex-shrink-0">
                   expand_more
                 </i>
@@ -625,9 +625,9 @@ export default function DropdownDemoPage() {
 
           {/* Filter Menu */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Filter Menu
-            </h4>
+            </div>
             <DropdownWithEvents
               buttonSize="sm"
               buttonVariant="borderless"
@@ -665,9 +665,9 @@ export default function DropdownDemoPage() {
 
           {/* Context Menu */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Context Menu
-            </h4>
+            </div>
             <DropdownWithEvents
               buttonVariant="borderless"
               buttonColor="tertiary"
@@ -698,9 +698,9 @@ export default function DropdownDemoPage() {
 
           {/* Action Menu */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Action Menu
-            </h4>
+            </div>
             <DropdownWithEvents
               buttonColor="primary"
               buttonVariant="outlined"
@@ -711,7 +711,7 @@ export default function DropdownDemoPage() {
                 slot="button"
                 className="flex items-center justify-between w-full min-w-[120px] px-3 py-2 gap-2"
               >
-                <span className="flex-1 text-left">Actions</span>
+                <div className="flex-1 text-left">Actions</div>
                 <i className="modus-icons text-base flex-shrink-0">
                   expand_more
                 </i>
@@ -748,9 +748,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Menu Visibility Control
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Control dropdown menu visibility programmatically.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4 mb-6">
           <DropdownWithEvents
             buttonColor="primary"
@@ -761,7 +761,7 @@ export default function DropdownDemoPage() {
               slot="button"
               className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
             >
-              <span className="flex-1 text-left">Controlled Menu</span>
+              <div className="flex-1 text-left">Controlled Menu</div>
               <i className="modus-icons text-base flex-shrink-0">expand_more</i>
             </div>
             <div slot="menu">
@@ -791,9 +791,9 @@ export default function DropdownDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Control dropdown states and see selection results.
-        </p>
+        </div>
         <div className="flex gap-4 mb-6">
           <ModusWcButton color="primary" onButtonClick={clearLogs}>
             <i className="modus-icons mr-2">delete</i>
@@ -802,35 +802,35 @@ export default function DropdownDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Selected Items
-            </h4>
+            </div>
             <div className="space-y-2 text-sm">
               {Object.entries(selectedItems).map(([key, value]) => (
                 <div key={key} className="flex justify-between">
-                  <span className="text-foreground capitalize">{key}:</span>
-                  <span className="font-mono text-muted-foreground">
+                  <div className="text-foreground capitalize">{key}:</div>
+                  <div className="font-mono text-muted-foreground">
                     {value || "none"}
-                  </span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Menu Visibility
-            </h4>
+            </div>
             <div className="space-y-2 text-sm">
               {Object.entries(menuVisibility).map(([key, isVisible]) => (
                 <div key={key} className="flex justify-between">
-                  <span className="text-foreground capitalize">{key}:</span>
-                  <span
+                  <div className="text-foreground capitalize">{key}:</div>
+                  <div
                     className={`font-mono ${
                       isVisible ? "text-success" : "text-destructive"
                     }`}
                   >
                     {isVisible ? "open" : "closed"}
-                  </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -857,8 +857,8 @@ export default function DropdownDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -870,7 +870,7 @@ export default function DropdownDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -888,10 +888,10 @@ export default function DropdownDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<DropdownWithEvents
   button="Actions"
   onMenuVisibilityChange={handleVisibility}
@@ -902,13 +902,13 @@ export default function DropdownDemoPage() {
     <ModusWcMenuItem label="Delete" value="delete" />
   </div>
 </DropdownWithEvents>`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<DropdownWithEvents
   buttonColor="secondary"
   buttonSize="lg"
@@ -928,7 +928,7 @@ export default function DropdownDemoPage() {
     />
   </div>
 </DropdownWithEvents>`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

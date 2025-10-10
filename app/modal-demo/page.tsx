@@ -36,9 +36,9 @@ export default function ModalDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Modal Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Explore different modal configurations and use cases
-        </p>
+        </div>
       </div>
 
       {/* Basic Modal Example */}
@@ -46,10 +46,10 @@ export default function ModalDemo() {
         <div className="text-2xl font-semibold text-foreground mb-4">
           Basic Modal
         </div>
-        <p className="text-base text-foreground opacity-80 mb-6">
+        <div className="text-base text-foreground opacity-80 mb-6">
           A simple modal with default settings. Click outside to close or use
           the close button.
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             color="primary"
@@ -87,19 +87,19 @@ export default function ModalDemo() {
           }
         >
           <div className="text-foreground">
-            <p className="mb-4">
+            <div className="mb-4">
               This is a basic modal with default settings. It can be closed by:
-            </p>
-            <ul className="list-disc list-inside mb-4 text-foreground opacity-80">
-              <li>Clicking the X button in the header</li>
-              <li>Clicking outside the modal (backdrop)</li>
-              <li>Pressing the Escape key</li>
-              <li>Using the Cancel or Confirm buttons</li>
-            </ul>
-            <p className="text-foreground opacity-80">
+            </div>
+            <div className="list-none mb-4 text-foreground opacity-80">
+              <div>Clicking the X button in the header</div>
+              <div>Clicking outside the modal (backdrop)</div>
+              <div>Pressing the Escape key</div>
+              <div>Using the Cancel or Confirm buttons</div>
+            </div>
+            <div className="text-foreground opacity-80">
               The modal automatically handles focus management and prevents body
               scrolling.
-            </p>
+            </div>
           </div>
         </ModusModal>
       </div>
@@ -109,10 +109,10 @@ export default function ModalDemo() {
         <div className="text-2xl font-semibold text-foreground mb-4">
           Static Backdrop Modal
         </div>
-        <p className="text-base text-foreground opacity-80 mb-6">
+        <div className="text-base text-foreground opacity-80 mb-6">
           A modal with static backdrop that cannot be closed by clicking
           outside. User must use buttons or Escape key.
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             color="primary"
@@ -151,15 +151,17 @@ export default function ModalDemo() {
           }
         >
           <div className="text-foreground">
-            <p className="mb-4">This modal has a static backdrop, meaning:</p>
-            <ul className="list-disc list-inside mb-4 text-foreground opacity-80">
-              <li>Clicking outside will NOT close the modal</li>
-              <li>You must use the buttons or Escape key to close</li>
-              <li>Perfect for important confirmations or forms</li>
-            </ul>
-            <p className="text-foreground opacity-80">
+            <div className="mb-4">
+              This modal has a static backdrop, meaning:
+            </div>
+            <div className="list-none mb-4 text-foreground opacity-80">
+              <div>Clicking outside will NOT close the modal</div>
+              <div>You must use the buttons or Escape key to close</div>
+              <div>Perfect for important confirmations or forms</div>
+            </div>
+            <div className="text-foreground opacity-80">
               Try clicking outside this modal - it won&apos;t close!
-            </p>
+            </div>
           </div>
         </ModusModal>
       </div>
@@ -169,10 +171,10 @@ export default function ModalDemo() {
         <div className="text-2xl font-semibold text-foreground mb-4">
           Fullscreen Modal
         </div>
-        <p className="text-base text-foreground opacity-80 mb-6">
+        <div className="text-base text-foreground opacity-80 mb-6">
           A modal that covers the entire viewport with a toggle button to switch
           between fullscreen and normal size.
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             color="primary"
@@ -206,26 +208,26 @@ export default function ModalDemo() {
           }
         >
           <div className="text-foreground">
-            <p className="mb-4">
+            <div className="mb-4">
               This is a fullscreen modal that covers the entire viewport.
-            </p>
-            <p className="mb-4 text-foreground opacity-80">
+            </div>
+            <div className="mb-4 text-foreground opacity-80">
               Notice the toggle button in the header that allows you to switch
               between fullscreen and normal size.
-            </p>
-            <div className="bg-muted p-4 rounded-lg mb-4">
-              <p className="text-foreground font-medium mb-2">Features:</p>
-              <ul className="list-disc list-inside text-foreground opacity-80">
-                <li>Covers entire viewport</li>
-                <li>Toggle button in header</li>
-                <li>Perfect for detailed content or forms</li>
-                <li>Maintains focus management</li>
-              </ul>
             </div>
-            <p className="text-foreground opacity-80">
+            <div className="bg-muted p-4 rounded-lg mb-4">
+              <div className="text-foreground font-medium mb-2">Features:</div>
+              <div className="list-none text-foreground opacity-80">
+                <div>Covers entire viewport</div>
+                <div>Toggle button in header</div>
+                <div>Perfect for detailed content or forms</div>
+                <div>Maintains focus management</div>
+              </div>
+            </div>
+            <div className="text-foreground opacity-80">
               This modal is ideal for displaying large amounts of content or
               complex forms that need maximum screen real estate.
-            </p>
+            </div>
           </div>
         </ModusModal>
       </div>
@@ -235,9 +237,9 @@ export default function ModalDemo() {
         <div className="text-2xl font-semibold text-foreground mb-4">
           Top Position Modal
         </div>
-        <p className="text-base text-foreground opacity-80 mb-6">
+        <div className="text-base text-foreground opacity-80 mb-6">
           A modal positioned at the top of the screen instead of center.
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             color="primary"
@@ -270,14 +272,14 @@ export default function ModalDemo() {
           }
         >
           <div className="text-foreground">
-            <p className="mb-4">
+            <div className="mb-4">
               This modal is positioned at the top of the screen instead of
               center.
-            </p>
-            <p className="text-foreground opacity-80">
+            </div>
+            <div className="text-foreground opacity-80">
               Top positioning is useful for notifications, alerts, or when you
               want the modal to be more prominent.
-            </p>
+            </div>
           </div>
         </ModusModal>
       </div>
@@ -287,9 +289,9 @@ export default function ModalDemo() {
         <div className="text-2xl font-semibold text-foreground mb-4">
           Custom Size Modal
         </div>
-        <p className="text-base text-foreground opacity-80 mb-6">
+        <div className="text-base text-foreground opacity-80 mb-6">
           A modal with custom dimensions using CSS classes.
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             color="primary"
@@ -322,13 +324,13 @@ export default function ModalDemo() {
           }
         >
           <div className="text-foreground">
-            <p className="mb-4">
+            <div className="mb-4">
               This modal has custom dimensions applied via CSS classes.
-            </p>
-            <p className="text-foreground opacity-80">
+            </div>
+            <div className="text-foreground opacity-80">
               The custom class overrides the default modal size to create a
               wider, shorter modal perfect for specific content layouts.
-            </p>
+            </div>
           </div>
         </ModusModal>
       </div>
@@ -338,9 +340,9 @@ export default function ModalDemo() {
         <div className="text-2xl font-semibold text-foreground mb-4">
           Form Modal
         </div>
-        <p className="text-base text-foreground opacity-80 mb-6">
+        <div className="text-base text-foreground opacity-80 mb-6">
           A modal containing a form with proper state management and validation.
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             color="primary"

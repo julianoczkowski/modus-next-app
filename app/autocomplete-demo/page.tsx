@@ -153,10 +153,10 @@ export default function AutocompleteDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Autocomplete Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Autocomplete component with single/multi-select,
           remote search, custom styling, and advanced features.
-        </p>
+        </div>
       </div>
 
       {/* Basic Single Select */}
@@ -164,9 +164,9 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Single Select
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simple autocomplete with fruit selection and filtering.
-        </p>
+        </div>
         <ModusAutocomplete
           label="Select a Fruit"
           placeholder="Type to search fruits..."
@@ -184,9 +184,9 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Multi-Select with Chips
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Select multiple skills with chip display and removal.
-        </p>
+        </div>
         <ModusAutocomplete
           label="Select Skills"
           placeholder="Type to search skills..."
@@ -219,9 +219,9 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Remote Search with Loading
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simulated remote search with loading spinner and debounced input.
-        </p>
+        </div>
         <ModusAutocomplete
           label="Search Countries"
           placeholder="Type to search countries..."
@@ -242,9 +242,9 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Different Sizes
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Autocomplete components in small, medium, and large sizes.
-        </p>
+        </div>
         <div className="space-y-4">
           <ModusAutocomplete
             label="Small Size"
@@ -275,9 +275,9 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Disabled and Read-Only States
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Autocomplete components in disabled and read-only states.
-        </p>
+        </div>
         <div className="space-y-4">
           <ModusAutocomplete
             label="Disabled Autocomplete"
@@ -301,9 +301,9 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom No Results
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Autocomplete with custom &quot;no results&quot; message and icon.
-        </p>
+        </div>
         <ModusAutocomplete
           label="Search with Custom No Results"
           placeholder="Type something that won't match..."
@@ -322,14 +322,14 @@ export default function AutocompleteDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Control the autocomplete behavior with different settings.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Quick Actions
-            </h4>
+            </div>
             <div className="space-y-2">
               <ModusWcButton
                 fullWidth
@@ -356,9 +356,9 @@ export default function AutocompleteDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Current State
-            </h4>
+            </div>
             <div className="bg-background p-4 rounded text-sm text-foreground">
               <div>
                 <strong>Search Value:</strong> &quot;{searchValue}&quot;
@@ -393,8 +393,8 @@ export default function AutocompleteDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -406,7 +406,7 @@ export default function AutocompleteDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -425,23 +425,23 @@ export default function AutocompleteDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAutocomplete
   label="Select Item"
   placeholder="Type to search..."
   items={items}
   onItemSelect={handleSelect}
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAutocomplete
   label="Multi-Select"
   placeholder="Type to search..."
@@ -453,7 +453,7 @@ export default function AutocompleteDemoPage() {
   onItemSelect={handleSelect}
   onChipRemove={handleRemove}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

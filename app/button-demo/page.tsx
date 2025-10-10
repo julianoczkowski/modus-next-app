@@ -107,7 +107,7 @@ export default function ButtonDemoPage() {
     const attrString = attrs.length > 0 ? " " + attrs.join(" ") : "";
     const content =
       builderConfig.shape === "rectangle"
-        ? '\n  <i className="modus-icons" style={{ marginRight: "8px" }}>star</i>\n  Custom Button\n'
+        ? '\n  <i className="modus-icons mr-2">star</i>\n  Custom Button\n'
         : '\n  <i className="modus-icons">star</i>\n';
 
     return `<ModusWcButton${attrString}>${content}</ModusWcButton>`;
@@ -119,13 +119,13 @@ export default function ButtonDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Button Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore all the variants, colors, sizes, and features of the Modus
           Button component. This page demonstrates both direct web component
           usage and React integration patterns. If you can see this page, you
           have successfully installed the boilerplate and are ready to build
           your application.
-        </p>
+        </div>
       </div>
 
       {/* Improved Approach - Single Configurable Component */}
@@ -133,10 +133,10 @@ export default function ButtonDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           ✅ Improved Approach: Single Configurable Component
         </div>
-        <p className="text-base mb-6 text-foreground">
+        <div className="text-base mb-6 text-foreground">
           Instead of separate components for each button type, use one flexible
           component with props:
-        </p>
+        </div>
         <div className="flex gap-4 flex-wrap mb-4">
           <ModusButton
             icon="apps"
@@ -442,9 +442,7 @@ export default function ButtonDemoPage() {
 
           <div className="flex gap-4 flex-wrap">
             <ModusWcButton type="submit" color="primary">
-              <i className="modus-icons" style={{ marginRight: "8px" }}>
-                check
-              </i>
+              <i className="modus-icons mr-2">check</i>
               Submit
             </ModusWcButton>
             <ModusWcButton
@@ -452,15 +450,11 @@ export default function ButtonDemoPage() {
               variant="outlined"
               onButtonClick={resetForm}
             >
-              <i className="modus-icons" style={{ marginRight: "8px" }}>
-                refresh
-              </i>
+              <i className="modus-icons mr-2">refresh</i>
               Reset
             </ModusWcButton>
             <ModusWcButton type="button" variant="borderless" color="secondary">
-              <i className="modus-icons" style={{ marginRight: "8px" }}>
-                cancel_circle
-              </i>
+              <i className="modus-icons mr-2">cancel_circle</i>
               Cancel
             </ModusWcButton>
           </div>
@@ -613,9 +607,9 @@ export default function ButtonDemoPage() {
               <div className="text-base font-medium mb-2 text-foreground">
                 Generated Code:
               </div>
-              <pre className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground m-0">
+              <div className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground m-0">
                 <code>{generatedCode}</code>
-              </pre>
+              </div>
             </div>
           </div>
         </div>
@@ -649,10 +643,10 @@ export default function ButtonDemoPage() {
             <div className="max-h-48 overflow-y-auto border border-border rounded p-4 bg-background mb-4">
               {eventLogs.map((log, index) => (
                 <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-                  <span className="text-foreground min-w-20">
+                  <div className="text-foreground min-w-20">
                     {log.timestamp}
-                  </span>
-                  <span className="text-foreground">{log.message}</span>
+                  </div>
+                  <div className="text-foreground">{log.message}</div>
                 </div>
               ))}
               {eventLogs.length === 0 && (
@@ -667,9 +661,7 @@ export default function ButtonDemoPage() {
               onButtonClick={clearLogs}
               disabled={eventLogs.length === 0}
             >
-              <i className="modus-icons" style={{ marginRight: "8px" }}>
-                delete
-              </i>
+              <i className="modus-icons mr-2">delete</i>
               Clear Logs
             </ModusWcButton>
           </div>

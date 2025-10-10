@@ -29,10 +29,10 @@ export default function PaginationDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Pagination Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Navigate between pages of content with consistent Modus styling,
           accessibility, and flexible configuration options.
-        </p>
+        </div>
       </div>
 
       {/* Basic controlled pagination */}
@@ -43,11 +43,11 @@ export default function PaginationDemo() {
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
         </div>
-        <p className="text-foreground opacity-80 mb-6">
+        <div className="text-foreground opacity-80 mb-6">
           The pagination component manages page navigation while your React
           state keeps track of the current page. Click a button to update the
           selected page.
-        </p>
+        </div>
         <div className="flex flex-col gap-4 items-center">
           <ModusPagination
             ariaLabel="Content navigation"
@@ -69,10 +69,10 @@ export default function PaginationDemo() {
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
         </div>
-        <p className="text-foreground opacity-80 mb-6">
+        <div className="text-foreground opacity-80 mb-6">
           Choose between small, medium, and large button sizes to match the
           density of your layout or surrounding controls.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {sizes.map((size) => (
             <div
@@ -102,10 +102,10 @@ export default function PaginationDemo() {
         <div className="text-2xl font-semibold text-foreground mb-6">
           Custom Button Text
         </div>
-        <p className="text-foreground opacity-80 mb-6">
+        <div className="text-foreground opacity-80 mb-6">
           Replace the default chevron icons with descriptive labels to better
           align with your application language or design requirements.
-        </p>
+        </div>
         <div className="flex flex-col gap-4 items-center">
           <ModusPagination
             count={15}
@@ -128,11 +128,11 @@ export default function PaginationDemo() {
         <div className="text-2xl font-semibold text-foreground mb-6">
           Localised Accessibility Labels
         </div>
-        <p className="text-foreground opacity-80 mb-6">
+        <div className="text-foreground opacity-80 mb-6">
           Provide translated <code>aria-label</code> strings for assistive
           technologies. Use the <code>{"{0}"}</code> token to inject the page
           number into the announcement.
-        </p>
+        </div>
         <div className="flex flex-col gap-4 items-center">
           <ModusPagination
             ariaLabel="Paginación de contenido"

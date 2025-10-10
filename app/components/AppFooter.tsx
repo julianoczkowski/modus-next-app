@@ -13,9 +13,6 @@ export default function AppFooter() {
             width={24}
             height={24}
             className="drop-shadow-sm nextjs-logo-light"
-            style={{
-              filter: "drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1))",
-            }}
           />
           <Image
             src="/nextjs-icon.svg"
@@ -23,13 +20,10 @@ export default function AppFooter() {
             width={24}
             height={24}
             className="drop-shadow-sm nextjs-logo-dark hidden"
-            style={{
-              filter: "drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1)) invert(1)",
-            }}
           />
-          <span className="text-sm text-foreground">
+          <div className="text-sm text-foreground">
             &copy; 2025 Modus 2.0 Next.js App - Built with Next.js
-          </span>
+          </div>
         </div>
         <div className="flex gap-4">
           <a

@@ -236,7 +236,7 @@ export default function NavbarDemo() {
             className="flex flex-col items-center gap-2 p-4 rounded-lg bg-muted hover:bg-muted/80 text-foreground no-underline"
           >
             <i className="modus-icons text-primary text-2xl">{app.icon}</i>
-            <span className="text-sm">{app.name}</span>
+            <div className="text-sm">{app.name}</div>
           </a>
         ))}
       </div>
@@ -259,7 +259,7 @@ export default function NavbarDemo() {
   const CenterContent = () => (
     <div className="flex items-center gap-3">
       <i className="modus-icons text-primary">code</i>
-      <span className="font-semibold text-foreground">Demo Application</span>
+      <div className="font-semibold text-foreground">Demo Application</div>
     </div>
   );
 
@@ -294,10 +294,10 @@ export default function NavbarDemo() {
         <div className="text-3xl font-bold text-foreground mb-4">
           Modus Navbar Demo
         </div>
-        <p className="text-lg text-muted-foreground">
+        <div className="text-lg text-muted-foreground">
           Interactive demonstration of the Modus Navbar component with full
           configuration options.
-        </p>
+        </div>
       </div>
 
       {/* Configuration Controls */}
@@ -546,12 +546,12 @@ export default function NavbarDemo() {
             <div className="text-lg font-semibold text-foreground mb-2">
               Page Content
             </div>
-            <p className="text-muted-foreground">
+            <div className="text-muted-foreground">
               This is the main content area below the navbar. Use the controls
               above to modify the navbar properties and see how it behaves in
               different configurations. Click on navbar buttons to see events
               logged below.
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -595,7 +595,7 @@ export default function NavbarDemo() {
             <div className="text-lg font-semibold text-foreground mb-2">
               Basic Usage
             </div>
-            <pre className="text-sm text-muted-foreground overflow-x-auto">
+            <div className="text-sm text-muted-foreground overflow-x-auto">
               {`<ModusNavbar
   userCard={{
     name: "John Doe",
@@ -605,7 +605,7 @@ export default function NavbarDemo() {
   centerContent="My Application"
   onSearchChange={(value) => console.log('Search:', value)}
 />`}
-            </pre>
+            </div>
           </div>
 
           <div
@@ -615,7 +615,7 @@ export default function NavbarDemo() {
             <div className="text-lg font-semibold text-foreground mb-2">
               Advanced Usage
             </div>
-            <pre className="text-sm text-muted-foreground overflow-x-auto">
+            <div className="text-sm text-muted-foreground overflow-x-auto">
               {`<ModusNavbar
   condensed
   userCard={userCard}
@@ -629,7 +629,7 @@ export default function NavbarDemo() {
   notificationsContent={<CustomNotifications />}
   onMainMenuOpenChange={setMainMenuOpen}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

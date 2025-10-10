@@ -122,10 +122,10 @@ export default function BreadcrumbsDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Breadcrumbs Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Breadcrumbs component with different navigation
           patterns, sizes, and interactive features.
-        </p>
+        </div>
       </div>
 
       {/* Basic Examples */}
@@ -133,15 +133,15 @@ export default function BreadcrumbsDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Breadcrumb Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common breadcrumb patterns for different types of applications.
-        </p>
+        </div>
         <div className="space-y-6">
           {Object.entries(breadcrumbExamples).map(([key, items]) => (
             <div key={key}>
-              <h4 className="text-lg font-semibold mb-3 text-foreground capitalize">
+              <div className="text-lg font-semibold mb-3 text-foreground capitalize">
                 {key.replace(/([A-Z])/g, " $1").trim()}
-              </h4>
+              </div>
               <ModusBreadcrumbs
                 items={items}
                 aria-label={`${key} navigation`}
@@ -157,15 +157,15 @@ export default function BreadcrumbsDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different breadcrumb sizes for various contexts and importance levels.
-        </p>
+        </div>
         <div className="space-y-6">
           {sizes.map((size) => (
             <div key={size.value}>
-              <h4 className="text-lg font-semibold mb-3 text-foreground">
+              <div className="text-lg font-semibold mb-3 text-foreground">
                 {size.label} ({size.description})
-              </h4>
+              </div>
               <ModusBreadcrumbs
                 items={breadcrumbExamples.basic}
                 size={size.value}
@@ -182,15 +182,15 @@ export default function BreadcrumbsDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Navigation
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simulate navigation through different paths and see breadcrumbs
           update.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Navigation Controls
-            </h4>
+            </div>
             <div className="space-y-3">
               <ModusWcButton
                 fullWidth
@@ -245,9 +245,9 @@ export default function BreadcrumbsDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Current Path
-            </h4>
+            </div>
             <div className="p-4 bg-background rounded border border-border">
               <ModusBreadcrumbs
                 items={generateBreadcrumbs(currentPath)}
@@ -270,14 +270,14 @@ export default function BreadcrumbsDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Styling Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Breadcrumbs with custom CSS classes for enhanced styling.
-        </p>
+        </div>
         <div className="space-y-6">
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Underlined Links
-            </h4>
+            </div>
             <ModusBreadcrumbs
               items={breadcrumbExamples.ecommerce}
               customClass="underline-links"
@@ -289,9 +289,9 @@ export default function BreadcrumbsDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Large Size with Custom Spacing
-            </h4>
+            </div>
             <ModusBreadcrumbs
               items={breadcrumbExamples.admin}
               size="lg"
@@ -311,15 +311,15 @@ export default function BreadcrumbsDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Use Cases
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common scenarios where breadcrumbs are used in applications.
-        </p>
+        </div>
         <div className="space-y-6">
           {/* E-commerce Product Page */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               E-commerce Product Page
-            </h4>
+            </div>
             <div className="p-4 bg-background rounded border border-border">
               <ModusBreadcrumbs
                 items={[
@@ -337,9 +337,9 @@ export default function BreadcrumbsDemoPage() {
 
           {/* Admin Dashboard */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Admin Dashboard
-            </h4>
+            </div>
             <div className="p-4 bg-background rounded border border-border">
               <ModusBreadcrumbs
                 items={[
@@ -357,9 +357,9 @@ export default function BreadcrumbsDemoPage() {
 
           {/* Documentation Site */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Documentation Site
-            </h4>
+            </div>
             <div className="p-4 bg-background rounded border border-border">
               <ModusBreadcrumbs
                 items={[
@@ -399,8 +399,8 @@ export default function BreadcrumbsDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -412,7 +412,7 @@ export default function BreadcrumbsDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -430,10 +430,10 @@ export default function BreadcrumbsDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusBreadcrumbs
   items={[
     { label: "Home", url: "/" },
@@ -443,13 +443,13 @@ export default function BreadcrumbsDemoPage() {
   aria-label="Site navigation"
   onBreadcrumbClick={handleClick}
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusBreadcrumbs
   items={breadcrumbItems}
   size="lg"
@@ -457,7 +457,7 @@ export default function BreadcrumbsDemoPage() {
   aria-label="Main navigation"
   onBreadcrumbClick={handleNavigation}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

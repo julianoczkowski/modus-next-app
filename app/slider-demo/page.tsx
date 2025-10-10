@@ -86,11 +86,11 @@ export default function SliderDemoPage() {
               <div className="text-2xl font-semibold text-foreground mb-2">
                 Building Environment Controls
               </div>
-              <p className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Each slider is fully controlled in React. Values update in
                 real-time as users interact, keeping instrumentation displays in
                 sync.
-              </p>
+              </div>
             </div>
             <div className="flex gap-3">
               <ModusWcButton
@@ -119,7 +119,7 @@ export default function SliderDemoPage() {
             <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
               <div className="flex items-center justify-between text-sm text-foreground opacity-80">
                 <span>Audio volume</span>
-                <span className="font-semibold text-foreground">{volume}%</span>
+                <div className="font-semibold text-foreground">{volume}%</div>
               </div>
               <ModusSlider
                 label="Volume"
@@ -141,9 +141,7 @@ export default function SliderDemoPage() {
             <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
               <div className="flex items-center justify-between text-sm text-foreground opacity-80">
                 <span>Lighting temperature</span>
-                <span className="font-semibold text-foreground">
-                  {lighting}K
-                </span>
+                <div className="font-semibold text-foreground">{lighting}K</div>
               </div>
               <ModusSlider
                 label="Lighting"
@@ -165,9 +163,9 @@ export default function SliderDemoPage() {
             <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
               <div className="flex items-center justify-between text-sm text-foreground opacity-80">
                 <span>Hydraulic pressure</span>
-                <span className="font-semibold text-foreground">
+                <div className="font-semibold text-foreground">
                   {pressure} psi
-                </span>
+                </div>
               </div>
               <ModusSlider
                 label="Hydraulic circuit"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 import ModusAccordion from "../components/ModusAccordion";
 
 interface EventLog {
@@ -60,24 +61,26 @@ export default function AccordionDemoPage() {
             <div className="text-lg font-semibold mb-2">
               Welcome to our platform!
             </div>
-            <p className="text-base leading-relaxed mb-4">
+            <div className="text-base leading-relaxed mb-4">
               This is a comprehensive guide to help you get started with our
               platform. We&apos;ll cover everything from basic setup to advanced
               features.
-            </p>
+            </div>
             <div className="flex gap-2">
-              <button
-                className="px-3 py-2 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90"
-                onClick={() => logEvent("Getting Started button clicked")}
+              <ModusWcButton
+                color="primary"
+                size="sm"
+                onButtonClick={() => logEvent("Getting Started button clicked")}
               >
                 Start Tutorial
-              </button>
-              <button
-                className="px-3 py-2 bg-secondary text-secondary-foreground rounded text-sm hover:bg-secondary/90"
-                onClick={() => logEvent("Documentation button clicked")}
+              </ModusWcButton>
+              <ModusWcButton
+                color="secondary"
+                size="sm"
+                onButtonClick={() => logEvent("Documentation button clicked")}
               >
                 View Docs
-              </button>
+              </ModusWcButton>
             </div>
           </div>
         </div>
@@ -100,38 +103,38 @@ export default function AccordionDemoPage() {
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">dashboard</i>
-                  <span className="font-medium">Dashboard</span>
+                  <div className="font-medium">Dashboard</div>
                 </div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Comprehensive analytics and reporting tools
-                </p>
+                </div>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">settings</i>
-                  <span className="font-medium">Settings</span>
+                  <div className="font-medium">Settings</div>
                 </div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Customize your experience and preferences
-                </p>
+                </div>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">people_group</i>
-                  <span className="font-medium">Team Management</span>
+                  <div className="font-medium">Team Management</div>
                 </div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Collaborate with your team effectively
-                </p>
+                </div>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">security</i>
-                  <span className="font-medium">Security</span>
+                  <div className="font-medium">Security</div>
                 </div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Enterprise-grade security features
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -155,49 +158,52 @@ export default function AccordionDemoPage() {
               <div className="p-6 bg-card border border-border rounded-lg text-center">
                 <div className="text-2xl font-bold mb-2">Free</div>
                 <div className="text-4xl font-bold text-primary mb-4">$0</div>
-                <ul className="text-sm text-foreground space-y-2 mb-6">
-                  <li>✓ Basic features</li>
-                  <li>✓ Community support</li>
-                  <li>✓ 1GB storage</li>
-                </ul>
-                <button
-                  className="w-full px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
-                  onClick={() => logEvent("Free plan selected")}
+                <div className="text-sm text-foreground space-y-2 mb-6">
+                  <div>✓ Basic features</div>
+                  <div>✓ Community support</div>
+                  <div>✓ 1GB storage</div>
+                </div>
+                <ModusWcButton
+                  color="primary"
+                  fullWidth={true}
+                  onButtonClick={() => logEvent("Free plan selected")}
                 >
                   Get Started
-                </button>
+                </ModusWcButton>
               </div>
               <div className="p-6 bg-card border border-border rounded-lg text-center border-primary">
                 <div className="text-2xl font-bold mb-2">Pro</div>
                 <div className="text-4xl font-bold text-primary mb-4">$29</div>
-                <ul className="text-sm text-foreground space-y-2 mb-6">
-                  <li>✓ All basic features</li>
-                  <li>✓ Priority support</li>
-                  <li>✓ 100GB storage</li>
-                  <li>✓ Advanced analytics</li>
-                </ul>
-                <button
-                  className="w-full px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
-                  onClick={() => logEvent("Pro plan selected")}
+                <div className="text-sm text-foreground space-y-2 mb-6">
+                  <div>✓ All basic features</div>
+                  <div>✓ Priority support</div>
+                  <div>✓ 100GB storage</div>
+                  <div>✓ Advanced analytics</div>
+                </div>
+                <ModusWcButton
+                  color="primary"
+                  fullWidth={true}
+                  onButtonClick={() => logEvent("Pro plan selected")}
                 >
                   Choose Pro
-                </button>
+                </ModusWcButton>
               </div>
               <div className="p-6 bg-card border border-border rounded-lg text-center">
                 <div className="text-2xl font-bold mb-2">Enterprise</div>
                 <div className="text-4xl font-bold text-primary mb-4">$99</div>
-                <ul className="text-sm text-foreground space-y-2 mb-6">
-                  <li>✓ Everything in Pro</li>
-                  <li>✓ 24/7 support</li>
-                  <li>✓ Unlimited storage</li>
-                  <li>✓ Custom integrations</li>
-                </ul>
-                <button
-                  className="w-full px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
-                  onClick={() => logEvent("Enterprise plan selected")}
+                <div className="text-sm text-foreground space-y-2 mb-6">
+                  <div>✓ Everything in Pro</div>
+                  <div>✓ 24/7 support</div>
+                  <div>✓ Unlimited storage</div>
+                  <div>✓ Custom integrations</div>
+                </div>
+                <ModusWcButton
+                  color="primary"
+                  fullWidth={true}
+                  onButtonClick={() => logEvent("Enterprise plan selected")}
                 >
                   Contact Sales
-                </button>
+                </ModusWcButton>
               </div>
             </div>
           </div>
@@ -224,64 +230,72 @@ export default function AccordionDemoPage() {
                 <div className="p-4 bg-card border border-border rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">help</i>
-                    <span className="font-medium">Documentation</span>
+                    <div className="font-medium">Documentation</div>
                   </div>
-                  <p className="text-sm text-foreground opacity-80 mb-3">
+                  <div className="text-sm text-foreground opacity-80 mb-3">
                     Comprehensive guides and API references
-                  </p>
-                  <button
-                    className="text-sm text-primary hover:underline"
-                    onClick={() => logEvent("Documentation accessed")}
+                  </div>
+                  <ModusWcButton
+                    color="primary"
+                    variant="borderless"
+                    size="sm"
+                    onButtonClick={() => logEvent("Documentation accessed")}
                   >
                     Browse Docs →
-                  </button>
+                  </ModusWcButton>
                 </div>
                 <div className="p-4 bg-card border border-border rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">chat</i>
-                    <span className="font-medium">Live Chat</span>
+                    <div className="font-medium">Live Chat</div>
                   </div>
-                  <p className="text-sm text-foreground opacity-80 mb-3">
+                  <div className="text-sm text-foreground opacity-80 mb-3">
                     Get instant help from our support team
-                  </p>
-                  <button
-                    className="text-sm text-primary hover:underline"
-                    onClick={() => logEvent("Live chat started")}
+                  </div>
+                  <ModusWcButton
+                    color="primary"
+                    variant="borderless"
+                    size="sm"
+                    onButtonClick={() => logEvent("Live chat started")}
                   >
                     Start Chat →
-                  </button>
+                  </ModusWcButton>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="p-4 bg-card border border-border rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">email</i>
-                    <span className="font-medium">Email Support</span>
+                    <div className="font-medium">Email Support</div>
                   </div>
-                  <p className="text-sm text-foreground opacity-80 mb-3">
+                  <div className="text-sm text-foreground opacity-80 mb-3">
                     support@example.com
-                  </p>
-                  <button
-                    className="text-sm text-primary hover:underline"
-                    onClick={() => logEvent("Email support contacted")}
+                  </div>
+                  <ModusWcButton
+                    color="primary"
+                    variant="borderless"
+                    size="sm"
+                    onButtonClick={() => logEvent("Email support contacted")}
                   >
                     Send Email →
-                  </button>
+                  </ModusWcButton>
                 </div>
                 <div className="p-4 bg-card border border-border rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">phone</i>
-                    <span className="font-medium">Phone Support</span>
+                    <div className="font-medium">Phone Support</div>
                   </div>
-                  <p className="text-sm text-foreground opacity-80 mb-3">
+                  <div className="text-sm text-foreground opacity-80 mb-3">
                     +1 (555) 123-4567
-                  </p>
-                  <button
-                    className="text-sm text-primary hover:underline"
-                    onClick={() => logEvent("Phone support called")}
+                  </div>
+                  <ModusWcButton
+                    color="primary"
+                    variant="borderless"
+                    size="sm"
+                    onButtonClick={() => logEvent("Phone support called")}
                   >
                     Call Now →
-                  </button>
+                  </ModusWcButton>
                 </div>
               </div>
             </div>
@@ -307,30 +321,30 @@ export default function AccordionDemoPage() {
             <div className="space-y-4">
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="font-medium mb-2">How do I get started?</div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Simply sign up for an account and follow our onboarding
                   process. We&apos;ll guide you through each step.
-                </p>
+                </div>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="font-medium mb-2">Is there a free trial?</div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Yes! We offer a 14-day free trial with full access to all
                   features. No credit card required.
-                </p>
+                </div>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="font-medium mb-2">Can I cancel anytime?</div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   Absolutely. You can cancel your subscription at any time from
                   your account settings.
-                </p>
+                </div>
               </div>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <div className="font-medium mb-2">Do you offer refunds?</div>
-                <p className="text-sm text-foreground opacity-80">
+                <div className="text-sm text-foreground opacity-80">
                   We offer a 30-day money-back guarantee for all paid plans.
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -345,11 +359,11 @@ export default function AccordionDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Accordion Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the powerful accordion component with interactive examples,
           event handling, and various content types. This demonstrates both
           basic usage and advanced features of the Modus accordion.
-        </p>
+        </div>
       </div>
 
       {/* Basic Accordion Example */}
@@ -357,10 +371,10 @@ export default function AccordionDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Accordion
         </div>
-        <p className="text-base mb-6 text-foreground">
+        <div className="text-base mb-6 text-foreground">
           Click on any accordion item to expand/collapse it. The accordion
           coordinates the state of all items and provides event notifications.
-        </p>
+        </div>
 
         <ModusAccordion
           items={accordionItems}
@@ -374,10 +388,10 @@ export default function AccordionDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Event Logging
         </div>
-        <p className="text-base mb-6 text-foreground">
+        <div className="text-base mb-6 text-foreground">
           This section shows real-time events from the accordion interactions.
           Expand/collapse items above to see the events logged here.
-        </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
@@ -387,10 +401,10 @@ export default function AccordionDemoPage() {
             <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
               {eventLogs.map((log, index) => (
                 <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-                  <span className="text-foreground min-w-20">
+                  <div className="text-foreground min-w-20">
                     {log.timestamp}
-                  </span>
-                  <span className="text-foreground">{log.message}</span>
+                  </div>
+                  <div className="text-foreground">{log.message}</div>
                 </div>
               ))}
               {eventLogs.length === 0 && (
@@ -399,14 +413,15 @@ export default function AccordionDemoPage() {
                 </div>
               )}
             </div>
-            <button
-              className="mt-4 px-4 py-2 bg-secondary text-secondary-foreground rounded text-sm hover:bg-secondary/90"
-              onClick={clearLogs}
+            <ModusWcButton
+              color="secondary"
+              size="sm"
+              onButtonClick={clearLogs}
               disabled={eventLogs.length === 0}
             >
               <i className="modus-icons mr-2">delete</i>
               Clear Logs
-            </button>
+            </ModusWcButton>
           </div>
 
           <div>
@@ -441,7 +456,7 @@ export default function AccordionDemoPage() {
             <div className="text-lg font-medium mb-2 text-foreground">
               Basic Accordion:
             </div>
-            <pre className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground">
+            <div className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground">
               {`<ModusAccordion
   items={[
     {
@@ -455,21 +470,21 @@ export default function AccordionDemoPage() {
     }
   ]}
 />`}
-            </pre>
+            </div>
           </div>
 
           <div>
             <div className="text-lg font-medium mb-2 text-foreground">
               With Event Handling:
             </div>
-            <pre className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground">
+            <div className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground">
               {`<ModusAccordion
   items={accordionItems}
   onExpandedChange={(event) => {
     console.log('Item', event.index, 'is', event.expanded ? 'open' : 'closed');
   }}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

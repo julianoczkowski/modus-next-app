@@ -132,7 +132,7 @@ export default function MyComponent() {
   return (
     <div className="bg-card border border-border p-4 rounded-lg">
       <div className="text-4xl font-semibold text-foreground">Title</div>
-      <p className="text-lg text-foreground opacity-80">Description</p>
+      <div className="text-lg text-foreground opacity-80">Description</div>
     </div>
   );
 }
@@ -359,7 +359,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ModusProvider>
             <AppHeader />
-            <main style={{ minHeight: "calc(100vh - 200px)" }}>{children}</main>
+            <div style={{ minHeight: "calc(100vh - 200px)" }}>{children}</div>
             <AppFooter />
           </ModusProvider>
         </ThemeProvider>
@@ -375,7 +375,7 @@ export default function HomePage() {
   return (
     <div>
       <AppHeader /> {/* Don't do this */}
-      <main>Content</main>
+      <div>Content</div>
       <AppFooter /> {/* Don't do this */}
     </div>
   );
@@ -492,7 +492,7 @@ export default function Page() {
   return (
     <div>
       <AppHeader /> {/* Already in layout */}
-      <main>Content</main>
+      <div>Content</div>
       <AppFooter /> {/* Already in layout */}
     </div>
   );
@@ -773,6 +773,10 @@ const buttonRowStyle = {
 ---
 
 **Remember**: These patterns ensure your Modus Web Components are shareable, maintainable, and performant across Next.js applications. Follow these guidelines to avoid common pitfalls and create production-ready components.
+
+## 🔗 **Development Workflow**
+
+**IMPORTANT**: See `development-workflow.mdc` for mandatory linting commands (`npm run lint:styles`, `npm run lint:colors`, `npm run lint:icons`) and quality gates that must be followed during development.
 
 # Modus Web Components + Next.js Best Practices
 
@@ -904,7 +908,7 @@ export default function MyComponent() {
   return (
     <div className="bg-card border border-border p-4 rounded-lg">
       <div className="text-4xl font-semibold text-foreground">Title</div>
-      <p className="text-lg text-foreground opacity-80">Description</p>
+      <div className="text-lg text-foreground opacity-80">Description</div>
     </div>
   );
 }
@@ -1131,7 +1135,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ModusProvider>
             <AppHeader />
-            <main style={{ minHeight: "calc(100vh - 200px)" }}>{children}</main>
+            <div style={{ minHeight: "calc(100vh - 200px)" }}>{children}</div>
             <AppFooter />
           </ModusProvider>
         </ThemeProvider>
@@ -1147,7 +1151,7 @@ export default function HomePage() {
   return (
     <div>
       <AppHeader /> {/* Don't do this */}
-      <main>Content</main>
+      <div>Content</div>
       <AppFooter /> {/* Don't do this */}
     </div>
   );
@@ -1264,7 +1268,7 @@ export default function Page() {
   return (
     <div>
       <AppHeader /> {/* Already in layout */}
-      <main>Content</main>
+      <div>Content</div>
       <AppFooter /> {/* Already in layout */}
     </div>
   );
@@ -1545,3 +1549,7 @@ const buttonRowStyle = {
 ---
 
 **Remember**: These patterns ensure your Modus Web Components are shareable, maintainable, and performant across Next.js applications. Follow these guidelines to avoid common pitfalls and create production-ready components.
+
+## 🔗 **Development Workflow**
+
+**IMPORTANT**: See `development-workflow.mdc` for mandatory linting commands (`npm run lint:styles`, `npm run lint:colors`, `npm run lint:icons`) and quality gates that must be followed during development.

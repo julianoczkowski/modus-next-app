@@ -88,9 +88,9 @@ export default function MenuDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Menu Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Integrated menu system with container and menu items working together
-        </p>
+        </div>
       </div>
 
       {/* Selected Item Display */}

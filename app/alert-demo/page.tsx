@@ -80,10 +80,10 @@ export default function AlertDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Alert Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Alert component with different variants, dismissible
           alerts, custom icons, and action buttons.
-        </p>
+        </div>
       </div>
 
       {/* Control Buttons */}
@@ -125,9 +125,9 @@ export default function AlertDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Alert Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different alert types for various use cases.
-        </p>
+        </div>
         <div className="space-y-4">
           {/* Info Alert */}
           {visibleAlerts.has("basic-info") && (
@@ -176,9 +176,9 @@ export default function AlertDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Dismissible Alerts
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Alerts with dismiss buttons for user interaction.
-        </p>
+        </div>
         <div className="space-y-4">
           {visibleAlerts.has("dismissible-alert") && (
             <ModusAlert
@@ -197,9 +197,9 @@ export default function AlertDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Icon Alerts
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Alerts with custom icons instead of default variant icons.
-        </p>
+        </div>
         <div className="space-y-4">
           {visibleAlerts.has("custom-icon-alert") && (
             <ModusAlert
@@ -218,9 +218,9 @@ export default function AlertDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Action Button Alerts
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Alerts with action buttons for user interaction.
-        </p>
+        </div>
         <div className="space-y-4">
           {visibleAlerts.has("action-alert") && (
             <ModusAlert
@@ -251,9 +251,9 @@ export default function AlertDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Content Alerts
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Alerts with completely custom content using slots.
-        </p>
+        </div>
         <div className="space-y-4">
           {visibleAlerts.has("custom-content-alert") && (
             <ModusAlert
@@ -263,12 +263,12 @@ export default function AlertDemoPage() {
               <div slot="content">
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-success">check_circle</i>
-                  <strong className="text-foreground">Well done!</strong>
+                  <div className="font-bold text-foreground">Well done!</div>
                 </div>
-                <p className="text-foreground">
+                <div className="text-foreground">
                   You successfully read this important alert message. This is a
                   custom content alert with rich formatting.
-                </p>
+                </div>
                 <div className="mt-3 flex gap-2">
                   <ModusWcButton
                     color="primary"
@@ -298,14 +298,14 @@ export default function AlertDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Alert Generator
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Generate alerts dynamically with different configurations.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Quick Actions
-            </h4>
+            </div>
             <div className="space-y-2">
               <ModusWcButton
                 fullWidth
@@ -354,10 +354,10 @@ export default function AlertDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Usage Examples
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAlert
   alertTitle="Success!"
   alertDescription="Operation completed."
@@ -365,7 +365,7 @@ export default function AlertDemoPage() {
   dismissible
   onDismissClick={handleDismiss}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>
@@ -389,8 +389,8 @@ export default function AlertDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -402,7 +402,7 @@ export default function AlertDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -420,22 +420,22 @@ export default function AlertDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAlert
   alertTitle="Information"
   alertDescription="This is an alert message."
   variant="info"
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAlert
   alertTitle="Success!"
   alertDescription="Operation completed."
@@ -448,7 +448,7 @@ export default function AlertDemoPage() {
     Action
   </ModusWcButton>
 </ModusAlert>`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

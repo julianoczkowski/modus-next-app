@@ -10,8 +10,8 @@ export default function DividerDemoPage() {
           Modus Divider Component Demo
         </div>
         <div className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
-          Use dividers to create lightweight separation between sections,
-          align short helper text along a line, and support both horizontal and
+          Use dividers to create lightweight separation between sections, align
+          short helper text along a line, and support both horizontal and
           vertical layouts without relying on custom CSS.
         </div>
       </div>
@@ -23,8 +23,8 @@ export default function DividerDemoPage() {
           </div>
           <div className="text-sm text-foreground opacity-75 leading-relaxed">
             Horizontal dividers stretch to fill the container. Combine the{" "}
-            <span className="font-medium">content</span> and{" "}
-            <span className="font-medium">position</span> props to place short
+            <div className="font-medium">content</div> and{" "}
+            <div className="font-medium">position</div> props to place short
             text along the line.
           </div>
         </div>
@@ -35,7 +35,9 @@ export default function DividerDemoPage() {
               Content free
             </div>
             <div className="space-y-4">
-              <div className="text-foreground opacity-80">Quarterly summary</div>
+              <div className="text-foreground opacity-80">
+                Quarterly summary
+              </div>
               <ModusDivider ariaHidden thickness="md" />
               <div className="text-foreground opacity-80">
                 Financial performance
@@ -69,8 +71,8 @@ export default function DividerDemoPage() {
             </div>
             <div className="space-y-4">
               <div className="text-foreground opacity-80 flex justify-between">
-                <span>Setup</span>
-                <span className="text-sm opacity-70">Completed</span>
+                <div>Setup</div>
+                <div className="text-sm opacity-70">Completed</div>
               </div>
               <ModusDivider
                 content="phase 2"
@@ -131,7 +133,9 @@ export default function DividerDemoPage() {
             <div className="flex items-center gap-4 text-foreground opacity-80 h-24">
               <div className="flex-1">
                 <div className="font-semibold mb-1">Status</div>
-                <div className="text-sm opacity-70">All systems operational</div>
+                <div className="text-sm opacity-70">
+                  All systems operational
+                </div>
               </div>
               <ModusDivider orientation="vertical" ariaHidden thickness="md" />
               <div className="flex-1">

@@ -76,10 +76,10 @@ export default function AvatarDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Avatar Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Avatar component with different sizes, shapes, and
           styling options.
-        </p>
+        </div>
       </div>
 
       {/* Size Variants */}
@@ -87,9 +87,9 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different avatar sizes for various use cases.
-        </p>
+        </div>
         <div className="flex items-center gap-6 flex-wrap">
           {sizes.map((size) => (
             <div key={size.value} className="text-center">
@@ -113,9 +113,9 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Shape Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Circle and square shapes for different contexts.
-        </p>
+        </div>
         <div className="flex items-center gap-8 flex-wrap">
           {shapes.map((shape) => (
             <div key={shape.value} className="text-center">
@@ -139,9 +139,9 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           User List Example
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Avatars in a user list with names and roles.
-        </p>
+        </div>
         <div className="space-y-4">
           {avatars.slice(0, 4).map((avatar, index) => (
             <div
@@ -179,14 +179,14 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Avatar Preview
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Change the size and shape to see how the avatar updates.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Controls
-            </h4>
+            </div>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
@@ -235,9 +235,9 @@ export default function AvatarDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Preview
-            </h4>
+            </div>
             <div className="flex items-center gap-4">
               <ModusAvatar
                 alt="Preview avatar"
@@ -263,9 +263,9 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Styling Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Avatars with custom CSS classes for borders, shadows, and effects.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="text-center">
             <ModusAvatar
@@ -314,9 +314,9 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Fallback States
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           How avatars behave when images fail to load or are not provided.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="text-center">
             <ModusAvatar
@@ -350,9 +350,9 @@ export default function AvatarDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Accessibility Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Proper alt text usage for screen readers and accessibility.
-        </p>
+        </div>
         <div className="space-y-4">
           <div className="flex items-center gap-4 p-4 bg-background rounded-lg border border-border">
             <ModusAvatar
@@ -395,23 +395,23 @@ export default function AvatarDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAvatar
   alt="User name"
   imgSrc="https://example.com/avatar.jpg"
   size="md"
   shape="circle"
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusAvatar
   alt="John Doe, Software Engineer"
   imgSrc="https://example.com/avatar.jpg"
@@ -419,7 +419,7 @@ export default function AvatarDemoPage() {
   shape="square"
   customClass="border-2 border-primary shadow-lg"
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

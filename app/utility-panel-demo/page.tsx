@@ -37,7 +37,7 @@ export default function UtilityPanelDemoPage() {
       <div className="flex items-center justify-between gap-3 px-4 py-2 bg-card">
         <div className="flex items-center gap-2 text-foreground">
           <i className="modus-icons text-xl">handyman</i>
-          <span className="font-semibold">Field tools</span>
+          <div className="font-semibold">Field tools</div>
         </div>
         <ModusWcButton
           size="sm"
@@ -57,11 +57,11 @@ export default function UtilityPanelDemoPage() {
         <div className="text-4xl font-semibold text-foreground">
           Modus Utility Panel Demo
         </div>
-        <p className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
+        <div className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
           The utility panel provides collapsible side content for filters,
           contextual actions, or supporting information. Toggle position, width,
           and behaviors to fit different workflows.
-        </p>
+        </div>
         <ModusWcButton onButtonClick={togglePanel} color="primary" size="sm">
           {expanded ? "Collapse panel" : "Expand panel"}
         </ModusWcButton>
@@ -76,11 +76,11 @@ export default function UtilityPanelDemoPage() {
             <div className="text-2xl font-semibold text-foreground">
               Primary workspace
             </div>
-            <p className="text-sm text-foreground opacity-75 leading-relaxed">
+            <div className="text-sm text-foreground opacity-75 leading-relaxed">
               This area represents the main application content. When &quot;Push
               content&quot; is enabled, the panel you see on the side will slide
               this region to expose additional information without covering it.
-            </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -105,10 +105,10 @@ export default function UtilityPanelDemoPage() {
               <div className="text-sm font-semibold text-foreground">
                 Site overview
               </div>
-              <p className="text-sm text-foreground opacity-70 leading-relaxed">
+              <div className="text-sm text-foreground opacity-70 leading-relaxed">
                 Monitor field teams, schedule updates, and inspection results in
                 real time. Surface contextual insights using the utility panel.
-              </p>
+              </div>
               <ModusDropdownMenu
                 buttonVariant="outlined"
                 buttonSize="sm"
@@ -119,15 +119,15 @@ export default function UtilityPanelDemoPage() {
                   <ModusWcMenuItem label="View analytics" value="analytics" />
                   <ModusWcMenuItem label="Export report" value="export" />
                 </div>
-                <span
+                <div
                   slot="button"
                   className="flex items-center justify-between w-full gap-2"
                 >
-                  <span className="text-sm text-foreground opacity-80">
+                  <div className="text-sm text-foreground opacity-80">
                     Quick actions
-                  </span>
+                  </div>
                   <i className="modus-icons text-base">expand_more</i>
-                </span>
+                </div>
               </ModusDropdownMenu>
             </div>
           </div>
@@ -139,27 +139,27 @@ export default function UtilityPanelDemoPage() {
           </div>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Show custom header
-              </span>
+              </div>
               <ModusWcSwitch
                 value={useCustomHeader}
                 onInputChange={() => setUseCustomHeader((v) => !v)}
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Push main content
-              </span>
+              </div>
               <ModusWcSwitch
                 value={pushContent}
                 onInputChange={() => setPushContent((v) => !v)}
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Panel position
-              </span>
+              </div>
               <div className="flex gap-2">
                 <ModusWcButton
                   size="sm"
@@ -180,9 +180,9 @@ export default function UtilityPanelDemoPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <span className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Panel width
-              </span>
+              </div>
               <ModusTextInput
                 value={panelWidth}
                 onInputChange={(event: CustomEvent<InputEvent>) => {
@@ -194,9 +194,9 @@ export default function UtilityPanelDemoPage() {
                 size="md"
                 bordered
               />
-              <p className="text-xs text-foreground opacity-60">
+              <div className="text-xs text-foreground opacity-60">
                 Accepts CSS units (px, rem, %, etc.)
-              </p>
+              </div>
             </div>
           </div>
 
@@ -206,9 +206,9 @@ export default function UtilityPanelDemoPage() {
             </div>
             <div className="bg-background border border-border rounded-lg p-3 min-h-24 space-y-1">
               {panelLog.length === 0 ? (
-                <p className="text-sm text-foreground opacity-60">
+                <div className="text-sm text-foreground opacity-60">
                   Interact with the panel to see event logs.
-                </p>
+                </div>
               ) : (
                 panelLog.map((entry) => (
                   <div
@@ -239,24 +239,24 @@ export default function UtilityPanelDemoPage() {
         className="bg-background border border-border"
       >
         <div className="p-4 space-y-6 text-foreground">
-          <section className="space-y-3">
+          <div className="space-y-3">
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Status filters
             </div>
             <ModusWcSwitch label="Show active issues" value />
             <ModusWcSwitch label="Include archived" />
             <ModusWcSwitch label="Only my assignments" />
-          </section>
+          </div>
 
-          <section className="space-y-3">
+          <div className="space-y-3">
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Quick adjustments
             </div>
             <ModusTextInput label="Owner" placeholder="Search people" />
             <ModusTextInput label="Tag" placeholder="Add tag" />
-          </section>
+          </div>
 
-          <section className="space-y-3">
+          <div className="space-y-3">
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Actions
             </div>
@@ -266,7 +266,7 @@ export default function UtilityPanelDemoPage() {
             <ModusWcButton color="secondary" variant="outlined" fullWidth>
               Reset values
             </ModusWcButton>
-          </section>
+          </div>
         </div>
       </ModusUtilityPanel>
     </div>

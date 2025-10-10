@@ -66,44 +66,41 @@ export default function RadioDemoPage() {
   }, []);
 
   const handleCommunicationChange = useCallback(
-    (optionId: string) =>
-      (event: CustomEvent<InputEvent>) => {
-        const radio = event.target as HTMLModusWcRadioElement | null;
-        if (!radio?.value) {
-          return;
-        }
+    (optionId: string) => (event: CustomEvent<InputEvent>) => {
+      const radio = event.target as HTMLModusWcRadioElement | null;
+      if (!radio?.value) {
+        return;
+      }
 
-        setCommunicationPreference(optionId);
-        logEvent(`Notification preference set to ${optionId}`);
-      },
+      setCommunicationPreference(optionId);
+      logEvent(`Notification preference set to ${optionId}`);
+    },
     [logEvent]
   );
 
   const handlePriorityChange = useCallback(
-    (optionId: string) =>
-      (event: CustomEvent<InputEvent>) => {
-        const radio = event.target as HTMLModusWcRadioElement | null;
-        if (!radio?.value) {
-          return;
-        }
+    (optionId: string) => (event: CustomEvent<InputEvent>) => {
+      const radio = event.target as HTMLModusWcRadioElement | null;
+      if (!radio?.value) {
+        return;
+      }
 
-        setDeploymentPriority(optionId);
-        logEvent(`Deployment priority changed to ${optionId}`);
-      },
+      setDeploymentPriority(optionId);
+      logEvent(`Deployment priority changed to ${optionId}`);
+    },
     [logEvent]
   );
 
   const handleSurveyChange = useCallback(
-    (optionId: string) =>
-      (event: CustomEvent<InputEvent>) => {
-        const radio = event.target as HTMLModusWcRadioElement | null;
-        if (!radio?.value) {
-          return;
-        }
+    (optionId: string) => (event: CustomEvent<InputEvent>) => {
+      const radio = event.target as HTMLModusWcRadioElement | null;
+      if (!radio?.value) {
+        return;
+      }
 
-        setSurveyChoice(optionId);
-        logEvent(`Survey response updated to ${optionId}`);
-      },
+      setSurveyChoice(optionId);
+      logEvent(`Survey response updated to ${optionId}`);
+    },
     [logEvent]
   );
 
@@ -177,19 +174,19 @@ export default function RadioDemoPage() {
             </div>
             <div className="text-sm text-foreground opacity-80">
               Currently selected:{" "}
-              <span className="font-semibold text-foreground">
+              <div className="font-semibold text-foreground">
                 {
                   communicationOptions.find(
                     (option) => option.id === communicationPreference
                   )?.label
                 }
-              </span>
+              </div>
               {selectedCommunicationDescription && (
                 <>
                   {" "}
-                  <span className="block font-normal opacity-70 text-sm">
+                  <div className="block font-normal opacity-70 text-sm">
                     {selectedCommunicationDescription}
-                  </span>
+                  </div>
                 </>
               )}
             </div>
@@ -225,7 +222,9 @@ export default function RadioDemoPage() {
                 variant="outlined"
                 size="sm"
                 onButtonClick={() =>
-                  logEvent(`Saved selections (${communicationPreference}, ${deploymentPriority})`)
+                  logEvent(
+                    `Saved selections (${communicationPreference}, ${deploymentPriority})`
+                  )
                 }
               >
                 Log selection

@@ -103,10 +103,10 @@ export default function ChipDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Chip Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Chip component with different variants, states, and
           interactive features.
-        </p>
+        </div>
       </div>
 
       {/* Basic Examples */}
@@ -114,9 +114,9 @@ export default function ChipDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Chip Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simple chips with different configurations and states.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           <ModusChip
             label="Basic Chip"
@@ -158,15 +158,15 @@ export default function ChipDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different chip sizes for various contexts and importance levels.
-        </p>
+        </div>
         <div className="space-y-4">
           {sizes.map((size) => (
             <div key={size.value}>
-              <h4 className="text-lg font-semibold mb-3 text-foreground">
+              <div className="text-lg font-semibold mb-3 text-foreground">
                 {size.label} ({size.description})
-              </h4>
+              </div>
               <div className="flex flex-wrap gap-4">
                 <ModusChip
                   size={size.value}
@@ -202,15 +202,15 @@ export default function ChipDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Variant Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Filled and outline variants with different states.
-        </p>
+        </div>
         <div className="space-y-6">
           {variants.map((variant) => (
             <div key={variant.value}>
-              <h4 className="text-lg font-semibold mb-3 text-foreground">
+              <div className="text-lg font-semibold mb-3 text-foreground">
                 {variant.label} Variant ({variant.description})
-              </h4>
+              </div>
               <div className="flex flex-wrap gap-4">
                 <ModusChip
                   variant={variant.value}
@@ -255,9 +255,9 @@ export default function ChipDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Chips with Content
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Chips containing icons, avatars, and other content.
-        </p>
+        </div>
         <div className="flex flex-wrap gap-4">
           {/* Chip with Icon */}
           <ModusChip
@@ -333,15 +333,15 @@ export default function ChipDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common chip patterns used in applications.
-        </p>
+        </div>
         <div className="space-y-8">
           {/* Filter Chips */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Filter Chips
-            </h4>
+            </div>
             <div className="flex flex-wrap gap-2">
               <ModusChip
                 label="All"
@@ -371,9 +371,9 @@ export default function ChipDemoPage() {
 
           {/* Tag Chips */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Tag Chips
-            </h4>
+            </div>
             <div className="flex flex-wrap gap-2">
               <ModusChip
                 label="React"
@@ -408,9 +408,9 @@ export default function ChipDemoPage() {
 
           {/* Status Chips */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Status Chips
-            </h4>
+            </div>
             <div className="flex flex-wrap gap-2">
               <ModusChip
                 label="Online"
@@ -449,9 +449,9 @@ export default function ChipDemoPage() {
 
           {/* Category Chips */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Category Chips
-            </h4>
+            </div>
             <div className="flex flex-wrap gap-2">
               <ModusChip
                 label="Technology"
@@ -487,9 +487,9 @@ export default function ChipDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Control chip states programmatically.
-        </p>
+        </div>
         <div className="flex gap-4 mb-6">
           <ModusWcButton color="primary" onButtonClick={selectAllChips}>
             <i className="modus-icons mr-2">check_box</i>
@@ -510,9 +510,9 @@ export default function ChipDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Selected Chips
-            </h4>
+            </div>
             <div className="text-sm text-foreground">
               {selectedChips.size > 0 ? (
                 <div className="flex flex-wrap gap-2">
@@ -531,9 +531,9 @@ export default function ChipDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Removed Chips
-            </h4>
+            </div>
             <div className="text-sm text-foreground">
               {removedChips.size > 0 ? (
                 <div className="flex flex-wrap gap-2">
@@ -573,8 +573,8 @@ export default function ChipDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -586,7 +586,7 @@ export default function ChipDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -604,21 +604,21 @@ export default function ChipDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusChip
   label="Basic Chip"
   onChipClick={handleClick}
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusChip
   label="Removable Chip"
   variant="outline"
@@ -630,7 +630,7 @@ export default function ChipDemoPage() {
 >
   <i className="modus-icons mr-1">star</i>
 </ModusChip>`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

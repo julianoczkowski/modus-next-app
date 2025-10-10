@@ -15,9 +15,6 @@ export default function Home() {
               width={80}
               height={80}
               className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-light"
-              style={{
-                filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))",
-              }}
             />
             <Image
               src="/nextjs-icon.svg"
@@ -25,27 +22,24 @@ export default function Home() {
               width={80}
               height={80}
               className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-dark hidden"
-              style={{
-                filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)) invert(1)",
-              }}
             />
           </div>
           <div className="text-4xl font-semibold mb-4 text-foreground">
             Welcome to Modus 2.0 Next.js Apps
           </div>
-          <p className="text-lg leading-relaxed text-foreground text-center">
+          <div className="text-lg leading-relaxed text-foreground text-center">
             A boilerplate for building Next.js applications with Modus. If you
             can see this page, example components, icons and theme switching you
             have successfully installed the boilerplate.
-          </p>
+          </div>
         </div>
 
         {/* Features Section */}
         <div className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             <div
-              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card"
-              style={{ border: "1px solid var(--border)" }}
+              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card border border-border"
+              style={{ borderWidth: "1px" }}
             >
               <div className="flex items-start gap-4 flex-1">
                 <i className="modus-icons text-2xl flex-shrink-0 mt-1 text-foreground">
@@ -55,9 +49,9 @@ export default function Home() {
                   <div className="text-lg font-semibold mb-2 m-0 text-foreground">
                     Rich Components
                   </div>
-                  <p className="text-body leading-relaxed m-0 opacity-80 text-foreground">
+                  <div className="text-body leading-relaxed m-0 opacity-80 text-foreground">
                     40+ production-ready components
-                  </p>
+                  </div>
                 </div>
               </div>
               <div className="flex justify-end mt-2">
@@ -68,8 +62,8 @@ export default function Home() {
             </div>
 
             <div
-              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card"
-              style={{ border: "1px solid var(--border)" }}
+              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card border border-border"
+              style={{ borderWidth: "1px" }}
             >
               <div className="flex items-start gap-4 flex-1">
                 <i className="modus-icons text-2xl flex-shrink-0 mt-1 text-foreground">
@@ -79,9 +73,9 @@ export default function Home() {
                   <div className="text-lg font-semibold mb-2 m-0 text-foreground">
                     Theme Support
                   </div>
-                  <p className="text-body leading-relaxed m-0 opacity-80 text-foreground">
+                  <div className="text-body leading-relaxed m-0 opacity-80 text-foreground">
                     Light & dark themes with variants
-                  </p>
+                  </div>
                 </div>
               </div>
               <div className="flex justify-end mt-2">
@@ -104,13 +98,13 @@ export default function Home() {
             <div className="text-3xl font-semibold mb-4 text-foreground">
               About this Boilerplate
             </div>
-            <p className="text-body max-w-2xl mx-auto opacity-80 text-foreground">
+            <div className="text-body max-w-2xl mx-auto opacity-80 text-foreground">
               Watch this video to discover more about this boilerplate
-            </p>
+            </div>
           </div>
           <div
-            className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video bg-card"
-            style={{ border: "1px solid var(--border)" }}
+            className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video bg-card border border-border"
+            style={{ borderWidth: "1px" }}
           >
             <iframe
               src="https://www.youtube.com/embed/aG7Eu7SkKZA?si=KDI-XcSlRNr70bS5"

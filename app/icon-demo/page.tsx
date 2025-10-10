@@ -72,10 +72,10 @@ export default function IconDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Icon Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Comprehensive showcase of the ModusIcon component with various sizes,
           categories, and usage patterns
-        </p>
+        </div>
       </div>
 
       {/* Basic Usage */}
@@ -293,25 +293,25 @@ export default function IconDemo() {
                   name="check_circle"
                   color="var(--modus-wc-color-success)"
                 />
-                <span className="text-foreground">
+                <div className="text-foreground">
                   Task completed successfully
-                </span>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <ModusIcon
                   name="warning"
                   color="var(--modus-wc-color-warning)"
                 />
-                <span className="text-foreground">
+                <div className="text-foreground">
                   Warning: Please review settings
-                </span>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <ModusIcon
                   name="cancel_circle"
                   color="var(--modus-wc-color-error)"
                 />
-                <span className="text-foreground">Error: Operation failed</span>
+                <div className="text-foreground">Error: Operation failed</div>
               </div>
             </div>
           </div>
@@ -322,15 +322,15 @@ export default function IconDemo() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 p-2 rounded hover:bg-muted transition-colors cursor-pointer">
                 <ModusIcon name="home" />
-                <span className="text-foreground">Home</span>
+                <div className="text-foreground">Home</div>
               </div>
               <div className="flex items-center gap-3 p-2 rounded hover:bg-muted transition-colors cursor-pointer">
                 <ModusIcon name="dashboard" />
-                <span className="text-foreground">Dashboard</span>
+                <div className="text-foreground">Dashboard</div>
               </div>
               <div className="flex items-center gap-3 p-2 rounded hover:bg-muted transition-colors cursor-pointer">
                 <ModusIcon name="settings" />
-                <span className="text-foreground">Settings</span>
+                <div className="text-foreground">Settings</div>
               </div>
             </div>
           </div>

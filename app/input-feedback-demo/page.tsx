@@ -17,10 +17,10 @@ export default function InputFeedbackDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Input Feedback Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Contextual feedback for form fields with error messages, success
           confirmations, warnings, and informational tips
-        </p>
+        </div>
       </div>
 
       {/* Basic Usage */}

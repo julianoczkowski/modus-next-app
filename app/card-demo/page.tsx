@@ -47,10 +47,10 @@ export default function CardDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Card Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Card component with different layouts, styles, and
           content arrangements.
-        </p>
+        </div>
       </div>
 
       {/* Basic Card Examples */}
@@ -58,9 +58,9 @@ export default function CardDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Card Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simple cards with different content arrangements.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Simple Card */}
           <ModusCard
@@ -68,10 +68,10 @@ export default function CardDemoPage() {
             subtitle="Basic card with title and content"
             aria-label="Simple card example"
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This is a simple card with just a title, subtitle, and body
               content.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Card with Actions */}
@@ -90,9 +90,9 @@ export default function CardDemoPage() {
               </div>
             }
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This card includes action buttons in the footer area.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Card with Footer */}
@@ -106,9 +106,9 @@ export default function CardDemoPage() {
               </div>
             }
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This card includes footer content below the main body.
-            </p>
+            </div>
           </ModusCard>
         </div>
       </div>
@@ -118,15 +118,15 @@ export default function CardDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Layout Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Vertical and horizontal card layouts with image headers.
-        </p>
+        </div>
         <div className="space-y-8">
           {/* Vertical Layout */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Vertical Layout (Default)
-            </h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <ModusCard
                 layout="vertical"
@@ -145,10 +145,10 @@ export default function CardDemoPage() {
                 subtitle="Image above content"
                 aria-label="Vertical card with image"
               >
-                <p className="text-foreground">
+                <div className="text-foreground">
                   This card uses vertical layout with the image positioned above
                   the content.
-                </p>
+                </div>
               </ModusCard>
 
               <ModusCard
@@ -173,19 +173,19 @@ export default function CardDemoPage() {
                 }
                 aria-label="Vertical card with actions"
               >
-                <p className="text-foreground">
+                <div className="text-foreground">
                   Vertical cards work well for most content layouts and are the
                   default choice.
-                </p>
+                </div>
               </ModusCard>
             </div>
           </div>
 
           {/* Horizontal Layout */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Horizontal Layout
-            </h4>
+            </div>
             <div className="grid grid-cols-1 gap-6">
               <ModusCard
                 layout="horizontal"
@@ -204,11 +204,11 @@ export default function CardDemoPage() {
                 subtitle="Image beside content"
                 aria-label="Horizontal card with image"
               >
-                <p className="text-foreground">
+                <div className="text-foreground">
                   This card uses horizontal layout with the image positioned
                   beside the content. Horizontal layout is great for showcasing
                   images while keeping content readable.
-                </p>
+                </div>
               </ModusCard>
             </div>
           </div>
@@ -220,9 +220,9 @@ export default function CardDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Background Figure Cards
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Cards with background images and overlaid text content.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ModusCard
             backgroundFigure
@@ -241,13 +241,10 @@ export default function CardDemoPage() {
             subtitle="Background image with overlaid text"
             aria-label="Hero card with background image"
           >
-            <p
-              className="text-white"
-              style={{ textShadow: "1px 1px 2px black" }}
-            >
+            <div className="text-white drop-shadow-lg">
               This card uses a background figure with text overlaid on top of
               the image. Perfect for hero sections and featured content.
-            </p>
+            </div>
           </ModusCard>
 
           <ModusCard
@@ -270,17 +267,14 @@ export default function CardDemoPage() {
                 <ModusWcButton
                   size="sm"
                   color="primary"
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.9)",
-                    color: "black",
-                  }}
+                  className="bg-white/90 text-black"
                 >
                   Get Started
                 </ModusWcButton>
                 <ModusWcButton
                   size="sm"
                   variant="outlined"
-                  style={{ borderColor: "white", color: "white" }}
+                  className="border-white text-white"
                 >
                   Learn More
                 </ModusWcButton>
@@ -288,13 +282,10 @@ export default function CardDemoPage() {
             }
             aria-label="Featured content card"
           >
-            <p
-              className="text-white"
-              style={{ textShadow: "1px 1px 2px black" }}
-            >
+            <div className="text-white drop-shadow-lg">
               Background figure cards are perfect for showcasing featured
               content with dramatic visual impact.
-            </p>
+            </div>
           </ModusCard>
         </div>
       </div>
@@ -304,9 +295,9 @@ export default function CardDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Bordered and Compact Cards
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Cards with borders and compact padding for dense layouts.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Normal Card */}
           <ModusCard
@@ -314,9 +305,9 @@ export default function CardDemoPage() {
             subtitle="Standard padding and no border"
             aria-label="Normal card example"
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This is a normal card with standard padding and no border.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Bordered Card */}
@@ -326,10 +317,10 @@ export default function CardDemoPage() {
             subtitle="With border for separation"
             aria-label="Bordered card example"
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This card has a border which is useful for separating cards on
               light backgrounds.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Compact Card */}
@@ -339,10 +330,10 @@ export default function CardDemoPage() {
             subtitle="Reduced padding for dense layouts"
             aria-label="Compact card example"
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This card uses compact padding, ideal for dense dashboards and
               grid layouts.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Compact Bordered Card */}
@@ -353,10 +344,10 @@ export default function CardDemoPage() {
             subtitle="Both compact and bordered"
             aria-label="Compact bordered card example"
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This card combines compact padding with a border for maximum space
               efficiency.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Card with All Features */}
@@ -376,18 +367,18 @@ export default function CardDemoPage() {
             }
             aria-label="Feature-rich card example"
           >
-            <p className="text-foreground">
+            <div className="text-foreground">
               This card demonstrates all available features: title, subtitle,
               actions, and footer.
-            </p>
+            </div>
           </ModusCard>
 
           {/* Empty Card */}
           <ModusCard bordered aria-label="Empty card example">
-            <p className="text-foreground">
+            <div className="text-foreground">
               Cards can also be used without titles or subtitles for simple
               content containers.
-            </p>
+            </div>
           </ModusCard>
         </div>
       </div>
@@ -397,14 +388,14 @@ export default function CardDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Card Builder
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Customize card properties and see the results in real-time.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Controls
-            </h4>
+            </div>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
@@ -468,7 +459,7 @@ export default function CardDemoPage() {
                       onChange={(e) => setShowBordered(e.target.checked)}
                       className="rounded"
                     />
-                    <span className="text-sm text-foreground">Bordered</span>
+                    <div className="text-sm text-foreground">Bordered</div>
                   </label>
                   <label className="flex items-center gap-2">
                     <input
@@ -479,18 +470,18 @@ export default function CardDemoPage() {
                       }
                       className="rounded"
                     />
-                    <span className="text-sm text-foreground">
+                    <div className="text-sm text-foreground">
                       Background Figure
-                    </span>
+                    </div>
                   </label>
                 </div>
               </div>
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Preview
-            </h4>
+            </div>
             <ModusCard
               layout={selectedLayout}
               padding={selectedPadding}
@@ -520,11 +511,11 @@ export default function CardDemoPage() {
               }
               aria-label="Interactive card preview"
             >
-              <p className="text-foreground">
+              <div className="text-foreground">
                 This is a preview of your card configuration. Adjust the
                 controls to see how different options affect the card
                 appearance.
-              </p>
+              </div>
             </ModusCard>
           </div>
         </div>
@@ -535,15 +526,15 @@ export default function CardDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common card patterns used in applications.
-        </p>
+        </div>
         <div className="space-y-8">
           {/* Product Cards */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Product Cards
-            </h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <ModusCard
                 header={
@@ -566,10 +557,10 @@ export default function CardDemoPage() {
                 }
                 aria-label="MacBook Pro product card"
               >
-                <p className="text-foreground">
+                <div className="text-foreground">
                   16-inch MacBook Pro with M2 Pro chip. Perfect for professional
                   workflows.
-                </p>
+                </div>
               </ModusCard>
 
               <ModusCard
@@ -593,10 +584,10 @@ export default function CardDemoPage() {
                 }
                 aria-label="Wireless headphones product card"
               >
-                <p className="text-foreground">
+                <div className="text-foreground">
                   Premium wireless headphones with noise cancellation and
                   30-hour battery life.
-                </p>
+                </div>
               </ModusCard>
 
               <ModusCard
@@ -620,19 +611,19 @@ export default function CardDemoPage() {
                 }
                 aria-label="Smart watch product card"
               >
-                <p className="text-foreground">
+                <div className="text-foreground">
                   Advanced smartwatch with health monitoring, GPS, and 5-day
                   battery life.
-                </p>
+                </div>
               </ModusCard>
             </div>
           </div>
 
           {/* Dashboard Cards */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Dashboard Cards
-            </h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <ModusCard
                 padding="compact"
@@ -695,10 +686,10 @@ export default function CardDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusCard
   title="Card Title"
   subtitle="Card subtitle"
@@ -706,13 +697,13 @@ export default function CardDemoPage() {
 >
   <p>Card content goes here</p>
 </ModusCard>`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusCard
   layout="horizontal"
   bordered
@@ -726,7 +717,7 @@ export default function CardDemoPage() {
 >
   <p>Card content</p>
 </ModusCard>`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

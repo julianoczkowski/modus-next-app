@@ -1,5 +1,6 @@
 "use client";
 
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 import ModusLoader from "../components/ModusLoader";
 
 export default function LoaderDemo() {
@@ -35,10 +36,10 @@ export default function LoaderDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Loader Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Visual indicators for loading states with 6 animation variants, 4
           sizes, and 8 color options
-        </p>
+        </div>
       </div>
 
       {/* Basic Usage */}
@@ -165,20 +166,14 @@ export default function LoaderDemo() {
               Button Loading State
             </div>
             <div className="flex gap-4">
-              <button
-                className="px-4 py-2 bg-primary text-primary-foreground rounded flex items-center gap-2"
-                disabled
-              >
+              <ModusWcButton color="primary" disabled>
                 <ModusLoader size="sm" color="primary" />
                 Loading...
-              </button>
-              <button
-                className="px-4 py-2 bg-success text-primary-foreground rounded flex items-center gap-2"
-                disabled
-              >
+              </ModusWcButton>
+              <ModusWcButton color="success" disabled>
                 <ModusLoader size="sm" color="success" />
                 Saving...
-              </button>
+              </ModusWcButton>
             </div>
           </div>
           <div>
@@ -347,7 +342,7 @@ export default function LoaderDemo() {
               <div className="p-4 bg-muted rounded">
                 <div className="flex items-center gap-3 mb-2">
                   <ModusLoader size="sm" ariaLabel="Loading search results" />
-                  <span className="text-foreground">Searching...</span>
+                  <div className="text-foreground">Searching...</div>
                 </div>
                 <div className="text-sm text-foreground opacity-70">
                   Finding matches for your query
@@ -356,7 +351,7 @@ export default function LoaderDemo() {
               <div className="p-4 bg-muted rounded">
                 <div className="flex items-center gap-3 mb-2">
                   <ModusLoader size="sm" ariaLabel="Saving form data" />
-                  <span className="text-foreground">Saving...</span>
+                  <div className="text-foreground">Saving...</div>
                 </div>
                 <div className="text-sm text-foreground opacity-70">
                   Your changes are being saved

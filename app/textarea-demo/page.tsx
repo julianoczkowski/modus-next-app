@@ -84,10 +84,10 @@ export default function TextareaDemoPage() {
               <div className="text-2xl font-semibold text-foreground mb-2">
                 Controlled Field Log
               </div>
-              <p className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Manage value through React state. Helper text tracks remaining
                 characters while quick templates accelerate data entry.
-              </p>
+              </div>
             </div>
             <div className="flex gap-3 flex-wrap">
               <ModusWcButton

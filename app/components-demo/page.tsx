@@ -353,10 +353,10 @@ export default function ComponentsDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Web Components Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore all available Modus Web Components with interactive demos and
           examples.
-        </p>
+        </div>
       </div>
 
       {/* Category Filter */}
@@ -400,7 +400,7 @@ export default function ComponentsDemoPage() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span
+                <div
                   className={`px-2 py-1 rounded text-xs font-medium ${
                     component.status === "ready"
                       ? "bg-success text-success-foreground"
@@ -408,13 +408,13 @@ export default function ComponentsDemoPage() {
                   }`}
                 >
                   {component.status === "ready" ? "Ready" : "Demo"}
-                </span>
+                </div>
               </div>
             </div>
 
-            <p className="text-foreground mb-4 text-sm leading-relaxed">
+            <div className="text-foreground mb-4 text-sm leading-relaxed">
               {component.description}
-            </p>
+            </div>
 
             <div className="flex gap-2">
               <Link href={component.url} className="flex-1">
@@ -487,24 +487,24 @@ export default function ComponentsDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Installation
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`npm install @trimble-oss/moduswebcomponents-react`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`import { ModusWcButton } from '@trimble-oss/moduswebcomponents-react';
 
 <ModusWcButton color="primary">
   Click me
 </ModusWcButton>`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

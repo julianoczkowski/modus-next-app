@@ -12,10 +12,10 @@ export default function InputLabelDemo() {
         <div className="text-4xl font-semibold text-foreground mb-4">
           Modus Input Label Component Demo
         </div>
-        <p className="text-lg text-foreground opacity-80">
+        <div className="text-lg text-foreground opacity-80">
           Labels for form controls with optional sub-label text, required field
           indicators, and custom content
-        </p>
+        </div>
       </div>
 
       {/* Basic Usage */}
@@ -277,9 +277,9 @@ export default function InputLabelDemo() {
               forId="keyboard-hint"
               labelText="Keyboard Shortcut"
             >
-              <span className="text-xs bg-muted px-2 py-1 rounded text-foreground">
+              <div className="text-xs bg-muted px-2 py-1 rounded text-foreground">
                 ⌘K
-              </span>
+              </div>
             </ModusInputLabel>
             <input
               id="keyboard-hint"

@@ -93,9 +93,7 @@ export default function SelectDemoPage() {
     }
 
     return base.map((option) =>
-      option.value === "monthly"
-        ? { ...option, disabled: true }
-        : { ...option }
+      option.value === "monthly" ? { ...option, disabled: true } : { ...option }
     );
   }, [configuration.environment]);
 
@@ -120,32 +118,31 @@ export default function SelectDemoPage() {
   }, []);
 
   const handleSelectChange = useCallback(
-    (field: keyof ConfigurationState) =>
-      (event: CustomEvent<InputEvent>) => {
-        const select = event.target as HTMLModusWcSelectElement | null;
-        if (!select) {
-          return;
-        }
+    (field: keyof ConfigurationState) => (event: CustomEvent<InputEvent>) => {
+      const select = event.target as HTMLModusWcSelectElement | null;
+      if (!select) {
+        return;
+      }
 
-        const newValue = select.value;
-        setConfiguration((prev) => ({
-          ...prev,
-          [field]: newValue,
-        }));
+      const newValue = select.value;
+      setConfiguration((prev) => ({
+        ...prev,
+        [field]: newValue,
+      }));
 
-        logEvent(
-          `Updated ${field} to "${newValue || "none"}" (${select.label ?? ""})`
-        );
+      logEvent(
+        `Updated ${field} to "${newValue || "none"}" (${select.label ?? ""})`
+      );
 
-        if (field === "region" && !newValue) {
-          setFeedback({
-            level: "warning",
-            message: "Region is required before selecting a data source.",
-          });
-        } else if (field === "region" && newValue) {
-          setFeedback(undefined);
-        }
-      },
+      if (field === "region" && !newValue) {
+        setFeedback({
+          level: "warning",
+          message: "Region is required before selecting a data source.",
+        });
+      } else if (field === "region" && newValue) {
+        setFeedback(undefined);
+      }
+    },
     [logEvent]
   );
 
@@ -181,12 +178,12 @@ export default function SelectDemoPage() {
           <div className="text-4xl font-semibold text-foreground mb-4">
             Modus Select Component Demo
           </div>
-          <p className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
+          <div className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
             Configure dropdown menus with design-system-compliant styling,
             required logic, validation feedback, and event-driven state updates.
             Options are always provided via JavaScript arrays for predictable
             rendering.
-          </p>
+          </div>
         </div>
 
         {/* Project Configuration */}
@@ -199,10 +196,10 @@ export default function SelectDemoPage() {
               <div className="text-2xl font-semibold text-foreground mb-2">
                 Project Configuration
               </div>
-              <p className="text-sm text-foreground opacity-80">
+              <div className="text-sm text-foreground opacity-80">
                 Each select is a controlled React value. Events emitted by the
                 Modus component keep the state in sync.
-              </p>
+              </div>
             </div>
             <div className="flex gap-3">
               <ModusWcButton
@@ -268,17 +265,17 @@ export default function SelectDemoPage() {
           <div className="mt-6 bg-background border border-border rounded-lg p-4">
             <div className="text-sm text-foreground opacity-80">
               Selected region:{" "}
-              <span className="font-semibold text-foreground">
+              <div className="font-semibold text-foreground">
                 {configuration.region || "none"}
-              </span>{" "}
+              </div>{" "}
               • role:{" "}
-              <span className="font-semibold text-foreground">
+              <div className="font-semibold text-foreground">
                 {configuration.role || "unassigned"}
-              </span>{" "}
+              </div>{" "}
               • environment:{" "}
-              <span className="font-semibold text-foreground">
+              <div className="font-semibold text-foreground">
                 {configuration.environment}
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -314,7 +311,9 @@ export default function SelectDemoPage() {
                 Remote catalog (async)
               </div>
               <ModusSelect
-                label={loadingCatalog ? "Loading catalog..." : "Project catalog"}
+                label={
+                  loadingCatalog ? "Loading catalog..." : "Project catalog"
+                }
                 options={
                   loadingCatalog
                     ? [{ label: "Fetching data…", value: "" }]

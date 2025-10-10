@@ -70,10 +70,10 @@ export default function BadgeDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Badge Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Badge component with different colors, variants,
           sizes, and use cases.
-        </p>
+        </div>
       </div>
 
       {/* Color Variants */}
@@ -81,9 +81,9 @@ export default function BadgeDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Color Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different badge colors for various statuses and categories.
-        </p>
+        </div>
         <div className="flex items-center gap-4 flex-wrap">
           {colors.map((color) => (
             <div key={color.value} className="text-center">
@@ -104,14 +104,14 @@ export default function BadgeDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Variant Types
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different visual styles for badges.
-        </p>
+        </div>
         <div className="space-y-6">
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Filled Badges
-            </h4>
+            </div>
             <div className="flex items-center gap-4 flex-wrap">
               <ModusBadge variant="filled" color="primary">
                 New
@@ -128,9 +128,9 @@ export default function BadgeDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Text Badges
-            </h4>
+            </div>
             <div className="flex items-center gap-4 flex-wrap">
               <ModusBadge variant="text" color="primary">
                 Draft
@@ -147,9 +147,9 @@ export default function BadgeDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Counter Badges
-            </h4>
+            </div>
             <div className="flex items-center gap-4 flex-wrap">
               <ModusBadge variant="counter" color="primary">
                 5
@@ -173,15 +173,15 @@ export default function BadgeDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different badge sizes for various contexts.
-        </p>
+        </div>
         <div className="space-y-6">
           {sizes.map((size) => (
             <div key={size.value}>
-              <h4 className="text-lg font-semibold mb-3 text-foreground">
+              <div className="text-lg font-semibold mb-3 text-foreground">
                 {size.label} ({size.description})
-              </h4>
+              </div>
               <div className="flex items-center gap-4 flex-wrap">
                 <ModusBadge size={size.value} color="primary">
                   New
@@ -216,29 +216,29 @@ export default function BadgeDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common use cases for badges in applications.
-        </p>
+        </div>
         <div className="space-y-6">
           {/* User Status */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               User Status
-            </h4>
+            </div>
             <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-primary rounded-full"></div>
-                <span className="text-foreground">John Doe</span>
+                <div className="text-foreground">John Doe</div>
                 <ModusBadge color="success">Online</ModusBadge>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-secondary rounded-full"></div>
-                <span className="text-foreground">Jane Smith</span>
+                <div className="text-foreground">Jane Smith</div>
                 <ModusBadge color="warning">Away</ModusBadge>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-tertiary rounded-full"></div>
-                <span className="text-foreground">Bob Wilson</span>
+                <div className="text-foreground">Bob Wilson</div>
                 <ModusBadge color="secondary">Offline</ModusBadge>
               </div>
             </div>
@@ -246,27 +246,27 @@ export default function BadgeDemoPage() {
 
           {/* Notification Counters */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Notification Counters
-            </h4>
+            </div>
             <div className="flex items-center gap-6 flex-wrap">
               <div className="flex items-center gap-2">
                 <i className="modus-icons text-foreground">mail</i>
-                <span className="text-foreground">Messages</span>
+                <div className="text-foreground">Messages</div>
                 <ModusBadge variant="counter" color="danger">
                   5
                 </ModusBadge>
               </div>
               <div className="flex items-center gap-2">
                 <i className="modus-icons text-foreground">notifications</i>
-                <span className="text-foreground">Alerts</span>
+                <div className="text-foreground">Alerts</div>
                 <ModusBadge variant="counter" color="warning">
                   12
                 </ModusBadge>
               </div>
               <div className="flex items-center gap-2">
                 <i className="modus-icons text-foreground">shopping_cart</i>
-                <span className="text-foreground">Cart</span>
+                <div className="text-foreground">Cart</div>
                 <ModusBadge variant="counter" color="primary">
                   3
                 </ModusBadge>
@@ -276,26 +276,26 @@ export default function BadgeDemoPage() {
 
           {/* Task Status */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Task Status
-            </h4>
+            </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
-                <span className="text-foreground">
+                <div className="text-foreground">
                   Complete user authentication
-                </span>
+                </div>
                 <ModusBadge color="success">Completed</ModusBadge>
               </div>
               <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
-                <span className="text-foreground">Update documentation</span>
+                <div className="text-foreground">Update documentation</div>
                 <ModusBadge color="warning">In Progress</ModusBadge>
               </div>
               <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
-                <span className="text-foreground">Fix critical bug</span>
+                <div className="text-foreground">Fix critical bug</div>
                 <ModusBadge color="danger">Urgent</ModusBadge>
               </div>
               <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
-                <span className="text-foreground">Code review</span>
+                <div className="text-foreground">Code review</div>
                 <ModusBadge variant="text" color="primary">
                   Pending
                 </ModusBadge>
@@ -305,24 +305,24 @@ export default function BadgeDemoPage() {
 
           {/* Product Categories */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Product Categories
-            </h4>
+            </div>
             <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2">
-                <span className="text-foreground">Electronics</span>
+                <div className="text-foreground">Electronics</div>
                 <ModusBadge color="primary">24 items</ModusBadge>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-foreground">Clothing</span>
+                <div className="text-foreground">Clothing</div>
                 <ModusBadge color="success">18 items</ModusBadge>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-foreground">Books</span>
+                <div className="text-foreground">Books</div>
                 <ModusBadge color="secondary">32 items</ModusBadge>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-foreground">Home & Garden</span>
+                <div className="text-foreground">Home & Garden</div>
                 <ModusBadge color="tertiary">15 items</ModusBadge>
               </div>
             </div>
@@ -335,14 +335,14 @@ export default function BadgeDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Badge Builder
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Create custom badges with different properties.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Controls
-            </h4>
+            </div>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
@@ -417,9 +417,9 @@ export default function BadgeDemoPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Preview
-            </h4>
+            </div>
             <div className="flex items-center gap-4">
               <ModusBadge
                 color={selectedColor}
@@ -446,9 +446,9 @@ export default function BadgeDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Styling Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Badges with custom CSS classes for enhanced styling.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="text-center">
             <ModusBadge color="primary" customClass="shadow-lg">
@@ -487,20 +487,20 @@ export default function BadgeDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusBadge color="primary">
   New
 </ModusBadge>`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusBadge
   color="success"
   variant="counter"
@@ -509,7 +509,7 @@ export default function BadgeDemoPage() {
 >
   42
 </ModusBadge>`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

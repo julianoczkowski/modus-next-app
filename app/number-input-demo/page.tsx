@@ -138,11 +138,11 @@ export default function NumberInputDemo() {
         <div className="text-3xl font-bold text-foreground mb-4">
           Modus Number Input Demo
         </div>
-        <p className="text-lg text-muted-foreground">
+        <div className="text-lg text-muted-foreground">
           Interactive demonstration of the Modus Number Input component with
           validation, currency support, range sliders, and comprehensive
           configuration options.
-        </p>
+        </div>
       </div>
 
       {/* Interactive Demo */}
@@ -336,7 +336,7 @@ export default function NumberInputDemo() {
                     }))
                   }
                 />
-                <span className="text-foreground">Disabled</span>
+                <div className="text-foreground">Disabled</div>
               </label>
 
               <label className="flex items-center gap-2">
@@ -350,7 +350,7 @@ export default function NumberInputDemo() {
                     }))
                   }
                 />
-                <span className="text-foreground">Read-only</span>
+                <div className="text-foreground">Read-only</div>
               </label>
 
               <label className="flex items-center gap-2">
@@ -364,7 +364,7 @@ export default function NumberInputDemo() {
                     }))
                   }
                 />
-                <span className="text-foreground">Required</span>
+                <div className="text-foreground">Required</div>
               </label>
 
               <label className="flex items-center gap-2">
@@ -378,7 +378,7 @@ export default function NumberInputDemo() {
                     }))
                   }
                 />
-                <span className="text-foreground">Bordered</span>
+                <div className="text-foreground">Bordered</div>
               </label>
             </div>
           </div>
@@ -649,7 +649,7 @@ export default function NumberInputDemo() {
             <div className="text-lg font-semibold text-foreground mb-2">
               Basic Usage
             </div>
-            <pre className="text-sm text-muted-foreground overflow-x-auto">
+            <div className="text-sm text-muted-foreground overflow-x-auto">
               {`<ModusNumberInput
   label="Quantity"
   placeholder="Enter quantity"
@@ -657,14 +657,14 @@ export default function NumberInputDemo() {
   max={100}
   onInputChange={(value) => console.log('Value:', value)}
 />`}
-            </pre>
+            </div>
           </div>
 
           <div className="p-4 bg-card rounded-lg border border-border">
             <div className="text-lg font-semibold text-foreground mb-2">
               Advanced Usage
             </div>
-            <pre className="text-sm text-muted-foreground overflow-x-auto">
+            <div className="text-sm text-muted-foreground overflow-x-auto">
               {`<ModusNumberInput
   label="Price"
   currencySymbol="$"
@@ -679,7 +679,7 @@ export default function NumberInputDemo() {
   }}
   onInputChange={handlePriceChange}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

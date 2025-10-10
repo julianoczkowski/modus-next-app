@@ -114,10 +114,10 @@ export default function DateDemoPage() {
         <div className="text-4xl font-semibold mb-4 text-foreground">
           Modus Date Demo
         </div>
-        <p className="text-lg leading-relaxed text-foreground text-center">
+        <div className="text-lg leading-relaxed text-foreground text-center">
           Explore the Modus Date component with different configurations,
           validation, and form integration patterns.
-        </p>
+        </div>
       </div>
 
       {/* Basic Examples */}
@@ -125,9 +125,9 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Date Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Simple date pickers with different configurations.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <ModusDate
@@ -166,16 +166,16 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Different date picker sizes for various contexts and importance
           levels.
-        </p>
+        </div>
         <div className="space-y-4">
           {sizes.map((size) => (
             <div key={size.value}>
-              <h4 className="text-lg font-semibold mb-3 text-foreground">
+              <div className="text-lg font-semibold mb-3 text-foreground">
                 {size.label} ({size.description})
-              </h4>
+              </div>
               <div className="max-w-xs">
                 <ModusDate
                   size={size.value}
@@ -196,9 +196,9 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Date Range Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Date pickers with minimum and maximum date restrictions.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <ModusDate
@@ -209,9 +209,9 @@ export default function DateDemoPage() {
               onInputFocus={handleDateFocus("range")}
               onInputBlur={handleDateBlur("range")}
             />
-            <p className="text-sm text-muted-foreground mt-2">
+            <div className="text-sm text-muted-foreground mt-2">
               Minimum date: {today}
-            </p>
+            </div>
           </div>
           <div>
             <ModusDate
@@ -223,9 +223,9 @@ export default function DateDemoPage() {
               onInputFocus={handleDateFocus("range-30")}
               onInputBlur={handleDateBlur("range-30")}
             />
-            <p className="text-sm text-muted-foreground mt-2">
+            <div className="text-sm text-muted-foreground mt-2">
               Range: {tomorrow} to {nextMonth}
-            </p>
+            </div>
           </div>
           <div>
             <ModusDate
@@ -237,9 +237,9 @@ export default function DateDemoPage() {
               onInputFocus={handleDateFocus("range-week")}
               onInputBlur={handleDateBlur("range-week")}
             />
-            <p className="text-sm text-muted-foreground mt-2">
+            <div className="text-sm text-muted-foreground mt-2">
               Range: {today} to {nextWeek}
-            </p>
+            </div>
           </div>
           <div>
             <ModusDate
@@ -250,9 +250,9 @@ export default function DateDemoPage() {
               onInputFocus={handleDateFocus("range-past")}
               onInputBlur={handleDateBlur("range-past")}
             />
-            <p className="text-sm text-muted-foreground mt-2">
+            <div className="text-sm text-muted-foreground mt-2">
               Maximum date: {today}
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -262,9 +262,9 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Feedback Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Date pickers with different feedback states and messages.
-        </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <ModusDate
@@ -327,9 +327,9 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Form Integration
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Date pickers integrated into forms with proper naming and validation.
-        </p>
+        </div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -412,15 +412,15 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Common date picker patterns used in applications.
-        </p>
+        </div>
         <div className="space-y-8">
           {/* Event Planning */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Event Planning
-            </h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <ModusDate
@@ -456,9 +456,9 @@ export default function DateDemoPage() {
 
           {/* Project Management */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Project Management
-            </h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <ModusDate
@@ -489,9 +489,9 @@ export default function DateDemoPage() {
 
           {/* Personal Information */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+            <div className="text-lg font-semibold mb-4 text-foreground">
               Personal Information
-            </h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <ModusDate
@@ -526,9 +526,9 @@ export default function DateDemoPage() {
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
-        <p className="text-foreground mb-6">
+        <div className="text-foreground mb-6">
           Control date values programmatically.
-        </p>
+        </div>
         <div className="flex gap-4 mb-6">
           <ModusWcButton color="primary" onButtonClick={setToday}>
             <i className="modus-icons mr-2">today</i>
@@ -549,25 +549,25 @@ export default function DateDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Current Values
-            </h4>
+            </div>
             <div className="space-y-2 text-sm">
               {Object.entries(dateValues).map(([key, value]) => (
                 <div key={key} className="flex justify-between">
-                  <span className="text-foreground capitalize">{key}:</span>
-                  <span className="font-mono text-muted-foreground">
+                  <div className="text-foreground capitalize">{key}:</div>
+                  <div className="font-mono text-muted-foreground">
                     {value || "empty"}
-                  </span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-3 text-foreground">
+            <div className="text-lg font-semibold mb-3 text-foreground">
               Form Data
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {JSON.stringify(
                 Object.fromEntries(
                   Object.entries(dateValues).filter(([key]) =>
@@ -582,7 +582,7 @@ export default function DateDemoPage() {
                 null,
                 2
               )}
-            </pre>
+            </div>
           </div>
         </div>
       </div>
@@ -606,8 +606,8 @@ export default function DateDemoPage() {
         <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <span className="text-foreground min-w-20">{log.timestamp}</span>
-              <span
+              <div className="text-foreground min-w-20">{log.timestamp}</div>
+              <div
                 className={`${
                   log.type === "success"
                     ? "text-success"
@@ -619,7 +619,7 @@ export default function DateDemoPage() {
                 }`}
               >
                 {log.message}
-              </span>
+              </div>
             </div>
           ))}
           {eventLogs.length === 0 && (
@@ -637,21 +637,21 @@ export default function DateDemoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Basic Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusDate
   label="Select Date"
   onInputChange={handleChange}
 />`}
-            </pre>
+            </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-foreground">
+            <div className="text-lg font-semibold mb-2 text-foreground">
               Advanced Usage
-            </h4>
-            <pre className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
+            </div>
+            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
               {`<ModusDate
   label="Required Date"
   required
@@ -665,7 +665,7 @@ export default function DateDemoPage() {
   onInputFocus={handleFocus}
   onInputBlur={handleBlur}
 />`}
-            </pre>
+            </div>
           </div>
         </div>
       </div>

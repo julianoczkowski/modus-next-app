@@ -175,9 +175,9 @@ export default function ThemeSwitcherDemoPage() {
                 </div>
                 <div className="p-6 rounded-lg border border-border bg-card">
                   <ModusWcButton color="primary">Primary Action</ModusWcButton>
-                  <span className="ml-4 text-sm text-foreground opacity-80">
+                  <div className="ml-4 text-sm text-foreground opacity-80">
                     Buttons and badges update with the selected palette.
-                  </span>
+                  </div>
                 </div>
               </div>
             </div>

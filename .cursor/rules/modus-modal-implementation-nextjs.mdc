@@ -161,13 +161,15 @@ useEffect(() => {
 // ✅ CORRECT - Use slots for structured content
 <ModusWcModal modal-id="structuredModal">
   <div slot="header">
-    <h2>Modal Title</h2>
+    <div className="text-xl font-semibold">Modal Title</div>
   </div>
   <div slot="content">
-    <p>Modal body content</p>
+    <div className="text-base">Modal body content</div>
   </div>
   <div slot="footer">
-    <button onClick={closeModal}>Close</button>
+    <ModusWcButton color="secondary" onButtonClick={closeModal}>
+      Close
+    </ModusWcButton>
   </div>
 </ModusWcModal>
 ```
