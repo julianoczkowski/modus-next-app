@@ -2,7 +2,7 @@
 
 ## 🛡️ Supported Versions
 
-We actively maintain and provide security updates for the following versions of the Modus Vue Boilerplate:
+We actively maintain and provide security updates for the following versions of the Modus Next.js App:
 
 | Version | Supported | Status             |
 | ------- | --------- | ------------------ |
@@ -11,7 +11,7 @@ We actively maintain and provide security updates for the following versions of 
 
 ## 🚨 Reporting a Vulnerability
 
-The security of the Modus Vue Boilerplate is important to us. If you discover a security vulnerability, please follow these guidelines:
+The security of the Modus Next.js App is important to us. If you discover a security vulnerability, please follow these guidelines:
 
 ### Immediate Action Required
 
@@ -22,7 +22,7 @@ The security of the Modus Vue Boilerplate is important to us. If you discover a 
 1. **Email the maintainer directly:**
 
    - 📧 **Email:** [julian_oczkowski@trimble.com](mailto:julian_oczkowski@trimble.com)
-   - 🔒 **Subject:** `[SECURITY] Modus Vue Boilerplate - [Brief Description]`
+   - 🔒 **Subject:** `[SECURITY] Modus Next.js App - [Brief Description]`
 
 2. **Include the following information:**
    - **Description** of the vulnerability
@@ -44,8 +44,8 @@ The security of the Modus Vue Boilerplate is important to us. If you discover a 
 
 This security policy covers vulnerabilities in:
 
-- **Core boilerplate code** (Vue components, TypeScript definitions)
-- **Build configuration** (Vite, bundling, deployment)
+- **Core boilerplate code** (React components, TypeScript definitions)
+- **Build configuration** (Next.js, Turbopack, deployment)
 - **Development tools** (linting, pre-commit hooks)
 - **Documentation** that could lead to insecure implementations
 
@@ -55,7 +55,7 @@ The following are **NOT** covered by this security policy:
 
 - **Third-party dependencies** (report to respective maintainers)
 - **Modus Web Components** (report to [Trimble OSS](https://github.com/trimble-oss/modus-web-components))
-- **Vue.js framework** (report to [Vue.js team](https://vuejs.org/about/security.html))
+- **Next.js framework** (report to [Next.js team](https://nextjs.org/security))
 - **Browser vulnerabilities**
 - **Infrastructure or hosting** security issues
 
@@ -66,7 +66,7 @@ The following are **NOT** covered by this security policy:
 When contributing to this project:
 
 - **Keep dependencies updated** to their latest secure versions
-- **Follow secure coding practices** for Vue.js applications
+- **Follow secure coding practices** for Next.js applications
 - **Validate all user inputs** in examples and demos
 - **Use HTTPS** for all external resources and CDN links
 - **Implement proper Content Security Policy** headers
@@ -80,7 +80,7 @@ When using this boilerplate:
 - **Review and customize** security headers for your deployment
 - **Implement authentication** and authorization as needed
 - **Use HTTPS** in production environments
-- **Follow Vue.js security guidelines** for your application
+- **Follow Next.js security guidelines** for your application
 - **Regularly audit** your application for vulnerabilities
 
 ## 🔐 Security Features
@@ -105,7 +105,7 @@ This boilerplate includes several security-focused features:
 
 #### Runtime Security
 
-- **XSS protection** - Vue.js built-in XSS prevention
+- **XSS protection** - Next.js built-in XSS prevention
 - **CSRF protection** - Guidelines for implementing CSRF tokens
 - **Secure headers** - Recommended security headers configuration
 - **Input validation** - Examples of proper input sanitization
@@ -127,7 +127,7 @@ This boilerplate includes several security-focused features:
 
 - [ ] **Monthly dependency updates** and security audits
 - [ ] **Quarterly security review** of custom code
-- [ ] **Monitor security advisories** for Vue.js and dependencies
+- [ ] **Monitor security advisories** for Next.js and dependencies
 - [ ] **Review access logs** for suspicious activity
 - [ ] **Update security documentation** as needed
 
@@ -143,7 +143,7 @@ This boilerplate includes several security-focused features:
 
 - **Modus Web Components** - Loaded from CDN; ensure integrity checks are in place
 - **Icon Fonts** - Loaded from external CDN; consider self-hosting for critical applications
-- **Vue.js** - Keep updated to latest stable version for security patches
+- **Next.js** - Keep updated to latest stable version for security patches
 
 ### Browser Compatibility
 
@@ -191,6 +191,6 @@ Currently, we do not offer a formal bug bounty program. However, we deeply appre
 
 ---
 
-**Thank you for helping keep the Modus Vue Boilerplate secure! 🔒**
+**Thank you for helping keep the Modus Next.js App secure! 🔒**
 
 _Last updated: January 2025_

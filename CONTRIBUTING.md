@@ -1,6 +1,6 @@
-# Contributing to Modus Vue Boilerplate
+# Contributing to Modus Next.js App
 
-Thank you for your interest in contributing to the Modus Vue Boilerplate! This project aims to provide a production-ready Vue 3 starter template with Modus 2 Web Components integration. We welcome contributions from the community.
+Thank you for your interest in contributing to the Modus Next.js App! This project aims to provide a production-ready Next.js 15 starter template with Modus 2 Web Components integration. We welcome contributions from the community.
 
 ## 🤝 How to Contribute
 
@@ -19,14 +19,14 @@ We welcome feature suggestions! Please:
 
 1. **Check existing feature requests** first
 2. **Explain the use case** and benefits
-3. **Consider if it fits the boilerplate scope** (Vue 3 + Modus 2 integration)
+3. **Consider if it fits the boilerplate scope** (Next.js 15 + Modus 2 integration)
 4. **Provide implementation ideas** if possible
 
 ## 🛠️ Development Setup
 
 ### Prerequisites
 
-- Node.js 20+ (required for Vite 7.x compatibility)
+- Node.js 20+ (required for Next.js 15 compatibility)
 - npm or yarn
 - Git
 
@@ -36,8 +36,8 @@ We welcome feature suggestions! Please:
 
    ```bash
    # Fork on GitHub, then clone your fork
-   git clone https://github.com/YOUR_USERNAME/modus-vue-app.git
-   cd modus-vue-app
+   git clone https://github.com/YOUR_USERNAME/modus-next-app.git
+   cd modus-next-app
    ```
 
 2. **Install dependencies**
@@ -71,7 +71,7 @@ This project follows strict development rules and standards:
 
 #### 🧩 Component Development
 
-- **Follow Vue 3 Composition API** patterns
+- **Follow Next.js 15 App Router** patterns
 - **Use TypeScript** for all new code
 - **Implement proper accessibility** (ARIA labels, keyboard navigation)
 - **Test with all 4 Modus themes** (Classic/Modern, Light/Dark)
@@ -91,12 +91,12 @@ This project follows strict development rules and standards:
 ### File Organization
 
 ```
-src/
-├── components/          # Reusable Vue components
-├── views/              # Page components
-├── router/             # Vue Router configuration
-├── types/              # TypeScript definitions
-└── utils/              # Utility functions
+app/
+├── components/         # Reusable React components
+├── [feature]-demo/     # Demo pages
+├── contexts/           # React contexts
+├── globals.css         # Global styles and design system
+└── layout.tsx          # Root layout
 
 .cursor/
 ├── rules/              # Development rules (DO NOT MODIFY)
@@ -134,6 +134,8 @@ The project includes automated checks:
 - [ ] **Theme switching works** for all 4 themes
 - [ ] **Icons display properly** with valid names
 - [ ] **Colors follow Modus standards** (run `npm run lint:colors`)
+- [ ] **Modus styles are followed** (run `npm run lint:styles`)
+- [ ] **No semantic HTML is used** (run `npm run lint:semantic`)
 - [ ] **Responsive design** works on mobile and desktop
 - [ ] **Accessibility** - test with screen readers if possible
 - [ ] **Build succeeds** (`npm run build`)
@@ -224,7 +226,7 @@ Fixes #(issue number)
 - **Non-Modus color usage** - Must follow the 9 approved colors
 - **Accessibility regressions** - All changes must maintain WCAG 2.1 AA compliance
 - **Hardcoded values** - Use Modus design tokens and CSS variables
-- **Framework changes** - This is specifically a Vue 3 boilerplate
+- **Framework changes** - This is specifically a Next.js 15 boilerplate
 - **Dependency bloat** - New dependencies must be justified
 
 ## 📞 Getting Help
@@ -254,6 +256,6 @@ By contributing, you agree that your contributions will be licensed under the sa
 
 ---
 
-**Thank you for helping make the Modus Vue Boilerplate better for everyone! 🚀**
+**Thank you for helping make the Modus Next.js App better for everyone! 🚀**
 
 _For questions about contributing, please open a GitHub Discussion or contact the maintainers._

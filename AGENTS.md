@@ -33,7 +33,11 @@ npm start               # Start production server
 ```bash
 npm run lint            # Run ESLint
 npm run type-check      # TypeScript compilation check
-npm run lint:colors     # Verify Modus color compliance (CRITICAL)
+npm run lint:colors     # Verify Modus color compliance
+npm run lint:icons      # Verify Modus icons
+npm run lint:semantic   # Verify if app is using semantic HTML
+npm run lint:styles     # Verify Modus styles
+(CRITICAL)
 ```
 
 ### Git Workflow
