@@ -8,7 +8,9 @@ docs/ @julianoczkowski
 # Configuration files
 package.json @julianoczkowski
 tsconfig.json @julianoczkowski
-vite.config.ts @julianoczkowski
+next.config.ts @julianoczkowski
+postcss.config.mjs @julianoczkowski
+eslint.config.mjs @julianoczkowski
 .gitignore @julianoczkowski
 
 # Cursor rules and MCP configuration
@@ -24,14 +26,17 @@ CONTRIBUTING.md @julianoczkowski
 .github/ @julianoczkowski
 
 # Core source code
-src/ @julianoczkowski
+app/ @julianoczkowski
 
 # Component definitions and types
-src/types/ @julianoczkowski
-src/components/ @julianoczkowski
+app/components/ @julianoczkowski
+types/ @julianoczkowski
 
 # Build and deployment scripts
 scripts/ @julianoczkowski
 
-# Color linting script
+# Linting scripts
 scripts/check-modus-colors.js @julianoczkowski
+scripts/check-inline-styles.js @julianoczkowski
+scripts/check-semantic-html.js @julianoczkowski
+scripts/check-modus-icons.js @julianoczkowski

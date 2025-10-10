@@ -36,6 +36,9 @@ Fixes #(issue number)
 - [ ] **Theme switching works** for all 4 themes (Classic/Modern, Light/Dark)
 - [ ] **Icons display properly** with valid names
 - [ ] **Colors follow Modus standards** (`npm run lint:colors` passes)
+- [ ] **Modus styles are followed** (`npm run lint:styles` passes)
+- [ ] **No semantic HTML is used** (`npm run lint:semantic` passes)
+- [ ] **Modus icons are used correctly** (`npm run lint:icons` passes)
 - [ ] **Responsive design** works on mobile and desktop
 - [ ] **Accessibility** - tested with keyboard navigation
 - [ ] **Build succeeds** (`npm run build`)
@@ -53,7 +56,7 @@ Tested in the following browsers:
 ### Component-Specific Testing (if applicable)
 
 - [ ] **Modus Web Components** render correctly
-- [ ] **Vue components** work as expected
+- [ ] **React components** work as expected
 - [ ] **Event handling** functions properly
 - [ ] **Props and attributes** are properly typed
 - [ ] **Accessibility attributes** are present (ARIA labels, roles)
@@ -76,7 +79,9 @@ Tested in the following browsers:
 
 - [ ] **Uses only approved Modus colors** (9 total: 5 base + 4 semantic)
 - [ ] **Uses valid Modus icon names** from the official list
-- [ ] **Follows Vue component creation rules** (scoped CSS, TypeScript interfaces)
+- [ ] **Follows Next.js component creation rules** (Tailwind classes, TypeScript interfaces)
+- [ ] **Uses Tailwind classes instead of inline styles** (no `style={{}}` syntax)
+- [ ] **Uses div elements instead of semantic HTML** (no `<h1>`, `<section>`, etc.)
 - [ ] **Maintains theme compatibility** across all 4 Modus themes
 - [ ] **Follows accessibility guidelines** (WCAG 2.1 AA compliance)
 
@@ -163,6 +168,9 @@ Tested in the following browsers:
 
 3. **Check compliance:**
    - Run `npm run lint:colors` to verify color usage
+   - Run `npm run lint:styles` to verify no inline styles
+   - Run `npm run lint:semantic` to verify no semantic HTML
+   - Run `npm run lint:icons` to verify Modus icons usage
    - Test theme switching if UI changes were made
    - Verify accessibility with keyboard navigation
 

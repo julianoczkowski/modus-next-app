@@ -32,6 +32,15 @@ jobs:
       - name: Run Modus color linting
         run: npm run lint:colors
 
+      - name: Run Modus styles linting
+        run: npm run lint:styles
+
+      - name: Run semantic HTML linting
+        run: npm run lint:semantic
+
+      - name: Run Modus icons linting
+        run: npm run lint:icons
+
       - name: Build project
         run: npm run build
 
