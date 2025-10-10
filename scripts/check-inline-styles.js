@@ -67,20 +67,6 @@ const INLINE_STYLE_PATTERNS = [
   /style=\{\{[^}]*\}\}/g,
 ];
 
-// Border-related styles that are ALLOWED (due to Tailwind v4 + Modus conflicts)
-const ALLOWED_BORDER_PATTERNS = [
-  /borderWidth/g,
-  /borderTopWidth/g,
-  /borderRightWidth/g,
-  /borderBottomWidth/g,
-  /borderLeftWidth/g,
-  /border:/g,
-  /borderTop:/g,
-  /borderRight:/g,
-  /borderBottom:/g,
-  /borderLeft:/g,
-];
-
 // Tailwind alternatives for common inline styles
 const TAILWIND_ALTERNATIVES = {
   // Background colors

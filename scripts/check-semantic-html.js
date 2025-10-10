@@ -290,7 +290,6 @@ function isAllowedSemanticElement(element, content, matchIndex) {
     // Check if this quote is part of a JSX attribute (className="...", style="...", etc.)
     // or if it's actually a string literal
     const beforeQuote = content.substring(0, lastQuote);
-    const afterQuote = content.substring(lastQuote + 1);
 
     // Look for JSX attribute patterns before the quote
     const jsxAttributePattern =
