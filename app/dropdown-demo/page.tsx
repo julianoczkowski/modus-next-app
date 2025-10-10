@@ -7,14 +7,8 @@ import {
   ModusWcDropdownMenu,
 } from "@trimble-oss/moduswebcomponents-react";
 
-interface EventLog {
-  timestamp: string;
-  message: string;
-  type: "info" | "success" | "warning" | "error";
-}
-
-// Simple wrapper component for DropdownWithEvents with event handling
-function DropdownWithEvents({
+// Direct dropdown component with event handling - replaces DirectDropdown
+function DirectDropdown({
   children,
   onMenuVisibilityChange,
   onSelect,
@@ -34,30 +28,39 @@ function DropdownWithEvents({
     const handleMenuVisibilityChange = (event: Event) => {
       onMenuVisibilityChange?.(event as CustomEvent<{ isVisible: boolean }>);
     };
+
     const handleSelect = (event: Event) => {
+      console.log("Item selected:", event.detail);
       onSelect?.(event as CustomEvent<{ value: string }>);
 
       // Close the menu after item selection
-      const dropdown = dropdownRef.current;
-      if (dropdown) {
-        dropdown.menuVisible = false;
+      if (dropdownRef.current) {
+        console.log("Closing dropdown menu");
+        dropdownRef.current.menuVisible = false;
       }
     };
 
-    if (onMenuVisibilityChange)
+    // Add event listeners directly to the dropdown element
+    if (onMenuVisibilityChange) {
       dropdown.addEventListener(
         "menuVisibilityChange",
         handleMenuVisibilityChange
       );
-    if (onSelect) dropdown.addEventListener("itemSelect", handleSelect);
+    }
+    if (onSelect) {
+      dropdown.addEventListener("itemSelect", handleSelect);
+    }
 
     return () => {
-      if (onMenuVisibilityChange)
+      if (onMenuVisibilityChange) {
         dropdown.removeEventListener(
           "menuVisibilityChange",
           handleMenuVisibilityChange
         );
-      if (onSelect) dropdown.removeEventListener("itemSelect", handleSelect);
+      }
+      if (onSelect) {
+        dropdown.removeEventListener("itemSelect", handleSelect);
+      }
     };
   }, [onMenuVisibilityChange, onSelect]);
 
@@ -66,6 +69,12 @@ function DropdownWithEvents({
       {children}
     </ModusWcDropdownMenu>
   );
+}
+
+interface EventLog {
+  timestamp: string;
+  message: string;
+  type: "info" | "success" | "warning" | "error";
 }
 
 export default function DropdownDemoPage() {
@@ -252,13 +261,13 @@ export default function DropdownDemoPage() {
           Testing basic dropdown functionality.
         </div>
         <div className="flex flex-wrap gap-4">
-          <DropdownWithEvents>
+          <DirectDropdown>
             <div slot="button">Test Dropdown</div>
             <div slot="menu">
               <ModusWcMenuItem label="Option 1" value="option1" />
               <ModusWcMenuItem label="Option 2" value="option2" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
         </div>
       </div>
 
@@ -271,7 +280,7 @@ export default function DropdownDemoPage() {
           Simple dropdown menus with different configurations.
         </div>
         <div className="flex flex-wrap gap-4">
-          <DropdownWithEvents
+          <DirectDropdown
             onMenuVisibilityChange={handleMenuVisibilityChange("basic")}
             onSelect={handleItemSelect("basic")}
           >
@@ -287,9 +296,9 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Delete" value="delete" />
               <ModusWcMenuItem label="Share" value="share" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
 
-          <DropdownWithEvents
+          <DirectDropdown
             buttonColor="secondary"
             buttonVariant="outlined"
             onMenuVisibilityChange={handleMenuVisibilityChange("options")}
@@ -311,9 +320,9 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Help" value="help" startIcon="help" />
               <ModusWcMenuItem label="About" value="about" startIcon="info" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
 
-          <DropdownWithEvents
+          <DirectDropdown
             buttonSize="sm"
             buttonVariant="borderless"
             buttonColor="tertiary"
@@ -333,9 +342,9 @@ export default function DropdownDemoPage() {
                 disabled
               />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
 
-          <DropdownWithEvents
+          <DirectDropdown
             disabled
             onMenuVisibilityChange={handleMenuVisibilityChange("disabled")}
             onSelect={handleItemSelect("disabled")}
@@ -351,7 +360,7 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Option 1" value="option1" />
               <ModusWcMenuItem label="Option 2" value="option2" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
         </div>
       </div>
 
@@ -365,7 +374,7 @@ export default function DropdownDemoPage() {
         </div>
         <div className="flex flex-wrap gap-4">
           {sizes.map((size) => (
-            <DropdownWithEvents
+            <DirectDropdown
               key={size.value}
               buttonSize={size.value}
               onMenuVisibilityChange={handleMenuVisibilityChange(
@@ -387,7 +396,7 @@ export default function DropdownDemoPage() {
                 <ModusWcMenuItem label="Option 2" value="option2" />
                 <ModusWcMenuItem label="Option 3" value="option3" />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           ))}
         </div>
       </div>
@@ -402,7 +411,7 @@ export default function DropdownDemoPage() {
         </div>
         <div className="flex flex-wrap gap-4">
           {colors.map((color) => (
-            <DropdownWithEvents
+            <DirectDropdown
               key={color.value}
               buttonColor={color.value}
               onMenuVisibilityChange={handleMenuVisibilityChange(
@@ -424,7 +433,7 @@ export default function DropdownDemoPage() {
                 <ModusWcMenuItem label="Secondary Action" value="secondary" />
                 <ModusWcMenuItem label="Tertiary Action" value="tertiary" />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           ))}
         </div>
       </div>
@@ -439,7 +448,7 @@ export default function DropdownDemoPage() {
         </div>
         <div className="flex flex-wrap gap-4">
           {variants.map((variant) => (
-            <DropdownWithEvents
+            <DirectDropdown
               key={variant.value}
               buttonVariant={variant.value}
               onMenuVisibilityChange={handleMenuVisibilityChange(
@@ -461,7 +470,7 @@ export default function DropdownDemoPage() {
                 <ModusWcMenuItem label="Menu Item 2" value="item2" />
                 <ModusWcMenuItem label="Menu Item 3" value="item3" />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           ))}
         </div>
       </div>
@@ -476,7 +485,7 @@ export default function DropdownDemoPage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {placements.slice(0, 8).map((placement) => (
-            <DropdownWithEvents
+            <DirectDropdown
               key={placement.value}
               menuPlacement={placement.value}
               onMenuVisibilityChange={handleMenuVisibilityChange(
@@ -498,7 +507,7 @@ export default function DropdownDemoPage() {
                 <ModusWcMenuItem label="Option 2" value="option2" />
                 <ModusWcMenuItem label="Option 3" value="option3" />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           ))}
         </div>
       </div>
@@ -512,7 +521,7 @@ export default function DropdownDemoPage() {
           Different menu sizes for various content densities.
         </div>
         <div className="flex flex-wrap gap-4">
-          <DropdownWithEvents
+          <DirectDropdown
             menuSize="sm"
             onMenuVisibilityChange={handleMenuVisibilityChange("menu-sm")}
             onSelect={handleItemSelect("menu-sm")}
@@ -529,9 +538,9 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Compact Item 2" value="item2" />
               <ModusWcMenuItem label="Compact Item 3" value="item3" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
 
-          <DropdownWithEvents
+          <DirectDropdown
             menuSize="md"
             onMenuVisibilityChange={handleMenuVisibilityChange("menu-md")}
             onSelect={handleItemSelect("menu-md")}
@@ -548,9 +557,9 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Standard Item 2" value="item2" />
               <ModusWcMenuItem label="Standard Item 3" value="item3" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
 
-          <DropdownWithEvents
+          <DirectDropdown
             menuSize="lg"
             onMenuVisibilityChange={handleMenuVisibilityChange("menu-lg")}
             onSelect={handleItemSelect("menu-lg")}
@@ -567,7 +576,7 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Large Item 2" value="item2" />
               <ModusWcMenuItem label="Large Item 3" value="item3" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
         </div>
       </div>
 
@@ -585,7 +594,7 @@ export default function DropdownDemoPage() {
             <div className="text-lg font-semibold mb-4 text-foreground">
               User Profile Menu
             </div>
-            <DropdownWithEvents
+            <DirectDropdown
               buttonSize="lg"
               menuSize="lg"
               menuBordered={false}
@@ -620,7 +629,7 @@ export default function DropdownDemoPage() {
                   value="logout"
                 />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           </div>
 
           {/* Filter Menu */}
@@ -628,7 +637,7 @@ export default function DropdownDemoPage() {
             <div className="text-lg font-semibold mb-4 text-foreground">
               Filter Menu
             </div>
-            <DropdownWithEvents
+            <DirectDropdown
               buttonSize="sm"
               buttonVariant="borderless"
               buttonColor="tertiary"
@@ -660,7 +669,7 @@ export default function DropdownDemoPage() {
                   selected={selectedItems.filter === "draft"}
                 />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           </div>
 
           {/* Context Menu */}
@@ -668,7 +677,7 @@ export default function DropdownDemoPage() {
             <div className="text-lg font-semibold mb-4 text-foreground">
               Context Menu
             </div>
-            <DropdownWithEvents
+            <DirectDropdown
               buttonVariant="borderless"
               buttonColor="tertiary"
               menuPlacement="right-start"
@@ -693,7 +702,7 @@ export default function DropdownDemoPage() {
                   startIcon="delete"
                 />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           </div>
 
           {/* Action Menu */}
@@ -701,7 +710,7 @@ export default function DropdownDemoPage() {
             <div className="text-lg font-semibold mb-4 text-foreground">
               Action Menu
             </div>
-            <DropdownWithEvents
+            <DirectDropdown
               buttonColor="primary"
               buttonVariant="outlined"
               onMenuVisibilityChange={handleMenuVisibilityChange("actions")}
@@ -738,7 +747,7 @@ export default function DropdownDemoPage() {
                   startIcon="settings"
                 />
               </div>
-            </DropdownWithEvents>
+            </DirectDropdown>
           </div>
         </div>
       </div>
@@ -752,7 +761,7 @@ export default function DropdownDemoPage() {
           Control dropdown menu visibility programmatically.
         </div>
         <div className="flex flex-wrap gap-4 mb-6">
-          <DropdownWithEvents
+          <DirectDropdown
             buttonColor="primary"
             onMenuVisibilityChange={handleMenuVisibilityChange("controlled")}
             onSelect={handleItemSelect("controlled")}
@@ -769,7 +778,7 @@ export default function DropdownDemoPage() {
               <ModusWcMenuItem label="Option 2" value="option2" />
               <ModusWcMenuItem label="Option 3" value="option3" />
             </div>
-          </DropdownWithEvents>
+          </DirectDropdown>
 
           <ModusWcButton color="primary" onButtonClick={clearLogs}>
             <i className="modus-icons mr-2">delete</i>
@@ -892,7 +901,7 @@ export default function DropdownDemoPage() {
               Basic Usage
             </div>
             <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
-              {`<DropdownWithEvents
+              {`<DirectDropdown
   button="Actions"
   onMenuVisibilityChange={handleVisibility}
   onSelect={handleSelect}
@@ -901,7 +910,7 @@ export default function DropdownDemoPage() {
     <ModusWcMenuItem label="Edit" value="edit" />
     <ModusWcMenuItem label="Delete" value="delete" />
   </div>
-</DropdownWithEvents>`}
+</DirectDropdown>`}
             </div>
           </div>
           <div>
@@ -909,7 +918,7 @@ export default function DropdownDemoPage() {
               Advanced Usage
             </div>
             <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
-              {`<DropdownWithEvents
+              {`<DirectDropdown
   buttonColor="secondary"
   buttonSize="lg"
   buttonVariant="outlined"
@@ -927,7 +936,7 @@ export default function DropdownDemoPage() {
       value="account"
     />
   </div>
-</DropdownWithEvents>`}
+</DirectDropdown>`}
             </div>
           </div>
         </div>
