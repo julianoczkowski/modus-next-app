@@ -21,6 +21,8 @@ This boilerplate comes with comprehensive development rules and standards to ens
 
 > **Location:** All rules are stored in `.cursor/rules/` and automatically guide your development workflow through AI assistants.
 
+![Modus Next.js Boilerplate Teaser](readme_assets/teaser.gif)
+
 ## 🤖 AI Development Enhanced
 
 This boilerplate comes pre-configured with powerful AI development tools to supercharge your workflow:
@@ -215,6 +217,8 @@ This boilerplate includes 40+ pre-built Modus components ready to use:
 
 - **ModusModal** - Blocking dialog overlays
 - **ModusThemeSwitcher** - Theme toggle controls
+
+![Modus Web Components Demo](readme_assets/teaser_comp.gif)
 
 ## Modus Web Components Integration
 
