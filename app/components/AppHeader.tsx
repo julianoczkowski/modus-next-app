@@ -14,7 +14,7 @@ export default function AppHeader() {
 
   if (!mounted) {
     return (
-      <header
+      <div
         className="w-full border-b bg-background border-border text-foreground"
         style={{ borderBottomWidth: "1px" }}
       >
@@ -62,12 +62,12 @@ export default function AppHeader() {
             </div>
           </div>
         </div>
-      </header>
+      </div>
     );
   }
 
   return (
-    <header
+    <div
       className="w-full border-b bg-background border-border text-foreground"
       style={{ borderBottomWidth: "1px" }}
     >
@@ -107,6 +107,6 @@ export default function AppHeader() {
           <ThemeSwitcherDropdown />
         </div>
       </div>
-    </header>
+    </div>
   );
 }

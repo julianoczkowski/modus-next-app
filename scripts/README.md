@@ -1,35 +1,140 @@
-# Modus Color Linting for Next.js
+# Modus Design System Linting Scripts for Next.js
 
-This directory contains scripts for enforcing Modus Design System color usage in the Next.js codebase.
+This directory contains comprehensive linting scripts for enforcing Modus Design System compliance in the Next.js codebase. These scripts ensure consistent styling, proper component usage, and adherence to design system standards.
 
-## check-modus-colors.js
+## Available Linting Scripts
 
-A comprehensive linting script that detects non-Modus color patterns and suggests proper alternatives.
+### 1. Color Compliance (`check-modus-colors.js`)
 
-### What it detects:
+**Purpose**: Ensures only approved Modus colors are used throughout the codebase.
+
+**What it detects:**
 
 - Tailwind color classes (`red-400`, `blue-500`, etc.)
 - Hardcoded hex colors (`#ff0000`, `#ffffff`, etc.)
-- Basic RGB/RGBA values
+- RGB/RGBA values
 - Background, text, and border color violations
 
-### What it suggests:
+**What it suggests:**
 
 - Proper Modus CSS custom properties
 - Design system compliant alternatives
 - Links to official documentation
 
-### Usage:
+**Usage:**
 
 ```bash
-# Manual check
 npm run lint:colors
+```
 
+### 2. Inline Styles Compliance (`check-inline-styles.js`)
+
+**Purpose**: Detects inline styles that should be replaced with Tailwind classes for better maintainability and design system consistency.
+
+**What it detects:**
+
+- Background colors (`backgroundColor`, `background`)
+- Text colors (`color`)
+- Spacing (`margin`, `padding`)
+- Typography (`fontSize`, `fontWeight`, `lineHeight`, `textAlign`)
+- Layout properties (`display`, `flexDirection`, `justifyContent`, `alignItems`)
+- Positioning (`position`, `top`, `left`, `right`, `bottom`)
+- Sizing (`width`, `height`, `maxWidth`, `minHeight`)
+
+**What it suggests:**
+
+- Equivalent Tailwind utility classes
+- Design system compliant alternatives
+- Performance and maintainability improvements
+
+**Usage:**
+
+```bash
+npm run lint:styles
+```
+
+**Exceptions:**
+
+- Border-related styles are allowed due to Tailwind v4 + Modus conflicts
+- Dynamic values that can't be expressed as Tailwind classes
+
+### 3. Icon Usage Compliance (`check-modus-icons.js`)
+
+**Purpose**: Ensures only Modus Icons are used, preventing non-design-system icon libraries.
+
+**What it detects:**
+
+- Font Awesome icons (`fa-*`, `fas-*`, `far-*`, etc.)
+- Material Icons (`material-icons`, `material-symbols`)
+- Heroicons (`heroicons`)
+- Lucide icons (`lucide`, `lucide-react`)
+- React Icons imports (`react-icons`, `@heroicons`, `lucide-react`)
+- Other icon libraries (`@ant-design/icons`, `@mui/icons-material`, `@tabler/icons`, `@phosphor-icons`)
+- Custom SVG icons (non-Modus)
+- Generic icon components (`<Icon>`, `<Icons>`, `<IconButton>`)
+
+**What it suggests:**
+
+- Modus Icons alternatives
+- Proper Modus Icons usage patterns
+- Design system compliance
+
+**Usage:**
+
+```bash
+npm run lint:icons
+```
+
+### 4. Semantic HTML Compliance (`check-semantic-html.js`)
+
+**Purpose**: Ensures semantic HTML elements are replaced with `div` elements and Tailwind classes to avoid browser default style conflicts and maintain consistent styling.
+
+**What it detects:**
+
+- Heading elements (`<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`)
+- Semantic sections (`<section>`, `<header>`, `<footer>`, `<main>`, `<article>`, `<aside>`, `<nav>`)
+- Text elements (`<p>`, `<span>`)
+- Lists (`<ul>`, `<ol>`, `<li>`)
+- Interactive elements (`<button>`)
+- Other semantic elements (`<blockquote>`, `<cite>`, `<address>`, `<time>`, `<mark>`, `<small>`, `<strong>`, `<em>`, `<b>`, `<i>`)
+- Code elements (`<code>`, `<pre>`)
+
+**What it suggests:**
+
+- `div` element replacements with appropriate Tailwind classes
+- Modus Web Components for interactive elements (e.g., `<ModusWcButton>`)
+- Consistent styling patterns
+
+**Usage:**
+
+```bash
+npm run lint:semantic
+```
+
+## Comprehensive Linting
+
+Run all linting checks at once:
+
+```bash
+# Run all design system compliance checks
+npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
+```
+
+## Pre-commit Integration
+
+All scripts run automatically before each commit via pre-commit hooks to ensure design system consistency:
+
+```bash
 # Automatic check on commit (pre-commit hook)
 git commit -m "your changes"
 ```
 
-The script runs automatically before each commit to ensure design system consistency.
+The pre-commit hooks will:
+
+1. ✅ Check for inline styles that should use Tailwind classes
+2. ✅ Verify only approved Modus colors are used
+3. ✅ Ensure only Modus Icons are used
+4. ✅ Confirm semantic HTML elements are replaced with div elements
 
 ## Modus Color System (9 Colors Only)
 
