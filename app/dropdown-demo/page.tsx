@@ -30,8 +30,9 @@ function DirectDropdown({
     };
 
     const handleSelect = (event: Event) => {
-      console.log("Item selected:", event.detail);
-      onSelect?.(event as CustomEvent<{ value: string }>);
+      const customEvent = event as CustomEvent<{ value: string }>;
+      console.log("Item selected:", customEvent.detail);
+      onSelect?.(customEvent);
 
       // Close the menu after item selection
       if (dropdownRef.current) {

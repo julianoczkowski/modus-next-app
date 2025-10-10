@@ -4,7 +4,53 @@ This directory contains comprehensive linting scripts for enforcing Modus Design
 
 ## Available Linting Scripts
 
-### 1. Color Compliance (`check-modus-colors.js`)
+### 1. TypeScript Type Checking (`check-typescript.js`)
+
+**Purpose**: Enhanced TypeScript type checking with improved developer experience and clear error reporting.
+
+**What it provides:**
+
+- Clear success/failure messages with emojis
+- Grouped error reporting by file
+- Helpful error resolution tips
+- Consistent UX with other linting scripts
+- Pre-commit integration for type safety
+
+**Usage:**
+
+```bash
+npm run type-check
+```
+
+**Success Output:**
+```
+🔍 TypeScript Type Check for Next.js App
+
+🔍 Running TypeScript type checking...
+
+✅ All TypeScript files are type-safe!
+🎯 No type errors found in the codebase.
+
+🎉 Type checking completed successfully!
+```
+
+**Error Output:**
+```
+❌ Found 3 TypeScript errors:
+
+📄 app/components/MyComponent.tsx:
+  15:8 - TS2322: Type 'string' is not assignable to type 'number'
+  22:12 - TS2345: Argument of type 'undefined' is not assignable to parameter of type 'string'
+
+💡 TypeScript Error Resolution Tips:
+  • Check for missing type annotations
+  • Verify import/export statements
+  • Ensure proper interface definitions
+  • Check for null/undefined handling
+  • Verify component prop types
+```
+
+### 2. Color Compliance (`check-modus-colors.js`)
 
 **Purpose**: Ensures only approved Modus colors are used throughout the codebase.
 
@@ -117,7 +163,7 @@ Run all linting checks at once:
 
 ```bash
 # Run all design system compliance checks
-npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
+npm run type-check && npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
 ```
 
 ## Pre-commit Integration
@@ -131,10 +177,11 @@ git commit -m "your changes"
 
 The pre-commit hooks will:
 
-1. ✅ Check for inline styles that should use Tailwind classes
-2. ✅ Verify only approved Modus colors are used
-3. ✅ Ensure only Modus Icons are used
-4. ✅ Confirm semantic HTML elements are replaced with div elements
+1. ✅ Run TypeScript type checking for type safety
+2. ✅ Check for inline styles that should use Tailwind classes
+3. ✅ Verify only approved Modus colors are used
+4. ✅ Ensure only Modus Icons are used
+5. ✅ Confirm semantic HTML elements are replaced with div elements
 
 ## Modus Color System (9 Colors Only)
 

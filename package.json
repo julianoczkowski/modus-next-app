@@ -8,7 +8,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "type-check": "tsc --noEmit",
+    "type-check": "node scripts/check-typescript.js",
     "lint:colors": "node scripts/check-modus-colors.js",
     "lint:icons": "node scripts/check-modus-icons.js",
     "lint:styles": "node scripts/check-inline-styles.js",
@@ -38,18 +38,21 @@
   },
   "lint-staged": {
     "app/**/*.{tsx,ts,jsx,js,css,scss}": [
+      "npm run type-check",
       "npm run lint:colors",
       "npm run lint:icons",
       "npm run lint:styles",
       "npm run lint:semantic"
     ],
     "components/**/*.{tsx,ts,jsx,js,css,scss}": [
+      "npm run type-check",
       "npm run lint:colors",
       "npm run lint:icons",
       "npm run lint:styles",
       "npm run lint:semantic"
     ],
     "src/**/*.{tsx,ts,jsx,js,css,scss}": [
+      "npm run type-check",
       "npm run lint:colors",
       "npm run lint:icons",
       "npm run lint:styles",
