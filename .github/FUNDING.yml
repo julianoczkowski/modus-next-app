@@ -1,3 +1,6 @@
-# These are supported funding model platforms
+# GitHub Sponsors configuration
+# See https://docs.github.com/en/sponsors for supported platforms
 
 github: julianoczkowski
+custom:
+  - https://www.buymeacoffee.com/julianoczkowski

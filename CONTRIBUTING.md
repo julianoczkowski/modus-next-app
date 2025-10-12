@@ -1,261 +1,60 @@
-# Contributing to Modus Next.js App
+# Contributing Guide
 
-Thank you for your interest in contributing to the Modus Next.js App! This project aims to provide a production-ready Next.js 15 starter template with Modus 2 Web Components integration. We welcome contributions from the community.
+Thanks for your interest in improving the Modus Next.js App! This document describes how to get started, the standards we follow, and the best ways to collaborate with the maintainers.
 
-## 🤝 How to Contribute
+## Code of Conduct
+
+This project follows the [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to uphold these expectations.
+
+## Getting Started
+
+1. **Install dependencies:** `npm install`
+2. **Run the development server:** `npm run dev`
+3. **Run quality checks before pushing:**
+   - `npm run lint`
+   - `npm run type-check`
+   - `npm run lint:colors`
+
+> ℹ️ We use Husky and lint-staged to enforce key checks on commit.
+
+## How to Contribute
 
 ### Reporting Issues
-
-Before creating an issue, please:
-
-1. **Search existing issues** to avoid duplicates
-2. **Use the issue templates** when available
-3. **Provide clear reproduction steps** for bugs
-4. **Include environment details** (Node.js version, browser, OS)
-
-### Suggesting Features
-
-We welcome feature suggestions! Please:
-
-1. **Check existing feature requests** first
-2. **Explain the use case** and benefits
-3. **Consider if it fits the boilerplate scope** (Next.js 15 + Modus 2 integration)
-4. **Provide implementation ideas** if possible
-
-## 🛠️ Development Setup
-
-### Prerequisites
-
-- Node.js 20+ (required for Next.js 15 compatibility)
-- npm or yarn
-- Git
-
-### Getting Started
-
-1. **Fork the repository**
-
-   ```bash
-   # Fork on GitHub, then clone your fork
-   git clone https://github.com/YOUR_USERNAME/modus-next-app.git
-   cd modus-next-app
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Create a feature branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-## 📋 Development Guidelines
-
-### Code Standards
-
-This project follows strict development rules and standards:
-
-#### 🎨 Color Usage
-
-- **ONLY use the 9 approved Modus colors** defined in `.cursor/rules/color-usage.mdc`
-- **Never use hardcoded hex values** or Tailwind color classes
-- **Run color linting** before committing: `npm run lint:colors`
-
-#### 🧩 Component Development
-
-- **Follow Next.js 15 App Router** patterns
-- **Use TypeScript** for all new code
-- **Implement proper accessibility** (ARIA labels, keyboard navigation)
-- **Test with all 4 Modus themes** (Classic/Modern, Light/Dark)
-
-#### 🎭 Icon Usage
-
-- **Use only valid Modus icon names** from the official list
-- **Prefer the ModusIcon component** for consistency
-- **Include proper accessibility** for functional icons
-
-#### 🌐 Testing
-
-- **Use Chrome DevTools MCP** for browser testing when available
-- **Test responsive design** across mobile, tablet, and desktop
-- **Verify accessibility compliance**
-
-### File Organization
-
-```
-app/
-├── components/         # Reusable React components
-├── [feature]-demo/     # Demo pages
-├── contexts/           # React contexts
-├── globals.css         # Global styles and design system
-└── layout.tsx          # Root layout
-
-.cursor/
-├── rules/              # Development rules (DO NOT MODIFY)
-└── mcp.json           # MCP server configuration
-```
-
-### Commit Guidelines
-
-We follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-```bash
-# Examples
-feat: add new button variant demo
-fix: resolve theme switching issue
-docs: update installation instructions
-style: fix color linting violations
-refactor: improve component organization
-test: add accessibility tests
-```
-
-### Pre-commit Checks
-
-The project includes automated checks:
-
-- **Color linting** - Ensures only Modus colors are used
-- **TypeScript compilation** - Verifies type safety
-- **Code formatting** - Maintains consistent style
-
-## 🧪 Testing Your Changes
-
-### Manual Testing Checklist
-
-- [ ] **Development server starts** without errors
-- [ ] **All demo pages load** correctly
-- [ ] **Theme switching works** for all 4 themes
-- [ ] **Icons display properly** with valid names
-- [ ] **Colors follow Modus standards** (run `npm run lint:colors`)
-- [ ] **Modus styles are followed** (run `npm run lint:styles`)
-- [ ] **No semantic HTML is used** (run `npm run lint:semantic`)
-- [ ] **Responsive design** works on mobile and desktop
-- [ ] **Accessibility** - test with screen readers if possible
-- [ ] **Build succeeds** (`npm run build`)
-
-### Browser Testing
-
-Test in modern browsers:
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## 📝 Pull Request Process
-
-### Before Submitting
-
-1. **Ensure all tests pass** and linting is clean
-2. **Update documentation** if needed
-3. **Add examples** for new features
-4. **Test thoroughly** across browsers and themes
-
-### PR Guidelines
-
-1. **Use descriptive titles** following conventional commits
-2. **Fill out the PR template** completely
-3. **Link related issues** using keywords (fixes #123)
-4. **Include screenshots** for UI changes
-5. **Request review** from maintainers
-
-### PR Template
-
-```markdown
-## Description
-
-Brief description of changes
-
-## Type of Change
-
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Refactoring
-- [ ] Performance improvement
-
-## Testing
-
-- [ ] Manual testing completed
-- [ ] Color linting passes
-- [ ] All themes tested
-- [ ] Responsive design verified
-- [ ] Accessibility checked
-
-## Screenshots
-
-(If applicable)
-
-## Related Issues
-
-Fixes #(issue number)
-```
-
-## 🎯 Areas for Contribution
-
-### High Priority
-
-- **New Modus component examples** - Showcase additional web components
-- **Accessibility improvements** - Enhance ARIA support and keyboard navigation
-- **Performance optimizations** - Code splitting, lazy loading improvements
-- **Documentation enhancements** - Better examples and guides
-
-### Medium Priority
-
-- **Additional demo pages** - More comprehensive component showcases
-- **Testing improvements** - Automated testing setup
-- **Build optimizations** - Bundle size reduction
-- **Developer experience** - Better error messages and debugging
-
-### Low Priority
-
-- **Code organization** - Refactoring for better maintainability
-- **Utility functions** - Helper functions for common tasks
-- **Example applications** - Real-world usage examples
-
-## 🚫 What We Don't Accept
-
-- **Breaking changes** without major version bump discussion
-- **Non-Modus color usage** - Must follow the 9 approved colors
-- **Accessibility regressions** - All changes must maintain WCAG 2.1 AA compliance
-- **Hardcoded values** - Use Modus design tokens and CSS variables
-- **Framework changes** - This is specifically a Next.js 15 boilerplate
-- **Dependency bloat** - New dependencies must be justified
-
-## 📞 Getting Help
-
-### Community Support
-
-- **GitHub Discussions** - For questions and community help
-- **Issues** - For bug reports and feature requests
-
-### Development Questions
-
-- **Check the rules** in `.cursor/rules/` for development standards
-- **Review existing code** for patterns and examples
-- **Ask in discussions** before starting major changes
-
-## 🏆 Recognition
-
-Contributors will be:
-
-- **Listed in the README** contributors section
-- **Credited in release notes** for significant contributions
-- **Invited as collaborators** for consistent, high-quality contributions
-
-## 📄 License
-
-By contributing, you agree that your contributions will be licensed under the same MIT License that covers the project.
-
----
-
-**Thank you for helping make the Modus Next.js App better for everyone! 🚀**
-
-_For questions about contributing, please open a GitHub Discussion or contact the maintainers._
+- Search existing issues (open and closed) before filing a new one.
+- Provide clear reproduction steps, expected vs. actual results, and environment details (OS, browser, Node.js version).
+- Use the provided issue templates whenever possible.
+
+### Proposing Enhancements
+- Open an issue to discuss the problem you are trying to solve before submitting a pull request.
+- Describe the motivation, alternatives considered, and any potential drawbacks.
+- Be ready to iterate based on maintainer feedback.
+
+### Submitting Pull Requests
+1. Fork the repository and create a branch (`git checkout -b feature/amazing-improvement`).
+2. Make your changes with appropriate tests and documentation.
+3. Run the full quality suite (`npm run lint`, `npm run type-check`, and the Modus-specific lint commands).
+4. Update any relevant docs or examples.
+5. Submit a pull request that references related issues and summarizes your changes.
+6. Ensure the GitHub Actions CI workflow passes before requesting review.
+
+### Commit Messages
+- Use clear, descriptive commit messages (e.g. `feat: add new theme toggle component`).
+- Keep commits focused; smaller, cohesive commits are easier to review.
+
+### Style Guidelines
+- Follow the TypeScript configuration provided by the project.
+- Prefer functional React components and hooks.
+- Use the Modus design tokens and lint rules for styling.
+- Keep documentation changes in Markdown lint-friendly format (wrap at ~100 characters when practical).
+
+## Communication
+
+- GitHub issues and pull requests are the primary channel for project discussions.
+- Security vulnerabilities should be reported privately—see [SECURITY.md](./SECURITY.md).
+- For general questions, open a discussion thread if enabled or reach out via issues.
+
+## Release Process
+
+Maintainers cut releases from the `main` branch once all required checks pass. Release notes summarize major changes, deprecations, and any security considerations.
+
+We appreciate every contribution, no matter the size. Thank you for helping us improve the Modus Next.js App!
