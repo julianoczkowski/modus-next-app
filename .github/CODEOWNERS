@@ -1,42 +1,19 @@
-# Global code owners
+# Default owners
 * @julianoczkowski
 
 # Documentation
 *.md @julianoczkowski
-docs/ @julianoczkowski
+README.md @julianoczkowski
 
-# Configuration files
+# Application code
+app/ @julianoczkowski
+types/ @julianoczkowski
+
+# Tooling and configuration
+.github/ @julianoczkowski
+scripts/ @julianoczkowski
 package.json @julianoczkowski
 tsconfig.json @julianoczkowski
 next.config.ts @julianoczkowski
 postcss.config.mjs @julianoczkowski
 eslint.config.mjs @julianoczkowski
-.gitignore @julianoczkowski
-
-# Cursor rules and MCP configuration
-.cursor/ @julianoczkowski
-.cursor/rules/ @julianoczkowski
-.cursor/mcp.json @julianoczkowski
-
-# Security and contribution guidelines
-SECURITY.md @julianoczkowski
-CONTRIBUTING.md @julianoczkowski
-
-# GitHub templates and workflows
-.github/ @julianoczkowski
-
-# Core source code
-app/ @julianoczkowski
-
-# Component definitions and types
-app/components/ @julianoczkowski
-types/ @julianoczkowski
-
-# Build and deployment scripts
-scripts/ @julianoczkowski
-
-# Linting scripts
-scripts/check-modus-colors.js @julianoczkowski
-scripts/check-inline-styles.js @julianoczkowski
-scripts/check-semantic-html.js @julianoczkowski
-scripts/check-modus-icons.js @julianoczkowski
