@@ -17,3 +17,9 @@ tsconfig.json @julianoczkowski
 next.config.ts @julianoczkowski
 postcss.config.mjs @julianoczkowski
 eslint.config.mjs @julianoczkowski
+
+# Custom rules
+.cursor/rules/ @julianoczkowski
+
+# Scripts
+scripts/ @julianoczkowski
