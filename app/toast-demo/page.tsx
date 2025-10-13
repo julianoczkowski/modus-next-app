@@ -56,9 +56,7 @@ const variantPresets: Record<
 };
 
 const generateToastId = () =>
-  `toast-${Date.now().toString(36)}-${Math.random()
-    .toString(36)
-    .slice(2, 8)}`;
+  `toast-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 
 export default function ToastDemoPage() {
   const [toasts, setToasts] = useState<ModusToastItem[]>([]);
@@ -122,7 +120,13 @@ export default function ToastDemoPage() {
     (variant) => (
       <ModusWcButton
         key={variant}
-        color={variant === "warning" ? "warning" : variant === "error" ? "danger" : "primary"}
+        color={
+          variant === "warning"
+            ? "warning"
+            : variant === "error"
+            ? "danger"
+            : "primary"
+        }
         variant={variant === "info" ? "outlined" : "filled"}
         size="sm"
         onButtonClick={() =>
@@ -165,12 +169,15 @@ export default function ToastDemoPage() {
         </div>
         <div className="text-lg text-foreground opacity-80 max-w-3xl mx-auto leading-relaxed">
           Toasts pair with alerts to surface lightweight notifications. Control
-          position, auto-dismiss timing, stacking, and actions that keep users in
-          flow while respecting Modus design tokens.
+          position, auto-dismiss timing, stacking, and actions that keep users
+          in flow while respecting Modus design tokens.
         </div>
       </div>
 
-      <div className="p-8 bg-card border border-border rounded-lg space-y-8">
+      <div
+        className="p-8 bg-card rounded-lg space-y-8"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
           <div className="space-y-2">
             <div className="text-2xl font-semibold text-foreground">
@@ -181,19 +188,26 @@ export default function ToastDemoPage() {
               wraps a Modus alert ensuring consistent iconography and tone.
             </div>
           </div>
-          <div className="flex flex-wrap gap-3 justify-end">{presetButtons}</div>
+          <div className="flex flex-wrap gap-3 justify-end">
+            {presetButtons}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm font-semibold text-foreground uppercase tracking-wide">
               Position
             </div>
             <div className="text-sm text-foreground opacity-70">
-              Toasts pin themselves relative to the nearest positioned container.
+              Toasts pin themselves relative to the nearest positioned
+              container.
             </div>
             <select
-              className="w-full bg-background border border-border rounded px-3 py-2 text-sm text-foreground"
+              className="w-full bg-background rounded px-3 py-2 text-sm text-foreground"
+              style={{ border: "1px solid var(--border)" }}
               value={position}
               onChange={(event) =>
                 setPosition(event.target.value as ToastPosition)
@@ -220,7 +234,10 @@ export default function ToastDemoPage() {
             </ModusWcButton>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm font-semibold text-foreground uppercase tracking-wide">
               Auto-dismiss
             </div>
@@ -240,7 +257,8 @@ export default function ToastDemoPage() {
             </div>
             <input
               type="number"
-              className="w-full bg-background border border-border rounded px-3 py-2 text-sm text-foreground"
+              className="w-full bg-background rounded px-3 py-2 text-sm text-foreground"
+              style={{ border: "1px solid var(--border)" }}
               min={1000}
               step={500}
               value={defaultDelay}
@@ -264,7 +282,10 @@ export default function ToastDemoPage() {
             </ModusWcButton>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm font-semibold text-foreground uppercase tracking-wide">
               Actions
             </div>
@@ -312,7 +333,10 @@ export default function ToastDemoPage() {
         </div>
       </div>
 
-      <div className="p-8 bg-card border border-border rounded-lg space-y-6">
+      <div
+        className="p-8 bg-card rounded-lg space-y-6"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
           <div className="space-y-2">
             <div className="text-2xl font-semibold text-foreground">
@@ -358,7 +382,10 @@ export default function ToastDemoPage() {
           </div>
         </div>
 
-        <div className="bg-background border border-border rounded-lg p-6 min-h-48">
+        <div
+          className="bg-background rounded-lg p-6 min-h-48"
+          style={{ border: "1px solid var(--border)" }}
+        >
           <div className="text-sm text-foreground opacity-70 mb-4">
             Event log (latest 12 entries)
           </div>

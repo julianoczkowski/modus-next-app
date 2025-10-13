@@ -1,0 +1,81 @@
+---
+alwaysApply: true
+---
+
+# Development Workflow & Testing - Essential Rules
+
+## 🚀 MANDATORY: Run Linting Before Changes
+
+```bash
+# 🔍 Run all linting checks before any code changes
+npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
+```
+
+## 🔄 Development Workflow
+
+**Every time you make changes:**
+
+1. **Make your changes** to components/pages
+2. **Run linting commands** to catch violations early
+3. **Fix any violations** before continuing
+4. **Test with Chrome DevTools** to validate visual changes
+5. **Commit only when all lints pass**
+
+## 🧪 Chrome DevTools Testing (Use MCP)
+
+**ALWAYS use Chrome DevTools MCP for testing:**
+
+```bash
+# Start dev server first
+npm run dev
+```
+
+**Then test with MCP:**
+
+- Navigate to `http://localhost:3000`
+- Check console for JavaScript errors
+- Test all interactive elements (buttons, forms)
+- Verify responsive design (mobile/desktop)
+- Test theme switching if applicable
+- Run accessibility checks
+
+## 🚨 Common Violations to Fix
+
+```tsx
+// ❌ VIOLATIONS
+style={{ backgroundColor: "#ffffff" }}        // Use: className="bg-background"
+className="bg-blue-500"                       // Use: className="bg-primary"
+<h1 className="text-4xl">Title</h1>          // Use: <div className="text-4xl">Title</div>
+<i className="fa fa-home"></i>               // Use: <i className="modus-icons">home</i>
+className="border border-border"             // Use: style={{ border: "1px solid var(--border)" }}
+```
+
+## 🎯 Quality Gates (All Must Pass)
+
+- [ ] ✅ All 4 linting commands pass (0 violations)
+- [ ] ✅ Chrome DevTools shows no console errors
+- [ ] ✅ All interactive elements work correctly
+- [ ] ✅ Responsive design tested
+- [ ] ✅ Theme compatibility verified (if themes present)
+
+## 🎯 Key Rules
+
+- **Always lint first**: Catch violations before they become problems
+- **Use Chrome DevTools MCP**: Real-time testing is mandatory
+- **Fix violations immediately**: Don't accumulate technical debt
+- **Test interactivity**: Every button, form, and component must work
+- **No console errors**: Clean console is required for commit
+
+## 📚 Reference Documentation
+
+**For detailed information, refer to:**
+
+- **@chrome-devtools-testing.mdc** - Comprehensive Chrome DevTools MCP testing patterns, advanced debugging techniques, and component-specific testing workflows
+- **@development-workflow.mdc** - Complete development workflow with detailed linting commands, quality gates, and comprehensive violation examples
+
+**Use these references when:**
+
+- Need advanced Chrome DevTools testing patterns
+- Require detailed linting command explanations
+- Need comprehensive violation examples and solutions
+- Want complete quality gate documentation

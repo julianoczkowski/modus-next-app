@@ -20,8 +20,8 @@ export default function InputLabelDemo() {
 
       {/* Basic Usage */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
@@ -32,8 +32,8 @@ export default function InputLabelDemo() {
             <input
               type="text"
               placeholder="Enter your username"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -41,8 +41,8 @@ export default function InputLabelDemo() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -53,8 +53,8 @@ export default function InputLabelDemo() {
 
       {/* Linked Labels */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Linked Labels
@@ -66,8 +66,8 @@ export default function InputLabelDemo() {
               id="username-field"
               type="text"
               placeholder="Enter your username"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -76,8 +76,8 @@ export default function InputLabelDemo() {
               id="email-field"
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -88,8 +88,8 @@ export default function InputLabelDemo() {
 
       {/* Required Fields */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Required Fields
@@ -105,8 +105,8 @@ export default function InputLabelDemo() {
               id="required-username"
               type="text"
               placeholder="Enter your username"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -119,8 +119,8 @@ export default function InputLabelDemo() {
               id="required-email"
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -133,8 +133,8 @@ export default function InputLabelDemo() {
               id="required-password"
               type="password"
               placeholder="Enter your password"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -145,8 +145,8 @@ export default function InputLabelDemo() {
 
       {/* Sub-labels */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Sub-labels
@@ -163,8 +163,8 @@ export default function InputLabelDemo() {
               id="password-with-hint"
               type="password"
               placeholder="Enter your password"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -177,8 +177,8 @@ export default function InputLabelDemo() {
               id="phone-with-format"
               type="tel"
               placeholder="(555) 123-4567"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -192,8 +192,8 @@ export default function InputLabelDemo() {
               id="username-with-rules"
               type="text"
               placeholder="Enter your username"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -204,8 +204,8 @@ export default function InputLabelDemo() {
 
       {/* Size Variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
@@ -227,8 +227,8 @@ export default function InputLabelDemo() {
                   id={`${size}-input`}
                   type="text"
                   placeholder={`${size} input field`}
-                  className="w-full p-3 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-3 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
             </div>
@@ -241,8 +241,8 @@ export default function InputLabelDemo() {
 
       {/* Custom Content */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Custom Content
@@ -256,8 +256,8 @@ export default function InputLabelDemo() {
               id="search-field"
               type="search"
               placeholder="Search for items"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -268,8 +268,8 @@ export default function InputLabelDemo() {
               id="help-field"
               type="text"
               placeholder="Get help with this field"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -285,8 +285,8 @@ export default function InputLabelDemo() {
               id="keyboard-hint"
               type="text"
               placeholder="Use ⌘K to focus this field"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -297,8 +297,8 @@ export default function InputLabelDemo() {
 
       {/* Form Example */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Complete Form Example
@@ -315,8 +315,8 @@ export default function InputLabelDemo() {
               id="form-username"
               type="text"
               placeholder="Enter your username"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -330,8 +330,8 @@ export default function InputLabelDemo() {
               id="form-email"
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -345,8 +345,8 @@ export default function InputLabelDemo() {
               id="form-password"
               type="password"
               placeholder="Create a password"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
           <div>
@@ -358,8 +358,8 @@ export default function InputLabelDemo() {
               id="form-phone"
               type="tel"
               placeholder="(555) 123-4567"
-              className="w-full p-3 border border-border rounded bg-background text-foreground mt-2"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-3 rounded bg-background text-foreground mt-2"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
         </div>
@@ -370,8 +370,8 @@ export default function InputLabelDemo() {
 
       {/* Code Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Code Examples

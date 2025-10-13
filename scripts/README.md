@@ -159,13 +159,36 @@ npm run lint:icons
 npm run lint:semantic
 ```
 
+### 5. Border Violations Compliance (`check-border-violations.js`)
+
+**Purpose**: Detects incorrect border patterns that violate Tailwind v4 + Modus design system rules.
+
+**What it detects:**
+
+- `border border-border` violations (most common)
+- `border-2 border-border`, `border-4 border-border` patterns
+- Border classes with Tailwind color classes
+- Border alone without width (Tailwind v4 issue)
+
+**What it suggests:**
+
+- Proper inline styles: `style={{ border: "1px solid var(--border)" }}`
+- Design system colors: `var(--border)`, `var(--input)`, `var(--ring)`
+- Specific side borders: `style={{ borderTop: "1px solid var(--border)" }}`
+
+**Usage:**
+
+```bash
+npm run lint:borders
+```
+
 ## Comprehensive Linting
 
 Run all linting checks at once:
 
 ```bash
 # Run all design system compliance checks
-npm run type-check && npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
+npm run type-check && npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic && npm run lint:borders
 ```
 
 ## Pre-commit Integration
@@ -184,6 +207,7 @@ The pre-commit hooks will:
 3. ✅ Verify only approved Modus colors are used
 4. ✅ Ensure only Modus Icons are used
 5. ✅ Confirm semantic HTML elements are replaced with div elements
+6. ✅ Detect border violations (border border-border patterns)
 
 ## Modus Color System (9 Colors Only)
 

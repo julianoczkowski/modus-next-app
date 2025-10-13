@@ -1,0 +1,60 @@
+---
+alwaysApply: true
+---
+
+# Borders - Essential Rules
+
+## ✅ ALWAYS Use Inline Styles for Borders
+
+```tsx
+// ✅ CORRECT - Inline styles with design system colors
+<div className="bg-card p-4 rounded-lg" style={{ border: "1px solid var(--border)" }}>
+<div style={{ border: "2px dashed var(--border)" }}>
+<div style={{ borderTop: "1px solid var(--border)" }}>
+```
+
+## ⚠️ Why Not Tailwind Border Classes
+
+Tailwind v4's `border` class sets `border-width: 0px` by default, making borders invisible.
+
+```tsx
+// ❌ WRONG - No visible border
+<div className="border border-border">
+
+// ✅ CORRECT - Visible border
+<div style={{ border: "1px solid var(--border)" }}>
+```
+
+## 🎯 Common Border Patterns
+
+```tsx
+// Standard border
+style={{ border: "1px solid var(--border)" }}
+
+// Thick border
+style={{ border: "2px solid var(--border)" }}
+
+// Dashed border
+style={{ border: "1px dashed var(--border)" }}
+
+// Top border only
+style={{ borderTop: "2px solid var(--border)" }}
+```
+
+## 🎯 Key Rule
+
+**Borders are the ONLY exception** to the "maximize Tailwind classes" rule due to Tailwind v4 limitations.
+
+## 📚 Reference Documentation
+
+**For detailed information, refer to:**
+
+- **@modus-color-usage-nextjs.mdc** - Complete color system guide with design system colors, Modus Web Components color props, and comprehensive color usage patterns
+- **@modus-tailwind-usage-nextjs.mdc** - Comprehensive Tailwind CSS usage rules, anti-patterns to avoid, and advanced styling patterns
+
+**Use these references when:**
+
+- Need comprehensive color system guidance
+- Require detailed Tailwind CSS usage patterns
+- Want advanced styling and design system integration
+- Need complete border and color implementation examples

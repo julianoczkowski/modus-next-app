@@ -134,8 +134,8 @@ export default function NavbarDemo() {
   // Slot content components
   const MainMenuContent = () => (
     <div
-      className="p-4 bg-card rounded-lg border border-border"
-      style={{ borderWidth: "1px" }}
+      className="p-4 bg-card rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
     >
       <div className="text-lg font-semibold text-foreground mb-4">
         Main Menu
@@ -175,8 +175,8 @@ export default function NavbarDemo() {
 
   const NotificationsContent = () => (
     <div
-      className="p-4 bg-card rounded-lg border border-border"
-      style={{ borderWidth: "1px" }}
+      className="p-4 bg-card rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
     >
       <div className="text-lg font-semibold text-foreground mb-4">
         Notifications
@@ -215,8 +215,8 @@ export default function NavbarDemo() {
 
   const AppsContent = () => (
     <div
-      className="p-4 bg-card rounded-lg border border-border"
-      style={{ borderWidth: "1px" }}
+      className="p-4 bg-card rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
     >
       <div className="text-lg font-semibold text-foreground mb-4">
         Applications
@@ -302,8 +302,8 @@ export default function NavbarDemo() {
 
       {/* Configuration Controls */}
       <div
-        className="mb-8 p-6 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-8 p-6 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-xl font-semibold text-foreground mb-4">
           Configuration Controls
@@ -317,8 +317,8 @@ export default function NavbarDemo() {
             <select
               value={condensed ? "true" : "false"}
               onChange={(e) => setCondensed(e.target.value === "true")}
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="false">Standard</option>
               <option value="true">Condensed</option>
@@ -337,8 +337,8 @@ export default function NavbarDemo() {
                   mainMenu: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -358,8 +358,8 @@ export default function NavbarDemo() {
                   searchInput: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -378,8 +378,8 @@ export default function NavbarDemo() {
                   notifications: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -398,8 +398,8 @@ export default function NavbarDemo() {
                   apps: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -418,8 +418,8 @@ export default function NavbarDemo() {
                   ai: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -438,8 +438,8 @@ export default function NavbarDemo() {
                   help: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -458,8 +458,8 @@ export default function NavbarDemo() {
                   user: e.target.value === "true",
                 }))
               }
-              className="w-full p-2 border border-border rounded bg-background text-foreground"
-              style={{ borderWidth: "1px" }}
+              className="w-full p-2 rounded bg-background text-foreground"
+              style={{ border: "1px solid var(--border)" }}
             >
               <option value="true">Visible</option>
               <option value="false">Hidden</option>
@@ -504,8 +504,8 @@ export default function NavbarDemo() {
           Navbar Component
         </div>
         <div
-          className="border border-border rounded-lg overflow-hidden"
-          style={{ borderWidth: "1px" }}
+          className="rounded-lg overflow-hidden"
+          style={{ border: "1px solid var(--border)" }}
         >
           <ModusNavbar
             condensed={condensed}
@@ -562,8 +562,8 @@ export default function NavbarDemo() {
           Event Log
         </div>
         <div
-          className="p-4 bg-muted rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-4 bg-muted rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-sm text-muted-foreground mb-2">
             Click navbar buttons to see events...
@@ -589,8 +589,8 @@ export default function NavbarDemo() {
         </div>
         <div className="space-y-4">
           <div
-            className="p-4 bg-card rounded-lg border border-border"
-            style={{ borderWidth: "1px" }}
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
           >
             <div className="text-lg font-semibold text-foreground mb-2">
               Basic Usage
@@ -609,8 +609,8 @@ export default function NavbarDemo() {
           </div>
 
           <div
-            className="p-4 bg-card rounded-lg border border-border"
-            style={{ borderWidth: "1px" }}
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
           >
             <div className="text-lg font-semibold text-foreground mb-2">
               Advanced Usage

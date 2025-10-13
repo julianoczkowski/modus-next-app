@@ -46,7 +46,10 @@ export default function TooltipDemoPage() {
         </div>
       </div>
 
-      <div className="p-8 bg-card border border-border rounded-lg space-y-6">
+      <div
+        className="p-8 bg-card rounded-lg space-y-6"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
           <div className="space-y-2">
             <div className="text-2xl font-semibold text-foreground">
@@ -75,7 +78,10 @@ export default function TooltipDemoPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm font-semibold text-foreground uppercase tracking-wide">
               Quick actions
             </div>
@@ -98,7 +104,10 @@ export default function TooltipDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm font-semibold text-foreground uppercase tracking-wide">
               Form helper
             </div>
@@ -125,7 +134,10 @@ export default function TooltipDemoPage() {
         </div>
       </div>
 
-      <div className="p-8 bg-card border border-border rounded-lg space-y-6">
+      <div
+        className="p-8 bg-card rounded-lg space-y-6"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="space-y-2">
             <div className="text-2xl font-semibold text-foreground">
@@ -143,7 +155,8 @@ export default function TooltipDemoPage() {
                 Position
               </div>
               <select
-                className="bg-background border border-border rounded px-3 py-2 text-sm text-foreground"
+                className="bg-background rounded px-3 py-2 text-sm text-foreground"
+                style={{ border: "1px solid var(--border)" }}
                 value={selectedPosition}
                 onChange={(event) =>
                   setSelectedPosition(event.target.value as TooltipPosition)
@@ -187,7 +200,10 @@ export default function TooltipDemoPage() {
           </div>
         </div>
 
-        <div className="bg-background border border-dashed border-border rounded-lg p-10">
+        <div
+          className="bg-background rounded-lg p-10"
+          style={{ border: "1px dashed var(--border)" }}
+        >
           <div className="text-sm text-foreground opacity-70 mb-6">
             {positionSummary}. Interact with the icon below to observe the
             placement and toggles.
@@ -213,19 +229,25 @@ export default function TooltipDemoPage() {
         </div>
       </div>
 
-      <div className="p-8 bg-card border border-border rounded-lg space-y-6">
+      <div
+        className="p-8 bg-card rounded-lg space-y-6"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="space-y-2">
           <div className="text-2xl font-semibold text-foreground">
             Accessibility wiring
           </div>
           <div className="text-sm text-foreground opacity-75 leading-relaxed max-w-3xl">
             Reference tooltips outside of direct triggers using `tooltip-id`.
-            The tooltip applies `role=&quot;tooltip&quot;` and connects assistive
-            technology through `aria-describedby`.
+            The tooltip applies `role=&quot;tooltip&quot;` and connects
+            assistive technology through `aria-describedby`.
           </div>
         </div>
 
-        <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+        <div
+          className="bg-background rounded-lg p-6 space-y-4"
+          style={{ border: "1px solid var(--border)" }}
+        >
           <div className="flex items-center gap-3">
             <ModusTextInput
               placeholder="Save location"

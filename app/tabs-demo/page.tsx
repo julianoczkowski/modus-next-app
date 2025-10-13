@@ -209,8 +209,8 @@ export default function TabsDemoPage() {
 
         {/* Controlled Tabs */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
             <div>
@@ -249,7 +249,10 @@ export default function TabsDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6">
+          <div
+            className="bg-background rounded-lg p-6"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <ModusTabs
               tabs={overviewTabs}
               panels={overviewPanels}
@@ -268,8 +271,8 @@ export default function TabsDemoPage() {
 
         {/* Style Variants */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Visual Styles &amp; States
@@ -278,7 +281,8 @@ export default function TabsDemoPage() {
             {variantExamples.map((example) => (
               <div
                 key={example.title}
-                className="bg-background border border-border rounded-lg p-6 space-y-4"
+                className="bg-background rounded-lg p-6 space-y-4"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <div>
                   <div className="text-sm font-semibold text-foreground">
@@ -302,8 +306,8 @@ export default function TabsDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Interaction Log
@@ -312,7 +316,10 @@ export default function TabsDemoPage() {
             Records the `tabChange` details emitted from the Modus tabs
             component when users change sections.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {eventLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Switch between tabs above to populate the log.

@@ -1,0 +1,77 @@
+---
+alwaysApply: true
+---
+
+# Modus Colors - Essential Rules
+
+## ✅ ALWAYS Use Design System Colors
+
+```tsx
+// ✅ CORRECT - Tailwind classes with design system colors
+<div className="bg-background text-foreground">
+<div className="bg-card text-card-foreground">
+<div className="bg-primary text-primary-foreground">
+<div className="text-muted-foreground">
+```
+
+## ✅ Modus Web Components Use Color Props
+
+```tsx
+// ✅ CORRECT - Built-in color props
+<ModusWcButton color="primary">Button</ModusWcButton>
+<ModusWcButton color="secondary">Button</ModusWcButton>
+<ModusWcButton color="danger">Button</ModusWcButton>
+```
+
+## ❌ NEVER Use These
+
+```tsx
+// ❌ FORBIDDEN - Will be flagged by linter
+className="bg-blue-500 text-red-400"
+style={{ backgroundColor: "#ffffff" }}
+style={{ color: "rgb(255, 255, 255)" }}
+style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}
+```
+
+## 🎯 Key Pattern
+
+- **Custom UI**: Use Tailwind classes (`bg-background`, `text-foreground`)
+- **Modus Components**: Use color props (`color="primary"`)
+- **Never**: Hardcoded colors, raw Modus variables, Tailwind color classes
+
+# Modus Colors - Essential Rules
+
+## ✅ ALWAYS Use Design System Colors
+
+```tsx
+// ✅ CORRECT - Tailwind classes with design system colors
+<div className="bg-background text-foreground">
+<div className="bg-card text-card-foreground">
+<div className="bg-primary text-primary-foreground">
+<div className="text-muted-foreground">
+```
+
+## ✅ Modus Web Components Use Color Props
+
+```tsx
+// ✅ CORRECT - Built-in color props
+<ModusWcButton color="primary">Button</ModusWcButton>
+<ModusWcButton color="secondary">Button</ModusWcButton>
+<ModusWcButton color="danger">Button</ModusWcButton>
+```
+
+## ❌ NEVER Use These
+
+```tsx
+// ❌ FORBIDDEN - Will be flagged by linter
+className="bg-blue-500 text-red-400"
+style={{ backgroundColor: "#ffffff" }}
+style={{ color: "rgb(255, 255, 255)" }}
+style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}
+```
+
+## 🎯 Key Pattern
+
+- **Custom UI**: Use Tailwind classes (`bg-background`, `text-foreground`)
+- **Modus Components**: Use color props (`color="primary"`)
+- **Never**: Hardcoded colors, raw Modus variables, Tailwind color classes

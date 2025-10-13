@@ -129,7 +129,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Basic Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Breadcrumb Examples
         </div>
@@ -153,7 +156,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Size Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
@@ -178,7 +184,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Interactive Navigation */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Navigation
         </div>
@@ -248,7 +257,10 @@ export default function BreadcrumbsDemoPage() {
             <div className="text-lg font-semibold mb-4 text-foreground">
               Current Path
             </div>
-            <div className="p-4 bg-background rounded border border-border">
+            <div
+              className="p-4 bg-background rounded"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusBreadcrumbs
                 items={generateBreadcrumbs(currentPath)}
                 aria-label="Current navigation path"
@@ -266,7 +278,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Custom Styling Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Styling Examples
         </div>
@@ -307,7 +322,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Real-world Use Cases */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Use Cases
         </div>
@@ -320,7 +338,10 @@ export default function BreadcrumbsDemoPage() {
             <div className="text-lg font-semibold mb-3 text-foreground">
               E-commerce Product Page
             </div>
-            <div className="p-4 bg-background rounded border border-border">
+            <div
+              className="p-4 bg-background rounded"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusBreadcrumbs
                 items={[
                   { label: "Home", url: "/" },
@@ -340,7 +361,10 @@ export default function BreadcrumbsDemoPage() {
             <div className="text-lg font-semibold mb-3 text-foreground">
               Admin Dashboard
             </div>
-            <div className="p-4 bg-background rounded border border-border">
+            <div
+              className="p-4 bg-background rounded"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusBreadcrumbs
                 items={[
                   { label: "Admin", url: "/admin" },
@@ -360,7 +384,10 @@ export default function BreadcrumbsDemoPage() {
             <div className="text-lg font-semibold mb-3 text-foreground">
               Documentation Site
             </div>
-            <div className="p-4 bg-background rounded border border-border">
+            <div
+              className="p-4 bg-background rounded"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusBreadcrumbs
                 items={[
                   { label: "Docs", url: "/docs" },
@@ -381,7 +408,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Event Log */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex items-center justify-between mb-4">
           <div className="text-2xl font-semibold text-foreground">
             Event Log
@@ -396,7 +426,10 @@ export default function BreadcrumbsDemoPage() {
             Clear Logs
           </ModusWcButton>
         </div>
-        <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
+        <div
+          className="max-h-64 overflow-y-auto rounded p-4 bg-background"
+          style={{ border: "1px solid var(--border)" }}
+        >
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
               <div className="text-foreground min-w-20">{log.timestamp}</div>
@@ -424,7 +457,10 @@ export default function BreadcrumbsDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

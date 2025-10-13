@@ -69,7 +69,8 @@ export default function UtilityPanelDemoPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div
-          className="lg:col-span-8 bg-card border border-border rounded-lg p-6 space-y-6 relative"
+          className="lg:col-span-8 bg-card rounded-lg p-6 space-y-6 relative"
+          style={{ border: "1px solid var(--border)" }}
           ref={layoutRef}
         >
           <div className="space-y-2">
@@ -84,7 +85,10 @@ export default function UtilityPanelDemoPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-background border border-border rounded-lg p-4 space-y-3">
+            <div
+              className="bg-background rounded-lg p-4 space-y-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Current project
               </div>
@@ -101,7 +105,10 @@ export default function UtilityPanelDemoPage() {
               </ModusWcButton>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-4 space-y-3">
+            <div
+              className="bg-background rounded-lg p-4 space-y-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Site overview
               </div>
@@ -133,7 +140,10 @@ export default function UtilityPanelDemoPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-4 bg-card border border-border rounded-lg p-6 space-y-6">
+        <div
+          className="lg:col-span-4 bg-card rounded-lg p-6 space-y-6"
+          style={{ border: "1px solid var(--border)" }}
+        >
           <div className="text-lg font-semibold text-foreground">
             Panel configuration
           </div>
@@ -204,7 +214,10 @@ export default function UtilityPanelDemoPage() {
             <div className="text-sm font-semibold text-foreground">
               Panel events
             </div>
-            <div className="bg-background border border-border rounded-lg p-3 min-h-24 space-y-1">
+            <div
+              className="bg-background rounded-lg p-3 min-h-24 space-y-1"
+              style={{ border: "1px solid var(--border)" }}
+            >
               {panelLog.length === 0 ? (
                 <div className="text-sm text-foreground opacity-60">
                   Interact with the panel to see event logs.
@@ -236,7 +249,7 @@ export default function UtilityPanelDemoPage() {
         targetElement={pushContent ? layoutRef.current : null}
         onPanelOpened={() => logEvent("Panel expanded")}
         onPanelClosed={() => logEvent("Panel collapsed")}
-        className="bg-background border border-border"
+        className="bg-background"
       >
         <div className="p-4 space-y-6 text-foreground">
           <div className="space-y-3">

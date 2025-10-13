@@ -54,7 +54,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Basic Card Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Card Examples
         </div>
@@ -114,7 +114,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Layout Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Layout Variants
         </div>
@@ -216,7 +216,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Background Figure Cards */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Background Figure Cards
         </div>
@@ -291,7 +291,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Bordered and Compact Cards */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Bordered and Compact Cards
         </div>
@@ -384,7 +384,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Interactive Card Builder */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Card Builder
         </div>
@@ -522,7 +522,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Real-world Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
@@ -680,7 +680,7 @@ export default function CardDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

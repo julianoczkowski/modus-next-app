@@ -360,7 +360,10 @@ export default function ComponentsDemoPage() {
       </div>
 
       {/* Category Filter */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Filter by Category
         </div>
@@ -388,7 +391,8 @@ export default function ComponentsDemoPage() {
         {filteredComponents.map((component) => (
           <div
             key={component.url}
-            className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-200"
+            className="bg-card rounded-lg p-6 hover:shadow-lg transition-all duration-200"
+            style={{ border: "1px solid var(--border)" }}
           >
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -446,7 +450,10 @@ export default function ComponentsDemoPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="mt-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mt-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Component Statistics
         </div>
@@ -460,7 +467,7 @@ export default function ComponentsDemoPage() {
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-success mb-2">
+            <div className="text-3xl font-bold text-foreground mb-2">
               {componentDemos.filter((c) => c.status === "ready").length}
             </div>
             <div className="text-sm text-muted-foreground">Ready</div>
@@ -481,7 +488,10 @@ export default function ComponentsDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mt-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mt-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Getting Started
         </div>

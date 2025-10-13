@@ -1,5 +1,6 @@
 ---
-alwaysApply: true
+description: BEst practices when creating pages or new features
+alwaysApply: false
 ---
 
 # Modus Web Components + Next.js Best Practices
@@ -130,9 +131,12 @@ export default function ModusButton({
 // ✅ CORRECT: Using Tailwind classes with design system colors
 export default function MyComponent() {
   return (
-    <div className="bg-card border border-border p-4 rounded-lg">
+    <div
+      className="bg-card p-4 rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
+    >
       <div className="text-4xl font-semibold text-foreground">Title</div>
-      <div className="text-lg text-foreground opacity-80">Description</div>
+      <div className="text-lg text-foreground/80">Description</div>
     </div>
   );
 }
@@ -140,7 +144,7 @@ export default function MyComponent() {
 
 ```tsx
 // ❌ WRONG: Semantic HTML elements override Tailwind classes
-<h1 className="text-4xl font-semibold">Title</h1> // Won't work!
+<h1 className="text-4xl font-semibold">Title</h1> // Don't use semantic HTML!
 
 // ❌ WRONG: Inline styles override Tailwind classes
 <div
@@ -155,18 +159,17 @@ export default function MyComponent() {
 
 Add this comprehensive system to your `globals.css`:
 
-```css
+````css
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
 :root {
   /* Typography variables */
-  --font-size: 14px;
   --text-3xl: 36px; /* h1 */
   --text-2xl: 30px; /* h2 */
   --text-xl: 24px; /* h3 */
   --text-lg: 20px; /* h4 */
   --text-base: 14px; /* p, span, button, input */
-  --text-xs: 11px; /* label */
+  --text-xs: 10px; /* label */
 
   /* Font weights */
   --font-weight-normal: 400;
@@ -238,61 +241,7 @@ Add this comprehensive system to your `globals.css`:
   }
 }
 
-/* Remove all default heading styles to let Tailwind work */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-}
 
-/* Typography utilities using Tailwind classes */
-.text-xs {
-  font-size: var(--text-xs);
-}
-
-.text-sm {
-  font-size: 14px;
-}
-
-.text-base {
-  font-size: var(--text-base);
-}
-
-.text-lg {
-  font-size: var(--text-lg);
-}
-
-.text-xl {
-  font-size: var(--text-xl);
-}
-
-.text-2xl {
-  font-size: var(--text-2xl);
-}
-
-.text-3xl {
-  font-size: var(--text-3xl);
-}
-
-.text-4xl {
-  font-size: 48px;
-}
-
-.text-5xl {
-  font-size: 60px;
-}
-
-.text-6xl {
-  font-size: 71px;
-}
-```
 
 #### ✅ Approved Modus Colors (9 Total)
 
@@ -311,7 +260,7 @@ var(--modus-wc-color-info)          /* #0063a3 */
 var(--modus-wc-color-success)       /* #1e8a44 */
 var(--modus-wc-color-error)         /* #da212c */
 var(--modus-wc-color-warning)       /* #fbad26 */
-```
+````
 
 #### ❌ NEVER Use These
 
@@ -350,16 +299,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        style={{
-          backgroundColor: "var(--modus-wc-color-base-page)",
-          color: "var(--modus-wc-color-base-content)",
-        }}
-      >
+      <body className="bg-background text-foreground">
         <ThemeProvider>
           <ModusProvider>
             <AppHeader />
-            <div style={{ minHeight: "calc(100vh - 200px)" }}>{children}</div>
+            <div className="min-h-screen">{children}</div>
             <AppFooter />
           </ModusProvider>
         </ThemeProvider>
@@ -406,13 +350,7 @@ export default function ComponentName({
   // Component logic here
 
   return (
-    <div
-      style={{
-        // Use Modus CSS variables
-        backgroundColor: "var(--modus-wc-color-base-page)",
-        color: "var(--modus-wc-color-base-content)",
-      }}
-    >
+    <div className="bg-background text-foreground">
       <ModusWcButton color="primary" onButtonClick={onAction}>
         {requiredProp}
       </ModusWcButton>
@@ -623,16 +561,8 @@ export default function Modus[ComponentName]({
 // ❌ WRONG: Inline styles with {{ syntax
 <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem" }}>
 <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-<section style={demoSectionStyle}>
+<div style={demoSectionStyle}>
 <div style={buttonRowStyle}>
-
-// ❌ WRONG: Semantic HTML elements that conflict with Tailwind
-<section className="mb-12 p-8 bg-card rounded-lg border border-border">
-<header className="text-center mb-12">
-<main className="max-w-5xl mx-auto p-8">
-<article className="mb-12 p-8 bg-card rounded-lg">
-<aside className="flex gap-4 flex-wrap mb-4">
-<footer className="text-center mb-12">
 
 // ❌ WRONG: Style objects
 const demoSectionStyle = {
@@ -659,32 +589,32 @@ const buttonRowStyle = {
 // ✅ CORRECT: Tailwind classes with div elements
 <div className="max-w-5xl mx-auto p-8">
 <div className="text-center mb-12">
-<div className="mb-12 p-8 bg-card rounded-lg border border-border">
+<div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
 <div className="flex gap-4 flex-wrap mb-4">
 
 // ✅ CORRECT: Design system colors
-<div className="bg-card text-foreground border-border">
-<input className="bg-background text-foreground border-border">
+<div className="bg-card text-foreground" style={{ border: "1px solid var(--border)" }}>
+<input className="bg-background text-foreground" style={{ border: "1px solid var(--border)" }}>
 ```
 
 ### 🎨 Complete Style Conversion Guide
 
-| **Inline Style**                                     | **Tailwind Class**     |
-| ---------------------------------------------------- | ---------------------- |
-| `maxWidth: "1200px"`                                 | `max-w-5xl`            |
-| `margin: "0 auto"`                                   | `mx-auto`              |
-| `padding: "2rem"`                                    | `p-8`                  |
-| `textAlign: "center"`                                | `text-center`          |
-| `marginBottom: "3rem"`                               | `mb-12`                |
-| `display: "flex"`                                    | `flex`                 |
-| `gap: "1rem"`                                        | `gap-4`                |
-| `flexWrap: "wrap"`                                   | `flex-wrap`            |
-| `backgroundColor: "var(--modus-wc-color-base-100)"`  | `bg-card`              |
-| `border: "1px solid var(--modus-wc-color-base-200)"` | `border border-border` |
-| `borderRadius: "8px"`                                | `rounded-lg`           |
-| `fontSize: "1.1rem"`                                 | `text-lg`              |
-| `fontWeight: "600"`                                  | `font-semibold`        |
-| `lineHeight: "1.6"`                                  | `leading-relaxed`      |
+| **Inline Style**                                                                          | **Tailwind Class**                              |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `maxWidth: "1200px"`                                                                      | `max-w-5xl`                                     |
+| `margin: "0 auto"`                                                                        | `mx-auto`                                       |
+| `padding: "2rem"`                                                                         | `p-8`                                           |
+| `textAlign: "center"`                                                                     | `text-center`                                   |
+| `marginBottom: "3rem"`                                                                    | `mb-12`                                         |
+| `display: "flex"`                                                                         | `flex`                                          |
+| `gap: "1rem"`                                                                             | `gap-4`                                         |
+| `flexWrap: "wrap"`                                                                        | `flex-wrap`                                     |
+| `backgroundColor: "var(--card)"`                                                          | `bg-card`                                       |
+| `borderWidth: "1px", borderStyle: "solid", borderColor: "var(--modus-wc-color-base-200)"` | `style={{ border: "1px solid var(--border)" }}` |
+| `borderRadius: "8px"`                                                                     | `rounded-lg`                                    |
+| `fontSize: "1.1rem"`                                                                      | `text-lg`                                       |
+| `fontWeight: "600"`                                                                       | `font-semibold`                                 |
+| `lineHeight: "1.6"`                                                                       | `leading-relaxed`                               |
 
 ### 🔧 Icon Spacing with Tailwind
 
@@ -718,17 +648,8 @@ const buttonRowStyle = {
 **AVOID** semantic HTML elements that can have default browser styles:
 
 ```tsx
-// ❌ WRONG: Semantic HTML elements with potential conflicts
-<section className="mb-12 p-8 bg-card rounded-lg border border-border">
-<header className="text-center mb-12">
-<main className="max-w-5xl mx-auto p-8">
-<article className="mb-12 p-8 bg-card rounded-lg">
-<aside className="flex gap-4 flex-wrap mb-4">
-<footer className="text-center mb-12">
-<nav className="flex gap-4 flex-wrap mb-4">
-
 // ✅ CORRECT: Use div elements for consistent styling
-<div className="mb-12 p-8 bg-card rounded-lg border border-border">
+<div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
 <div className="text-center mb-12">
 <div className="max-w-5xl mx-auto p-8">
 <div className="mb-12 p-8 bg-card rounded-lg">
@@ -739,783 +660,7 @@ const buttonRowStyle = {
 
 **Why avoid semantic HTML elements:**
 
-- **Default Browser Styles**: `<section>`, `<header>`, `<main>`, etc. have built-in browser styles
-- **CSS Specificity**: Browser defaults can override Tailwind classes
-- **Inconsistent Behavior**: Different browsers may have different default styles
-- **Maintenance Issues**: Harder to predict styling behavior across browsers
-
-### 🎯 Benefits of Tailwind Approach
-
-1. **✅ Consistency**: All styling uses the same system
-2. **✅ Maintainability**: No style objects to manage
-3. **✅ Performance**: No inline style calculations
-4. **✅ Theme Integration**: Automatic design system colors
-5. **✅ Responsive**: Built-in responsive utilities
-6. **✅ Clean Code**: More readable and maintainable
-7. **✅ Bundle Size**: Smaller CSS output
-8. **✅ Developer Experience**: IntelliSense and autocomplete
-
-## 🎯 Key Takeaways
-
-1. **Single Component**: Create one flexible component, not multiple specific ones
-2. **Tailwind Classes**: Use `text-xs`, `text-sm`, `text-lg`, etc. instead of semantic HTML elements
-3. **No Semantic HTML**: Use `div` instead of `h1`, `h2`, `section`, `header`, etc. to avoid style conflicts
-4. **No Inline Styles**: Use Tailwind classes instead of `style={{}}` syntax
-5. **No Style Objects**: Avoid creating style objects, use Tailwind classes directly
-6. **Global Layout**: Put shared components (header/footer) in main layout
-7. **Type Safety**: Always define TypeScript interfaces for props
-8. **Theme Compatibility**: Use only approved Modus CSS variables
-9. **Event Handling**: Use proper callback patterns with useCallback
-10. **Icon Integration**: Follow consistent icon spacing patterns with Tailwind
-11. **Performance**: Prioritize bundle size and compilation speed
-12. **Styling Separation**: Tailwind for typography/layout, design system for colors
-
----
-
-**Remember**: These patterns ensure your Modus Web Components are shareable, maintainable, and performant across Next.js applications. Follow these guidelines to avoid common pitfalls and create production-ready components.
-
-## 🔗 **Development Workflow**
-
-**IMPORTANT**: See `development-workflow.mdc` for mandatory linting commands (`npm run lint:styles`, `npm run lint:colors`, `npm run lint:icons`) and quality gates that must be followed during development.
-
-# Modus Web Components + Next.js Best Practices
-
-## 🎯 Overview
-
-This rule captures proven best practices for creating shareable, maintainable Modus Web Components in Next.js applications. These patterns ensure consistency, performance, and developer experience across projects.
-
-## 🏗️ Component Architecture Principles
-
-### ✅ Single Configurable Component Pattern
-
-**ALWAYS** create one flexible component instead of multiple specific components:
-
-```tsx
-// ✅ CORRECT: Single configurable component
-interface ModusButtonProps {
-  color?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
-  variant?: "filled" | "outlined" | "borderless";
-  size?: "xs" | "sm" | "md" | "lg";
-  shape?: "rectangle" | "square" | "circle";
-  disabled?: boolean;
-  fullWidth?: boolean;
-  icon?: string;
-  iconPosition?: "left" | "right" | "only";
-  children: React.ReactNode;
-  onButtonClick?: () => void;
-  ariaLabel?: string;
-}
-
-export default function ModusButton({
-  color = "primary",
-  variant = "filled",
-  size = "md",
-  shape = "rectangle",
-  disabled = false,
-  fullWidth = false,
-  icon,
-  iconPosition = "left",
-  children,
-  onButtonClick,
-  ariaLabel,
-}: ModusButtonProps) {
-  return (
-    <ModusWcButton
-      color={color}
-      variant={variant}
-      size={size}
-      shape={shape}
-      disabled={disabled}
-      fullWidth={fullWidth}
-      onButtonClick={onButtonClick}
-      aria-label={ariaLabel}
-    >
-      {icon && iconPosition === "left" && (
-        <i className="modus-icons" style={{ marginRight: "8px" }}>
-          {icon}
-        </i>
-      )}
-      {children}
-      {icon && iconPosition === "right" && (
-        <i className="modus-icons" style={{ marginLeft: "8px" }}>
-          {icon}
-        </i>
-      )}
-      {icon && iconPosition === "only" && <i className="modus-icons">{icon}</i>}
-    </ModusWcButton>
-  );
-}
-```
-
-```tsx
-// ❌ WRONG: Multiple specific components
-// ModusButtonDemo.tsx
-// ModusButtonSecondary.tsx
-// ModusButtonWarning.tsx
-// ModusButtonDanger.tsx
-```
-
-### 🎨 Styling Best Practices
-
-#### ✅ Use Figma-Inspired Design System with Modus Colors (Recommended)
-
-**ALWAYS** use a comprehensive design system that maps Figma variables to Modus's 9-color system:
-
-#### 🎯 Important: Modus Web Components vs Custom UI Colors
-
-**CRITICAL DISTINCTION**: There are two different color systems at play:
-
-1. **Modus Web Components** (e.g., `<modus-wc-button>`) have their own predefined colors:
-
-   - `color="primary"` → Uses `--modus-wc-color-info` (blue)
-   - `color="secondary"` → Uses `--modus-wc-color-warning` (yellow)
-   - `color="tertiary"` → Uses `--modus-wc-color-base-300` (gray)
-   - `color="warning"` → Uses `--modus-wc-color-warning` (yellow)
-   - `color="danger"` → Uses `--modus-wc-color-error` (red)
-
-2. **Custom UI Elements** (non-Modus components) use our design system colors:
-   - `--primary` → `--modus-wc-color-info` (blue)
-   - `--secondary` → `--modus-wc-color-base-300` (gray) ← **NOT yellow!**
-   - `--accent` → `--modus-wc-color-info` (blue)
-   - `--destructive` → `--modus-wc-color-error` (red)
-
-**Why this matters:**
-
-- **Modus Web Components**: Use their built-in color props (`color="secondary"` = yellow)
-- **Custom UI**: Use design system colors (`bg-secondary` = gray, not yellow)
-- **Consistency**: Yellow is too bright for secondary UI elements, gray is more appropriate
-
-**Examples:**
-
-```tsx
-// ✅ CORRECT: Modus Web Component with built-in colors
-<modus-wc-button color="secondary">Button</modus-wc-button>
-// This will be YELLOW (--modus-wc-color-warning)
-
-// ✅ CORRECT: Custom UI element with design system colors
-<div className="bg-secondary text-secondary-foreground">Custom Card</div>
-// This will be GRAY (--modus-wc-color-base-300)
-
-// ❌ WRONG: Don't mix the systems
-<div className="bg-secondary">Custom Card</div>
-<modus-wc-button color="secondary">Button</modus-wc-button>
-// These will have different colors (gray vs yellow) - inconsistent!
-```
-
-```tsx
-// ✅ CORRECT: Using Tailwind classes with design system colors
-export default function MyComponent() {
-  return (
-    <div className="bg-card border border-border p-4 rounded-lg">
-      <div className="text-4xl font-semibold text-foreground">Title</div>
-      <div className="text-lg text-foreground opacity-80">Description</div>
-    </div>
-  );
-}
-```
-
-```tsx
-// ❌ WRONG: Semantic HTML elements override Tailwind classes
-<h1 className="text-4xl font-semibold">Title</h1> // Won't work!
-
-// ❌ WRONG: Inline styles override Tailwind classes
-<div
-  className="text-4xl md:text-5xl" // This won't work!
-  style={{ color: "var(--modus-wc-color-base-content)" }}
->
-  Title
-</div>
-```
-
-### ✅ Complete Design System Setup
-
-Add this comprehensive system to your `globals.css`:
-
-```css
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
-
-:root {
-  /* Typography variables */
-  --font-size: 14px;
-  --text-3xl: 36px; /* h1 */
-  --text-2xl: 30px; /* h2 */
-  --text-xl: 24px; /* h3 */
-  --text-lg: 20px; /* h4 */
-  --text-base: 14px; /* p, span, button, input */
-  --text-xs: 11px; /* label */
-
-  /* Font weights */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-
-  /* Map Figma colors to Modus 9-color system */
-  --background: var(--modus-wc-color-base-page);
-  --foreground: var(--modus-wc-color-base-content);
-  --card: var(--modus-wc-color-base-100);
-  --card-foreground: var(--modus-wc-color-base-content);
-  --primary: var(--modus-wc-color-info);
-  --primary-foreground: var(--modus-wc-color-base-page);
-  --secondary: var(--modus-wc-color-base-300);
-  --secondary-foreground: var(--modus-wc-color-base-content);
-  --muted: var(--modus-wc-color-base-200);
-  --muted-foreground: var(--modus-wc-color-base-content);
-  --accent: var(--modus-wc-color-info);
-  --accent-foreground: var(--modus-wc-color-base-page);
-  --destructive: var(--modus-wc-color-error);
-  --destructive-foreground: var(--modus-wc-color-base-page);
-  --border: var(--modus-wc-color-base-200);
-  --input: var(--modus-wc-color-base-page);
-  --input-background: var(--modus-wc-color-base-page);
-  --ring: var(--modus-wc-color-info);
-  --radius: 8px;
-  --radius-card: 16px;
-  --radius-badge: 4px;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-input-background: var(--input-background);
-  --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: var(--radius);
-  --radius-lg: var(--radius-card);
-  --radius-badge: var(--radius-badge);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: "Open Sans", sans-serif;
-    font-size: var(--font-size);
-  }
-
-  html {
-    font-size: var(--font-size);
-    font-family: "Open Sans", sans-serif;
-  }
-}
-
-/* Remove all default heading styles to let Tailwind work */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-/* Typography utilities using Tailwind classes */
-.text-xs {
-  font-size: var(--text-xs);
-}
-
-.text-sm {
-  font-size: 14px;
-}
-
-.text-base {
-  font-size: var(--text-base);
-}
-
-.text-lg {
-  font-size: var(--text-lg);
-}
-
-.text-xl {
-  font-size: var(--text-xl);
-}
-
-.text-2xl {
-  font-size: var(--text-2xl);
-}
-
-.text-3xl {
-  font-size: var(--text-3xl);
-}
-
-.text-4xl {
-  font-size: 48px;
-}
-
-.text-5xl {
-  font-size: 60px;
-}
-
-.text-6xl {
-  font-size: 71px;
-}
-```
-
-#### ✅ Approved Modus Colors (9 Total)
-
-**ONLY** use these Modus CSS variables:
-
-```css
-/* Base Colors (5 total) */
-var(--modus-wc-color-base-page)     /* #fff → #000 */
-var(--modus-wc-color-base-100)      /* #f1f1f6 → #252a2e */
-var(--modus-wc-color-base-200)      /* #cbcdd6 → #464b52 */
-var(--modus-wc-color-base-300)      /* #b7b9c3 → #353a40 */
-var(--modus-wc-color-base-content)  /* #171c1e → #cbcdd6 */
-
-/* Semantic Colors (4 total - same in both themes) */
-var(--modus-wc-color-info)          /* #0063a3 */
-var(--modus-wc-color-success)       /* #1e8a44 */
-var(--modus-wc-color-error)         /* #da212c */
-var(--modus-wc-color-warning)       /* #fbad26 */
-```
-
-#### ❌ NEVER Use These
-
-```css
-/* FORBIDDEN - Will be flagged by linter */
-color: #fff;
-background: #f1f1f6;
-border-color: #0063a3;
-background-color: #da212c;
-
-/* FORBIDDEN - Tailwind colors */
-.text-red-500 .bg-blue-400 .border-gray-300;
-
-/* FORBIDDEN - Custom CSS variables */
-var(--my-custom-color);
-var(--secondary);
-```
-
-## 🏗️ Layout Architecture
-
-### ✅ Global Layout Pattern
-
-**ALWAYS** use the main layout for shared components:
-
-```tsx
-// app/layout.tsx
-import AppHeader from "./components/AppHeader";
-import AppFooter from "./components/AppFooter";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import ModusProvider from "./components/ModusProvider";
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body
-        style={{
-          backgroundColor: "var(--modus-wc-color-base-page)",
-          color: "var(--modus-wc-color-base-content)",
-        }}
-      >
-        <ThemeProvider>
-          <ModusProvider>
-            <AppHeader />
-            <div style={{ minHeight: "calc(100vh - 200px)" }}>{children}</div>
-            <AppFooter />
-          </ModusProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
-```
-
-```tsx
-// ❌ WRONG: Adding header/footer to individual pages
-export default function HomePage() {
-  return (
-    <div>
-      <AppHeader /> {/* Don't do this */}
-      <div>Content</div>
-      <AppFooter /> {/* Don't do this */}
-    </div>
-  );
-}
-```
-
-## 🧩 Component Development Guidelines
-
-### ✅ Component Structure Template
-
-```tsx
-"use client"; // Only if needed for interactivity
-
-import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
-
-interface ComponentProps {
-  // Define all props with proper TypeScript types
-  requiredProp: string;
-  optionalProp?: boolean;
-  onAction?: () => void;
-}
-
-export default function ComponentName({
-  requiredProp,
-  optionalProp = false,
-  onAction,
-}: ComponentProps) {
-  // Component logic here
-
-  return (
-    <div
-      style={{
-        // Use Modus CSS variables
-        backgroundColor: "var(--modus-wc-color-base-page)",
-        color: "var(--modus-wc-color-base-content)",
-      }}
-    >
-      <ModusWcButton color="primary" onButtonClick={onAction}>
-        {requiredProp}
-      </ModusWcButton>
-    </div>
-  );
-}
-```
-
-### ✅ Event Handling Pattern
-
-```tsx
-// ✅ CORRECT: Proper event handling
-const handleButtonClick = useCallback(() => {
-  console.log("Button clicked!");
-  onAction?.();
-}, [onAction]);
-
-return (
-  <ModusWcButton onButtonClick={handleButtonClick}>Click me</ModusWcButton>
-);
-```
-
-### ✅ Icon Integration Pattern
-
-```tsx
-// ✅ CORRECT: Icon with proper spacing
-<ModusWcButton color="primary">
-  <i className="modus-icons" style={{ marginRight: "8px" }}>
-    save_disk
-  </i>
-  Save File
-</ModusWcButton>
-
-// ✅ CORRECT: Icon-only button
-<ModusWcButton
-  color="primary"
-  variant="borderless"
-  shape="circle"
-  aria-label="Save"
->
-  <i className="modus-icons">save_disk</i>
-</ModusWcButton>
-```
-
-## 🚫 Common Anti-Patterns to Avoid
-
-### ❌ Multiple Component Files
-
-```bash
-# DON'T create these
-ModusButtonDemo.tsx
-ModusButtonSecondary.tsx
-ModusButtonWarning.tsx
-ModusButtonDanger.tsx
-```
-
-### ❌ CSS Modules for Pages
-
-```tsx
-// DON'T do this for pages
-import styles from "./Page.module.css";
-<div className={styles.container} />;
-```
-
-### ❌ Hardcoded Colors
-
-```tsx
-// DON'T use hardcoded colors
-<div style={{ backgroundColor: "#ffffff", color: "#000000" }} />
-```
-
-### ❌ Duplicate Layout Components
-
-```tsx
-// DON'T add header/footer to individual pages
-export default function Page() {
-  return (
-    <div>
-      <AppHeader /> {/* Already in layout */}
-      <div>Content</div>
-      <AppFooter /> {/* Already in layout */}
-    </div>
-  );
-}
-```
-
-## 📁 File Organization
-
-### ✅ Recommended Structure
-
-```
-app/
-├── layout.tsx                 # Global layout with header/footer
-├── page.tsx                   # Homepage
-├── components/
-│   ├── ModusButton.tsx        # Single configurable button
-│   ├── AppHeader.tsx          # Global header
-│   ├── AppFooter.tsx          # Global footer
-│   └── ModusProvider.tsx      # Modus setup
-├── contexts/
-│   └── ThemeContext.tsx       # Theme management
-└── [feature]/
-    └── page.tsx               # Feature pages
-```
-
-### ❌ Avoid This Structure
-
-```
-app/
-├── components/
-│   ├── ModusButtonDemo.tsx    # Too specific
-│   ├── ModusButtonSecondary.tsx # Duplicate logic
-│   ├── ModusButtonWarning.tsx   # Code duplication
-│   └── ModusButtonDanger.tsx    # Maintenance nightmare
-└── [feature]/
-    ├── page.tsx
-    └── Feature.module.css     # CSS modules for pages
-```
-
-## 🧪 Testing Requirements
-
-### ✅ Component Testing Checklist
-
-- [ ] ✅ **Single Component**: One flexible component vs multiple specific ones
-- [ ] ✅ **Modus Colors**: Only approved CSS variables used
-- [ ] ✅ **Inline Styles**: No CSS modules for pages
-- [ ] ✅ **Theme Testing**: Works with all 4 Modus themes
-- [ ] ✅ **Event Handling**: Proper callback patterns
-- [ ] ✅ **Accessibility**: ARIA labels and keyboard navigation
-- [ ] ✅ **TypeScript**: Full type safety with interfaces
-- [ ] ✅ **Layout Integration**: Uses global layout, not individual headers/footers
-
-## 🎯 Performance Benefits
-
-### ✅ Single Component Approach
-
-- **90% Less Code**: One component vs 4+ separate files
-- **Better Bundle Size**: Smaller JavaScript payload
-- **Easier Maintenance**: Single source of truth
-- **Consistent Behavior**: All buttons work the same way
-- **Type Safety**: One interface to maintain
-
-### ✅ Inline Styles Approach
-
-- **No CSS Module Overhead**: Faster compilation
-- **Theme Compatibility**: Automatic theme switching
-- **No Style Conflicts**: Scoped to component
-- **Better Performance**: No CSS parsing overhead
-
-## 📋 Migration Checklist
-
-When refactoring existing components:
-
-- [ ] ✅ **Audit Components**: Identify duplicate/specific components
-- [ ] ✅ **Create Single Component**: Build flexible, configurable component
-- [ ] ✅ **Update Imports**: Replace specific components with single one
-- [ ] ✅ **Remove Old Files**: Delete unnecessary component files
-- [ ] ✅ **Convert Styles**: Replace CSS modules with inline styles
-- [ ] ✅ **Test Functionality**: Ensure all features work correctly
-- [ ] ✅ **Update Documentation**: Reflect new component patterns
-
-## 🚀 Quick Start Template
-
-```tsx
-// app/components/Modus[ComponentName].tsx
-"use client";
-
-import { ModusWc[ComponentName] } from "@trimble-oss/moduswebcomponents-react";
-
-interface Modus[ComponentName]Props {
-  // Define all possible props
-  variant?: "default" | "alternative";
-  size?: "sm" | "md" | "lg";
-  disabled?: boolean;
-  children: React.ReactNode;
-  onAction?: () => void;
-}
-
-export default function Modus[ComponentName]({
-  variant = "default",
-  size = "md",
-  disabled = false,
-  children,
-  onAction,
-}: Modus[ComponentName]Props) {
-  return (
-    <ModusWc[ComponentName]
-      variant={variant}
-      size={size}
-      disabled={disabled}
-      onAction={onAction}
-    >
-      {children}
-    </ModusWc[ComponentName]>
-  );
-}
-```
-
-## 🚫 Anti-Patterns: Inline Styles vs Tailwind Classes
-
-### ❌ NEVER Use Inline Styles or Semantic HTML Elements
-
-**AVOID** the `{{` syntax for inline styles in React components:
-
-**AVOID** semantic HTML elements that can conflict with Tailwind classes:
-
-```tsx
-// ❌ WRONG: Inline styles with {{ syntax
-<div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem" }}>
-<div style={{ textAlign: "center", marginBottom: "3rem" }}>
-<section style={demoSectionStyle}>
-<div style={buttonRowStyle}>
-
-// ❌ WRONG: Semantic HTML elements that conflict with Tailwind
-<section className="mb-12 p-8 bg-card rounded-lg border border-border">
-<header className="text-center mb-12">
-<main className="max-w-5xl mx-auto p-8">
-<article className="mb-12 p-8 bg-card rounded-lg">
-<aside className="flex gap-4 flex-wrap mb-4">
-<footer className="text-center mb-12">
-
-// ❌ WRONG: Style objects
-const demoSectionStyle = {
-  marginBottom: "3rem",
-  padding: "2rem",
-  backgroundColor: "var(--modus-wc-color-base-100)",
-  borderRadius: "8px",
-  border: "1px solid var(--modus-wc-color-base-200)",
-};
-
-const buttonRowStyle = {
-  display: "flex",
-  gap: "1rem",
-  flexWrap: "wrap",
-  marginBottom: "1rem",
-};
-```
-
-### ✅ ALWAYS Use Tailwind Classes
-
-**USE** Tailwind utility classes for all styling:
-
-```tsx
-// ✅ CORRECT: Tailwind classes with div elements
-<div className="max-w-5xl mx-auto p-8">
-<div className="text-center mb-12">
-<div className="mb-12 p-8 bg-card rounded-lg border border-border">
-<div className="flex gap-4 flex-wrap mb-4">
-
-// ✅ CORRECT: Design system colors
-<div className="bg-card text-foreground border-border">
-<input className="bg-background text-foreground border-border">
-```
-
-### 🎨 Complete Style Conversion Guide
-
-| **Inline Style**                                     | **Tailwind Class**     |
-| ---------------------------------------------------- | ---------------------- |
-| `maxWidth: "1200px"`                                 | `max-w-5xl`            |
-| `margin: "0 auto"`                                   | `mx-auto`              |
-| `padding: "2rem"`                                    | `p-8`                  |
-| `textAlign: "center"`                                | `text-center`          |
-| `marginBottom: "3rem"`                               | `mb-12`                |
-| `display: "flex"`                                    | `flex`                 |
-| `gap: "1rem"`                                        | `gap-4`                |
-| `flexWrap: "wrap"`                                   | `flex-wrap`            |
-| `backgroundColor: "var(--modus-wc-color-base-100)"`  | `bg-card`              |
-| `border: "1px solid var(--modus-wc-color-base-200)"` | `border border-border` |
-| `borderRadius: "8px"`                                | `rounded-lg`           |
-| `fontSize: "1.1rem"`                                 | `text-lg`              |
-| `fontWeight: "600"`                                  | `font-semibold`        |
-| `lineHeight: "1.6"`                                  | `leading-relaxed`      |
-
-### 🔧 Icon Spacing with Tailwind
-
-```tsx
-// ✅ CORRECT: Tailwind spacing classes
-<i className="modus-icons mr-2">save_disk</i>
-<i className="modus-icons ml-2">arrow_right</i>
-
-// ❌ WRONG: Inline style margins
-<i className="modus-icons" style={{ marginRight: "8px" }}>save_disk</i>
-<i className="modus-icons" style={{ marginLeft: "8px" }}>arrow_right</i>
-```
-
-### 📱 Responsive Design with Tailwind
-
-```tsx
-// ✅ CORRECT: Responsive grid classes
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-<div className="flex flex-col lg:flex-row gap-4">
-
-// ❌ WRONG: Inline responsive styles
-<div style={{
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "2rem"
-}}>
-```
-
-### 🏗️ Semantic HTML Elements vs Div Elements
-
-**AVOID** semantic HTML elements that can have default browser styles:
-
-```tsx
-// ❌ WRONG: Semantic HTML elements with potential conflicts
-<section className="mb-12 p-8 bg-card rounded-lg border border-border">
-<header className="text-center mb-12">
-<main className="max-w-5xl mx-auto p-8">
-<article className="mb-12 p-8 bg-card rounded-lg">
-<aside className="flex gap-4 flex-wrap mb-4">
-<footer className="text-center mb-12">
-<nav className="flex gap-4 flex-wrap mb-4">
-
-// ✅ CORRECT: Use div elements for consistent styling
-<div className="mb-12 p-8 bg-card rounded-lg border border-border">
-<div className="text-center mb-12">
-<div className="max-w-5xl mx-auto p-8">
-<div className="mb-12 p-8 bg-card rounded-lg">
-<div className="flex gap-4 flex-wrap mb-4">
-<div className="text-center mb-12">
-<div className="flex gap-4 flex-wrap mb-4">
-```
-
-**Why avoid semantic HTML elements:**
-
-- **Default Browser Styles**: `<section>`, `<header>`, `<main>`, etc. have built-in browser styles
+- **Default Browser Styles**: `<section>`, `<header>`, `<main>`, etc. have built-in browser styles that can interfere with Tailwind
 - **CSS Specificity**: Browser defaults can override Tailwind classes
 - **Inconsistent Behavior**: Different browsers may have different default styles
 - **Maintenance Issues**: Harder to predict styling behavior across browsers

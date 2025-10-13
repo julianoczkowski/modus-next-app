@@ -78,8 +78,8 @@ export default function SliderDemoPage() {
 
         {/* Smart Building Controls */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
             <div>
@@ -116,7 +116,10 @@ export default function SliderDemoPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-center justify-between text-sm text-foreground opacity-80">
                 <span>Audio volume</span>
                 <div className="font-semibold text-foreground">{volume}%</div>
@@ -138,7 +141,10 @@ export default function SliderDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-center justify-between text-sm text-foreground opacity-80">
                 <span>Lighting temperature</span>
                 <div className="font-semibold text-foreground">{lighting}K</div>
@@ -160,7 +166,10 @@ export default function SliderDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-center justify-between text-sm text-foreground opacity-80">
                 <span>Hydraulic pressure</span>
                 <div className="font-semibold text-foreground">
@@ -188,14 +197,17 @@ export default function SliderDemoPage() {
 
         {/* Application Scenarios */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Application Scenarios
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Equipment telemetry
               </div>
@@ -230,7 +242,10 @@ export default function SliderDemoPage() {
                 customClass="slider-telemetry"
               />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Design workflows
               </div>
@@ -264,8 +279,8 @@ export default function SliderDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Interaction Log
@@ -274,7 +289,10 @@ export default function SliderDemoPage() {
             Detailed events captured from `inputChange` to monitor how sliders
             are used.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {eventLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Adjust any slider above to populate the log.

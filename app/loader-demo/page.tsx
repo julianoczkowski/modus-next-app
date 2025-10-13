@@ -44,8 +44,8 @@ export default function LoaderDemo() {
 
       {/* Basic Usage */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
@@ -65,8 +65,8 @@ export default function LoaderDemo() {
 
       {/* All Variants */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           All Animation Variants
@@ -89,8 +89,8 @@ export default function LoaderDemo() {
 
       {/* Size Variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
@@ -121,8 +121,8 @@ export default function LoaderDemo() {
 
       {/* Color Variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Color Variations
@@ -154,8 +154,8 @@ export default function LoaderDemo() {
 
       {/* Usage Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Usage Examples
@@ -190,8 +190,8 @@ export default function LoaderDemo() {
 
       {/* Loading States */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Loading States
@@ -258,8 +258,8 @@ export default function LoaderDemo() {
 
       {/* Custom Styling */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Custom Styling
@@ -317,8 +317,8 @@ export default function LoaderDemo() {
 
       {/* Accessibility Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Accessibility Examples
@@ -367,8 +367,8 @@ export default function LoaderDemo() {
 
       {/* Performance Note */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Performance
@@ -407,8 +407,8 @@ export default function LoaderDemo() {
 
       {/* Code Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Code Examples

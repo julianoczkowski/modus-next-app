@@ -1,0 +1,60 @@
+---
+alwaysApply: true
+---
+
+# Tailwind Usage - Essential Rules
+
+## ✅ ALWAYS Use Tailwind Classes Inline
+
+```tsx
+// ✅ CORRECT - Pure Tailwind with design system colors
+<div className="flex items-center gap-4 p-6 bg-background text-foreground rounded-lg">
+<Link className="px-4 py-2 hover:bg-card transition-colors">
+<header className="w-full bg-background text-foreground" style={{ borderBottom: "1px solid var(--border)" }}>
+```
+
+## ❌ NEVER Create Custom CSS Classes
+
+```css
+/* ❌ FORBIDDEN - Don't create custom classes */
+.app-header {
+  background-color: var(--background);
+}
+.nav-link:hover {
+  background-color: var(--card);
+}
+.custom-button {
+  padding: 1rem;
+}
+```
+
+## 🎯 Borders Exception (Tailwind v4 Issue)
+
+```tsx
+// ❌ WRONG - Tailwind border classes don't work
+<div className="border border-border">
+
+// ❌ WRONG - Common violation pattern
+<div className="bg-card border border-border rounded-lg">
+
+// ✅ CORRECT - Use inline styles for borders
+<div style={{ border: "1px solid var(--border)" }}>
+<div style={{ border: "2px dashed var(--border)" }}>
+<div className="bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+```
+
+## ✅ Only 2 Valid Custom CSS Cases
+
+1. **Theme-based logo switching** (can't be done with Tailwind)
+2. **Complex `@keyframes` animations**
+
+Everything else? **Pure Tailwind inline classes.**
+
+## 🎯 Key Rules
+
+- **Maximize Tailwind**: Use `hover:`, `focus:`, `bg-*`, `text-*` inline
+- **No Custom CSS**: Don't create `.custom-class` for styling
+- **Design System Colors**: Use `bg-background`, `text-foreground`
+- **Borders Exception**: Use `style={{ border: "..." }}` only
+- **NEVER use `border border-border`** - This is a common violation!
+- **Self-Documenting**: All styling visible in component

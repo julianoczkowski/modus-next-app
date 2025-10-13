@@ -145,8 +145,8 @@ export default function TextInputDemo() {
 
       {/* Basic Usage */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
@@ -177,8 +177,8 @@ export default function TextInputDemo() {
 
       {/* Input Types */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Input Types
@@ -211,8 +211,8 @@ export default function TextInputDemo() {
 
       {/* Size Variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
@@ -246,8 +246,8 @@ export default function TextInputDemo() {
 
       {/* Features: Clear and Search Icons */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Clear and Search Icons
@@ -301,8 +301,8 @@ export default function TextInputDemo() {
 
       {/* Validation and Feedback */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Validation and Feedback
@@ -345,8 +345,8 @@ export default function TextInputDemo() {
 
       {/* Input States */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Input States
@@ -388,8 +388,8 @@ export default function TextInputDemo() {
 
       {/* Mobile Optimization */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Mobile Optimization
@@ -441,8 +441,8 @@ export default function TextInputDemo() {
 
       {/* Form Integration */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Form Integration
@@ -515,8 +515,8 @@ export default function TextInputDemo() {
 
       {/* Code Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Code Examples

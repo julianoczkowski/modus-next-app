@@ -42,7 +42,10 @@ export default function ModalDemo() {
       </div>
 
       {/* Basic Modal Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Basic Modal
         </div>
@@ -105,7 +108,10 @@ export default function ModalDemo() {
       </div>
 
       {/* Static Backdrop Modal Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Static Backdrop Modal
         </div>
@@ -167,7 +173,10 @@ export default function ModalDemo() {
       </div>
 
       {/* Fullscreen Modal Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Fullscreen Modal
         </div>
@@ -233,7 +242,10 @@ export default function ModalDemo() {
       </div>
 
       {/* Top Position Modal Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Top Position Modal
         </div>
@@ -285,7 +297,10 @@ export default function ModalDemo() {
       </div>
 
       {/* Custom Size Modal Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Custom Size Modal
         </div>
@@ -336,7 +351,10 @@ export default function ModalDemo() {
       </div>
 
       {/* Form Modal Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Form Modal
         </div>
@@ -386,7 +404,8 @@ export default function ModalDemo() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => handleFormChange("name", e.target.value)}
-                className="w-full px-3 py-2 border border-input rounded bg-background text-foreground"
+                className="w-full px-3 py-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--input)" }}
                 placeholder="Enter your name"
                 required
               />
@@ -399,7 +418,8 @@ export default function ModalDemo() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleFormChange("email", e.target.value)}
-                className="w-full px-3 py-2 border border-input rounded bg-background text-foreground"
+                className="w-full px-3 py-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--input)" }}
                 placeholder="Enter your email"
                 required
               />
@@ -411,7 +431,8 @@ export default function ModalDemo() {
               <textarea
                 value={formData.message}
                 onChange={(e) => handleFormChange("message", e.target.value)}
-                className="w-full px-3 py-2 border border-input rounded bg-background text-foreground"
+                className="w-full px-3 py-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--input)" }}
                 placeholder="Enter your message"
                 rows={4}
                 required

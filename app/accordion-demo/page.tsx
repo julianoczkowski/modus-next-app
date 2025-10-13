@@ -100,7 +100,10 @@ export default function AccordionDemoPage() {
           <div className="text-foreground">
             <div className="text-lg font-semibold mb-4">Available Features</div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">dashboard</i>
                   <div className="font-medium">Dashboard</div>
@@ -109,7 +112,10 @@ export default function AccordionDemoPage() {
                   Comprehensive analytics and reporting tools
                 </div>
               </div>
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">settings</i>
                   <div className="font-medium">Settings</div>
@@ -118,7 +124,10 @@ export default function AccordionDemoPage() {
                   Customize your experience and preferences
                 </div>
               </div>
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">people_group</i>
                   <div className="font-medium">Team Management</div>
@@ -127,7 +136,10 @@ export default function AccordionDemoPage() {
                   Collaborate with your team effectively
                 </div>
               </div>
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="flex items-center gap-2 mb-2">
                   <i className="modus-icons text-primary">security</i>
                   <div className="font-medium">Security</div>
@@ -155,7 +167,10 @@ export default function AccordionDemoPage() {
           <div className="text-foreground">
             <div className="text-lg font-semibold mb-4">Pricing Plans</div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-6 bg-card border border-border rounded-lg text-center">
+              <div
+                className="p-6 bg-card rounded-lg text-center"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="text-2xl font-bold mb-2">Free</div>
                 <div className="text-4xl font-bold text-primary mb-4">$0</div>
                 <div className="text-sm text-foreground space-y-2 mb-6">
@@ -171,7 +186,10 @@ export default function AccordionDemoPage() {
                   Get Started
                 </ModusWcButton>
               </div>
-              <div className="p-6 bg-card border border-border rounded-lg text-center border-primary">
+              <div
+                className="p-6 bg-card rounded-lg text-center"
+                style={{ border: "2px solid var(--primary)" }}
+              >
                 <div className="text-2xl font-bold mb-2">Pro</div>
                 <div className="text-4xl font-bold text-primary mb-4">$29</div>
                 <div className="text-sm text-foreground space-y-2 mb-6">
@@ -188,7 +206,10 @@ export default function AccordionDemoPage() {
                   Choose Pro
                 </ModusWcButton>
               </div>
-              <div className="p-6 bg-card border border-border rounded-lg text-center">
+              <div
+                className="p-6 bg-card rounded-lg text-center"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="text-2xl font-bold mb-2">Enterprise</div>
                 <div className="text-4xl font-bold text-primary mb-4">$99</div>
                 <div className="text-sm text-foreground space-y-2 mb-6">
@@ -227,7 +248,10 @@ export default function AccordionDemoPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <div className="p-4 bg-card border border-border rounded-lg">
+                <div
+                  className="p-4 bg-card rounded-lg"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">help</i>
                     <div className="font-medium">Documentation</div>
@@ -244,7 +268,10 @@ export default function AccordionDemoPage() {
                     Browse Docs →
                   </ModusWcButton>
                 </div>
-                <div className="p-4 bg-card border border-border rounded-lg">
+                <div
+                  className="p-4 bg-card rounded-lg"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">chat</i>
                     <div className="font-medium">Live Chat</div>
@@ -263,7 +290,10 @@ export default function AccordionDemoPage() {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="p-4 bg-card border border-border rounded-lg">
+                <div
+                  className="p-4 bg-card rounded-lg"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">email</i>
                     <div className="font-medium">Email Support</div>
@@ -280,7 +310,10 @@ export default function AccordionDemoPage() {
                     Send Email →
                   </ModusWcButton>
                 </div>
-                <div className="p-4 bg-card border border-border rounded-lg">
+                <div
+                  className="p-4 bg-card rounded-lg"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   <div className="flex items-center gap-2 mb-2">
                     <i className="modus-icons text-primary">phone</i>
                     <div className="font-medium">Phone Support</div>
@@ -319,28 +352,40 @@ export default function AccordionDemoPage() {
               Frequently Asked Questions
             </div>
             <div className="space-y-4">
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="font-medium mb-2">How do I get started?</div>
                 <div className="text-sm text-foreground opacity-80">
                   Simply sign up for an account and follow our onboarding
                   process. We&apos;ll guide you through each step.
                 </div>
               </div>
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="font-medium mb-2">Is there a free trial?</div>
                 <div className="text-sm text-foreground opacity-80">
                   Yes! We offer a 14-day free trial with full access to all
                   features. No credit card required.
                 </div>
               </div>
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="font-medium mb-2">Can I cancel anytime?</div>
                 <div className="text-sm text-foreground opacity-80">
                   Absolutely. You can cancel your subscription at any time from
                   your account settings.
                 </div>
               </div>
-              <div className="p-4 bg-card border border-border rounded-lg">
+              <div
+                className="p-4 bg-card rounded-lg"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <div className="font-medium mb-2">Do you offer refunds?</div>
                 <div className="text-sm text-foreground opacity-80">
                   We offer a 30-day money-back guarantee for all paid plans.
@@ -367,7 +412,10 @@ export default function AccordionDemoPage() {
       </div>
 
       {/* Basic Accordion Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Accordion
         </div>
@@ -384,7 +432,10 @@ export default function AccordionDemoPage() {
       </div>
 
       {/* Event Logging Demo */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Event Logging
         </div>
@@ -398,7 +449,10 @@ export default function AccordionDemoPage() {
             <div className="text-lg font-medium mb-4 text-foreground">
               Accordion Events:
             </div>
-            <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
+            <div
+              className="max-h-64 overflow-y-auto rounded p-4 bg-background"
+              style={{ border: "1px solid var(--border)" }}
+            >
               {eventLogs.map((log, index) => (
                 <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
                   <div className="text-foreground min-w-20">
@@ -428,7 +482,10 @@ export default function AccordionDemoPage() {
             <div className="text-lg font-medium mb-4 text-foreground">
               Current State:
             </div>
-            <div className="p-4 bg-background border border-border rounded">
+            <div
+              className="p-4 bg-background rounded"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm text-foreground mb-2">
                 <strong>Expanded Items:</strong>{" "}
                 {Array.from(expandedItems)
@@ -447,7 +504,10 @@ export default function AccordionDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>
@@ -456,7 +516,10 @@ export default function AccordionDemoPage() {
             <div className="text-lg font-medium mb-2 text-foreground">
               Basic Accordion:
             </div>
-            <div className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground">
+            <div
+              className="bg-background rounded p-4 overflow-x-auto font-mono text-sm text-foreground"
+              style={{ border: "1px solid var(--border)" }}
+            >
               {`<ModusAccordion
   items={[
     {
@@ -477,7 +540,10 @@ export default function AccordionDemoPage() {
             <div className="text-lg font-medium mb-2 text-foreground">
               With Event Handling:
             </div>
-            <div className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground">
+            <div
+              className="bg-background rounded p-4 overflow-x-auto font-mono text-sm text-foreground"
+              style={{ border: "1px solid var(--border)" }}
+            >
               {`<ModusAccordion
   items={accordionItems}
   onExpandedChange={(event) => {

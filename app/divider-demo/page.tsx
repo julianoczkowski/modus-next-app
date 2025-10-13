@@ -16,7 +16,10 @@ export default function DividerDemoPage() {
         </div>
       </div>
 
-      <div className="bg-card border border-border rounded-lg p-8 space-y-8">
+      <div
+        className="bg-card rounded-lg p-8 space-y-8"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="space-y-2">
           <div className="text-2xl font-semibold text-foreground">
             Horizontal dividers
@@ -30,7 +33,10 @@ export default function DividerDemoPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Content free
             </div>
@@ -45,7 +51,10 @@ export default function DividerDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               With label
             </div>
@@ -65,7 +74,10 @@ export default function DividerDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Positioned text
             </div>
@@ -87,7 +99,10 @@ export default function DividerDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+          <div
+            className="bg-background rounded-lg p-6 space-y-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Fixed width
             </div>
@@ -113,7 +128,10 @@ export default function DividerDemoPage() {
         </div>
       </div>
 
-      <div className="bg-card border border-border rounded-lg p-8 space-y-8">
+      <div
+        className="bg-card rounded-lg p-8 space-y-8"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="space-y-2">
           <div className="text-2xl font-semibold text-foreground">
             Vertical dividers
@@ -126,7 +144,10 @@ export default function DividerDemoPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-6">
+          <div
+            className="bg-background rounded-lg p-6 space-y-6"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Basic flex layout
             </div>
@@ -145,7 +166,10 @@ export default function DividerDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 space-y-6">
+          <div
+            className="bg-background rounded-lg p-6 space-y-6"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm uppercase tracking-wide text-muted-foreground">
               Positioned label
             </div>

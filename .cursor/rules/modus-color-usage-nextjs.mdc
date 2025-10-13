@@ -21,7 +21,7 @@ import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 export default function ProductCard() {
   return (
     {/* Tailwind: layout, spacing, responsive */}
-    <div className="flex flex-col md:flex-row items-center gap-4 p-6 rounded-lg border transition-all duration-200 hover:shadow-lg bg-card border-border">
+    <div className="flex flex-col md:flex-row items-center gap-4 p-6 rounded-lg transition-all duration-200 hover:shadow-lg bg-card" style={{ border: "1px solid var(--border)" }}>
 
       {/* Tailwind: typography, spacing */}
       {/* Design System: text color */}
@@ -53,22 +53,22 @@ export default function ProductCard() {
 **Breakdown:**
 
 - **Tailwind** handles: `flex`, `gap-4`, `p-6`, `rounded-lg`, `text-lg`, `hover:shadow-lg`
-- **Design System** handles: `bg-card`, `border-border`, `text-foreground`, `bg-primary`
+- **Design System** handles: `bg-card`, `style={{ border: "1px solid var(--border)" }}`, `text-foreground`, `bg-primary`
 - **Modus Components** use: `color="primary"`, `variant="filled"`
 
 ### ✅ What to Use When
 
-| **Use Case**           | **What to Use**       | **Example**                                            |
-| ---------------------- | --------------------- | ------------------------------------------------------ |
-| **Layout**             | Tailwind classes      | `flex`, `grid`, `items-center`, `gap-4`                |
-| **Spacing**            | Tailwind classes      | `p-4`, `m-2`, `px-8`, `py-6`                           |
-| **Typography**         | Tailwind classes      | `text-lg`, `font-semibold`, `leading-relaxed`          |
-| **Responsive**         | Tailwind classes      | `md:flex-row`, `lg:grid-cols-3`                        |
-| **Transitions**        | Tailwind classes      | `transition-colors`, `duration-200`, `hover:shadow-lg` |
-| **Colors (Custom UI)** | Design system classes | `bg-background`, `text-foreground`, `border-border`    |
-| **Hover States**       | Tailwind prefixes     | `hover:bg-card`, `hover:opacity-80`                    |
-| **Focus States**       | Tailwind prefixes     | `focus:ring-2`, `focus:ring-ring`                      |
-| **Modus Components**   | Color props           | `color="primary"`, `variant="filled"`                  |
+| **Use Case**           | **What to Use**       | **Example**                                                                         |
+| ---------------------- | --------------------- | ----------------------------------------------------------------------------------- |
+| **Layout**             | Tailwind classes      | `flex`, `grid`, `items-center`, `gap-4`                                             |
+| **Spacing**            | Tailwind classes      | `p-4`, `m-2`, `px-8`, `py-6`                                                        |
+| **Typography**         | Tailwind classes      | `text-lg`, `font-semibold`, `leading-relaxed`                                       |
+| **Responsive**         | Tailwind classes      | `md:flex-row`, `lg:grid-cols-3`                                                     |
+| **Transitions**        | Tailwind classes      | `transition-colors`, `duration-200`, `hover:shadow-lg`                              |
+| **Colors (Custom UI)** | Design system classes | `bg-background`, `text-foreground`, `style={{ border: "1px solid var(--border)" }}` |
+| **Hover States**       | Tailwind prefixes     | `hover:bg-card`, `hover:opacity-80`                                                 |
+| **Focus States**       | Tailwind prefixes     | `focus:ring-2`, `focus:ring-ring`                                                   |
+| **Modus Components**   | Color props           | `color="primary"`, `variant="filled"`                                               |
 
 ### 🎨 Design System Colors (Available as Tailwind Classes)
 
@@ -98,9 +98,9 @@ text - destructive; // Error text
 **Border Colors:**
 
 ```tsx
-border - border; // Standard borders
-border - input; // Input borders
-border - ring; // Focus rings
+style={{ border: "1px solid var(--border)" }} // Standard borders
+style={{ border: "1px solid var(--input)" }}  // Input borders
+style={{ border: "1px solid var(--ring)" }}   // Focus rings
 ```
 
 **Interactive States:**
@@ -126,7 +126,7 @@ style={{ borderColor: "var(--modus-wc-color-base-200)" }}
 
 ```tsx
 // ✅ CORRECT - Design system classes
-className = "bg-background text-foreground border-border";
+className = "bg-background text-foreground" style={{ border: "1px solid var(--border)" }};
 ```
 
 ### 📋 Original Modus Colors (For Reference Only)
@@ -157,7 +157,7 @@ var(--modus-wc-color-warning)       /* #fbad26 */
 - `--modus-wc-color-base-page` → `bg-background`
 - `--modus-wc-color-base-content` → `text-foreground`
 - `--modus-wc-color-base-100` → `bg-card`
-- `--modus-wc-color-base-200` → `border-border`
+- `--modus-wc-color-base-200` → `style={{ border: "1px solid var(--border)" }}`
 - `--modus-wc-color-info` → `bg-primary`
 - `--modus-wc-color-error` → `bg-destructive`
 - `--modus-wc-color-success` → `bg-success`
@@ -173,7 +173,10 @@ var(--modus-wc-color-warning)       /* #fbad26 */
 // ✅ BEST - Pure Tailwind with design system colors
 export default function Component() {
   return (
-    <div className="p-6 bg-background border border-border text-foreground rounded-lg">
+    <div
+      className="p-6 bg-background text-foreground rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
+    >
       <div className="bg-card p-4 rounded-lg hover:bg-card/90 transition-colors">
         <div className="text-foreground text-lg font-semibold">Title</div>
         <div className="text-muted-foreground">Description</div>
@@ -284,14 +287,14 @@ border-color: rgb(0, 99, 163);
 >
 
 // ✅ CORRECT - Tailwind classes with design system
-<div className="bg-background border-border text-foreground">
+<div className="bg-background text-foreground" style={{ border: "1px solid var(--border)" }}>
 ```
 
 **Our design system maps Modus variables to Tailwind classes:**
 
 - `var(--modus-wc-color-base-page)` → `bg-background`
 - `var(--modus-wc-color-base-content)` → `text-foreground`
-- `var(--modus-wc-color-base-200)` → `border-border`
+- `var(--modus-wc-color-base-200)` → `style={{ border: "1px solid var(--border)" }}`
 - `var(--modus-wc-color-info)` → `bg-primary`
 - `var(--modus-wc-color-error)` → `bg-destructive`
 
@@ -314,40 +317,40 @@ border-color: rgb(0, 99, 163);
 
 ```css
 /* Page/container backgrounds */
-background-color: var(--modus-wc-color-base-page);
+background-color: var(--background);
 
 /* Card/section backgrounds */
-background-color: var(--modus-wc-color-base-100);
+background-color: var(--card);
 
 /* Subtle backgrounds */
-background-color: var(--modus-wc-color-base-200);
+background-color: var(--muted);
 ```
 
 **Text Colors:**
 
 ```css
 /* Primary text */
-color: var(--modus-wc-color-base-content);
+color: var(--foreground);
 
 /* Status text */
-color: var(--modus-wc-color-success); /* Success messages */
-color: var(--modus-wc-color-error); /* Error messages */
-color: var(--modus-wc-color-warning); /* Warning messages */
-color: var(--modus-wc-color-info); /* Info messages */
+color: var(--success); /* Success messages */
+color: var(--destructive); /* Error messages */
+color: var(--warning); /* Warning messages */
+color: var(--primary); /* Info messages */
 ```
 
 **Borders:**
 
 ```css
 /* Light borders */
-border: 1px solid var(--modus-wc-color-base-200);
+border: 1px solid var(--border);
 
 /* Medium borders */
-border: 1px solid var(--modus-wc-color-base-300);
+border: 1px solid var(--muted);
 
 /* Status borders */
-border: 1px solid var(--modus-wc-color-error);
-border: 1px solid var(--modus-wc-color-success);
+border: 1px solid var(--destructive);
+border: 1px solid var(--success);
 ```
 
 ## 🔧 Modus Web Component Colors
@@ -417,9 +420,9 @@ The color checking script (`scripts/check-modus-colors.js`) is specifically conf
 
 ```css
 .header {
-  background-color: var(--modus-wc-color-base-100);
-  color: var(--modus-wc-color-base-content);
-  border-bottom: 1px solid var(--modus-wc-color-base-200);
+  background-color: var(--card);
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border);
 }
 ```
 
@@ -441,13 +444,19 @@ Always test your components with all 4 themes using Tailwind classes:
 ```tsx
 export default function ThemeTest() {
   return (
-    <div className="bg-background text-foreground p-6 border border-border rounded-lg">
+    <div
+      className="bg-background text-foreground p-6 rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
+    >
       {/* Your component here */}
       <h2 className="text-xl font-semibold text-foreground mb-4">
         Test Component
       </h2>
       <p className="text-muted-foreground">This text adapts to the theme</p>
-      <div className="mt-4 p-4 bg-card border border-border rounded">
+      <div
+        className="mt-4 p-4 bg-card rounded"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <span className="text-foreground">Card content</span>
       </div>
     </div>
@@ -459,8 +468,8 @@ export default function ThemeTest() {
 /* ThemeTest.module.css */
 .themeTest {
   /* Will automatically adapt to current theme */
-  background-color: var(--modus-wc-color-base-page);
-  color: var(--modus-wc-color-base-content);
+  background-color: var(--background);
+  color: var(--foreground);
 }
 ```
 
@@ -515,7 +524,10 @@ import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 
 export default function Card() {
   return (
-    <div className="p-4 bg-background border border-border text-foreground rounded-lg">
+    <div
+      className="p-4 bg-background text-foreground rounded-lg"
+      style={{ border: "1px solid var(--border)" }}
+    >
       <ModusWcButton color="primary">Button</ModusWcButton>
     </div>
   );
@@ -525,7 +537,7 @@ export default function Card() {
 **What's happening here:**
 
 - ✅ **Tailwind for layout/spacing**: `p-4`, `rounded-lg`
-- ✅ **Design system for colors**: `bg-background`, `border-border`, `text-foreground`
+- ✅ **Design system for colors**: `bg-background`, `style={{ border: "1px solid var(--border)" }}`, `text-foreground`
 - ✅ **Modus components use color props**: `color="primary"`
 
 ### ✅ Correct Approach with CSS Modules
@@ -546,9 +558,9 @@ export default function Card() {
 ```css
 /* Card.module.css */
 .card {
-  background-color: var(--modus-wc-color-base-page);
-  color: var(--modus-wc-color-base-content);
-  border: 1px solid var(--modus-wc-color-base-200);
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
   padding: 1rem;
 }
 ```
@@ -559,12 +571,12 @@ export default function Card() {
 
 ```css
 .interactive-element {
-  background-color: var(--modus-wc-color-base-page);
+  background-color: var(--background);
   transition: background-color 0.2s ease;
 }
 
 .interactive-element:hover {
-  background-color: var(--modus-wc-color-base-100);
+  background-color: var(--card);
 }
 ```
 
@@ -572,13 +584,13 @@ export default function Card() {
 
 ```css
 .status-success {
-  color: var(--modus-wc-color-success);
-  border-left: 3px solid var(--modus-wc-color-success);
+  color: var(--success);
+  border-left: 3px solid var(--success);
 }
 
 .status-error {
-  color: var(--modus-wc-color-error);
-  border-left: 3px solid var(--modus-wc-color-error);
+  color: var(--destructive);
+  border-left: 3px solid var(--destructive);
 }
 ```
 
@@ -586,12 +598,12 @@ export default function Card() {
 
 ```css
 .subtle-background {
-  background-color: var(--modus-wc-color-base-100);
+  background-color: var(--card);
   opacity: 0.8;
 }
 
 .faded-text {
-  color: var(--modus-wc-color-base-content);
+  color: var(--foreground);
   opacity: 0.6;
 }
 ```
@@ -711,12 +723,12 @@ if (!mounted) {
 
 ```tsx
 // Semi-transparent cards for layered UI
-<div className="bg-card/50 border border-border rounded-lg p-6">
+<div className="bg-card/50 rounded-lg p-6" style={{ border: "1px solid var(--border)" }}>
   <div className="text-foreground">Content</div>
 </div>
 
 // Solid cards for primary content
-<div className="bg-card border border-border rounded-lg p-6">
+<div className="bg-card rounded-lg p-6" style={{ border: "1px solid var(--border)" }}>
   <div className="text-foreground">Content</div>
 </div>
 ```
@@ -757,7 +769,7 @@ if (!mounted) {
 
 ```tsx
 // Interactive cards
-<div className="bg-card border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-lg hover:bg-card/80">
+<div className="bg-card rounded-lg p-6 transition-all duration-200 hover:shadow-lg hover:bg-card/80" style={{ border: "1px solid var(--border)" }}>
   <div className="text-foreground">Interactive content</div>
 </div>
 
@@ -774,7 +786,8 @@ if (!mounted) {
 ```tsx
 // Form inputs
 <input
-  className="bg-input border border-border rounded px-3 py-2 text-foreground placeholder:text-muted-foreground"
+  className="bg-input rounded px-3 py-2 text-foreground placeholder:text-muted-foreground"
+  style={{ border: "1px solid var(--border)" }}
   placeholder="Enter text..."
 />
 
@@ -795,7 +808,7 @@ if (!mounted) {
 
 ```tsx
 // Sidebar container
-<aside className="bg-sidebar border-r border-sidebar-border min-h-screen">
+<aside className="bg-sidebar min-h-screen" style={{ borderRight: "1px solid var(--sidebar-border)" }}>
   <nav className="p-4">
     <div className="text-sidebar-foreground">Navigation</div>
   </nav>
@@ -853,24 +866,49 @@ if (!mounted) {
 **Border patterns:**
 
 ```tsx
-// Standard borders
-<div className="border border-border">Content</div>
+// ✅ CORRECT - Simple border with design system color
+<div style={{ border: "1px solid var(--border)" }}>Content</div>
 
-// Focus rings
+// ✅ CORRECT - Thicker borders (replaces border-4, border-2, etc.)
+<div style={{ border: "2px solid var(--border)" }}>Thick border</div>
+<div style={{ border: "4px solid var(--border)" }}>Very thick border</div>
+
+// ✅ CORRECT - Different border styles
+<div style={{ border: "1px dashed var(--border)" }}>Dashed border</div>
+<div style={{ border: "2px dotted var(--border)" }}>Dotted border</div>
+
+// ✅ CORRECT - Different sides
+<div style={{ borderTop: "2px solid var(--border)" }}>Top border only</div>
+<div style={{ borderBottom: "1px solid var(--border)" }}>Bottom border only</div>
+<div style={{ borderLeft: "3px solid var(--border)" }}>Left border only</div>
+
+// ✅ CORRECT - Focus rings (keep Tailwind for interactive states)
 <input className="focus:ring-2 focus:ring-ring" />
 
-// Sidebar borders
-<div className="border-r border-sidebar-border">Sidebar</div>
+// ✅ CORRECT - Sidebar borders
+<div style={{ borderRight: "1px solid var(--border)" }}>Sidebar</div>
 ```
 
 ## 🎨 Custom Utility Classes for Better DX
 
-### ❌ OLD Approach: Inline Styles (DEPRECATED)
+### ✅ NEW Approach: Inline Styles for Borders (RECOMMENDED)
 
-**Don't use inline `style={{}}` objects:**
+**Use inline `style={{}}` for borders with design system colors:**
 
 ```tsx
-// ❌ WRONG - Verbose inline styles
+// ✅ CORRECT - Clean border with design system color
+<div className="p-6 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+  Content
+</div>
+
+// ✅ CORRECT - Different border styles and widths
+<div style={{ border: "2px dashed var(--border)" }}>Dashed border</div>
+<div style={{ border: "4px solid var(--border)" }}>Thick border</div>
+<div style={{ borderTop: "3px solid var(--border)" }}>Top border only</div>
+```
+
+```tsx
+// ✅ CORRECT - Mixed approach (Tailwind + design system variables)
 <div
   className="p-6"
   style={{
@@ -878,6 +916,14 @@ if (!mounted) {
     border: "1px solid var(--border)",
     borderRadius: "var(--radius-lg)",
   }}
+>
+  Content
+</div>
+
+// ✅ EVEN BETTER - More Tailwind, less inline styles
+<div
+  className="p-6 bg-card rounded-lg"
+  style={{ border: "1px solid var(--border)" }}
 >
   Content
 </div>
@@ -889,7 +935,12 @@ if (!mounted) {
 
 ```tsx
 // ✅ CORRECT - Clean Tailwind classes
-<div className="p-6 bg-card border border-border rounded-lg">Content</div>
+<div
+  className="p-6 bg-card rounded-lg"
+  style={{ border: "1px solid var(--border)" }}
+>
+  Content
+</div>
 ```
 
 ### 🎯 When Custom CSS is Still Needed

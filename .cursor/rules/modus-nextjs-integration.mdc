@@ -103,12 +103,7 @@ export default function ModusButtonDemo() {
       size="md"
       onButtonClick={handleButtonClick}
     >
-      <i
-        className="modus-icons"
-        style={{ fontSize: "1.2rem", marginRight: "8px" }}
-      >
-        apps
-      </i>
+      <i className="modus-icons text-lg mr-2">apps</i>
       Test Modus Button
     </ModusWcButton>
   );
@@ -143,9 +138,7 @@ export default function ModusButtonDemo() {
 ### 2. Icon Usage Pattern
 
 ```tsx
-<i className="modus-icons" style={{ fontSize: "1.2rem", marginRight: "8px" }}>
-  apps
-</i>
+<i className="modus-icons text-lg mr-2">apps</i>
 ```
 
 **Critical Notes**:
@@ -516,12 +509,7 @@ export default function ModusButtonDemo() {
       size="md"
       onButtonClick={handleButtonClick}
     >
-      <i
-        className="modus-icons"
-        style={{ fontSize: "1.2rem", marginRight: "8px" }}
-      >
-        apps
-      </i>
+      <i className="modus-icons text-lg mr-2">apps</i>
       Test Modus Button
     </ModusWcButton>
   );
@@ -556,9 +544,7 @@ export default function ModusButtonDemo() {
 ### 2. Icon Usage Pattern
 
 ```tsx
-<i className="modus-icons" style={{ fontSize: "1.2rem", marginRight: "8px" }}>
-  apps
-</i>
+<i className="modus-icons text-lg mr-2">apps</i>
 ```
 
 **Critical Notes**:

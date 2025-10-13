@@ -66,7 +66,11 @@ export default function StepperDemoPage() {
         return { label: stage.label, color: "success", content: "✔" };
       }
       if (index === activeIndex) {
-        return { label: stage.label, color: stage.color, content: String(index + 1) };
+        return {
+          label: stage.label,
+          color: stage.color,
+          content: String(index + 1),
+        };
       }
       return { label: stage.label, color: "neutral" };
     });
@@ -96,13 +100,16 @@ export default function StepperDemoPage() {
 
         {/* Onboarding Example */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Account Onboarding
           </div>
-          <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+          <div
+            className="bg-background rounded-lg p-6 flex flex-col gap-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <ModusStepper
               steps={onboardingSteps}
               ariaLabel="Onboarding progress"
@@ -114,10 +121,10 @@ export default function StepperDemoPage() {
                 onboarding ends with account activation.
               </div>
               <div className="text-sm text-foreground opacity-80 leading-relaxed">
-                Because the stepper is purely presentational, use your own
-                state to determine which steps are complete. The wrapper assigns
-                fresh objects to the underlying web component to ensure updates
-                render immediately.
+                Because the stepper is purely presentational, use your own state
+                to determine which steps are complete. The wrapper assigns fresh
+                objects to the underlying web component to ensure updates render
+                immediately.
               </div>
             </div>
           </div>
@@ -125,8 +132,8 @@ export default function StepperDemoPage() {
 
         {/* Deployment Workflow */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
             <div>
@@ -165,12 +172,16 @@ export default function StepperDemoPage() {
                   )
                 }
               >
-                Orientation: {variant === "horizontal" ? "Horizontal" : "Vertical"}
+                Orientation:{" "}
+                {variant === "horizontal" ? "Horizontal" : "Vertical"}
               </ModusWcButton>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 bg-background border border-border rounded-lg p-6">
+            <div
+              className="md:col-span-2 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusStepper
                 steps={pipelineSteps}
                 orientation={variant}
@@ -178,7 +189,10 @@ export default function StepperDemoPage() {
                 ariaLabel="Deployment pipeline progress"
               />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Active stage
               </div>
@@ -194,14 +208,17 @@ export default function StepperDemoPage() {
 
         {/* Vertical Task Breakdown */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Vertical Task Breakdown
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6">
+            <div
+              className="bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusStepper
                 orientation="vertical"
                 steps={[
@@ -213,14 +230,16 @@ export default function StepperDemoPage() {
                 ariaLabel="Field deployment tasks"
               />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Tips
               </div>
               <div className="text-sm text-foreground opacity-80 leading-relaxed">
                 • Use `vertical` orientation when screen width is limited or
-                when steps need descriptive text alongside each item.{" "}
-                <br />
+                when steps need descriptive text alongside each item. <br />
                 • Combine the stepper with a detail panel or form section for
                 each step to keep users focused on one task at a time. <br />•
                 Assign `customClass` per item to mark critical or optional steps

@@ -76,8 +76,8 @@ export default function TextareaDemoPage() {
 
         {/* Controlled editor */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
             <div>
@@ -126,7 +126,10 @@ export default function TextareaDemoPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-6">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusTextarea
                 label="Daily field log"
                 placeholder="Document key observations, issues, and next actions."
@@ -145,14 +148,18 @@ export default function TextareaDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Quick templates
               </div>
               {quickTemplates.map((template) => (
                 <button
                   key={template.id}
-                  className="text-left p-4 rounded-lg border border-border bg-card hover:bg-card/80 transition-colors text-sm text-foreground"
+                  className="text-left p-4 rounded-lg bg-card hover:bg-card/80 transition-colors text-sm text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                   type="button"
                   onClick={() => applyTemplate(template.content)}
                 >
@@ -170,14 +177,17 @@ export default function TextareaDemoPage() {
 
         {/* Sizes & alignment */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Size &amp; Alignment Variations
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Preset sizes
               </div>
@@ -195,7 +205,10 @@ export default function TextareaDemoPage() {
                 helperText="Line height ≈ 48px"
               />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Text alignment
               </div>
@@ -217,14 +230,17 @@ export default function TextareaDemoPage() {
 
         {/* States & validation */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             States &amp; Validation
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Helper text
               </div>
@@ -235,7 +251,10 @@ export default function TextareaDemoPage() {
                 rows={4}
               />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Error state
               </div>
@@ -247,7 +266,10 @@ export default function TextareaDemoPage() {
                 required
               />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Valid state
               </div>
@@ -263,8 +285,8 @@ export default function TextareaDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Interaction Log
@@ -272,7 +294,10 @@ export default function TextareaDemoPage() {
           <div className="text-sm text-foreground opacity-70 mb-4">
             Every `valueChange` event captured from the controlled textarea.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {eventLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Start typing or apply a template to populate the log.

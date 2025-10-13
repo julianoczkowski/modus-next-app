@@ -80,8 +80,8 @@ export default function IconDemo() {
 
       {/* Basic Usage */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
@@ -100,8 +100,8 @@ export default function IconDemo() {
 
       {/* Size Variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
@@ -121,8 +121,8 @@ export default function IconDemo() {
 
       {/* Accessibility Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Accessibility Examples
@@ -173,8 +173,8 @@ export default function IconDemo() {
       {Object.entries(iconCategories).map(([category, icons]) => (
         <div
           key={category}
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6 capitalize">
             {category} Icons
@@ -200,8 +200,8 @@ export default function IconDemo() {
 
       {/* Usage in Buttons */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Icons in Buttons
@@ -245,8 +245,8 @@ export default function IconDemo() {
 
       {/* Custom Styling */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Custom Styling
@@ -276,8 +276,8 @@ export default function IconDemo() {
 
       {/* Interactive Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Interactive Examples
@@ -339,8 +339,8 @@ export default function IconDemo() {
 
       {/* Code Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Code Examples

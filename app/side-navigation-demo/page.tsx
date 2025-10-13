@@ -128,8 +128,8 @@ export default function SideNavigationDemoPage() {
 
         {/* Integrated Navbar + Side Navigation */}
         <div
-          className="mb-12 p-0 bg-card rounded-lg border border-border overflow-hidden"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-0 bg-card rounded-lg overflow-hidden"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col demo-shell">
             <ModusNavbar
@@ -190,7 +190,10 @@ export default function SideNavigationDemoPage() {
                     : "Only the navigation icons are visible. Click the navbar hamburger to expand, or interact with content while the panel remains collapsed for a spacious center canvas."}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                  <div className="bg-card border border-border rounded-lg p-6">
+                  <div
+                    className="bg-card rounded-lg p-6"
+                    style={{ border: "1px solid var(--border)" }}
+                  >
                     <div className="text-sm uppercase tracking-wide text-muted-foreground mb-3">
                       Current selection
                     </div>
@@ -202,14 +205,17 @@ export default function SideNavigationDemoPage() {
                       and keeps the navbar button state in sync.
                     </div>
                   </div>
-                  <div className="bg-card border border-border rounded-lg p-6">
+                  <div
+                    className="bg-card rounded-lg p-6"
+                    style={{ border: "1px solid var(--border)" }}
+                  >
                     <div className="text-sm uppercase tracking-wide text-muted-foreground mb-3">
                       Panel behavior
                     </div>
                     <div className="text-sm text-foreground opacity-80">
-                      Collapsed width stays at 4rem. Expanded width is controlled
-                      with the `maxWidth` property. Outside clicks close the
-                      panel thanks to `collapseOnClickOutside`.
+                      Collapsed width stays at 4rem. Expanded width is
+                      controlled with the `maxWidth` property. Outside clicks
+                      close the panel thanks to `collapseOnClickOutside`.
                     </div>
                   </div>
                 </div>
@@ -220,14 +226,17 @@ export default function SideNavigationDemoPage() {
 
         {/* Variations */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Layout Variations
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-sm uppercase tracking-wide text-muted-foreground">
@@ -252,16 +261,17 @@ export default function SideNavigationDemoPage() {
                   {analyticsExpanded ? "Collapse" : "Expand"}
                 </ModusWcButton>
               </div>
-              <div className="relative h-72 bg-card border border-border rounded-lg overflow-hidden">
+              <div
+                className="relative h-72 bg-card rounded-lg overflow-hidden"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <ModusSideNavigation
                   items={analyticsItemsWithSelection}
                   expanded={analyticsExpanded}
                   onExpandedChange={(next) => {
                     setAnalyticsExpanded(next);
                     logEvent(
-                      `Analytics navigation ${
-                        next ? "expanded" : "collapsed"
-                      }`
+                      `Analytics navigation ${next ? "expanded" : "collapsed"}`
                     );
                   }}
                   collapseOnClickOutside={false}
@@ -285,7 +295,10 @@ export default function SideNavigationDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-sm uppercase tracking-wide text-muted-foreground">
@@ -310,16 +323,17 @@ export default function SideNavigationDemoPage() {
                   {compactExpanded ? "Collapse" : "Expand"}
                 </ModusWcButton>
               </div>
-              <div className="relative h-72 bg-card border border-border rounded-lg overflow-hidden">
+              <div
+                className="relative h-72 bg-card rounded-lg overflow-hidden"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <ModusSideNavigation
                   items={compactItemsWithSelection}
                   expanded={compactExpanded}
                   onExpandedChange={(next) => {
                     setCompactExpanded(next);
                     logEvent(
-                      `Compact navigation ${
-                        next ? "expanded" : "collapsed"
-                      }`
+                      `Compact navigation ${next ? "expanded" : "collapsed"}`
                     );
                   }}
                   maxWidth="220px"
@@ -345,8 +359,8 @@ export default function SideNavigationDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Interaction Log
@@ -355,7 +369,10 @@ export default function SideNavigationDemoPage() {
             Monitor `expandedChange` events and menu selections emitted by the
             side navigation and navbar integration.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {eventLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Use the navbar hamburger, select menu items, or toggle the

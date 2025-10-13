@@ -83,7 +83,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Size Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
@@ -109,7 +112,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Shape Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Shape Variants
         </div>
@@ -135,7 +141,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* User List Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           User List Example
         </div>
@@ -146,7 +155,8 @@ export default function AvatarDemoPage() {
           {avatars.slice(0, 4).map((avatar, index) => (
             <div
               key={avatar.name}
-              className="flex items-center gap-4 p-4 bg-background rounded-lg border border-border hover:bg-muted transition-colors"
+              className="flex items-center gap-4 p-4 bg-background rounded-lg hover:bg-muted transition-colors"
+              style={{ border: "1px solid var(--border)" }}
             >
               <ModusAvatar
                 alt={avatar.alt}
@@ -175,7 +185,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Interactive Size/Shape Selector */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Avatar Preview
         </div>
@@ -259,7 +272,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Custom Styling Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Styling Examples
         </div>
@@ -310,7 +326,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Fallback States */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Fallback States
         </div>
@@ -346,7 +365,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Accessibility Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Accessibility Examples
         </div>
@@ -354,7 +376,10 @@ export default function AvatarDemoPage() {
           Proper alt text usage for screen readers and accessibility.
         </div>
         <div className="space-y-4">
-          <div className="flex items-center gap-4 p-4 bg-background rounded-lg border border-border">
+          <div
+            className="flex items-center gap-4 p-4 bg-background rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <ModusAvatar
               alt="John Doe, Software Engineer"
               imgSrc={avatars[0].src}
@@ -369,7 +394,10 @@ export default function AvatarDemoPage() {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 bg-background rounded-lg border border-border">
+          <div
+            className="flex items-center gap-4 p-4 bg-background rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <ModusAvatar
               alt="User avatar"
               imgSrc={avatars[1].src}
@@ -389,7 +417,10 @@ export default function AvatarDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

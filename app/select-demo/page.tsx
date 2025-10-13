@@ -188,8 +188,8 @@ export default function SelectDemoPage() {
 
         {/* Project Configuration */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-8">
             <div>
@@ -262,7 +262,10 @@ export default function SelectDemoPage() {
             </div>
           </div>
 
-          <div className="mt-6 bg-background border border-border rounded-lg p-4">
+          <div
+            className="mt-6 bg-background rounded-lg p-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-sm text-foreground opacity-80">
               Selected region:{" "}
               <div className="font-semibold text-foreground">
@@ -282,8 +285,8 @@ export default function SelectDemoPage() {
 
         {/* Dependent Options */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Dependent Option Sets
@@ -333,8 +336,8 @@ export default function SelectDemoPage() {
 
         {/* Size Variants */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Size &amp; Layout Variations
@@ -343,8 +346,8 @@ export default function SelectDemoPage() {
             {SIZE_VARIANTS.map((variant) => (
               <div
                 key={variant.size}
-                className="bg-background border border-border rounded-lg p-5 flex flex-col gap-3"
-                style={{ borderWidth: "1px" }}
+                className="bg-background rounded-lg p-5 flex flex-col gap-3"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <div className="text-sm font-semibold text-foreground">
                   {variant.label}
@@ -370,8 +373,8 @@ export default function SelectDemoPage() {
 
         {/* Disabled & Custom Width */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Disabled &amp; Custom Styling
@@ -418,8 +421,8 @@ export default function SelectDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Event Log
@@ -428,7 +431,10 @@ export default function SelectDemoPage() {
             Monitor the `inputChange` payload emitted from Modus selects to
             confirm form wiring.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {eventLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Interact with any select above to populate the log.

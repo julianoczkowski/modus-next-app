@@ -135,8 +135,8 @@ export default function RadioDemoPage() {
 
         {/* Notification Preferences */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Notification Preferences
@@ -149,8 +149,8 @@ export default function RadioDemoPage() {
               {communicationOptions.map((option) => (
                 <div
                   key={option.id}
-                  className="bg-background border border-border rounded-lg p-4"
-                  style={{ borderWidth: "1px" }}
+                  className="bg-background rounded-lg p-4"
+                  style={{ border: "1px solid var(--border)" }}
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex-1">
@@ -195,8 +195,8 @@ export default function RadioDemoPage() {
 
         {/* Deployment Priority */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
             <div>
@@ -236,8 +236,8 @@ export default function RadioDemoPage() {
             {deploymentPriorities.map((option) => (
               <div
                 key={option.id}
-                className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4 justify-between"
-                style={{ borderWidth: "1px" }}
+                className="bg-background rounded-lg p-6 flex flex-col gap-4 justify-between"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <div>
                   <div className="text-lg font-semibold text-foreground mb-2">
@@ -262,8 +262,8 @@ export default function RadioDemoPage() {
 
         {/* Size & Layout Variations */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Size &amp; Layout Variations
@@ -273,8 +273,8 @@ export default function RadioDemoPage() {
               {sizeVariants.map((variant) => (
                 <div
                   key={variant.size}
-                  className="flex items-center justify-between bg-background border border-border rounded-lg px-4 py-3"
-                  style={{ borderWidth: "1px" }}
+                  className="flex items-center justify-between bg-background rounded-lg px-4 py-3"
+                  style={{ border: "1px solid var(--border)" }}
                 >
                   <div>
                     <div className="text-sm font-semibold text-foreground">
@@ -337,7 +337,10 @@ export default function RadioDemoPage() {
                 <div className="text-sm uppercase tracking-wide text-muted-foreground mb-3">
                   Event log
                 </div>
-                <div className="bg-background border border-border rounded-lg p-4 min-h-36">
+                <div
+                  className="bg-background rounded-lg p-4 min-h-36"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   {eventLog.length === 0 ? (
                     <div className="text-sm text-foreground opacity-60">
                       Interact with any radio to see its events.
@@ -362,14 +365,17 @@ export default function RadioDemoPage() {
 
         {/* States & Accessibility */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             States &amp; Accessibility
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4 bg-background border border-border rounded-lg p-6">
+            <div
+              className="space-y-4 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Required group
               </div>
@@ -391,7 +397,10 @@ export default function RadioDemoPage() {
                 inputId="required-secondary"
               />
             </div>
-            <div className="space-y-4 bg-background border border-border rounded-lg p-6">
+            <div
+              className="space-y-4 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Disabled &amp; aria-label usage
               </div>

@@ -298,7 +298,10 @@ export default function TableDemoPage() {
       </div>
 
       {/* Basic Table */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Sortable Table
         </div>
@@ -315,7 +318,10 @@ export default function TableDemoPage() {
       </div>
 
       {/* Paginated Table */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Paginated Table with Selection
         </div>
@@ -349,7 +355,10 @@ export default function TableDemoPage() {
       </div>
 
       {/* Compact Product Table */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Compact Product Table
         </div>
@@ -370,7 +379,10 @@ export default function TableDemoPage() {
       </div>
 
       {/* Editable Table */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Editable Table
         </div>
@@ -425,7 +437,10 @@ export default function TableDemoPage() {
       </div>
 
       {/* Event Log */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex items-center justify-between mb-4">
           <div className="text-2xl font-semibold text-foreground">
             Event Log
@@ -440,7 +455,10 @@ export default function TableDemoPage() {
             Clear Logs
           </ModusWcButton>
         </div>
-        <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
+        <div
+          className="max-h-64 overflow-y-auto rounded p-4 bg-background"
+          style={{ border: "1px solid var(--border)" }}
+        >
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
               <div className="text-foreground min-w-20">{log.timestamp}</div>
@@ -468,7 +486,10 @@ export default function TableDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

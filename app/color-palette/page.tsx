@@ -218,7 +218,7 @@ export default function ColorPalettePage() {
                 <div
                   key={colorIndex}
                   className="bg-card rounded-lg p-6 color-card"
-                  style={{ border: "1px solid var(--border)" }}
+                  style={{ border: "2px dashed var(--border)" }}
                 >
                   {/* Color Swatch */}
                   <div

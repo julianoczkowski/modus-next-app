@@ -1,0 +1,89 @@
+---
+alwaysApply: true
+---
+
+# Semantic HTML - Essential Rules
+
+## ✅ ALWAYS Use Div Elements
+
+```tsx
+// ✅ CORRECT - Use div with Tailwind classes
+<div className="text-4xl font-semibold text-foreground">Title</div>
+<div className="text-lg text-foreground/80">Description</div>
+<div className="mb-8 p-4 bg-card rounded-lg">Content</div>
+```
+
+## ❌ NEVER Use Semantic HTML Elements
+
+```tsx
+// ❌ WRONG - Semantic elements interfere with Tailwind
+<h1 className="text-4xl font-semibold">Title</h1>
+<p className="text-lg">Description</p>
+<section className="mb-8 p-4">Content</section>
+<header className="bg-background">Header</header>
+<span className="text-sm">Text</span>
+```
+
+## 🎯 Why Avoid Semantic HTML
+
+- **Browser Defaults**: Semantic elements have built-in styles that override Tailwind
+- **CSS Specificity**: Browser defaults can conflict with utility classes
+- **Inconsistent Behavior**: Different browsers may have different default styles
+- **Maintenance Issues**: Harder to predict styling behavior
+
+## 🎯 Exception: Icons
+
+```tsx
+// ✅ CORRECT - Use <i> for icons (only exception)
+<i className="modus-icons mr-2">save_disk</i>
+
+// ❌ WRONG - Don't use div for icons
+<div className="modus-icons mr-2">save_disk</div>
+```
+
+## 🎯 Key Rule
+
+**Use `<div>` for everything except `<i>` for icons** - this ensures consistent Tailwind styling without browser interference.
+
+# Semantic HTML - Essential Rules
+
+## ✅ ALWAYS Use Div Elements
+
+```tsx
+// ✅ CORRECT - Use div with Tailwind classes
+<div className="text-4xl font-semibold text-foreground">Title</div>
+<div className="text-lg text-foreground/80">Description</div>
+<div className="mb-8 p-4 bg-card rounded-lg">Content</div>
+```
+
+## ❌ NEVER Use Semantic HTML Elements
+
+```tsx
+// ❌ WRONG - Semantic elements interfere with Tailwind
+<h1 className="text-4xl font-semibold">Title</h1>
+<p className="text-lg">Description</p>
+<section className="mb-8 p-4">Content</section>
+<header className="bg-background">Header</header>
+<span className="text-sm">Text</span>
+```
+
+## 🎯 Why Avoid Semantic HTML
+
+- **Browser Defaults**: Semantic elements have built-in styles that override Tailwind
+- **CSS Specificity**: Browser defaults can conflict with utility classes
+- **Inconsistent Behavior**: Different browsers may have different default styles
+- **Maintenance Issues**: Harder to predict styling behavior
+
+## 🎯 Exception: Icons
+
+```tsx
+// ✅ CORRECT - Use <i> for icons (only exception)
+<i className="modus-icons mr-2">save_disk</i>
+
+// ❌ WRONG - Don't use div for icons
+<div className="modus-icons mr-2">save_disk</div>
+```
+
+## 🎯 Key Rule
+
+**Use `<div>` for everything except `<i>` for icons** - this ensures consistent Tailwind styling without browser interference.

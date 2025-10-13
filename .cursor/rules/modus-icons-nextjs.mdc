@@ -84,15 +84,15 @@ alwaysApply: false
 ### Using Modus Color Variables
 
 ```tsx
-// ✅ CORRECT - Using inline styles with Modus color variables
-<i className="modus-icons" style={{ color: "var(--modus-wc-color-success)" }}>check</i>
-<i className="modus-icons" style={{ color: "var(--modus-wc-color-warning)" }}>warning</i>
-<i className="modus-icons" style={{ color: "var(--modus-wc-color-error)" }}>error</i>
-
 // ✅ CORRECT - Using Tailwind classes with design system colors
 <i className="modus-icons text-success">check</i>
 <i className="modus-icons text-warning">warning</i>
 <i className="modus-icons text-destructive">error</i>
+
+// ❌ WRONG - Don't use raw Modus variables directly
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-success)" }}>check</i>
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-warning)" }}>warning</i>
+<i className="modus-icons" style={{ color: "var(--modus-wc-color-error)" }}>error</i>
 ```
 
 ### Using Design System Colors
@@ -222,17 +222,26 @@ alwaysApply: false
 ```tsx
 // ✅ CORRECT - Icon grid using Tailwind classes
 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-  <div className="flex flex-col items-center gap-2 p-4 border border-border rounded-lg">
+  <div
+    className="flex flex-col items-center gap-2 p-4 rounded-lg"
+    style={{ border: "1px solid var(--border)" }}
+  >
     <i className="modus-icons text-2xl">file</i>
-    <span>Documents</span>
+    <div>Documents</div>
   </div>
-  <div className="flex flex-col items-center gap-2 p-4 border border-border rounded-lg">
+  <div
+    className="flex flex-col items-center gap-2 p-4 rounded-lg"
+    style={{ border: "1px solid var(--border)" }}
+  >
     <i className="modus-icons text-2xl">image</i>
-    <span>Images</span>
+    <div>Images</div>
   </div>
-  <div className="flex flex-col items-center gap-2 p-4 border border-border rounded-lg">
+  <div
+    className="flex flex-col items-center gap-2 p-4 rounded-lg"
+    style={{ border: "1px solid var(--border)" }}
+  >
     <i className="modus-icons text-2xl">video</i>
-    <span>Videos</span>
+    <div>Videos</div>
   </div>
 </div>
 ```
@@ -263,9 +272,9 @@ alwaysApply: false
 <i className="modus-icons" style={{ color: "#ff0000" }}>star</i>
 <i className="modus-icons" style={{ color: "blue" }}>star</i>
 
-// ✅ CORRECT: Use Modus color variables
-<i className="modus-icons" style={{ color: "var(--modus-wc-color-error)" }}>star</i>
+// ✅ CORRECT: Use design system colors
 <i className="modus-icons text-destructive">star</i>
+<i className="modus-icons text-primary">star</i>
 ```
 
 ### ❌ Don't Forget Accessibility

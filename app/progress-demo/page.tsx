@@ -93,8 +93,8 @@ export default function ProgressDemo() {
 
         {/* Basic Usage */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Basic Usage
@@ -134,8 +134,8 @@ export default function ProgressDemo() {
 
         {/* Indeterminate & Status Tracking */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Indeterminate &amp; Status Tracking
@@ -175,8 +175,8 @@ export default function ProgressDemo() {
 
         {/* Live Progress Simulation */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Live Progress Simulation
@@ -212,8 +212,8 @@ export default function ProgressDemo() {
 
         {/* Radial Variations */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Radial Variations &amp; Slot Content
@@ -222,8 +222,8 @@ export default function ProgressDemo() {
             {radialVariants.map((variant) => (
               <div
                 key={variant.title}
-                className="flex flex-col items-center gap-4 bg-background rounded-lg p-6 border border-border"
-                style={{ borderWidth: "1px" }}
+                className="flex flex-col items-center gap-4 bg-background rounded-lg p-6"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <ModusProgress
                   variant="radial"
@@ -238,8 +238,8 @@ export default function ProgressDemo() {
               </div>
             ))}
             <div
-              className="flex flex-col items-center gap-4 bg-background rounded-lg p-6 border border-border"
-              style={{ borderWidth: "1px" }}
+              className="flex flex-col items-center gap-4 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
             >
               <ModusProgress
                 variant="radial"

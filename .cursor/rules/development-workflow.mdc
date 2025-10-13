@@ -1,5 +1,6 @@
 ---
-alwaysApply: true
+description: Development comprehensive rule
+alwaysApply: false
 ---
 
 # Development Workflow & Quality Assurance

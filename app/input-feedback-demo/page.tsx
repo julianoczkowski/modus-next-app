@@ -25,8 +25,8 @@ export default function InputFeedbackDemo() {
 
       {/* Basic Usage */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
@@ -53,8 +53,8 @@ export default function InputFeedbackDemo() {
 
       {/* Size Variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
@@ -86,8 +86,8 @@ export default function InputFeedbackDemo() {
 
       {/* Custom Icons */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Custom Icons
@@ -121,8 +121,8 @@ export default function InputFeedbackDemo() {
 
       {/* Integration Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Integration Examples
@@ -136,8 +136,8 @@ export default function InputFeedbackDemo() {
               <input
                 type="text"
                 placeholder="Enter your email"
-                className="w-full p-3 border border-border rounded bg-background text-foreground"
-                style={{ borderWidth: "1px" }}
+                className="w-full p-3 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               />
               <ModusInputFeedback
                 level="error"
@@ -153,8 +153,8 @@ export default function InputFeedbackDemo() {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-full p-3 border border-border rounded bg-background text-foreground"
-                style={{ borderWidth: "1px" }}
+                className="w-full p-3 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               />
               <ModusInputFeedback
                 level="success"
@@ -167,8 +167,8 @@ export default function InputFeedbackDemo() {
 
       {/* Form Validation Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Form Validation Examples
@@ -182,8 +182,8 @@ export default function InputFeedbackDemo() {
               <input
                 type="text"
                 placeholder="Choose a username"
-                className="w-full p-3 border border-border rounded bg-background text-foreground"
-                style={{ borderWidth: "1px" }}
+                className="w-full p-3 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               />
               <ModusInputFeedback
                 level="info"
@@ -200,8 +200,8 @@ export default function InputFeedbackDemo() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full p-3 border border-border rounded bg-background text-foreground"
-                style={{ borderWidth: "1px" }}
+                className="w-full p-3 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               />
               <ModusInputFeedback
                 level="warning"
@@ -218,8 +218,8 @@ export default function InputFeedbackDemo() {
               <input
                 type="password"
                 placeholder="Create a password"
-                className="w-full p-3 border border-border rounded bg-background text-foreground"
-                style={{ borderWidth: "1px" }}
+                className="w-full p-3 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               />
               <ModusInputFeedback
                 level="success"
@@ -233,8 +233,8 @@ export default function InputFeedbackDemo() {
 
       {/* Code Examples */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Code Examples

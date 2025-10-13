@@ -122,8 +122,8 @@ export default function RatingDemoPage() {
 
         {/* Guided Evaluation */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-8">
             <div>
@@ -162,7 +162,10 @@ export default function RatingDemoPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+            <div
+              className="bg-background rounded-lg p-6 space-y-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Project quality
               </div>
@@ -180,7 +183,10 @@ export default function RatingDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+            <div
+              className="bg-background rounded-lg p-6 space-y-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Team sentiment
               </div>
@@ -197,7 +203,10 @@ export default function RatingDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+            <div
+              className="bg-background rounded-lg p-6 space-y-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Stakeholder response
               </div>
@@ -213,7 +222,10 @@ export default function RatingDemoPage() {
               </div>
             </div>
 
-            <div className="bg-background border border-border rounded-lg p-6 space-y-4">
+            <div
+              className="bg-background rounded-lg p-6 space-y-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Support interaction
               </div>
@@ -235,14 +247,17 @@ export default function RatingDemoPage() {
 
         {/* Variant Overview */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Variant Overview
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="flex flex-col items-center gap-3 bg-background border border-border rounded-lg p-6">
+            <div
+              className="flex flex-col items-center gap-3 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusRating
                 variant="star"
                 count={5}
@@ -250,15 +265,16 @@ export default function RatingDemoPage() {
                 size="md"
                 aria-label="Default star rating example"
               />
-              <div className="text-sm font-semibold text-foreground">
-                Stars
-              </div>
+              <div className="text-sm font-semibold text-foreground">Stars</div>
               <div className="text-xs text-foreground opacity-70 text-center">
                 Use for product reviews or performance scoring with optional
                 half steps.
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-background border border-border rounded-lg p-6">
+            <div
+              className="flex flex-col items-center gap-3 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusRating
                 variant="heart"
                 count={5}
@@ -275,7 +291,10 @@ export default function RatingDemoPage() {
                 emotion.
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-background border border-border rounded-lg p-6">
+            <div
+              className="flex flex-col items-center gap-3 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusRating
                 variant="smiley"
                 count={5}
@@ -290,7 +309,10 @@ export default function RatingDemoPage() {
                 Great for quick experience checks where faces communicate tone.
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-background border border-border rounded-lg p-6">
+            <div
+              className="flex flex-col items-center gap-3 bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusRating
                 variant="thumb"
                 value={2}
@@ -309,14 +331,17 @@ export default function RatingDemoPage() {
 
         {/* Accessibility & Disabled States */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Accessibility &amp; Disabled States
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-background border border-border rounded-lg p-6 space-y-3">
+            <div
+              className="bg-background rounded-lg p-6 space-y-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Localized aria labels
               </div>
@@ -333,7 +358,10 @@ export default function RatingDemoPage() {
                 readers.
               </div>
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 space-y-3">
+            <div
+              className="bg-background rounded-lg p-6 space-y-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm font-semibold text-foreground">
                 Disabled display
               </div>
@@ -355,8 +383,8 @@ export default function RatingDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Interaction Log
@@ -364,7 +392,10 @@ export default function RatingDemoPage() {
           <div className="text-sm text-foreground opacity-70 mb-4">
             Entries capture the detail payload emitted by `ratingChange`.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {ratingLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Adjust any rating to populate the log.

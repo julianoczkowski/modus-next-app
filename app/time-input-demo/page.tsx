@@ -67,7 +67,11 @@ export default function TimeInputDemoPage() {
         ? { level: "error", message: "End time must be after start time" }
         : undefined;
     setFeedback(feedbackMessages);
-    logEvent(feedbackMessages ? feedbackMessages.message ?? "Validation error" : "Validation cleared");
+    logEvent(
+      feedbackMessages
+        ? feedbackMessages.message ?? "Validation error"
+        : "Validation cleared"
+    );
   };
 
   return (
@@ -77,17 +81,24 @@ export default function TimeInputDemoPage() {
           Modus Time Input Component Demo
         </div>
         <div className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
-          Capture time ranges with validation, suggestions, and precise control over step, min/max boundaries, and seconds.
+          Capture time ranges with validation, suggestions, and precise control
+          over step, min/max boundaries, and seconds.
         </div>
       </div>
 
       {/* Shift planner */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border" style={{ borderWidth: "1px" }}>
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
           <div>
-            <div className="text-2xl font-semibold text-foreground mb-2">Shift Planner</div>
+            <div className="text-2xl font-semibold text-foreground mb-2">
+              Shift Planner
+            </div>
             <div className="text-sm text-foreground opacity-80 leading-relaxed">
-              Define crew start/end times with optional break durations. Suggestions help align with operational presets.
+              Define crew start/end times with optional break durations.
+              Suggestions help align with operational presets.
             </div>
           </div>
           <div className="flex gap-3 flex-wrap">
@@ -102,15 +113,25 @@ export default function TimeInputDemoPage() {
                 {preset}
               </ModusWcButton>
             ))}
-            <ModusWcButton color="primary" variant="outlined" size="sm" onButtonClick={validateTimes}>
+            <ModusWcButton
+              color="primary"
+              variant="outlined"
+              size="sm"
+              onButtonClick={validateTimes}
+            >
               Validate schedule
             </ModusWcButton>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">Start time</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm uppercase tracking-wide text-muted-foreground">
+              Start time
+            </div>
             <ModusTimeInput
               label="Start"
               value={startTime}
@@ -121,8 +142,13 @@ export default function TimeInputDemoPage() {
               onInputChange={handleStartChange}
             />
           </div>
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">End time</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm uppercase tracking-wide text-muted-foreground">
+              End time
+            </div>
             <ModusTimeInput
               label="End"
               value={endTime}
@@ -133,8 +159,13 @@ export default function TimeInputDemoPage() {
               feedback={feedback}
             />
           </div>
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">Break</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm uppercase tracking-wide text-muted-foreground">
+              Break
+            </div>
             <ModusTimeInput
               label="Duration"
               value={breakDuration}
@@ -145,15 +176,27 @@ export default function TimeInputDemoPage() {
           </div>
         </div>
 
-        <div className="mt-6 text-sm text-foreground opacity-80">Net working minutes: {workingMinutes} minutes</div>
+        <div className="mt-6 text-sm text-foreground opacity-80">
+          Net working minutes: {workingMinutes} minutes
+        </div>
       </div>
 
       {/* Flight scheduling */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border" style={{ borderWidth: "1px" }}>
-        <div className="text-2xl font-semibold text-foreground mb-6">Flight Scheduling Examples</div>
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
+        <div className="text-2xl font-semibold text-foreground mb-6">
+          Flight Scheduling Examples
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm font-semibold text-foreground">Airport transfer slots</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm font-semibold text-foreground">
+              Airport transfer slots
+            </div>
             <ModusTimeInput
               label="Transfer time"
               datalistOptions={flightTimes}
@@ -163,49 +206,92 @@ export default function TimeInputDemoPage() {
               Datalist suggestions and 5-minute increments streamline booking.
             </div>
           </div>
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm font-semibold text-foreground">Precise engine checks</div>
-            <ModusTimeInput label="Engine warmup" showSeconds step={15} value="00:05:00" required />
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm font-semibold text-foreground">
+              Precise engine checks
+            </div>
+            <ModusTimeInput
+              label="Engine warmup"
+              showSeconds
+              step={15}
+              value="00:05:00"
+              required
+            />
             <div className="text-xs text-foreground opacity-70">
-              showSeconds ensures second-level precision; custom step enforces 15-second intervals.
+              showSeconds ensures second-level precision; custom step enforces
+              15-second intervals.
             </div>
           </div>
         </div>
       </div>
 
       {/* Sizes & states */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border" style={{ borderWidth: "1px" }}>
-        <div className="text-2xl font-semibold text-foreground mb-6">Sizes &amp; States</div>
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
+        <div className="text-2xl font-semibold text-foreground mb-6">
+          Sizes &amp; States
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">Size tokens</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm uppercase tracking-wide text-muted-foreground">
+              Size tokens
+            </div>
             <ModusTimeInput label="Small" size="sm" />
             <ModusTimeInput label="Medium" size="md" />
             <ModusTimeInput label="Large" size="lg" />
           </div>
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">Disabled &amp; read only</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm uppercase tracking-wide text-muted-foreground">
+              Disabled &amp; read only
+            </div>
             <ModusTimeInput label="Disabled" value="10:15" disabled />
             <ModusTimeInput label="Read only" value="12:45" readOnly />
           </div>
-          <div className="bg-background border border-border rounded-lg p-6 space-y-3">
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">Required with feedback</div>
+          <div
+            className="bg-background rounded-lg p-6 space-y-3"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <div className="text-sm uppercase tracking-wide text-muted-foreground">
+              Required with feedback
+            </div>
             <ModusTimeInput
               label="Departure"
               required
-              feedback={{ level: "info", message: "Please select a departure time" }}
+              feedback={{
+                level: "info",
+                message: "Please select a departure time",
+              }}
             />
           </div>
         </div>
       </div>
 
       {/* Event log */}
-      <div className="p-8 bg-card rounded-lg border border-border" style={{ borderWidth: "1px" }}>
-        <div className="text-2xl font-semibold text-foreground mb-4">Interaction Log</div>
+      <div
+        className="p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
+        <div className="text-2xl font-semibold text-foreground mb-4">
+          Interaction Log
+        </div>
         <div className="text-sm text-foreground opacity-70 mb-4">
           Captures `inputChange` events from the controlled time inputs above.
         </div>
-        <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+        <div
+          className="bg-background rounded-lg p-4 min-h-40"
+          style={{ border: "1px solid var(--border)" }}
+        >
           {eventLog.length === 0 ? (
             <div className="text-sm text-foreground opacity-60">
               Adjust any time input above to populate the log.
@@ -213,7 +299,10 @@ export default function TimeInputDemoPage() {
           ) : (
             <div className="flex flex-col gap-2">
               {eventLog.map((entry, index) => (
-                <div key={`${entry}-${index}`} className="text-sm text-foreground leading-relaxed">
+                <div
+                  key={`${entry}-${index}`}
+                  className="text-sm text-foreground leading-relaxed"
+                >
                   {entry}
                 </div>
               ))}

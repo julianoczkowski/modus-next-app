@@ -129,7 +129,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Improved Approach - Single Configurable Component */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Improved Approach: Single Configurable Component
         </div>
@@ -175,7 +178,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Button Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Button Variants
         </div>
@@ -242,7 +248,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Button Sizes */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Button Sizes
         </div>
@@ -263,7 +272,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Button Shapes */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Button Shapes
         </div>
@@ -289,7 +301,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Buttons with Icons */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Buttons with Icons
         </div>
@@ -365,7 +380,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Button States */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Button States
         </div>
@@ -423,7 +441,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Form Integration */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Form Integration
         </div>
@@ -436,7 +457,8 @@ export default function ButtonDemoPage() {
               onChange={(e) => setFormData({ name: e.target.value })}
               type="text"
               placeholder="Enter your name"
-              className="w-full p-3 border border-border rounded bg-background text-foreground text-base"
+              className="w-full p-3 rounded bg-background text-foreground text-base"
+              style={{ border: "1px solid var(--border)" }}
             />
           </div>
 
@@ -462,7 +484,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Interactive Demo */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Button Builder
         </div>
@@ -478,7 +503,8 @@ export default function ButtonDemoPage() {
                     variant: e.target.value as BuilderConfig["variant"],
                   }))
                 }
-                className="p-2 border border-border rounded bg-background text-foreground"
+                className="p-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <option value="filled">Filled</option>
                 <option value="outlined">Outlined</option>
@@ -496,7 +522,8 @@ export default function ButtonDemoPage() {
                     color: e.target.value as BuilderConfig["color"],
                   }))
                 }
-                className="p-2 border border-border rounded bg-background text-foreground"
+                className="p-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <option value="primary">Primary</option>
                 <option value="secondary">Secondary</option>
@@ -516,7 +543,8 @@ export default function ButtonDemoPage() {
                     size: e.target.value as BuilderConfig["size"],
                   }))
                 }
-                className="p-2 border border-border rounded bg-background text-foreground"
+                className="p-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <option value="xs">Extra Small</option>
                 <option value="sm">Small</option>
@@ -535,7 +563,8 @@ export default function ButtonDemoPage() {
                     shape: e.target.value as BuilderConfig["shape"],
                   }))
                 }
-                className="p-2 border border-border rounded bg-background text-foreground"
+                className="p-2 rounded bg-background text-foreground"
+                style={{ border: "1px solid var(--border)" }}
               >
                 <option value="rectangle">Rectangle</option>
                 <option value="square">Square</option>
@@ -582,7 +611,10 @@ export default function ButtonDemoPage() {
             <div className="text-lg font-medium mb-2 text-foreground">
               Preview:
             </div>
-            <div className="p-8 border border-border rounded bg-background text-center">
+            <div
+              className="p-8 rounded bg-background text-center"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <ModusWcButton
                 variant={builderConfig.variant}
                 color={builderConfig.color}
@@ -607,7 +639,10 @@ export default function ButtonDemoPage() {
               <div className="text-base font-medium mb-2 text-foreground">
                 Generated Code:
               </div>
-              <div className="bg-background border border-border rounded p-4 overflow-x-auto font-mono text-sm text-foreground m-0">
+              <div
+                className="bg-background rounded p-4 overflow-x-auto font-mono text-sm text-foreground m-0"
+                style={{ border: "1px solid var(--border)" }}
+              >
                 <code>{generatedCode}</code>
               </div>
             </div>
@@ -616,7 +651,10 @@ export default function ButtonDemoPage() {
       </div>
 
       {/* Event Handling Demo */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Event Handling
         </div>
@@ -640,7 +678,10 @@ export default function ButtonDemoPage() {
             <div className="text-lg font-medium mb-2 text-foreground">
               Event Log:
             </div>
-            <div className="max-h-48 overflow-y-auto border border-border rounded p-4 bg-background mb-4">
+            <div
+              className="max-h-48 overflow-y-auto rounded p-4 bg-background mb-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               {eventLogs.map((log, index) => (
                 <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
                   <div className="text-foreground min-w-20">

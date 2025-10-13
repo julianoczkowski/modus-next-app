@@ -1,0 +1,111 @@
+---
+alwaysApply: true
+---
+
+# Modus Icons - Essential Rules
+
+## ✅ ALWAYS Use This Pattern
+
+```tsx
+// ✅ CORRECT - Icon with text (left)
+<i className="modus-icons mr-2">save_disk</i>
+Save File
+
+// ✅ CORRECT - Icon with text (right)
+Next
+<i className="modus-icons ml-2">arrow_right</i>
+
+// ✅ CORRECT - Icon only
+<i className="modus-icons">settings</i>
+```
+
+## 🎯 Required Setup
+
+**CSS Import Order** (in `globals.css`):
+
+```css
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+```
+
+## 🎯 Icon Names
+
+Use exact icon names from [Modus Icons Catalog](https://modus-icons.trimble.com/field-systems/):
+
+- `save_disk`, `download`, `upload`
+- `edit_combination`, `delete`, `settings`
+- `arrow_right`, `arrow_left`, `expand_more`
+- `check`, `close`, `add`, `remove`
+
+## ❌ NEVER Use
+
+```tsx
+// ❌ WRONG - Missing class
+<i>save_disk</i>
+
+// ❌ WRONG - Wrong class name
+<i className="modus-icon">save_disk</i>
+
+// ❌ WRONG - Non-Modus icons
+<i className="fa fa-save"></i>
+```
+
+## 🎯 Key Rules
+
+- **Always** use `modus-icons` class
+- **Use Tailwind spacing**: `mr-2`, `ml-2` (not inline styles)
+- **Icon placement**: Left = `mr-2`, Right = `ml-2`, Only = no spacing
+
+# Modus Icons - Essential Rules
+
+## ✅ ALWAYS Use This Pattern
+
+```tsx
+// ✅ CORRECT - Icon with text (left)
+<i className="modus-icons mr-2">save_disk</i>
+Save File
+
+// ✅ CORRECT - Icon with text (right)
+Next
+<i className="modus-icons ml-2">arrow_right</i>
+
+// ✅ CORRECT - Icon only
+<i className="modus-icons">settings</i>
+```
+
+## 🎯 Required Setup
+
+**CSS Import Order** (in `globals.css`):
+
+```css
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+```
+
+## 🎯 Icon Names
+
+Use exact icon names from [Modus Icons Catalog](https://modus-icons.trimble.com/field-systems/):
+
+- `save_disk`, `download`, `upload`
+- `edit_combination`, `delete`, `settings`
+- `arrow_right`, `arrow_left`, `expand_more`
+- `check`, `close`, `add`, `remove`
+
+## ❌ NEVER Use
+
+```tsx
+// ❌ WRONG - Missing class
+<i>save_disk</i>
+
+// ❌ WRONG - Wrong class name
+<i className="modus-icon">save_disk</i>
+
+// ❌ WRONG - Non-Modus icons
+<i className="fa fa-save"></i>
+```
+
+## 🎯 Key Rules
+
+- **Always** use `modus-icons` class
+- **Use Tailwind spacing**: `mr-2`, `ml-2` (not inline styles)
+- **Icon placement**: Left = `mr-2`, Right = `ml-2`, Only = no spacing

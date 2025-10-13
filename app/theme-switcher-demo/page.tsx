@@ -96,8 +96,8 @@ export default function ThemeSwitcherDemoPage() {
       </div>
 
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
           <div>
@@ -138,7 +138,10 @@ export default function ThemeSwitcherDemoPage() {
         </div>
 
         <ModusWcThemeProvider initialTheme={appliedTheme}>
-          <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-6">
+          <div
+            className="bg-background rounded-lg p-6 flex flex-col gap-6"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="flex items-center justify-between gap-4">
               <div>
                 <div className="text-sm uppercase tracking-wide text-muted-foreground">
@@ -159,7 +162,10 @@ export default function ThemeSwitcherDemoPage() {
                 <div className="text-sm font-semibold text-foreground">
                   Contrast preview
                 </div>
-                <div className="p-6 rounded-lg border border-border bg-card shadow-sm">
+                <div
+                  className="p-6 rounded-lg bg-card shadow-sm"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   <div className="text-foreground font-semibold mb-2">
                     Dashboard cards
                   </div>
@@ -173,7 +179,10 @@ export default function ThemeSwitcherDemoPage() {
                 <div className="text-sm font-semibold text-foreground">
                   Accent preview
                 </div>
-                <div className="p-6 rounded-lg border border-border bg-card">
+                <div
+                  className="p-6 rounded-lg bg-card"
+                  style={{ border: "1px solid var(--border)" }}
+                >
                   <ModusWcButton color="primary">Primary Action</ModusWcButton>
                   <div className="ml-4 text-sm text-foreground opacity-80">
                     Buttons and badges update with the selected palette.
@@ -186,8 +195,8 @@ export default function ThemeSwitcherDemoPage() {
       </div>
 
       <div
-        className="p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-4">
           Theme Change Log
@@ -195,7 +204,10 @@ export default function ThemeSwitcherDemoPage() {
         <div className="text-sm text-foreground opacity-70 mb-4">
           Observe the payload from `themeChange` and manual actions.
         </div>
-        <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+        <div
+          className="bg-background rounded-lg p-4 min-h-40"
+          style={{ border: "1px solid var(--border)" }}
+        >
           {eventLog.length === 0 ? (
             <div className="text-sm text-foreground opacity-60">
               Use the switcher or buttons above to generate log entries.

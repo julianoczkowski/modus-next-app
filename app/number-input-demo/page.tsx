@@ -146,7 +146,10 @@ export default function NumberInputDemo() {
       </div>
 
       {/* Interactive Demo */}
-      <div className="mb-8 p-6 bg-card rounded-lg border border-border">
+      <div
+        className="mb-8 p-6 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-xl font-semibold text-foreground mb-4">
           Interactive Demo
         </div>
@@ -191,8 +194,8 @@ export default function NumberInputDemo() {
                       label: e.target.value,
                     }))
                   }
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
 
@@ -209,8 +212,8 @@ export default function NumberInputDemo() {
                       placeholder: e.target.value,
                     }))
                   }
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
 
@@ -226,8 +229,8 @@ export default function NumberInputDemo() {
                       size: e.target.value as "sm" | "md" | "lg",
                     }))
                   }
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 >
                   <option value="sm">Small</option>
                   <option value="md">Medium</option>
@@ -247,8 +250,8 @@ export default function NumberInputDemo() {
                       type: e.target.value as "number" | "range",
                     }))
                   }
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 >
                   <option value="number">Number</option>
                   <option value="range">Range Slider</option>
@@ -266,8 +269,8 @@ export default function NumberInputDemo() {
                     setDemoConfig((prev) => ({ ...prev, min: e.target.value }))
                   }
                   placeholder="No minimum"
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
 
@@ -282,8 +285,8 @@ export default function NumberInputDemo() {
                     setDemoConfig((prev) => ({ ...prev, max: e.target.value }))
                   }
                   placeholder="No maximum"
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
 
@@ -299,8 +302,8 @@ export default function NumberInputDemo() {
                   }
                   placeholder="Default step"
                   step="0.01"
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
 
@@ -318,8 +321,8 @@ export default function NumberInputDemo() {
                     }))
                   }
                   placeholder="e.g., $, €, £"
-                  className="w-full p-2 border border-border rounded bg-background text-foreground"
-                  style={{ borderWidth: "1px" }}
+                  className="w-full p-2 rounded bg-background text-foreground"
+                  style={{ border: "1px solid var(--border)" }}
                 />
               </div>
             </div>
@@ -392,7 +395,10 @@ export default function NumberInputDemo() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Simple Number Input
             </div>
@@ -403,7 +409,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               With Min/Max/Step
             </div>
@@ -418,7 +427,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Decimal Numbers
             </div>
@@ -432,7 +444,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Required Field
             </div>
@@ -446,7 +461,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Currency Support
             </div>
@@ -461,7 +479,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Range Slider
             </div>
@@ -513,7 +534,10 @@ export default function NumberInputDemo() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Normal State
             </div>
@@ -524,7 +548,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Disabled State
             </div>
@@ -536,7 +563,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Read-only State
             </div>
@@ -548,7 +578,10 @@ export default function NumberInputDemo() {
             />
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Borderless
             </div>
@@ -569,7 +602,10 @@ export default function NumberInputDemo() {
         </div>
 
         <div className="max-w-2xl space-y-6">
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-4">
               Real-time Validation Example
             </div>
@@ -621,7 +657,10 @@ export default function NumberInputDemo() {
         <div className="text-xl font-semibold text-foreground mb-4">
           Event Log
         </div>
-        <div className="p-4 bg-muted rounded-lg border border-border">
+        <div
+          className="p-4 bg-muted rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
+        >
           <div className="text-sm text-muted-foreground mb-2">
             Interact with number inputs to see events...
           </div>
@@ -645,7 +684,10 @@ export default function NumberInputDemo() {
           Usage Examples
         </div>
         <div className="space-y-4">
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-2">
               Basic Usage
             </div>
@@ -660,7 +702,10 @@ export default function NumberInputDemo() {
             </div>
           </div>
 
-          <div className="p-4 bg-card rounded-lg border border-border">
+          <div
+            className="p-4 bg-card rounded-lg"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <div className="text-lg font-semibold text-foreground mb-2">
               Advanced Usage
             </div>

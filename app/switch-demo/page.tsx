@@ -79,7 +79,8 @@ export default function SwitchDemoPage() {
         [featureId]: target.value,
       }));
       logEvent(
-        `${featureList.find((item) => item.id === featureId)?.label ?? featureId
+        `${
+          featureList.find((item) => item.id === featureId)?.label ?? featureId
         } ${target.value ? "turned on" : "turned off"}`
       );
     },
@@ -114,8 +115,8 @@ export default function SwitchDemoPage() {
 
         {/* Primary Control */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-6">
             <div>
@@ -143,7 +144,9 @@ export default function SwitchDemoPage() {
                 onButtonClick={() => {
                   const next = !disabled;
                   setDisabled(next);
-                  logEvent(`${next ? "Disabled" : "Enabled"} all feature switches`);
+                  logEvent(
+                    `${next ? "Disabled" : "Enabled"} all feature switches`
+                  );
                 }}
               >
                 {disabled ? "Enable all" : "Disable all"}
@@ -155,7 +158,9 @@ export default function SwitchDemoPage() {
                 onButtonClick={() => {
                   const next = !indeterminate;
                   setIndeterminate(next);
-                  logEvent(`Indeterminate state ${next ? "applied" : "cleared"}`);
+                  logEvent(
+                    `Indeterminate state ${next ? "applied" : "cleared"}`
+                  );
                 }}
               >
                 {indeterminate ? "Clear mixed state" : "Set mixed state"}
@@ -163,7 +168,10 @@ export default function SwitchDemoPage() {
             </div>
           </div>
 
-          <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+          <div
+            className="bg-background rounded-lg p-6 flex flex-col gap-4"
+            style={{ border: "1px solid var(--border)" }}
+          >
             <ModusSwitch
               label="Main facility power"
               value={primaryToggle}
@@ -182,13 +190,16 @@ export default function SwitchDemoPage() {
 
         {/* Feature Matrix */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Feature Flags
           </div>
-          <div className="bg-background border border-border rounded-lg divide-y divide-border">
+          <div
+            className="bg-background rounded-lg divide-y divide-border"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {featureList.map((feature) => (
               <div
                 key={feature.id}
@@ -218,22 +229,41 @@ export default function SwitchDemoPage() {
 
         {/* Sizes & States */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Sizes &amp; States
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Size tokens
               </div>
-              <ModusSwitch label="Small switch" size="sm" aria-label="Small switch example" />
-              <ModusSwitch label="Medium switch" size="md" value aria-label="Medium switch example" />
-              <ModusSwitch label="Large switch" size="lg" aria-label="Large switch example" />
+              <ModusSwitch
+                label="Small switch"
+                size="sm"
+                aria-label="Small switch example"
+              />
+              <ModusSwitch
+                label="Medium switch"
+                size="md"
+                value
+                aria-label="Medium switch example"
+              />
+              <ModusSwitch
+                label="Large switch"
+                size="lg"
+                aria-label="Large switch example"
+              />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Required &amp; disabled
               </div>
@@ -260,8 +290,8 @@ export default function SwitchDemoPage() {
 
         {/* Event Log */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-4">
             Interaction Log
@@ -269,7 +299,10 @@ export default function SwitchDemoPage() {
           <div className="text-sm text-foreground opacity-70 mb-4">
             Captures `inputChange` events to audit system changes.
           </div>
-          <div className="bg-background border border-border rounded-lg p-4 min-h-40">
+          <div
+            className="bg-background rounded-lg p-4 min-h-40"
+            style={{ border: "1px solid var(--border)" }}
+          >
             {eventLog.length === 0 ? (
               <div className="text-sm text-foreground opacity-60">
                 Toggle any switch above to populate the log.

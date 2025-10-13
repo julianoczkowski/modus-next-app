@@ -17,6 +17,33 @@ This file provides comprehensive guidance for AI coding agents working with this
 - Modus Web Components React package
 - Modus Icons (Field Systems)
 
+## 🚨 CRITICAL: Development Workflow & Testing
+
+### MANDATORY: Run Linting Before Changes
+
+```bash
+# 🔍 Run all linting checks before any code changes
+npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
+```
+
+### Chrome DevTools Testing (Use MCP)
+
+**ALWAYS use Chrome DevTools MCP for testing:**
+
+```bash
+# Start dev server first
+npm run dev
+```
+
+**Then test with MCP:**
+
+- Navigate to `http://localhost:3000`
+- Check console for JavaScript errors
+- Test all interactive elements (buttons, forms)
+- Verify responsive design (mobile/desktop)
+- Test theme switching if applicable
+- Run accessibility checks
+
 ## Essential Development Commands
 
 ### Core Development
@@ -33,11 +60,11 @@ npm start               # Start production server
 ```bash
 npm run lint            # Run ESLint
 npm run type-check      # TypeScript compilation check
-npm run lint:colors     # Verify Modus color compliance
+npm run lint:colors     # Verify Modus color compliance (CRITICAL)
 npm run lint:icons      # Verify Modus icons
 npm run lint:semantic   # Verify if app is using semantic HTML
 npm run lint:styles     # Verify Modus styles
-(CRITICAL)
+npm run lint:borders    # Verify border usage is correct
 ```
 
 ### Git Workflow
@@ -127,8 +154,8 @@ var(--modus-wc-color-warning)        /* Warning */
 
 ```tsx
 // ✅ CORRECT
-<div className="bg-background text-foreground border-border">
-<button className="bg-primary text-primary-foreground">
+<div className="bg-background text-foreground" style={{ border: "1px solid var(--border)"}}>
+<div className="bg-primary text-primary-foreground">
 
 // ❌ FORBIDDEN (Will fail lint)
 <div style={{ backgroundColor: "#ffffff" }}>
@@ -158,12 +185,23 @@ interface ModusButtonProps {
 **Preferred Approach:** Tailwind utility classes with design system colors
 
 ```tsx
-<div className="max-w-5xl mx-auto p-8 bg-card border border-border rounded-lg">
+<div className="max-w-5xl mx-auto p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+```
+
+**Critical Border Rule:**
+
+```tsx
+// ❌ WRONG - Tailwind border classes don't work in v4
+<div className="border border-border">
+
+// ✅ CORRECT - Use inline styles for borders
+<div style={{ border: "1px solid var(--border)" }}>
+<div style={{ border: "2px dashed var(--border)" }}>
 ```
 
 **Avoid:**
 
-- Inline styles (except dynamic values)
+- Inline styles (except dynamic values and borders)
 - CSS modules
 - Semantic HTML elements (`<h1>`, `<section>`) - use `<div>` with Tailwind
 
@@ -203,7 +241,7 @@ if (!mounted) return <div>Loading...</div>;
 
 ## File Structure Standards
 
-```
+```text
 app/
 ├── layout.tsx                    # Global layout (header/footer included)
 ├── page.tsx                      # Homepage
@@ -273,26 +311,9 @@ npm run lint:colors
 ```
 
 **Icon Set:** Field Systems (623 icons)
-**Reference:** https://modus-icons.trimble.com/field-systems/
+**Reference:** [Modus Icons Catalog](https://modus-icons.trimble.com/field-systems/)
 
 ## Common Issues & Solutions
-
-### Event Handlers Not Working
-
-```tsx
-// ❌ WRONG
-<ModusWcDropdown onItemSelect={handler} />;
-
-// ✅ CORRECT
-const dropdownRef = useRef<any>(null);
-useEffect(() => {
-  const dropdown = dropdownRef.current;
-  if (dropdown) {
-    dropdown.addEventListener("itemSelect", handler);
-    return () => dropdown.removeEventListener("itemSelect", handler);
-  }
-}, []);
-```
 
 ### Dropdown Not Closing
 
@@ -302,6 +323,18 @@ event.target.menuVisible = false;
 
 // ✅ CORRECT
 dropdownRef.current.menuVisible = false;
+```
+
+### Accordion State Management Issues
+
+```tsx
+// ❌ WRONG - Don't control state from React
+<ModusWcCollapse expanded={isExpanded} options={item.options}>
+
+// ✅ CORRECT - Let Modus components handle their own state
+<ModusWcCollapse options={item.options}>
+  <div slot="content">Content</div>
+</ModusWcCollapse>
 ```
 
 ### Theme Flash on Load
@@ -344,6 +377,16 @@ if (!mounted) return <LoadingSkeleton />;
 
 ## Development Workflow
 
+### MANDATORY: Implementation Guides for Major Features
+
+**BEFORE starting ANY major feature development:**
+
+1. **Create implementation guide** in `/implementation_guides/`
+2. **Document complete approach** before writing code
+3. **Break down into phases** with specific tasks
+4. **Include user stories** and persona information
+5. **Add mermaid diagrams** where applicable
+
 ### Adding New Components
 
 1. Check existing components for reusability
@@ -352,25 +395,34 @@ if (!mounted) return <LoadingSkeleton />;
 4. Mark `"use client"` if needed
 5. Test all 4 themes
 6. Verify color compliance
-7. Add to appropriate demo page
+7. **Test with Chrome DevTools MCP**
+8. Add to appropriate demo page
 
 ### Debugging Checklist
 
-1. Check console for event handler logs
-2. Verify ref attachment
-3. Confirm event name matches Modus docs
-4. Ensure cleanup function exists
-5. Validate client-side directive
+1. **Run Chrome DevTools MCP** for real-time testing
+2. Check console for event handler logs
+3. Verify ref attachment
+4. Confirm event name matches Modus docs
+5. Ensure cleanup function exists
+6. Validate client-side directive
+7. **Test all interactive elements**
+8. **Verify responsive design**
 
 ### Code Review Standards
 
+- [ ] **All linting commands pass** (0 violations)
+- [ ] **Chrome DevTools testing completed**
 - [ ] Single component pattern followed
 - [ ] Proper event handling implemented
 - [ ] Design system colors only
+- [ ] **Border usage correct** (inline styles, not Tailwind classes)
+- [ ] **Semantic HTML avoided** (use div elements)
 - [ ] Tailwind classes used appropriately
 - [ ] TypeScript interfaces defined
 - [ ] Accessibility considerations met
 - [ ] Theme compatibility verified
+- [ ] **Implementation guide created** (for major features)
 
 ## Resources & References
 
@@ -395,6 +447,10 @@ npm run build           # Production build
 
 # Quality
 npm run lint:colors     # CRITICAL - Run before commit
+npm run lint:icons      # Verify Modus icons
+npm run lint:semantic   # Verify semantic HTML usage
+npm run lint:styles     # Verify Modus styles
+npm run lint:borders    # Verify border usage
 npm run type-check      # TypeScript validation
 npm run lint           # ESLint validation
 
@@ -402,6 +458,26 @@ npm run lint           # ESLint validation
 npm run dev -- --port 3001  # Alternative port
 npm run build -- --debug    # Debug build issues
 ```
+
+## 🎯 Key Rules Summary
+
+### Essential Development Rules
+
+1. **🚨 ALWAYS run linting commands before making changes**
+2. **🧪 Use Chrome DevTools MCP for testing implementations**
+3. **📋 Create implementation guides for major features**
+4. **🎨 Use inline styles for borders (not Tailwind classes)**
+5. **📝 Use div elements (not semantic HTML) for consistent Tailwind styling**
+6. **🎛️ Let Modus components handle their own state (don't control from React)**
+7. **🔧 Use ref-based event handling for Modus Web Components**
+
+### Final Quality Checklist
+
+- [ ] ✅ All 4 linting commands pass (0 violations)
+- [ ] ✅ Chrome DevTools shows no console errors
+- [ ] ✅ All interactive elements work correctly
+- [ ] ✅ Responsive design tested
+- [ ] ✅ Theme compatibility verified (if themes present)
 
 ---
 

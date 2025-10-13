@@ -128,7 +128,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Basic Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Checkbox Examples
         </div>
@@ -179,7 +182,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Size Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
@@ -203,7 +209,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Form Integration */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Form Integration
         </div>
@@ -291,7 +300,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Tree View Example */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Tree View Example
         </div>
@@ -344,7 +356,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Accessibility Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Accessibility Examples
         </div>
@@ -385,7 +400,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Interactive Controls */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
@@ -455,7 +473,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Event Log */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex items-center justify-between mb-4">
           <div className="text-2xl font-semibold text-foreground">
             Event Log
@@ -470,7 +491,10 @@ export default function CheckboxDemoPage() {
             Clear Logs
           </ModusWcButton>
         </div>
-        <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
+        <div
+          className="max-h-64 overflow-y-auto rounded p-4 bg-background"
+          style={{ border: "1px solid var(--border)" }}
+        >
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
               <div className="text-foreground min-w-20">{log.timestamp}</div>
@@ -498,7 +522,10 @@ export default function CheckboxDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

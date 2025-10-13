@@ -160,7 +160,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Basic Single Select */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Basic Single Select
         </div>
@@ -180,7 +183,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Multi-Select with Chips */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Multi-Select with Chips
         </div>
@@ -215,7 +221,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Remote Search with Spinner */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Remote Search with Loading
         </div>
@@ -238,7 +247,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Different Sizes */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Different Sizes
         </div>
@@ -271,7 +283,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Disabled and Read-Only States */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Disabled and Read-Only States
         </div>
@@ -297,7 +312,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Custom No Results */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom No Results
         </div>
@@ -318,7 +336,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Interactive Controls */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Controls
         </div>
@@ -375,7 +396,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Event Log */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="flex items-center justify-between mb-4">
           <div className="text-2xl font-semibold text-foreground">
             Event Log
@@ -390,7 +414,10 @@ export default function AutocompleteDemoPage() {
             Clear Logs
           </ModusWcButton>
         </div>
-        <div className="max-h-64 overflow-y-auto border border-border rounded p-4 bg-background">
+        <div
+          className="max-h-64 overflow-y-auto rounded p-4 bg-background"
+          style={{ border: "1px solid var(--border)" }}
+        >
           {eventLogs.map((log, index) => (
             <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
               <div className="text-foreground min-w-20">{log.timestamp}</div>
@@ -419,7 +446,10 @@ export default function AutocompleteDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
+      >
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

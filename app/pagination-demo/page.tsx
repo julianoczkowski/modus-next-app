@@ -37,8 +37,8 @@ export default function PaginationDemo() {
 
       {/* Basic controlled pagination */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Basic Usage
@@ -63,8 +63,8 @@ export default function PaginationDemo() {
 
       {/* Size variations */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Size Variations
@@ -77,8 +77,8 @@ export default function PaginationDemo() {
           {sizes.map((size) => (
             <div
               key={size}
-              className="p-6 rounded-lg border border-border bg-background flex flex-col items-center gap-4"
-              style={{ borderWidth: "1px" }}
+              className="p-6 rounded-lg bg-background flex flex-col items-center gap-4"
+              style={{ border: "1px solid var(--border)" }}
             >
               <div className="text-lg font-medium text-foreground capitalize">
                 {size} size
@@ -96,8 +96,8 @@ export default function PaginationDemo() {
 
       {/* Custom button labels */}
       <div
-        className="mb-12 p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="mb-12 p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Custom Button Text
@@ -122,8 +122,8 @@ export default function PaginationDemo() {
 
       {/* Localised aria labels */}
       <div
-        className="p-8 bg-card rounded-lg border border-border"
-        style={{ borderWidth: "1px" }}
+        className="p-8 bg-card rounded-lg"
+        style={{ border: "1px solid var(--border)" }}
       >
         <div className="text-2xl font-semibold text-foreground mb-6">
           Localised Accessibility Labels

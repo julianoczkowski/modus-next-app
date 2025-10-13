@@ -1,5 +1,6 @@
 ---
-alwaysApply: true
+description: Comprehensive ruleset for when having issues with Tailwind CSS
+alwaysApply: false
 ---
 
 # Tailwind CSS Usage Rules for Next.js + Modus
@@ -8,7 +9,7 @@ alwaysApply: true
 
 This document outlines the proper usage of Tailwind CSS in Next.js applications with Modus Design System. The goal is to **maximize Tailwind utility classes** and **eliminate custom CSS classes** for better maintainability, consistency, and scalability.
 
-**Key Principle**: Use Tailwind's built-in utilities (including `hover:`, `focus:`, `bg-*`, `text-*`, `border-*`) inline instead of creating custom CSS classes. This keeps your codebase lean and prevents `globals.css` from growing unmanageably.
+**Key Principle**: Use Tailwind's built-in utilities (including `hover:`, `focus:`, `bg-*`, `text-*`, `style={{ border: "1px solid var(--border)" }}*`) inline instead of creating custom CSS classes. This keeps your codebase lean and prevents `globals.css` from growing unmanageably.
 
 ## 🚫 NEVER Create Custom CSS Classes
 
@@ -34,9 +35,9 @@ This document outlines the proper usage of Tailwind CSS in Next.js applications 
 
 ```tsx
 // ✅ CORRECT - Pure Tailwind
-<header className="bg-background border-border text-foreground">
+<div className="bg-background style={{ border: "1px solid var(--border)" }} text-foreground">
 <Link className="hover:bg-card">
-<div className="bg-card border border-border rounded-lg">
+<div className="bg-card border style={{ border: "1px solid var(--border)" }} rounded-lg">
 <ModusWcButton color="primary">
 ```
 
@@ -48,7 +49,7 @@ This document outlines the proper usage of Tailwind CSS in Next.js applications 
 
 ```tsx
 // ✅ BEST - Pure Tailwind with design system colors
-<div className="flex items-center justify-between p-4 rounded-lg border bg-background border-border text-foreground">
+<div className="flex items-center justify-between p-4 rounded-lg bg-background style={{ border: "1px solid var(--border)" }} text-foreground">
   Content
 </div>
 
@@ -61,13 +62,13 @@ This document outlines the proper usage of Tailwind CSS in Next.js applications 
 </Link>
 
 // ✅ BEST - Header/Footer with design system colors
-<header className="w-full border-b bg-background border-border text-foreground">
-  <nav className="max-w-6xl mx-auto px-4 py-4">Navigation</nav>
-</header>
+<div className="w-full bg-background style={{ borderBottom: "1px solid var(--border)" }} text-foreground">
+  <div className="max-w-6xl mx-auto px-4 py-4">Navigation</div>
+</div>
 
-<footer className="text-center py-4 border-t-2 bg-card border-border text-foreground">
+<div className="text-center py-4 bg-card style={{ borderTop: "2px solid var(--border)" }} text-foreground">
   <div className="max-w-6xl mx-auto px-4">Footer content</div>
-</footer>
+</div>
 ```
 
 ### Why This Approach?
@@ -106,8 +107,8 @@ This document outlines the proper usage of Tailwind CSS in Next.js applications 
 }
 
 /* ✅ INSTEAD - Use Tailwind inline */
-<header className="bg-background border-border text-foreground">
-<div className="bg-card border border-border">
+<div className="bg-background style={{ border: "1px solid var(--border)" }} text-foreground">
+<div className="bg-card style={{ border: "1px solid var(--border)" }}">
 <Link className="hover:bg-card">
 ```
 
@@ -130,9 +131,9 @@ Tailwind v4's `@theme inline` automatically makes our design system colors avail
 <div className="text-primary">Primary text</div>
 <div className="text-destructive">Error text</div>
 
-// ✅ Border colors
-<div className="border border-border">Standard border</div>
-<div className="border border-input">Input border</div>
+// ✅ Border colors (use inline styles for borders)
+<div style={{ border: "1px solid var(--border)" }}>Standard border</div>
+<div style={{ border: "1px solid var(--input)" }}>Input border</div>
 <div className="focus:ring-2 focus:ring-ring">Focus ring</div>
 
 // ✅ Hover states
@@ -182,7 +183,10 @@ border - border, border - input, border - ring;
 // ✅ CORRECT - Pure Tailwind
 export default function AppHeader() {
   return (
-    <header className="w-full border-b bg-background border-border text-foreground">
+    <header
+      className="w-full border-b bg-background text-foreground"
+      style={{ borderBottom: "1px solid var(--border)" }}
+    >
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
         <h2 className="text-xl font-semibold text-foreground">App Name</h2>
         <div className="flex gap-4">
@@ -205,7 +209,10 @@ export default function AppHeader() {
 // ✅ CORRECT - Pure Tailwind
 export default function AppFooter() {
   return (
-    <footer className="text-center py-4 border-t-2 bg-card border-border text-foreground">
+    <footer
+      className="text-center py-4 border-t-2 bg-card text-foreground"
+      style={{ borderTop: "2px solid var(--border)" }}
+    >
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
         <span className="text-sm text-foreground">© 2025 App Name</span>
         <a
@@ -226,7 +233,10 @@ export default function AppFooter() {
 // ✅ CORRECT - Pure Tailwind
 export default function Card({ children }) {
   return (
-    <div className="bg-card border border-border rounded-lg p-6 transition-all duration-200 hover:shadow-lg">
+    <div
+      className="bg-card rounded-lg p-6 transition-all duration-200 hover:shadow-lg"
+      style={{ border: "1px solid var(--border)" }}
+    >
       <div className="text-foreground">{children}</div>
     </div>
   );
@@ -250,64 +260,111 @@ In Tailwind v4, the `border` class alone sets `border-width: 0px`. To make borde
 
 ### ✅ Correct Border Pattern
 
-**Use `border border-{color}` + inline `style={{ borderWidth: '1px' }}`:**
+**Use inline `style={{ border: "..." }}` with design system colors:**
 
 ```tsx
-// ✅ CORRECT - Visible borders with Tailwind v4
-<div className="bg-card border border-border rounded-lg p-6" style={{ borderWidth: '1px' }}>
+// ✅ CORRECT - Simple border with design system color
+<div className="bg-card rounded-lg p-6" style={{ border: "1px solid var(--border)" }}>
   Content with visible 1px border
 </div>
 
-// ✅ CORRECT - Different border widths
-<div className="border border-border" style={{ borderWidth: '1px' }}>1px border</div>
-<div className="border border-border" style={{ borderWidth: '1px' }}>1px border</div>
-<div className="border border-border" style={{ borderWidth: '4px' }}>4px border</div>
+// ✅ CORRECT - Different border widths (replaces border-2, border-4, etc.)
+<div style={{ border: "1px solid var(--border)" }}>1px border</div>
+<div style={{ border: "2px solid var(--border)" }}>2px border</div>
+<div style={{ border: "4px solid var(--border)" }}>4px border</div>
+
+// ✅ CORRECT - Different border styles
+<div style={{ border: "2px dashed var(--border)" }}>Dashed border</div>
+<div style={{ border: "1px dotted var(--border)" }}>Dotted border</div>
+
+// ✅ CORRECT - Different sides
+<div style={{ borderTop: "2px solid var(--border)" }}>Top border only</div>
+<div style={{ borderBottom: "1px solid var(--border)" }}>Bottom border only</div>
 ```
 
 ### ❌ Wrong Border Patterns
 
 ```tsx
-// ❌ WRONG - No visible border (width is 0px)
+// ❌ WRONG - Tailwind border classes don't work reliably in v4
 <div className="border border-border">
-  No visible border!
+  No visible border! (border-width is 0px by default)
 </div>
 
-// ❌ WRONG - border-2 doesn't work in Tailwind v4
+// ❌ WRONG - border-2, border-4 don't work in Tailwind v4
 <div className="border-2 border-border">
   Still no visible border!
 </div>
 
-// ❌ WRONG - Full inline border (avoid for static values)
-<div style={{ border: '1px solid var(--border)' }}>
-  Works but violates Tailwind-first principle
+// ❌ WRONG - Common violation: border-border pattern
+<div className="bg-card border border-border rounded-lg">
+  This is a common violation that should be fixed!
+</div>
+
+// ❌ WRONG - Complex inline style objects for borders
+<div
+  style={{
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "var(--border)"
+  }}
+>
+  Unnecessarily verbose
 </div>
 ```
 
 ### 📋 Border Best Practices
 
-1. **Always use `border border-{color}`** for border style and color
-2. **Always add `style={{ borderWidth: '...' }}`** for visible borders
-3. **Use design system colors** like `border-border`, `border-input`, `border-ring`
-4. **Keep border width in inline style** - it's acceptable for this specific case
+1. **Always use `style={{ border: "..." }}`** for all borders
+2. **Use design system colors** like `var(--border)`, `var(--input)`, `var(--ring)`
+3. **Keep it simple** - one `border` property instead of separate width/style/color
+4. **Use Tailwind for everything else** - spacing, layout, colors, but NOT borders
+
+### 🚨 Common Border Violations to Fix
+
+**❌ NEVER use these patterns:**
+
+```tsx
+// ❌ VIOLATION - border-border pattern
+<div className="bg-card border border-border rounded-lg">
+
+// ❌ VIOLATION - border alone without width
+<div className="border border-border">
+
+// ❌ VIOLATION - border-2, border-4 classes
+<div className="border-2 border-border">
+```
+
+**✅ ALWAYS use this pattern:**
+
+```tsx
+// ✅ CORRECT - Inline style with design system color
+<div className="bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+
+// ✅ CORRECT - Different border widths
+<div style={{ border: "2px solid var(--border)" }}>
+<div style={{ border: "4px solid var(--border)" }}>
+
+// ✅ CORRECT - Different border styles
+<div style={{ border: "1px dashed var(--border)" }}>
+<div style={{ border: "2px dotted var(--border)" }}>
+```
 
 ### 🎨 Common Border Patterns
 
 ```tsx
 // Card with border
-<div className="bg-card border border-border rounded-lg p-6" style={{ borderWidth: '1px' }}>
+<div className="bg-card rounded-lg p-6" style={{ border: "1px solid var(--border)" }}>
   Card content
 </div>
 
 // Input with border
-<input className="border border-input rounded px-3 py-2" style={{ borderWidth: '1px' }} />
+<input className="rounded px-3 py-2 bg-background text-foreground" style={{ border: "1px solid var(--border)" }} />
 
-// Focus state with ring
-<ModusWcButton color="secondary" variant="outlined">
-  Button with focus ring
-</ModusWcButton>
+// Focus state with ring (keep Tailwind for interactive states)
+<input className="focus:ring-2 focus:ring-ring focus:outline-none" style={{ border: "1px solid var(--border)" }} />
 
 // Different sides
-<div className="border-t border-border" style={{ borderTopWidth: '1px' }}>
+<div className="bg-background" style={{ borderTop: "1px solid var(--border)" }}>
   Top border only
 </div>
 ```
@@ -394,9 +451,9 @@ In Tailwind v4, the `border` class alone sets `border-width: 0px`. To make borde
 
 ```tsx
 // ✅ CORRECT - Use Tailwind inline instead
-<header className="bg-background border-border text-foreground">
+<div className="bg-background text-foreground style={{ border: "1px solid var(--border)" }}">
 <Link className="hover:bg-card">
-<span className="text-foreground">
+<div className="text-foreground">
 ```
 
 ### ❌ Don't Use Event Handlers for Hover States
@@ -433,7 +490,7 @@ In Tailwind v4, the `border` class alone sets `border-width: 0px`. To make borde
 >
 
 // ✅ CORRECT - Tailwind classes
-<div className="bg-background border-border text-foreground">
+<div className="bg-background text-foreground style={{ border: "1px solid var(--border)" }}">
 ```
 
 ## ✅ Only 2 Valid Reasons for Custom CSS
@@ -505,19 +562,20 @@ In Tailwind v4, the `border` class alone sets `border-width: 0px`. To make borde
 }
 
 // ✅ CORRECT - Tailwind inline
-<div className="rounded-lg border border-border">
+<div className="rounded-lg border style={{ border: "1px solid var(--border)" }}">
 ```
 
 ## 📋 Migration Checklist
 
 When refactoring from custom CSS to Tailwind:
 
-- [ ] ✅ **Replace `.app-header`** → `bg-background border-border text-foreground`
-- [ ] ✅ **Replace `.app-footer`** → `bg-card border-border text-foreground`
+- [ ] ✅ **Replace `.app-header`** → `bg-background text-foreground` + `style={{ borderBottom: "1px solid var(--border)" }}`
+- [ ] ✅ **Replace `.app-footer`** → `bg-card text-foreground` + `style={{ borderTop: "2px solid var(--border)" }}`
 - [ ] ✅ **Replace `.nav-link:hover`** → `hover:bg-card`
 - [ ] ✅ **Replace `.text-foreground`** → `text-foreground`
 - [ ] ✅ **Remove `onMouseEnter/Leave`** → Use `hover:` classes
 - [ ] ✅ **Replace inline style objects** → Tailwind classes
+- [ ] ✅ **Fix border violations** → Replace `border border-border` with `style={{ border: "1px solid var(--border)" }}`
 - [ ] ✅ **Test all interactive states** (hover, focus, active)
 - [ ] ✅ **Verify theme switching** (light/dark themes)
 - [ ] ✅ **Check responsive design** (mobile, tablet, desktop)
@@ -550,10 +608,29 @@ When refactoring from custom CSS to Tailwind:
 3. **ONLY 2 exceptions**: Theme switching and complex `@keyframes` animations
 4. **Use `hover:`, `focus:`, `active:`** prefixes instead of JavaScript or custom CSS
 5. **Use design system colors** (`bg-background`, `text-foreground`, etc.)
-6. **Borders require width**: Use `border border-{color}` + `style={{ borderWidth: '1px' }}`
-7. **Keep `globals.css` minimal** - aim for <50 lines
-8. **Test responsively** with Tailwind's `md:`, `lg:` prefixes
-9. **Verify theme compatibility** - ensure light/dark themes work
+6. **Borders require width**: Use `style={{ border: "1px solid var(--border)" }}`
+7. **NEVER use `border border-border`** - This is a common violation!
+8. **Keep `globals.css` minimal** - aim for <50 lines
+9. **Test responsively** with Tailwind's `md:`, `lg:` prefixes
+10. **Verify theme compatibility** - ensure light/dark themes work
+
+## 🚨 Recent Violations Fixed
+
+**Common patterns that were causing violations:**
+
+```tsx
+// ❌ VIOLATIONS FOUND AND FIXED:
+<div className="bg-card border border-border rounded-lg">
+<div className="mb-12 p-8 bg-card rounded-lg border border-border">
+<div className="w-full p-3 border border-border rounded bg-background">
+<div className="p-2 border border-border rounded bg-background">
+
+// ✅ CORRECTED TO:
+<div className="bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+<div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+<div className="w-full p-3 rounded bg-background" style={{ border: "1px solid var(--border)" }}>
+<div className="p-2 rounded bg-background" style={{ border: "1px solid var(--border)" }}>
+```
 
 ---
 

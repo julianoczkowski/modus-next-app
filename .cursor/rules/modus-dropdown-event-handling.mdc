@@ -149,7 +149,7 @@ function ThemeSwitcherDropdownContent({
         onMenuVisibilityChange={handleMenuVisibility}
       >
         <div slot="button" className="theme-button-content">
-          <span className="theme-label">{getCurrentThemeLabel()}</span>
+          <div className="theme-label">{getCurrentThemeLabel()}</div>
           <i className="modus-icons theme-arrow">expand_more</i>
         </div>
         <div slot="menu">
@@ -181,10 +181,7 @@ export default function ThemeSwitcherDropdown(
     return (
       <div className={`theme-switcher-dropdown ${props.className || ""}`}>
         <div className="animate-pulse">
-          <div
-            className="h-8 w-32 rounded"
-            style={{ backgroundColor: "var(--modus-wc-color-base-200)" }}
-          />
+          <div className="h-8 w-32 rounded bg-muted" />
         </div>
       </div>
     );

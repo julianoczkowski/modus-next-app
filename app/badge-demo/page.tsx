@@ -77,7 +77,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Color Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Color Variants
         </div>
@@ -100,7 +100,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Variant Types */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Variant Types
         </div>
@@ -169,7 +169,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Size Variants */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Size Variants
         </div>
@@ -212,7 +212,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Real-world Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Real-world Examples
         </div>
@@ -280,21 +280,21 @@ export default function BadgeDemoPage() {
               Task Status
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
+              <div className="flex items-center justify-between p-3 bg-background rounded" style={{ border: "1px solid var(--border)" }}>
                 <div className="text-foreground">
                   Complete user authentication
                 </div>
                 <ModusBadge color="success">Completed</ModusBadge>
               </div>
-              <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
+              <div className="flex items-center justify-between p-3 bg-background rounded" style={{ border: "1px solid var(--border)" }}>
                 <div className="text-foreground">Update documentation</div>
                 <ModusBadge color="warning">In Progress</ModusBadge>
               </div>
-              <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
+              <div className="flex items-center justify-between p-3 bg-background rounded" style={{ border: "1px solid var(--border)" }}>
                 <div className="text-foreground">Fix critical bug</div>
                 <ModusBadge color="danger">Urgent</ModusBadge>
               </div>
-              <div className="flex items-center justify-between p-3 bg-background rounded border border-border">
+              <div className="flex items-center justify-between p-3 bg-background rounded" style={{ border: "1px solid var(--border)" }}>
                 <div className="text-foreground">Code review</div>
                 <ModusBadge variant="text" color="primary">
                   Pending
@@ -331,7 +331,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Interactive Badge Builder */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Interactive Badge Builder
         </div>
@@ -442,7 +442,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Custom Styling Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Custom Styling Examples
         </div>
@@ -481,7 +481,7 @@ export default function BadgeDemoPage() {
       </div>
 
       {/* Usage Examples */}
-      <div className="mb-12 p-8 bg-card rounded-lg border border-border">
+      <div className="mb-12 p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Usage Examples
         </div>

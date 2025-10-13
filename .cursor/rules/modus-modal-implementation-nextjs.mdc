@@ -1,3 +1,288 @@
+---
+description: Rule when adding modal component
+alwaysApply: false
+---
+
+# Modus Modal Implementation Guide
+
+## 🎯 Overview
+
+This rule documents the correct implementation patterns for Modus Web Component modals in React/Next.js applications, including critical solutions for common issues.
+
+## 🚨 Critical Issue: Modal Methods Not Available
+
+### ❌ The Problem
+
+When using `ModusWcModal` in React, you cannot call `showModal()` and `close()` methods directly on the component reference:
+
+```tsx
+// ❌ WRONG - These methods don't exist on the Modus component
+const modalRef = useRef<HTMLModusWcModalElement>(null);
+
+const openModal = () => {
+  modalRef.current?.showModal(); // ❌ Error: showModal is not a function
+};
+
+const closeModal = () => {
+  modalRef.current?.close(); // ❌ Error: close is not a function
+};
+```
+
+### 🔍 Root Cause
+
+**Modus Web Components wrap native HTML elements**: The `ModusWcModal` component wraps a native `<dialog>` element internally, but doesn't expose the dialog methods directly on the component interface.
+
+### ✅ The Solution: Access Inner Dialog Element
+
+**Use `querySelector('dialog')` to access the native dialog element:**
+
+```tsx
+"use client";
+
+import { ModusWcModal } from "@trimble-oss/moduswebcomponents-react";
+import { ReactNode, useRef, useEffect } from "react";
+
+interface ModusModalProps {
+  modalId: string;
+  isOpen?: boolean;
+  onClose?: () => void;
+  children: ReactNode;
+  // ... other props
+}
+
+export default function ModusModal({
+  modalId,
+  isOpen = false,
+  onClose,
+  children,
+  ...otherProps
+}: ModusModalProps) {
+  const modalRef = useRef<HTMLModusWcModalElement>(null);
+
+  // ✅ CORRECT - Control modal visibility
+  useEffect(() => {
+    const modal = modalRef.current;
+    if (modal) {
+      if (isOpen) {
+        // Find the inner dialog element and call showModal
+        const dialogElement = modal.querySelector("dialog");
+        if (dialogElement) {
+          dialogElement.showModal();
+        }
+      } else {
+        // Find the inner dialog element and call close
+        const dialogElement = modal.querySelector("dialog");
+        if (dialogElement) {
+          dialogElement.close();
+        }
+      }
+    }
+  }, [isOpen]);
+
+  // ✅ CORRECT - Handle modal events
+  useEffect(() => {
+    const modal = modalRef.current;
+    if (modal) {
+      const handleClose = () => {
+        onClose?.();
+      };
+
+      // Listen for modal close events on the inner dialog
+      const dialogElement = modal.querySelector("dialog");
+      if (dialogElement) {
+        dialogElement.addEventListener("close", handleClose);
+
+        return () => {
+          dialogElement.removeEventListener("close", handleClose);
+        };
+      }
+    }
+  }, [onClose]);
+
+  return (
+    <ModusWcModal ref={modalRef} modal-id={modalId} {...otherProps}>
+      {children}
+    </ModusWcModal>
+  );
+}
+```
+
+## 🎯 Key Implementation Patterns
+
+### 1. Modal State Management
+
+```tsx
+// ✅ CORRECT - Use React state to control modal
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+<ModusModal
+  modalId="myModal"
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+>
+  Modal content
+</ModusModal>;
+```
+
+### 2. Event Handling
+
+```tsx
+// ✅ CORRECT - Listen to native dialog events
+useEffect(() => {
+  const modal = modalRef.current;
+  if (modal) {
+    const dialogElement = modal.querySelector("dialog");
+    if (dialogElement) {
+      const handleClose = () => onClose?.();
+      dialogElement.addEventListener("close", handleClose);
+
+      return () => {
+        dialogElement.removeEventListener("close", handleClose);
+      };
+    }
+  }
+}, [onClose]);
+```
+
+### 3. Modal Attributes
+
+```tsx
+// ✅ CORRECT - Use all available modal attributes
+<ModusWcModal
+  modal-id="uniqueId"           // Required: Unique identifier
+  backdrop="static"             // "default" | "static"
+  position="center"             // "top" | "center" | "bottom"
+  fullscreen={false}            // boolean
+  show-fullscreen-toggle={true} // boolean
+  show-close={true}             // boolean
+  custom-class="my-modal-class" // string for custom styling
+  aria-label="Modal description" // Accessibility
+>
+```
+
+### 4. Slot-Based Content
+
+```tsx
+// ✅ CORRECT - Use slots for structured content
+<ModusWcModal modal-id="structuredModal">
+  <div slot="header">
+    <div className="text-xl font-semibold">Modal Title</div>
+  </div>
+  <div slot="content">
+    <div className="text-base">Modal body content</div>
+  </div>
+  <div slot="footer">
+    <ModusWcButton color="secondary" onButtonClick={closeModal}>
+      Close
+    </ModusWcButton>
+  </div>
+</ModusWcModal>
+```
+
+## 🚫 Common Anti-Patterns
+
+### ❌ Don't Try Direct Method Calls
+
+```tsx
+// ❌ WRONG - These will fail
+modalRef.current?.showModal();
+modalRef.current?.close();
+modalRef.current?.open = true;
+```
+
+### ❌ Don't Use Incorrect Event Listeners
+
+```tsx
+// ❌ WRONG - Events won't fire on the component itself
+modalRef.current?.addEventListener("close", handleClose);
+```
+
+### ❌ Don't Forget Cleanup
+
+```tsx
+// ❌ WRONG - Memory leaks without cleanup
+useEffect(() => {
+  dialogElement.addEventListener("close", handleClose);
+  // Missing cleanup function
+}, []);
+```
+
+## 🔧 Debugging Tips
+
+### 1. Check Inner Dialog Exists
+
+```tsx
+useEffect(() => {
+  const modal = modalRef.current;
+  if (modal) {
+    const dialogElement = modal.querySelector("dialog");
+    console.log("Dialog element found:", !!dialogElement);
+  }
+}, []);
+```
+
+### 2. Verify Event Listeners
+
+```tsx
+const handleClose = () => {
+  console.log("Modal closing"); // Debug log
+  onClose?.();
+};
+```
+
+### 3. Check Modal ID Uniqueness
+
+```tsx
+// ✅ Ensure each modal has a unique ID
+<ModusModal modalId="modal-1" />
+<ModusModal modalId="modal-2" />
+```
+
+## 📋 Implementation Checklist
+
+- [ ] ✅ **Use `querySelector("dialog")`** to access native dialog element
+- [ ] ✅ **Call methods on inner dialog** not the Modus component
+- [ ] ✅ **Add event listeners to inner dialog** for close events
+- [ ] ✅ **Include cleanup functions** in useEffect
+- [ ] ✅ **Use unique modal IDs** for each modal instance
+- [ ] ✅ **Control state via React** not direct DOM manipulation
+- [ ] ✅ **Use slot-based content** for structured modals
+- [ ] ✅ **Test all modal attributes** (backdrop, position, fullscreen)
+
+## 🎯 Why This Works
+
+1. **Native Dialog Foundation**: Modus modals are built on HTML `<dialog>` elements
+2. **Component Wrapping**: The Modus component wraps but doesn't expose dialog methods
+3. **DOM Access**: `querySelector` gives us access to the inner native element
+4. **Standard Methods**: Native dialog has `showModal()` and `close()` methods
+5. **Event Bubbling**: Dialog events bubble up and can be captured
+
+## 🚀 Performance Considerations
+
+### Efficient Modal Management
+
+```tsx
+// ✅ Use useCallback for stable references
+const handleClose = useCallback(() => {
+  setIsModalOpen(false);
+}, []);
+
+// ✅ Memoize modal content if expensive
+const modalContent = useMemo(() => <ExpensiveComponent data={data} />, [data]);
+```
+
+## 🔗 Related Patterns
+
+This pattern applies to other Modus components that wrap native elements:
+
+- **Dialogs**: Use `querySelector("dialog")`
+- **Forms**: Access inner form elements
+- **Custom Elements**: Query for wrapped native elements
+
+---
+
+**Remember**: Always access the inner native element when you need to call methods or add event listeners that aren't exposed by the Modus Web Component wrapper.
+
 # Modus Modal Implementation Guide
 
 ## 🎯 Overview

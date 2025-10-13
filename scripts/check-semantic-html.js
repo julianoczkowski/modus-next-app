@@ -147,7 +147,8 @@ const TAILWIND_ALTERNATIVES = {
 
   // Other elements
   "<button": '<ModusWcButton color="primary"',
-  "<blockquote": '<div className="border-l-4 border-border pl-4 italic',
+  "<blockquote":
+    '<div className="border-l-4 pl-4 italic" style={{ borderLeft: "4px solid var(--border)" }}',
   "<cite": '<div className="text-sm text-muted-foreground italic',
   "<address": '<div className="text-sm not-italic',
   "<time": '<div className="text-sm',

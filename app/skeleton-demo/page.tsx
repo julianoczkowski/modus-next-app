@@ -52,8 +52,8 @@ export default function SkeletonDemoPage() {
 
         {/* Basic Variants */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Basic Variants
@@ -64,9 +64,21 @@ export default function SkeletonDemoPage() {
                 Standard rectangles
               </div>
               <div className="flex flex-wrap gap-4 items-center">
-                <ModusSkeleton width="4rem" height="1rem" ariaLabel="Short line skeleton" />
-                <ModusSkeleton width="8rem" height="1.25rem" ariaLabel="Medium line skeleton" />
-                <ModusSkeleton width="12rem" height="1.5rem" ariaLabel="Long line skeleton" />
+                <ModusSkeleton
+                  width="4rem"
+                  height="1rem"
+                  ariaLabel="Short line skeleton"
+                />
+                <ModusSkeleton
+                  width="8rem"
+                  height="1.25rem"
+                  ariaLabel="Medium line skeleton"
+                />
+                <ModusSkeleton
+                  width="12rem"
+                  height="1.5rem"
+                  ariaLabel="Long line skeleton"
+                />
               </div>
             </div>
             <div>
@@ -99,14 +111,17 @@ export default function SkeletonDemoPage() {
 
         {/* Composite Layout */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Card &amp; Content Placeholders
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-4">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-4"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="flex items-center gap-4">
                 <ModusSkeleton
                   shape="circle"
@@ -115,22 +130,45 @@ export default function SkeletonDemoPage() {
                   ariaLabel="Profile avatar skeleton"
                 />
                 <div className="flex flex-col gap-2 flex-1">
-                  <ModusSkeleton width="70%" height="1.1rem" ariaLabel="Name skeleton" />
-                  <ModusSkeleton width="45%" height="0.9rem" ariaLabel="Title skeleton" />
+                  <ModusSkeleton
+                    width="70%"
+                    height="1.1rem"
+                    ariaLabel="Name skeleton"
+                  />
+                  <ModusSkeleton
+                    width="45%"
+                    height="0.9rem"
+                    ariaLabel="Title skeleton"
+                  />
                 </div>
               </div>
               <ModusSkeleton height="8rem" ariaLabel="Card body skeleton" />
               <div className="flex gap-3">
-                <ModusSkeleton width="40%" height="2.5rem" ariaLabel="Button skeleton" />
-                <ModusSkeleton width="30%" height="2.5rem" ariaLabel="Secondary button skeleton" />
+                <ModusSkeleton
+                  width="40%"
+                  height="2.5rem"
+                  ariaLabel="Button skeleton"
+                />
+                <ModusSkeleton
+                  width="30%"
+                  height="2.5rem"
+                  ariaLabel="Secondary button skeleton"
+                />
               </div>
             </div>
-            <div className="bg-background border border-border rounded-lg p-6">
+            <div
+              className="bg-background rounded-lg p-6"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground mb-4">
                 Narrative content
               </div>
               <div className="flex flex-col gap-3">
-                <ModusSkeleton width="60%" height="1.25rem" ariaLabel="Title skeleton" />
+                <ModusSkeleton
+                  width="60%"
+                  height="1.25rem"
+                  ariaLabel="Title skeleton"
+                />
                 {paragraphSkeleton.map((item) => (
                   <ModusSkeleton
                     key={item.id}
@@ -146,8 +184,8 @@ export default function SkeletonDemoPage() {
 
         {/* Dashboard Layout */}
         <div
-          className="mb-12 p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="mb-12 p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Dashboard Loading State
@@ -156,11 +194,23 @@ export default function SkeletonDemoPage() {
             {dashboardCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-background border border-border rounded-lg p-5 flex flex-col gap-3"
+                className="bg-background rounded-lg p-5 flex flex-col gap-3"
+                style={{ border: "1px solid var(--border)" }}
               >
-                <ModusSkeleton width="55%" height="1rem" ariaLabel={`${card.title} title skeleton`} />
-                <ModusSkeleton width="35%" height="0.9rem" ariaLabel={`${card.title} subtitle skeleton`} />
-                <ModusSkeleton height="6rem" ariaLabel={`${card.title} chart skeleton`} />
+                <ModusSkeleton
+                  width="55%"
+                  height="1rem"
+                  ariaLabel={`${card.title} title skeleton`}
+                />
+                <ModusSkeleton
+                  width="35%"
+                  height="0.9rem"
+                  ariaLabel={`${card.title} subtitle skeleton`}
+                />
+                <ModusSkeleton
+                  height="6rem"
+                  ariaLabel={`${card.title} chart skeleton`}
+                />
                 <div className="flex flex-col gap-2">
                   {card.lines.map((line) => (
                     <ModusSkeleton
@@ -178,28 +228,62 @@ export default function SkeletonDemoPage() {
 
         {/* Custom Styling */}
         <div
-          className="p-8 bg-card rounded-lg border border-border"
-          style={{ borderWidth: "1px" }}
+          className="p-8 bg-card rounded-lg"
+          style={{ border: "1px solid var(--border)" }}
         >
           <div className="text-2xl font-semibold text-foreground mb-6">
             Custom Styling &amp; Tinting
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3 skeleton-accent">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3 skeleton-accent"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Accent tinted skeletons
               </div>
-              <ModusSkeleton width="65%" height="1rem" ariaLabel="Accent skeleton line 1" customClass="skeleton-accent-block" />
-              <ModusSkeleton width="45%" height="1rem" ariaLabel="Accent skeleton line 2" customClass="skeleton-accent-block" />
-              <ModusSkeleton height="5rem" ariaLabel="Accent skeleton block" customClass="skeleton-accent-block" />
+              <ModusSkeleton
+                width="65%"
+                height="1rem"
+                ariaLabel="Accent skeleton line 1"
+                customClass="skeleton-accent-block"
+              />
+              <ModusSkeleton
+                width="45%"
+                height="1rem"
+                ariaLabel="Accent skeleton line 2"
+                customClass="skeleton-accent-block"
+              />
+              <ModusSkeleton
+                height="5rem"
+                ariaLabel="Accent skeleton block"
+                customClass="skeleton-accent-block"
+              />
             </div>
-            <div className="bg-background border border-border rounded-lg p-6 flex flex-col gap-3 skeleton-muted">
+            <div
+              className="bg-background rounded-lg p-6 flex flex-col gap-3 skeleton-muted"
+              style={{ border: "1px solid var(--border)" }}
+            >
               <div className="text-sm uppercase tracking-wide text-muted-foreground">
                 Muted background blend
               </div>
-              <ModusSkeleton width="70%" height="1rem" ariaLabel="Muted skeleton line 1" customClass="skeleton-muted-block" />
-              <ModusSkeleton width="50%" height="1rem" ariaLabel="Muted skeleton line 2" customClass="skeleton-muted-block" />
-              <ModusSkeleton height="4rem" ariaLabel="Muted skeleton block" customClass="skeleton-muted-block" />
+              <ModusSkeleton
+                width="70%"
+                height="1rem"
+                ariaLabel="Muted skeleton line 1"
+                customClass="skeleton-muted-block"
+              />
+              <ModusSkeleton
+                width="50%"
+                height="1rem"
+                ariaLabel="Muted skeleton line 2"
+                customClass="skeleton-muted-block"
+              />
+              <ModusSkeleton
+                height="4rem"
+                ariaLabel="Muted skeleton block"
+                customClass="skeleton-muted-block"
+              />
             </div>
           </div>
         </div>
