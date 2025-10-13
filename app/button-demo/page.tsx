@@ -131,7 +131,7 @@ export default function ButtonDemoPage() {
       {/* Improved Approach - Single Configurable Component */}
       <div className="mb-12 p-8 bg-card rounded-lg border border-border">
         <div className="text-2xl font-semibold mb-4 text-foreground">
-          ✅ Improved Approach: Single Configurable Component
+          Improved Approach: Single Configurable Component
         </div>
         <div className="text-base mb-6 text-foreground">
           Instead of separate components for each button type, use one flexible

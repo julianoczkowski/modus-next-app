@@ -77,7 +77,7 @@ function ThemeSwitcherDropdownContent({
           slot="button"
           className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
         >
-          <div className="flex-1 text-left text-sm font-medium">
+          <div className="flex-1 text-left text-md font-medium">
             {getCurrentThemeLabel()}
           </div>
           <i className="modus-icons text-base flex-shrink-0">expand_more</i>
