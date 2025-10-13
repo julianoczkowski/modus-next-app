@@ -152,10 +152,32 @@ var(--modus-wc-color-warning)        /* Warning */
 
 **Design System Mapping (Use Tailwind Classes):**
 
+The 9 Modus CSS variables are mapped to Tailwind classes in `globals.css`:
+
+```css
+/* Base Colors (theme-adaptive) */
+--background: var(--modus-wc-color-base-page); /* bg-background */
+--foreground: var(--modus-wc-color-base-content); /* text-foreground */
+--card: var(--modus-wc-color-base-100); /* bg-card */
+--border: var(--modus-wc-color-base-200); /* border-border */
+--muted: var(--modus-wc-color-base-200); /* bg-muted */
+--secondary: var(--modus-wc-color-base-300); /* bg-secondary */
+
+/* Semantic Colors (theme-consistent) */
+--primary: var(--modus-wc-color-info); /* bg-primary */
+--destructive: var(--modus-wc-color-error); /* bg-destructive */
+--warning: var(--modus-wc-color-warning); /* bg-warning */
+--success: var(--modus-wc-color-success); /* bg-success */
+```
+
+**Usage Examples:**
+
 ```tsx
-// ✅ CORRECT
+// ✅ CORRECT - Use mapped Tailwind classes
 <div className="bg-background text-foreground" style={{ border: "1px solid var(--border)"}}>
 <div className="bg-primary text-primary-foreground">
+<div className="bg-card text-card-foreground">
+<div className="bg-muted text-muted-foreground">
 
 // ❌ FORBIDDEN (Will fail lint)
 <div style={{ backgroundColor: "#ffffff" }}>

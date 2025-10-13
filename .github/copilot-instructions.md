@@ -1,10 +1,10 @@
 # Modus Next.js Copilot Instructions
 
-This is a Next.js 15 application demonstrating Trimble's Modus 2 Web Components design system with React 19, featuring strict design system compliance enforced by automated linting.
+This is a Next.js 15 application demonstrating Trimble's Modus Web Components design system integration with modern React patterns, featuring strict design system compliance enforced by automated linting.
 
 ## Architecture Overview
 
-**Core Stack:** Next.js 15 + React 19 + TypeScript + Tailwind CSS 4 + Modus 2 Web Components React package (`@trimble-oss/moduswebcomponents-react@1.0.0-react19`)
+**Core Stack:** Next.js 15 + React 19 + TypeScript + Tailwind CSS 4 + Modus Web Components React package (`@trimble-oss/moduswebcomponents-react@1.0.0-react19`)
 
 **Key Files:**
 
@@ -13,23 +13,61 @@ This is a Next.js 15 application demonstrating Trimble's Modus 2 Web Components 
 - `app/contexts/ThemeContext.tsx` - 4-theme system management
 - `app/globals.css` - Design system color mappings to CSS variables
 
-## Critical Development Patterns
+## 🚨 CRITICAL: Development Workflow & Testing
 
-### 1. Modus Component Integration (MANDATORY)
+### MANDATORY: Run Linting Before Changes
 
-Use React wrapper components, never raw web component tags:
-
-```tsx
-// ✅ CORRECT
-import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
-
-// ❌ WRONG
-<modus-wc-button>
+```bash
+# 🔍 Run all linting checks before any code changes
+npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
 ```
 
-### 2. Event Handling Pattern (CRITICAL)
+### Chrome DevTools Testing (Use MCP)
 
-React event props don't work reliably. Use refs + DOM event listeners:
+**ALWAYS use Chrome DevTools MCP for testing:**
+
+```bash
+# Start dev server first
+npm run dev
+```
+
+**Then test with MCP:**
+
+- Navigate to `http://localhost:3000`
+- Check console for JavaScript errors
+- Test all interactive elements (buttons, forms)
+- Verify responsive design (mobile/desktop)
+- Test theme switching if applicable
+- Run accessibility checks
+
+## Critical Development Patterns
+
+### 1. Modus Web Components Integration
+
+**MANDATORY:** Use React 19-compatible package (`@trimble-oss/moduswebcomponents-react@^1.0.0-react19`)
+
+**Setup Pattern:**
+
+```tsx
+// app/components/ModusProvider.tsx (Client Component)
+"use client";
+import "@trimble-oss/moduswebcomponents-react/modus-wc-styles.css";
+
+// Component Usage
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+```
+
+**FORBIDDEN:**
+
+- Manual `defineCustomElements()` calls
+- Raw web component tags (`<modus-wc-button>`)
+- Direct loader imports
+
+### 2. Event Handling (CRITICAL PATTERN)
+
+**Problem:** React event props don't work reliably with Modus Web Components.
+
+**MANDATORY Solution:**
 
 ```tsx
 "use client";
@@ -53,38 +91,117 @@ useEffect(() => {
 return <ModusWcComponent ref={componentRef} />;
 ```
 
+**Rules:**
+
+- Always use component refs for DOM access
+- Always include cleanup in useEffect return
+- Mark component `"use client"`
+- Common events: `itemSelect`, `buttonClick`, `modalClose`, `accordionChange`
+
 ### 3. Design System Colors (ENFORCED BY LINTING)
 
-Only use these 9 Modus CSS variables - hardcoded colors/Tailwind color classes are forbidden:
+**ONLY ALLOWED:** 9 Modus CSS variables
 
 ```css
-/* Base colors (theme-adaptive) */
+/* Base Colors (theme-adaptive) */
 var(--modus-wc-color-base-page)      /* Backgrounds */
 var(--modus-wc-color-base-100)       /* Cards */
 var(--modus-wc-color-base-200)       /* Borders */
 var(--modus-wc-color-base-300)       /* Secondary UI */
 var(--modus-wc-color-base-content)   /* Text */
 
-/* Semantic colors */
+/* Semantic Colors (theme-consistent) */
 var(--modus-wc-color-info)           /* Primary */
 var(--modus-wc-color-success)        /* Success */
 var(--modus-wc-color-error)          /* Error */
 var(--modus-wc-color-warning)        /* Warning */
 ```
 
-Use mapped Tailwind classes instead: `bg-background`, `text-foreground`, `border-border`, `bg-primary`, etc.
+**Design System Mapping (Use Tailwind Classes):**
+
+The 9 Modus CSS variables are mapped to Tailwind classes in `globals.css`:
+
+```css
+/* Base Colors (theme-adaptive) */
+--background: var(--modus-wc-color-base-page); /* bg-background */
+--foreground: var(--modus-wc-color-base-content); /* text-foreground */
+--card: var(--modus-wc-color-base-100); /* bg-card */
+--border: var(--modus-wc-color-base-200); /* border-border */
+--muted: var(--modus-wc-color-base-200); /* bg-muted */
+--secondary: var(--modus-wc-color-base-300); /* bg-secondary */
+
+/* Semantic Colors (theme-consistent) */
+--primary: var(--modus-wc-color-info); /* bg-primary */
+--destructive: var(--modus-wc-color-error); /* bg-destructive */
+--warning: var(--modus-wc-color-warning); /* bg-warning */
+--success: var(--modus-wc-color-success); /* bg-success */
+```
+
+**Usage Examples:**
+
+```tsx
+// ✅ CORRECT - Use mapped Tailwind classes
+<div className="bg-background text-foreground" style={{ border: "1px solid var(--border)"}}>
+<div className="bg-primary text-primary-foreground">
+<div className="bg-card text-card-foreground">
+<div className="bg-muted text-muted-foreground">
+
+// ❌ FORBIDDEN (Will fail lint)
+<div style={{ backgroundColor: "#ffffff" }}>
+<div className="bg-blue-500 text-red-400">
+```
 
 ### 4. Component Architecture
 
-Create single configurable components rather than multiple specific variants:
+**MANDATORY:** Single configurable component pattern
 
 ```tsx
+// ✅ CORRECT: One flexible component
 interface ModusButtonProps {
   color?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
   variant?: "filled" | "outlined" | "borderless";
   size?: "xs" | "sm" | "md" | "lg";
-  // All configuration options in one component
+  // All configuration options
 }
+
+// ❌ FORBIDDEN: Multiple specific components
+// ModusButtonPrimary.tsx
+// ModusButtonSecondary.tsx
+```
+
+### 5. Styling Standards
+
+**Preferred Approach:** Tailwind utility classes with design system colors
+
+```tsx
+<div className="max-w-5xl mx-auto p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+```
+
+**Critical Border Rule:**
+
+```tsx
+// ❌ WRONG - Tailwind border classes don't work in v4
+<div className="border border-border">
+
+// ✅ CORRECT - Use inline styles for borders
+<div style={{ border: "1px solid var(--border)" }}>
+<div style={{ border: "2px dashed var(--border)" }}>
+```
+
+**Avoid:**
+
+- Inline styles (except dynamic values and borders)
+- CSS modules
+- Semantic HTML elements (`<h1>`, `<section>`) - use `<div>` with Tailwind
+
+**Typography:**
+
+```tsx
+// ✅ CORRECT
+<div className="text-4xl font-semibold text-foreground">Title</div>
+
+// ❌ WRONG (Browser defaults interfere)
+<h1 className="text-4xl font-semibold">Title</h1>
 ```
 
 ## Development Workflow
@@ -94,6 +211,10 @@ interface ModusButtonProps {
 ```bash
 npm run dev              # Start development (Turbopack enabled)
 npm run lint:colors      # CRITICAL - Must pass before commit
+npm run lint:icons       # Verify Modus icons
+npm run lint:semantic    # Verify semantic HTML usage
+npm run lint:styles      # Verify Modus styles
+npm run lint:borders     # Verify border usage
 npm run type-check       # TypeScript validation
 npm run build           # Production build
 ```
@@ -125,9 +246,64 @@ if (!mounted) return <div>Loading...</div>;
 
 ## Common Issues & Solutions
 
-**Events not firing:** Add `"use client"` directive and use ref-based event listeners
-**Colors failing lint:** Use only the 9 approved Modus CSS variables via Tailwind classes
-**Theme flash:** Implement mounted state pattern for client components
-**Component not found:** Ensure using React wrapper from `@trimble-oss/moduswebcomponents-react`
+### Dropdown Not Closing
+
+```tsx
+// ❌ WRONG
+event.target.menuVisible = false;
+
+// ✅ CORRECT
+dropdownRef.current.menuVisible = false;
+```
+
+### Accordion State Management Issues
+
+```tsx
+// ❌ WRONG - Don't control state from React
+<ModusWcCollapse expanded={isExpanded} options={item.options}>
+
+// ✅ CORRECT - Let Modus components handle their own state
+<ModusWcCollapse options={item.options}>
+  <div slot="content">Content</div>
+</ModusWcCollapse>
+```
+
+### Theme Flash on Load
+
+```tsx
+// ✅ SOLUTION: Mounted state pattern
+const [mounted, setMounted] = useState(false);
+useEffect(() => setMounted(true), []);
+if (!mounted) return <LoadingSkeleton />;
+```
+
+### CSS Import Order Issues
+
+```css
+/* ✅ CORRECT ORDER in globals.css */
+@import url("modus-icons.css"); /* FIRST */
+@import url("fonts.googleapis.com"); /* SECOND */
+@import "tailwindcss"; /* THIRD */
+```
+
+## 🎯 Key Rules Summary
+
+### Essential Development Rules
+
+1. **🚨 ALWAYS run linting commands before making changes**
+2. **🧪 Use Chrome DevTools MCP for testing implementations**
+3. **📋 Create implementation guides for major features**
+4. **🎨 Use inline styles for borders (not Tailwind classes)**
+5. **📝 Use div elements (not semantic HTML) for consistent Tailwind styling**
+6. **🎛️ Let Modus components handle their own state (don't control from React)**
+7. **🔧 Use ref-based event handling for Modus Web Components**
+
+### Final Quality Checklist
+
+- [ ] ✅ All 4 linting commands pass (0 violations)
+- [ ] ✅ Chrome DevTools shows no console errors
+- [ ] ✅ All interactive elements work correctly
+- [ ] ✅ Responsive design tested
+- [ ] ✅ Theme compatibility verified (if themes present)
 
 Always run `npm run lint:colors` before committing - design system compliance is strictly enforced.

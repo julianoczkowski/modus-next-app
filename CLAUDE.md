@@ -13,135 +13,250 @@ This is a Next.js 15 application built with React 19, integrating Trimble's Modu
 - TypeScript 5
 - Tailwind CSS 4
 - Modus Web Components React package
-- Modus Icons
+- Modus Icons (Field Systems)
 
-## Common Commands
+## 🚨 CRITICAL: Development Workflow & Testing
 
-### Development
+### MANDATORY: Run Linting Before Changes
 
 ```bash
-npm run dev          # Start development server with Turbopack
-npm run build        # Build production bundle with Turbopack
-npm start            # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # Run TypeScript compiler without emit
-npm run lint:colors  # Verify Modus color usage compliance
+# 🔍 Run all linting checks before any code changes
+npm run lint:styles && npm run lint:colors && npm run lint:icons && npm run lint:semantic
+```
+
+### Chrome DevTools Testing (Use MCP)
+
+**ALWAYS use Chrome DevTools MCP for testing:**
+
+```bash
+# Start dev server first
+npm run dev
+```
+
+**Then test with MCP:**
+
+- Navigate to `http://localhost:3000`
+- Check console for JavaScript errors
+- Test all interactive elements (buttons, forms)
+- Verify responsive design (mobile/desktop)
+- Test theme switching if applicable
+- Run accessibility checks
+
+## Essential Development Commands
+
+### Core Development
+
+```bash
+npm install              # Install dependencies
+npm run dev             # Start development server (Turbopack enabled)
+npm run build           # Production build (Turbopack enabled)
+npm start               # Start production server
+```
+
+### Quality Assurance
+
+```bash
+npm run lint            # Run ESLint
+npm run type-check      # TypeScript compilation check
+npm run lint:colors     # Verify Modus color compliance (CRITICAL)
 npm run lint:icons      # Verify Modus icons
 npm run lint:semantic   # Verify if app is using semantic HTML
 npm run lint:styles     # Verify Modus styles
+npm run lint:borders    # Verify border usage is correct
 ```
 
-### Git Hooks
+### Git Workflow
 
-The project uses Husky for pre-commit hooks that automatically run `lint:colors` on staged files to enforce Modus design system color usage.
+- Pre-commit hooks automatically run `lint:colors` on staged files
+- All color violations must be resolved before commit
+- Husky + lint-staged configuration enforces compliance
 
-## Architecture
+## Critical Architecture Patterns
 
-### Modus Web Components Integration
+### 1. Modus Web Components Integration
 
-**Critical Pattern:** This project uses the React 19-compatible Modus package (`@trimble-oss/moduswebcomponents-react@^1.0.0-react19`). Components are registered automatically by the package - DO NOT use `defineCustomElements` or manual loader imports.
+**MANDATORY:** Use React 19-compatible package (`@trimble-oss/moduswebcomponents-react@^1.0.0-react19`)
 
-**Provider Setup:**
+**Setup Pattern:**
 
-- `app/components/ModusProvider.tsx` - Client component that imports Modus styles
-- Wrapped around the entire app in `app/layout.tsx`
-- Imports `@trimble-oss/moduswebcomponents-react/modus-wc-styles.css`
+```tsx
+// app/components/ModusProvider.tsx (Client Component)
+"use client";
+import "@trimble-oss/moduswebcomponents-react/modus-wc-styles.css";
 
-**Component Usage:**
+// Component Usage
+import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+```
 
-- Import from `@trimble-oss/moduswebcomponents-react` (e.g., `ModusWcButton`)
-- Use React wrapper components, NOT raw web component tags
-- All interactive Modus components require `"use client"` directive
+**FORBIDDEN:**
 
-### Event Handling Pattern (CRITICAL)
+- Manual `defineCustomElements()` calls
+- Raw web component tags (`<modus-wc-button>`)
+- Direct loader imports
+
+### 2. Event Handling (CRITICAL PATTERN)
 
 **Problem:** React event props don't work reliably with Modus Web Components.
 
-**Solution:** Use direct DOM event listeners with refs:
+**MANDATORY Solution:**
 
 ```tsx
 "use client";
 import { useRef, useEffect } from "react";
 
-const dropdownRef = useRef<any>(null);
+const componentRef = useRef<any>(null);
 
 useEffect(() => {
-  const dropdown = dropdownRef.current;
-  if (dropdown) {
-    const handleItemSelect = (event: CustomEvent) => {
-      const selectedValue = event.detail?.value;
-      // Handle event
-      dropdown.menuVisible = false; // Use ref, NOT event.target
+  const component = componentRef.current;
+  if (component) {
+    const handleEvent = (event: CustomEvent) => {
+      // Use componentRef.current, NEVER event.target
+      component.someProperty = newValue;
     };
 
-    dropdown.addEventListener("itemSelect", handleItemSelect);
-    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+    component.addEventListener("eventName", handleEvent);
+    return () => component.removeEventListener("eventName", handleEvent);
   }
 }, []);
+
+return <ModusWcComponent ref={componentRef} />;
 ```
 
-**Key Rules:**
+**Rules:**
 
-- Always use component refs for DOM access, never `event.target`
+- Always use component refs for DOM access
 - Always include cleanup in useEffect return
-- Component must be marked `"use client"`
+- Mark component `"use client"`
 - Common events: `itemSelect`, `buttonClick`, `modalClose`, `accordionChange`
 
-### Design System & Colors
+### 3. Design System Colors (ENFORCED BY LINTING)
 
-**CRITICAL:** Only use the 9 approved Modus CSS variables. Hardcoded hex, RGB, or Tailwind color classes are forbidden and will be caught by pre-commit hooks.
-
-**Approved Colors:**
+**ONLY ALLOWED:** 9 Modus CSS variables
 
 ```css
-/* Base (5 colors - theme-adaptive) */
-var(--modus-wc-color-base-page)      /* Background */
-var(--modus-wc-color-base-100)       /* Card backgrounds */
-var(--modus-wc-color-base-200)       /* Borders, subtle elements */
+/* Base Colors (theme-adaptive) */
+var(--modus-wc-color-base-page)      /* Backgrounds */
+var(--modus-wc-color-base-100)       /* Cards */
+var(--modus-wc-color-base-200)       /* Borders */
 var(--modus-wc-color-base-300)       /* Secondary UI */
 var(--modus-wc-color-base-content)   /* Text */
 
-/* Semantic (4 colors - same in all themes) */
-var(--modus-wc-color-info)           /* Primary/info */
-var(--modus-wc-color-success)        /* Success states */
-var(--modus-wc-color-error)          /* Error/danger */
-var(--modus-wc-color-warning)        /* Warning states */
+/* Semantic Colors (theme-consistent) */
+var(--modus-wc-color-info)           /* Primary */
+var(--modus-wc-color-success)        /* Success */
+var(--modus-wc-color-error)          /* Error */
+var(--modus-wc-color-warning)        /* Warning */
 ```
 
-**Design System Mapping (globals.css):**
-Modus colors are mapped to design system tokens for Tailwind usage:
+**Design System Mapping (Use Tailwind Classes):**
 
-- `bg-background` → `var(--modus-wc-color-base-page)`
-- `text-foreground` → `var(--modus-wc-color-base-content)`
-- `bg-card` → `var(--modus-wc-color-base-100)`
-- `border-border` → `var(--modus-wc-color-base-200)`
-- `bg-primary` → `var(--modus-wc-color-info)`
-- `bg-destructive` → `var(--modus-wc-color-error)`
+The 9 Modus CSS variables are mapped to Tailwind classes in `globals.css`:
 
-**Styling Approach:**
+```css
+/* Base Colors (theme-adaptive) */
+--background: var(--modus-wc-color-base-page); /* bg-background */
+--foreground: var(--modus-wc-color-base-content); /* text-foreground */
+--card: var(--modus-wc-color-base-100); /* bg-card */
+--border: var(--modus-wc-color-base-200); /* border-border */
+--muted: var(--modus-wc-color-base-200); /* bg-muted */
+--secondary: var(--modus-wc-color-base-300); /* bg-secondary */
 
-- **Preferred:** Tailwind utility classes with design system colors
-- **Avoid:** Inline styles (use only for dynamic values)
-- **Avoid:** CSS modules (legacy approach)
-- **Never:** Hardcoded hex, RGB, or Tailwind color classes (e.g., `bg-blue-500`)
+/* Semantic Colors (theme-consistent) */
+--primary: var(--modus-wc-color-info); /* bg-primary */
+--destructive: var(--modus-wc-color-error); /* bg-destructive */
+--warning: var(--modus-wc-color-warning); /* bg-warning */
+--success: var(--modus-wc-color-success); /* bg-success */
+```
 
-### Theme System
+**Usage Examples:**
+
+```tsx
+// ✅ CORRECT - Use mapped Tailwind classes
+<div className="bg-background text-foreground" style={{ border: "1px solid var(--border)"}}>
+<div className="bg-primary text-primary-foreground">
+<div className="bg-card text-card-foreground">
+<div className="bg-muted text-muted-foreground">
+
+// ❌ FORBIDDEN (Will fail lint)
+<div style={{ backgroundColor: "#ffffff" }}>
+<div className="bg-blue-500 text-red-400">
+```
+
+### 4. Component Architecture
+
+**MANDATORY:** Single configurable component pattern
+
+```tsx
+// ✅ CORRECT: One flexible component
+interface ModusButtonProps {
+  color?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
+  variant?: "filled" | "outlined" | "borderless";
+  size?: "xs" | "sm" | "md" | "lg";
+  // All configuration options
+}
+
+// ❌ FORBIDDEN: Multiple specific components
+// ModusButtonPrimary.tsx
+// ModusButtonSecondary.tsx
+```
+
+### 5. Styling Standards
+
+**Preferred Approach:** Tailwind utility classes with design system colors
+
+```tsx
+<div className="max-w-5xl mx-auto p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+```
+
+**Critical Border Rule:**
+
+```tsx
+// ❌ WRONG - Tailwind border classes don't work in v4
+<div className="border border-border">
+
+// ✅ CORRECT - Use inline styles for borders
+<div style={{ border: "1px solid var(--border)" }}>
+<div style={{ border: "2px dashed var(--border)" }}>
+```
+
+**Avoid:**
+
+- Inline styles (except dynamic values and borders)
+- CSS modules
+- Semantic HTML elements (`<h1>`, `<section>`) - use `<div>` with Tailwind
+
+**Typography:**
+
+```tsx
+// ✅ CORRECT
+<div className="text-4xl font-semibold text-foreground">Title</div>
+
+// ❌ WRONG (Browser defaults interfere)
+<h1 className="text-4xl font-semibold">Title</h1>
+```
+
+## Theme System Implementation
+
+**4 Supported Themes:**
+
+- `modus-classic-light`
+- `modus-classic-dark`
+- `modus-modern-light`
+- `modus-modern-dark`
 
 **Implementation:**
 
-- `app/contexts/ThemeContext.tsx` - Theme provider with 4 Modus themes
-- Themes: `modus-classic-light`, `modus-classic-dark`, `modus-modern-light`, `modus-modern-dark`
-- Theme state persisted to localStorage
-- Applied via data attribute: `document.documentElement.setAttribute("data-theme", theme)`
+```tsx
+// app/contexts/ThemeContext.tsx
+document.documentElement.setAttribute("data-theme", theme);
+```
 
-**Hydration Safety:**
-All client components that depend on theme or localStorage must use the mounted pattern:
+**Hydration Safety Pattern (MANDATORY for client components):**
 
 ```tsx
 const [mounted, setMounted] = useState(false);
 useEffect(() => setMounted(true), []);
-if (!mounted) return <LoadingSkeleton />;
-return <ActualComponent />;
+if (!mounted) return <div>Loading...</div>;
 ```
 
 ### CSS Architecture
@@ -303,14 +418,67 @@ scripts/
 **Color Reference:**
 Visit `/color-palette` page to see all design system colors with visual swatches and usage examples.
 
-## Common Pitfalls
+## Common Issues & Solutions
 
-1. **Dropdown not closing:** Use `dropdownRef.current.menuVisible = false`, NOT `event.target`
-2. **Events not firing:** Use addEventListener on ref, not React event props
-3. **Theme flash on load:** Use mounted state pattern for client components
-4. **CSS import order:** Icons must be imported before Tailwind
-5. **Color violations:** Check `npm run lint:colors` output for suggested Modus variables
-6. **Heading styles not applying:** Use `<div>` with Tailwind classes, not `<h1>`, `<h2>` tags
+### Dropdown Not Closing
+
+```tsx
+// ❌ WRONG
+event.target.menuVisible = false;
+
+// ✅ CORRECT
+dropdownRef.current.menuVisible = false;
+```
+
+### Accordion State Management Issues
+
+```tsx
+// ❌ WRONG - Don't control state from React
+<ModusWcCollapse expanded={isExpanded} options={item.options}>
+
+// ✅ CORRECT - Let Modus components handle their own state
+<ModusWcCollapse options={item.options}>
+  <div slot="content">Content</div>
+</ModusWcCollapse>
+```
+
+### Theme Flash on Load
+
+```tsx
+// ✅ SOLUTION: Mounted state pattern
+const [mounted, setMounted] = useState(false);
+useEffect(() => setMounted(true), []);
+if (!mounted) return <LoadingSkeleton />;
+```
+
+### CSS Import Order Issues
+
+```css
+/* ✅ CORRECT ORDER in globals.css */
+@import url("modus-icons.css"); /* FIRST */
+@import url("fonts.googleapis.com"); /* SECOND */
+@import "tailwindcss"; /* THIRD */
+```
+
+## 🎯 Key Rules Summary
+
+### Essential Development Rules
+
+1. **🚨 ALWAYS run linting commands before making changes**
+2. **🧪 Use Chrome DevTools MCP for testing implementations**
+3. **📋 Create implementation guides for major features**
+4. **🎨 Use inline styles for borders (not Tailwind classes)**
+5. **📝 Use div elements (not semantic HTML) for consistent Tailwind styling**
+6. **🎛️ Let Modus components handle their own state (don't control from React)**
+7. **🔧 Use ref-based event handling for Modus Web Components**
+
+### Final Quality Checklist
+
+- [ ] ✅ All 4 linting commands pass (0 violations)
+- [ ] ✅ Chrome DevTools shows no console errors
+- [ ] ✅ All interactive elements work correctly
+- [ ] ✅ Responsive design tested
+- [ ] ✅ Theme compatibility verified (if themes present)
 
 ## Resources
 
