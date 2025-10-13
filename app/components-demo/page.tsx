@@ -19,7 +19,7 @@ const componentDemos: ComponentDemo[] = [
       "Collapsible content sections with expand/collapse functionality",
     url: "/accordion-demo",
     category: "Layout",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Alert",
@@ -27,70 +27,70 @@ const componentDemos: ComponentDemo[] = [
       "Notifications and messages with different variants and dismissible options",
     url: "/alert-demo",
     category: "Feedback",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Autocomplete",
     description: "Input field with suggestions and multi-select capabilities",
     url: "/autocomplete-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Avatar",
     description: "User profile images with different sizes and shapes",
     url: "/avatar-demo",
     category: "Display",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Badge",
     description: "Labels and counters for status indicators and notifications",
     url: "/badge-demo",
     category: "Display",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Breadcrumbs",
     description: "Navigation breadcrumb trails for hierarchical navigation",
     url: "/breadcrumbs-demo",
     category: "Navigation",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Card",
     description: "Content containers with headers, content, and action areas",
     url: "/card-demo",
     category: "Layout",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Checkbox",
     description: "Form controls for multiple selections and boolean inputs",
     url: "/checkbox-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Chip",
     description: "Compact elements for tags, filters, and removable items",
     url: "/chip-demo",
     category: "Display",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Date",
     description: "Date input controls with validation and formatting",
     url: "/date-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Dropdown Menu",
     description: "Contextual menus with various placement and sizing options",
     url: "/dropdown-demo",
     category: "Navigation",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Divider",
@@ -98,23 +98,16 @@ const componentDemos: ComponentDemo[] = [
       "Dividers for separating content with optional labels and horizontal or vertical orientation",
     url: "/divider-demo",
     category: "Layout",
-    status: "ready",
+    status: "demo",
   },
-  {
-    name: "Utility Panel",
-    description:
-      "Collapsible side panel for contextual filters, tools, and secondary content with optional push layout",
-    url: "/utility-panel-demo",
-    category: "Layout",
-    status: "ready",
-  },
+
   {
     name: "Icon",
     description:
       "Icon component with various sizes, accessibility options, and styling",
     url: "/icon-demo",
     category: "Display",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Input Feedback",
@@ -122,7 +115,7 @@ const componentDemos: ComponentDemo[] = [
       "Contextual feedback for form fields with error, success, warning, and info messages",
     url: "/input-feedback-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Input Label",
@@ -130,47 +123,25 @@ const componentDemos: ComponentDemo[] = [
       "Labels for form controls with sub-labels, required indicators, and custom content",
     url: "/input-label-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
-  {
-    name: "Text Input",
-    description:
-      "Single-line text fields with various types, validation, and interactive features",
-    url: "/text-input-demo",
-    category: "Forms",
-    status: "ready",
-  },
+
   {
     name: "Loader",
     description:
       "Visual loading indicators with 6 animation variants, 4 sizes, and 8 colors",
     url: "/loader-demo",
     category: "Feedback",
-    status: "ready",
+    status: "demo",
   },
-  {
-    name: "Progress",
-    description:
-      "Linear and radial progress indicators for task completion and live updates",
-    url: "/progress-demo",
-    category: "Feedback",
-    status: "ready",
-  },
+
   {
     name: "Menu",
     description:
       "Integrated menu system with container and menu items for navigation and toolbars",
     url: "/menu-demo",
     category: "Navigation",
-    status: "ready",
-  },
-  {
-    name: "Navbar",
-    description:
-      "Full-width application bar with navigation menus, search, notifications, apps launcher, AI button and user profile controls",
-    url: "/navbar-demo",
-    category: "Navigation",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Modal",
@@ -178,15 +149,40 @@ const componentDemos: ComponentDemo[] = [
       "Blocking dialog overlays for forms, confirmations, and detailed content",
     url: "/modal-demo",
     category: "Overlays",
-    status: "ready",
+    status: "demo",
   },
+  {
+    name: "Navbar",
+    description:
+      "Full-width application bar with navigation menus, search, notifications, apps launcher, AI button and user profile controls",
+    url: "/navbar-demo",
+    category: "Navigation",
+    status: "demo",
+  },
+
   {
     name: "Number Input",
     description:
       "Numeric input controls with validation, currency support, range sliders, and comprehensive form integration",
     url: "/number-input-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
+  },
+  {
+    name: "Pagination",
+    description:
+      "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
+    url: "/pagination-demo",
+    category: "Navigation",
+    status: "demo",
+  },
+  {
+    name: "Progress",
+    description:
+      "Linear and radial progress indicators for task completion and live updates",
+    url: "/progress-demo",
+    category: "Feedback",
+    status: "demo",
   },
   {
     name: "Radio",
@@ -194,7 +190,7 @@ const componentDemos: ComponentDemo[] = [
       "Exclusive choice control with multiple sizes, required state, and layout customization",
     url: "/radio-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Rating",
@@ -202,7 +198,7 @@ const componentDemos: ComponentDemo[] = [
       "Star, smiley, heart, and thumb ratings with events, half-steps, and accessibility helpers",
     url: "/rating-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Select",
@@ -210,7 +206,7 @@ const componentDemos: ComponentDemo[] = [
       "Single-select dropdown with dynamic options arrays, validation feedback, and async loading patterns",
     url: "/select-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Side Navigation",
@@ -218,7 +214,7 @@ const componentDemos: ComponentDemo[] = [
       "Collapsible left navigation with controlled expansion and Modus navbar integration",
     url: "/side-navigation-demo",
     category: "Navigation",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Skeleton",
@@ -226,7 +222,7 @@ const componentDemos: ComponentDemo[] = [
       "Animated loading placeholders for typography, cards, and dashboards",
     url: "/skeleton-demo",
     category: "Feedback",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Slider",
@@ -234,7 +230,7 @@ const componentDemos: ComponentDemo[] = [
       "Interactive range input with min/max bounds, step control, and live feedback",
     url: "/slider-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Stepper",
@@ -250,7 +246,7 @@ const componentDemos: ComponentDemo[] = [
       "Binary toggle control with required, disabled, and indeterminate states",
     url: "/switch-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Tabs",
@@ -269,12 +265,20 @@ const componentDemos: ComponentDemo[] = [
     status: "ready",
   },
   {
+    name: "Text Input",
+    description:
+      "Single-line text fields with various types, validation, and interactive features",
+    url: "/text-input-demo",
+    category: "Forms",
+    status: "demo",
+  },
+  {
     name: "Theme Switcher",
     description:
       "Toggle between light and dark Modus themes with persisted preferences",
     url: "/theme-switcher-demo",
     category: "Appearance",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Time Input",
@@ -282,7 +286,7 @@ const componentDemos: ComponentDemo[] = [
       "Single-field time picker with min/max limits, seconds support, and datalist suggestions",
     url: "/time-input-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Toolbar",
@@ -290,7 +294,7 @@ const componentDemos: ComponentDemo[] = [
       "Three-slot layout container for building application headers and action bars",
     url: "/toolbar-demo",
     category: "Layout",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Toast",
@@ -298,7 +302,7 @@ const componentDemos: ComponentDemo[] = [
       "Transient notifications that stack by position and pair with alerts for content",
     url: "/toast-demo",
     category: "Feedback",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Tooltip",
@@ -306,22 +310,23 @@ const componentDemos: ComponentDemo[] = [
       "Contextual helper messages that appear on hover or focus around any trigger",
     url: "/tooltip-demo",
     category: "Feedback",
-    status: "ready",
+    status: "demo",
   },
-  {
-    name: "Pagination",
-    description:
-      "Page navigation control with first, previous, number, next, and last actions plus accessibility customization",
-    url: "/pagination-demo",
-    category: "Navigation",
-    status: "ready",
-  },
+
   {
     name: "Table",
     description: "Data tables with sorting, pagination, and selection",
     url: "/table-demo",
     category: "Data",
-    status: "ready",
+    status: "demo",
+  },
+  {
+    name: "Utility Panel",
+    description:
+      "Collapsible side panel for contextual filters, tools, and secondary content with optional push layout",
+    url: "/utility-panel-demo",
+    category: "Layout",
+    status: "demo",
   },
 ];
 
@@ -432,18 +437,6 @@ export default function ComponentsDemoPage() {
                   View Demo
                 </ModusWcButton>
               </Link>
-              <ModusWcButton
-                color="secondary"
-                variant="outlined"
-                size="sm"
-                onButtonClick={() => {
-                  navigator.clipboard.writeText(
-                    `${window.location.origin}${component.url}`
-                  );
-                }}
-              >
-                <i className="modus-icons">link</i>
-              </ModusWcButton>
             </div>
           </div>
         ))}
