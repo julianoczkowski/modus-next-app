@@ -1,8 +1,13 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 import ModusButton from "../components/ModusButton";
+import ModusCheckbox from "../components/ModusCheckbox";
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
 
 interface EventLog {
   timestamp: string;
@@ -24,6 +29,13 @@ export default function ButtonDemoPage() {
   const [clickCounter, setClickCounter] = useState(0);
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
   const [formData, setFormData] = useState({ name: "" });
+
+  // Refs for dropdown components
+  const variantDropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+  const colorDropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+  const sizeDropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+
+  const [forceUpdate, setForceUpdate] = useState(0);
 
   const [builderConfig, setBuilderConfig] = useState<BuilderConfig>({
     variant: "filled",
@@ -79,6 +91,80 @@ export default function ButtonDemoPage() {
 
   const clearLogs = () => {
     setEventLogs([]);
+  };
+
+  // Event listeners for dropdown components
+  useEffect(() => {
+    const variantDropdown = variantDropdownRef.current;
+    if (variantDropdown) {
+      const handleVariantSelect = (event: Event) => {
+        const customEvent = event as CustomEvent;
+        const selectedValue = customEvent.detail
+          ?.value as BuilderConfig["variant"];
+        if (selectedValue) {
+          setBuilderConfig((prev) => ({ ...prev, variant: selectedValue }));
+          logEvent(`Variant changed to: ${selectedValue}`);
+          variantDropdown.menuVisible = false;
+        }
+      };
+
+      variantDropdown.addEventListener("itemSelect", handleVariantSelect);
+      return () =>
+        variantDropdown.removeEventListener("itemSelect", handleVariantSelect);
+    }
+  }, [logEvent]);
+
+  useEffect(() => {
+    const colorDropdown = colorDropdownRef.current;
+    if (colorDropdown) {
+      const handleColorSelect = (event: Event) => {
+        const customEvent = event as CustomEvent;
+        const selectedValue = customEvent.detail
+          ?.value as BuilderConfig["color"];
+        if (selectedValue) {
+          setBuilderConfig((prev) => ({ ...prev, color: selectedValue }));
+          logEvent(`Color changed to: ${selectedValue}`);
+          colorDropdown.menuVisible = false;
+        }
+      };
+
+      colorDropdown.addEventListener("itemSelect", handleColorSelect);
+      return () =>
+        colorDropdown.removeEventListener("itemSelect", handleColorSelect);
+    }
+  }, [logEvent]);
+
+  useEffect(() => {
+    const sizeDropdown = sizeDropdownRef.current;
+    if (sizeDropdown) {
+      const handleSizeSelect = (event: Event) => {
+        const customEvent = event as CustomEvent;
+        const selectedValue = customEvent.detail
+          ?.value as BuilderConfig["size"];
+        if (selectedValue) {
+          setBuilderConfig((prev) => ({ ...prev, size: selectedValue }));
+          logEvent(`Size changed to: ${selectedValue}`);
+          sizeDropdown.menuVisible = false;
+        }
+      };
+
+      sizeDropdown.addEventListener("itemSelect", handleSizeSelect);
+      return () =>
+        sizeDropdown.removeEventListener("itemSelect", handleSizeSelect);
+    }
+  }, [logEvent]);
+
+  const handleManualUpdate = () => {
+    // Force re-render of the preview button with current config
+    logEvent("Manual preview update triggered");
+    logEvent(
+      `Current config: ${builderConfig.variant} ${builderConfig.color} ${
+        builderConfig.size
+      }${builderConfig.disabled ? " (disabled)" : ""}${
+        builderConfig.fullWidth ? " (full width)" : ""
+      }`
+    );
+    setForceUpdate((prev) => prev + 1);
   };
 
   // Generated code for builder
@@ -493,117 +579,199 @@ export default function ButtonDemoPage() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="flex flex-col gap-4">
+            <div className="text-base font-medium mb-2 text-foreground">
+              Configure your button settings using the dropdowns below:
+            </div>
             <div className="flex flex-col gap-2">
-              <label>Variant:</label>
-              <select
-                value={builderConfig.variant}
-                onChange={(e) =>
+              <div className="text-sm font-medium text-foreground mb-1">
+                Variant
+              </div>
+              <ModusWcDropdownMenu
+                ref={variantDropdownRef}
+                buttonVariant="outlined"
+                menuPlacement="bottom-start"
+              >
+                <div
+                  slot="button"
+                  className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
+                >
+                  <div className="flex-1 text-left text-sm">
+                    {builderConfig.variant === "filled" && "Filled"}
+                    {builderConfig.variant === "outlined" && "Outlined"}
+                    {builderConfig.variant === "borderless" && "Borderless"}
+                  </div>
+                  <i className="modus-icons text-base flex-shrink-0">
+                    expand_more
+                  </i>
+                </div>
+                <div slot="menu">
+                  <ModusWcMenuItem
+                    label="Filled"
+                    value="filled"
+                    selected={builderConfig.variant === "filled"}
+                  />
+                  <ModusWcMenuItem
+                    label="Outlined"
+                    value="outlined"
+                    selected={builderConfig.variant === "outlined"}
+                  />
+                  <ModusWcMenuItem
+                    label="Borderless"
+                    value="borderless"
+                    selected={builderConfig.variant === "borderless"}
+                  />
+                </div>
+              </ModusWcDropdownMenu>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-sm font-medium text-foreground mb-1">
+                Color
+              </div>
+              <ModusWcDropdownMenu
+                ref={colorDropdownRef}
+                buttonVariant="outlined"
+                menuPlacement="bottom-start"
+              >
+                <div
+                  slot="button"
+                  className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
+                >
+                  <div className="flex-1 text-left text-sm">
+                    {builderConfig.color === "primary" && "Primary"}
+                    {builderConfig.color === "secondary" && "Secondary"}
+                    {builderConfig.color === "tertiary" && "Tertiary"}
+                    {builderConfig.color === "warning" && "Warning"}
+                    {builderConfig.color === "danger" && "Danger"}
+                  </div>
+                  <i className="modus-icons text-base flex-shrink-0">
+                    expand_more
+                  </i>
+                </div>
+                <div slot="menu">
+                  <ModusWcMenuItem
+                    label="Primary"
+                    value="primary"
+                    selected={builderConfig.color === "primary"}
+                  />
+                  <ModusWcMenuItem
+                    label="Secondary"
+                    value="secondary"
+                    selected={builderConfig.color === "secondary"}
+                  />
+                  <ModusWcMenuItem
+                    label="Tertiary"
+                    value="tertiary"
+                    selected={builderConfig.color === "tertiary"}
+                  />
+                  <ModusWcMenuItem
+                    label="Warning"
+                    value="warning"
+                    selected={builderConfig.color === "warning"}
+                  />
+                  <ModusWcMenuItem
+                    label="Danger"
+                    value="danger"
+                    selected={builderConfig.color === "danger"}
+                  />
+                </div>
+              </ModusWcDropdownMenu>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-sm font-medium text-foreground mb-1">
+                Size
+              </div>
+              <ModusWcDropdownMenu
+                ref={sizeDropdownRef}
+                buttonVariant="outlined"
+                menuPlacement="bottom-start"
+              >
+                <div
+                  slot="button"
+                  className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
+                >
+                  <div className="flex-1 text-left text-sm">
+                    {builderConfig.size === "xs" && "Extra Small"}
+                    {builderConfig.size === "sm" && "Small"}
+                    {builderConfig.size === "md" && "Medium"}
+                    {builderConfig.size === "lg" && "Large"}
+                  </div>
+                  <i className="modus-icons text-base flex-shrink-0">
+                    expand_more
+                  </i>
+                </div>
+                <div slot="menu">
+                  <ModusWcMenuItem
+                    label="Extra Small"
+                    value="xs"
+                    selected={builderConfig.size === "xs"}
+                  />
+                  <ModusWcMenuItem
+                    label="Small"
+                    value="sm"
+                    selected={builderConfig.size === "sm"}
+                  />
+                  <ModusWcMenuItem
+                    label="Medium"
+                    value="md"
+                    selected={builderConfig.size === "md"}
+                  />
+                  <ModusWcMenuItem
+                    label="Large"
+                    value="lg"
+                    selected={builderConfig.size === "lg"}
+                  />
+                </div>
+              </ModusWcDropdownMenu>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <ModusCheckbox
+                label="Disabled"
+                value={builderConfig.disabled}
+                onInputChange={(event) => {
+                  const target = event.target as HTMLModusWcCheckboxElement;
+                  // Modus checkbox value is inverted: false = checked, true = unchecked
+                  const isChecked = !target.value;
                   setBuilderConfig((prev) => ({
                     ...prev,
-                    variant: e.target.value as BuilderConfig["variant"],
-                  }))
-                }
-                className="p-2 rounded bg-background text-foreground"
-                style={{ border: "1px solid var(--border)" }}
-              >
-                <option value="filled">Filled</option>
-                <option value="outlined">Outlined</option>
-                <option value="borderless">Borderless</option>
-              </select>
+                    disabled: isChecked,
+                  }));
+                  logEvent(`Disabled changed to: ${isChecked}`);
+                }}
+              />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label>Color:</label>
-              <select
-                value={builderConfig.color}
-                onChange={(e) =>
+              <ModusCheckbox
+                label="Full Width"
+                value={builderConfig.fullWidth}
+                onInputChange={(event) => {
+                  const target = event.target as HTMLModusWcCheckboxElement;
+                  // Modus checkbox value is inverted: false = checked, true = unchecked
+                  const isChecked = !target.value;
                   setBuilderConfig((prev) => ({
                     ...prev,
-                    color: e.target.value as BuilderConfig["color"],
-                  }))
-                }
-                className="p-2 rounded bg-background text-foreground"
-                style={{ border: "1px solid var(--border)" }}
+                    fullWidth: isChecked,
+                  }));
+                  logEvent(`Full Width changed to: ${isChecked}`);
+                }}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2 mt-4">
+              <div className="text-sm text-muted-foreground mb-2">
+                Click below to force a preview refresh if needed:
+              </div>
+              <ModusButton
+                color="primary"
+                variant="filled"
+                onButtonClick={handleManualUpdate}
               >
-                <option value="primary">Primary</option>
-                <option value="secondary">Secondary</option>
-                <option value="tertiary">Tertiary</option>
-                <option value="warning">Warning</option>
-                <option value="danger">Danger</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label>Size:</label>
-              <select
-                value={builderConfig.size}
-                onChange={(e) =>
-                  setBuilderConfig((prev) => ({
-                    ...prev,
-                    size: e.target.value as BuilderConfig["size"],
-                  }))
-                }
-                className="p-2 rounded bg-background text-foreground"
-                style={{ border: "1px solid var(--border)" }}
-              >
-                <option value="xs">Extra Small</option>
-                <option value="sm">Small</option>
-                <option value="md">Medium</option>
-                <option value="lg">Large</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label>Shape:</label>
-              <select
-                value={builderConfig.shape}
-                onChange={(e) =>
-                  setBuilderConfig((prev) => ({
-                    ...prev,
-                    shape: e.target.value as BuilderConfig["shape"],
-                  }))
-                }
-                className="p-2 rounded bg-background text-foreground"
-                style={{ border: "1px solid var(--border)" }}
-              >
-                <option value="rectangle">Rectangle</option>
-                <option value="square">Square</option>
-                <option value="circle">Circle</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={builderConfig.disabled}
-                  onChange={(e) =>
-                    setBuilderConfig((prev) => ({
-                      ...prev,
-                      disabled: e.target.checked,
-                    }))
-                  }
-                  className="m-0"
-                />
-                Disabled
-              </label>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={builderConfig.fullWidth}
-                  onChange={(e) =>
-                    setBuilderConfig((prev) => ({
-                      ...prev,
-                      fullWidth: e.target.checked,
-                    }))
-                  }
-                  className="m-0"
-                />
-                Full Width
-              </label>
+                <i className="modus-icons mr-2">refresh</i>
+                Update Preview
+              </ModusButton>
             </div>
           </div>
 
@@ -616,6 +784,7 @@ export default function ButtonDemoPage() {
               style={{ border: "1px solid var(--border)" }}
             >
               <ModusWcButton
+                key={forceUpdate}
                 variant={builderConfig.variant}
                 color={builderConfig.color}
                 size={builderConfig.size}

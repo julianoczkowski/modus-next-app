@@ -1,0 +1,183 @@
+# Modus Checkbox Value Inversion Issue
+
+## 🚨 CRITICAL: Modus Checkbox Value Property Bug
+
+### Problem Description
+
+The Modus Web Components checkbox (`ModusWcCheckbox`) has **inverted logic** for the `value` property:
+
+- When checkbox appears **checked** visually → `target.value` returns `false`
+- When checkbox appears **unchecked** visually → `target.value` returns `true`
+
+This is the **opposite** of expected HTML checkbox behavior and React controlled component patterns.
+
+### Symptoms
+
+1. **Event handlers receive wrong values**: Checking a checkbox triggers `onInputChange` with `false`
+2. **State updates incorrectly**: React state becomes opposite of visual checkbox state
+3. **UI becomes inconsistent**: Checkbox appears checked but component state shows unchecked
+4. **Chrome DevTools `fill` command unreliable**: Using DevTools to change checkbox values doesn't consistently trigger proper events
+
+### Root Cause Analysis
+
+#### Investigation Process
+
+1. **Initial assumption**: Standard HTML checkbox behavior (`checked` = `true`, `unchecked` = `false`)
+2. **Testing revealed**: Modus checkbox `value` property always reports `false` regardless of visual state
+3. **Further testing showed**: The `value` property is actually inverted from visual state
+4. **Confirmed in checkbox-demo**: Same issue exists in the official demo page
+
+#### Technical Details
+
+```typescript
+// ❌ WRONG - This will give inverted results
+const handleCheckboxChange = (event: CustomEvent<InputEvent>) => {
+  const target = event.target as HTMLModusWcCheckboxElement;
+  const isChecked = target.value; // This is backwards!
+  setState(isChecked);
+};
+
+// ✅ CORRECT - Must invert the value
+const handleCheckboxChange = (event: CustomEvent<InputEvent>) => {
+  const target = event.target as HTMLModusWcCheckboxElement;
+  const isChecked = !target.value; // Invert to get correct state
+  setState(isChecked);
+};
+```
+
+### Solution Pattern
+
+#### Required Event Handler Pattern
+
+```typescript
+onInputChange={(event) => {
+  const target = event.target as HTMLModusWcCheckboxElement;
+  // CRITICAL: Modus checkbox value is inverted
+  // false = checked, true = unchecked
+  const isChecked = !target.value;
+
+  setConfig((prev) => ({
+    ...prev,
+    [propertyName]: isChecked,
+  }));
+
+  logEvent(`${propertyName} changed to: ${isChecked}`);
+}}
+```
+
+#### Complete Working Example
+
+```typescript
+<ModusCheckbox
+  label="Enable Feature"
+  value={config.featureEnabled}
+  onInputChange={(event) => {
+    const target = event.target as HTMLModusWcCheckboxElement;
+    // Modus checkbox value is inverted: false = checked, true = unchecked
+    const isChecked = !target.value;
+    setConfig((prev) => ({
+      ...prev,
+      featureEnabled: isChecked,
+    }));
+  }}
+/>
+```
+
+### Testing Strategy
+
+#### Manual Testing Requirements
+
+1. **Visual verification**: Check that clicking checkbox visually toggles state
+2. **State verification**: Verify React state matches visual checkbox state
+3. **Event log verification**: Confirm logged values match expected behavior
+4. **Generated output verification**: If checkbox controls other UI, verify output reflects correct state
+
+#### Chrome DevTools Testing Limitations
+
+- **⚠️ WARNING**: Chrome DevTools `fill` command may not trigger events properly
+- **Recommendation**: Always test with actual clicks, not DevTools automation
+- **Alternative**: Use `click` command in Chrome DevTools MCP instead of `fill`
+
+### Related Components
+
+#### Components Affected
+
+- `ModusCheckbox` - Primary affected component
+- Any form builders using `ModusCheckbox`
+- Interactive demos with checkbox controls
+
+#### Components NOT Affected
+
+- `ModusDropdownMenu` - Works correctly with `event.detail.value`
+- `ModusSelect` - Uses different event pattern
+- `ModusRadio` - Uses different value access pattern
+
+### Implementation Checklist
+
+When implementing Modus checkbox event handlers:
+
+- [ ] ✅ Cast event target to `HTMLModusWcCheckboxElement`
+- [ ] ✅ **INVERT** the `target.value` using `!target.value`
+- [ ] ✅ Update React state with inverted value
+- [ ] ✅ Test with actual clicks (not DevTools fill)
+- [ ] ✅ Verify visual state matches React state
+- [ ] ✅ Add comment explaining the inversion logic
+
+### Code Review Red Flags
+
+```typescript
+// 🚨 RED FLAG - Will cause inverted behavior
+const isChecked = target.value;
+
+// 🚨 RED FLAG - Missing inversion comment
+const isChecked = !target.value; // No explanation
+
+// ✅ CORRECT - Properly documented inversion
+// Modus checkbox value is inverted: false = checked, true = unchecked
+const isChecked = !target.value;
+```
+
+### Future Considerations
+
+#### Potential Fixes from Modus Team
+
+- This may be fixed in future Modus Web Components versions
+- Monitor release notes for checkbox behavior changes
+- Consider creating issue report with Modus team
+
+#### Migration Strategy
+
+If Modus fixes this behavior:
+
+1. Search codebase for `!target.value` patterns
+2. Test all checkbox implementations
+3. Remove inversion logic when confirmed fixed
+4. Update this rule documentation
+
+### Related Issues
+
+#### Similar Patterns to Watch For
+
+- Any component where visual state doesn't match reported value
+- Components with inverted boolean properties
+- Event handlers that seem to work backwards
+
+#### Debugging Tips
+
+1. **Always log both visual state and reported value** during development
+2. **Use Chrome DevTools to inspect element properties** directly
+3. **Test with both programmatic and user interactions**
+4. **Cross-reference with working examples** (like checkbox-demo)
+
+### Documentation References
+
+- **Working Example**: `app/button-demo/page.tsx` (lines 733-761)
+- **Component Definition**: `app/components/ModusCheckbox.tsx`
+- **Test Page**: `app/checkbox-demo/page.tsx` (exhibits same issue)
+- **Modus Documentation**: [Trimble Modus Web Components](https://trimble-oss.github.io/modus-wc-2.0/main/)
+
+---
+
+**Last Updated**: January 2025  
+**Discovered During**: Button Demo Interactive Builder Implementation  
+**Status**: Workaround Implemented, Monitoring for Official Fix
