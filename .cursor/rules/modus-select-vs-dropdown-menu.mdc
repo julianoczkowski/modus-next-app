@@ -1,0 +1,780 @@
+---
+description: Rule to be used when having issues with the ModusSelect comp. and event handling
+alwaysApply: false
+---
+
+# Modus Select vs Dropdown Menu - Event Handling Issues
+
+## 🚨 CRITICAL: ModusSelect Event Handling Problems
+
+### Problem Description
+
+The `ModusSelect` component has **unreliable event handling** when used in interactive forms, especially when testing with Chrome DevTools automation:
+
+1. **Inconsistent `onInputChange` events**: Events don't fire reliably when values change
+2. **Chrome DevTools `fill` command fails**: Using DevTools to change select values doesn't trigger proper events
+3. **State synchronization issues**: React state doesn't update when select values change
+4. **Preview/generated code not updating**: Dependent UI elements don't refresh when select changes
+
+### Root Cause Analysis
+
+#### Investigation Process
+
+1. **Initial implementation**: Used `ModusSelect` with `onInputChange` event handler
+2. **Testing revealed**: Preview button and generated code weren't updating
+3. **DevTools testing showed**: `fill` command changed visual state but didn't trigger events
+4. **Manual update button**: Added workaround but still didn't solve core issue
+5. **Breakthrough**: Examined `ThemeSwitcherDropdown.tsx` using `ModusDropdownMenu`
+6. **Solution discovered**: `ModusDropdownMenu` with `itemSelect` event works reliably
+
+#### Technical Comparison
+
+```typescript
+// ❌ PROBLEMATIC - ModusSelect with onInputChange
+<ModusSelect
+  label="Variant"
+  value={builderConfig.variant}
+  options={[
+    { text: "Filled", value: "filled" },
+    { text: "Outlined", value: "outlined" },
+  ]}
+  onInputChange={(event) => {
+    const select = event.target as HTMLModusWcSelectElement;
+    // This event often doesn't fire or fires with stale values
+    setBuilderConfig(prev => ({ ...prev, variant: select.value }));
+  }}
+/>
+
+// ✅ RELIABLE - ModusDropdownMenu with itemSelect
+<ModusDropdownMenu
+  ref={variantDropdownRef}
+  buttonVariant="outlined"
+  menuPlacement="bottom-start"
+>
+  <div slot="button" className="flex items-center justify-between w-full">
+    <div className="flex-1 text-left">
+      {builderConfig.variant === "filled" && "Filled"}
+      {builderConfig.variant === "outlined" && "Outlined"}
+    </div>
+    <i className="modus-icons">expand_more</i>
+  </div>
+  <div slot="menu">
+    <ModusWcMenuItem value="filled" label="Filled" />
+    <ModusWcMenuItem value="outlined" label="Outlined" />
+  </div>
+</ModusDropdownMenu>
+```
+
+### Solution Pattern: ModusDropdownMenu Implementation
+
+#### Required Setup Pattern
+
+```typescript
+import { useRef, useEffect } from "react";
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+
+// 1. Create ref for dropdown
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+
+// 2. Setup event listener with useEffect
+useEffect(
+  () => {
+    const dropdown = dropdownRef.current;
+    if (!dropdown) return;
+
+    const handleItemSelect = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const selectedValue = customEvent.detail?.value as YourValueType;
+      if (selectedValue) {
+        // Update state with selected value
+        setConfig((prev) => ({ ...prev, property: selectedValue }));
+        // Optionally close menu
+        dropdown.menuVisible = false;
+      }
+    };
+
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+  },
+  [
+    /* dependencies */
+  ]
+);
+```
+
+#### Complete Working Example (Based on ThemeSwitcherDropdown)
+
+```typescript
+function ConfigurableDropdown() {
+  const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+  const [selectedValue, setSelectedValue] = useState("default");
+
+  useEffect(() => {
+    const dropdown = dropdownRef.current;
+    if (!dropdown) return;
+
+    const handleItemSelect = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const newValue = customEvent.detail?.value;
+      if (newValue && newValue !== selectedValue) {
+        setSelectedValue(newValue);
+        dropdown.menuVisible = false; // Close menu after selection
+      }
+    };
+
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+  }, [selectedValue]);
+
+  const options = [
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ];
+
+  const getCurrentLabel = () => {
+    const current = options.find((opt) => opt.value === selectedValue);
+    return current ? current.label : "Select...";
+  };
+
+  return (
+    <ModusWcDropdownMenu
+      ref={dropdownRef}
+      buttonVariant="outlined"
+      menuPlacement="bottom-start"
+    >
+      <div
+        slot="button"
+        className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
+      >
+        <div className="flex-1 text-left text-sm">{getCurrentLabel()}</div>
+        <i className="modus-icons text-base flex-shrink-0">expand_more</i>
+      </div>
+      <div slot="menu">
+        {options.map((option) => (
+          <ModusWcMenuItem
+            key={option.value}
+            label={option.label}
+            value={option.value}
+            selected={selectedValue === option.value}
+          />
+        ))}
+      </div>
+    </ModusWcDropdownMenu>
+  );
+}
+```
+
+### Key Differences: ModusSelect vs ModusDropdownMenu
+
+| Aspect                        | ModusSelect                     | ModusDropdownMenu               |
+| ----------------------------- | ------------------------------- | ------------------------------- |
+| **Event Reliability**         | ❌ Inconsistent `onInputChange` | ✅ Reliable `itemSelect`        |
+| **DevTools Compatibility**    | ❌ `fill` command fails         | ✅ Works with user interaction  |
+| **State Synchronization**     | ❌ Often out of sync            | ✅ Always synchronized          |
+| **Implementation Complexity** | ✅ Simple prop-based            | ⚠️ Requires refs + useEffect    |
+| **Customization**             | ⚠️ Limited styling options      | ✅ Full control over appearance |
+| **Menu Control**              | ❌ No programmatic control      | ✅ Can control `menuVisible`    |
+
+### Inspiration Sources
+
+#### ThemeSwitcherDropdown.tsx Pattern
+
+The breakthrough came from examining how `ThemeSwitcherDropdown.tsx` successfully implements dropdown functionality:
+
+```typescript
+// Key patterns from ThemeSwitcherDropdown:
+// 1. useRef for dropdown element
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+
+// 2. useEffect for event listener setup
+useEffect(() => {
+  const dropdown = dropdownRef.current;
+  if (dropdown) {
+    const handleItemSelect = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const selectedValue = customEvent.detail?.value as Theme;
+      // 3. Reliable event.detail.value access
+      setTheme(selectedValue);
+      dropdown.menuVisible = false; // 4. Programmatic menu control
+    };
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+  }
+}, [theme, setTheme]);
+```
+
+#### ThemeContext.tsx Integration
+
+Shows how dropdown selections can reliably update global state and persist to localStorage.
+
+### Migration Strategy
+
+#### When to Use ModusDropdownMenu Instead of ModusSelect
+
+✅ **Use ModusDropdownMenu when:**
+
+- Building interactive forms/builders
+- Need reliable event handling
+- Require custom styling/layout
+- Want programmatic menu control
+- Testing with automation tools
+
+⚠️ **Consider ModusSelect when:**
+
+- Simple, static forms
+- No complex event handling needed
+- Standard select appearance is sufficient
+- No automation testing required
+
+#### Migration Steps
+
+1. **Replace ModusSelect import:**
+
+```typescript
+// Remove:
+import ModusSelect from "../components/ModusSelect";
+
+// Add:
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+```
+
+2. **Add refs and state:**
+
+```typescript
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+```
+
+3. **Replace component structure:**
+
+```typescript
+// From: <ModusSelect options={...} onInputChange={...} />
+// To: <ModusWcDropdownMenu ref={...}>...</ModusWcDropdownMenu>
+```
+
+4. **Add useEffect event handling:**
+
+```typescript
+useEffect(() => {
+  // Event listener setup as shown above
+}, [dependencies]);
+```
+
+### Testing Strategy
+
+#### Reliable Testing Patterns
+
+```typescript
+// ✅ WORKS - Direct click testing
+await click(menuButtonUID);
+await click(menuItemUID);
+
+// ❌ UNRELIABLE - Fill command with ModusSelect
+await fill(selectUID, "value"); // Often fails to trigger events
+
+// ✅ WORKS - User interaction simulation
+// ModusDropdownMenu responds correctly to actual clicks
+```
+
+#### Verification Checklist
+
+- [ ] ✅ Dropdown opens when button clicked
+- [ ] ✅ Menu items are selectable
+- [ ] ✅ Selection updates React state immediately
+- [ ] ✅ Dependent UI updates automatically
+- [ ] ✅ Event logging shows correct values
+- [ ] ✅ Menu closes after selection
+
+### Common Pitfalls
+
+#### Event Handler Issues
+
+```typescript
+// ❌ WRONG - Missing event detail access
+const handleItemSelect = (event: Event) => {
+  // Missing: event.detail.value extraction
+  setState(someHardcodedValue);
+};
+
+// ✅ CORRECT - Proper event detail handling
+const handleItemSelect = (event: Event) => {
+  const customEvent = event as CustomEvent;
+  const selectedValue = customEvent.detail?.value;
+  if (selectedValue) {
+    setState(selectedValue);
+  }
+};
+```
+
+#### Menu Control Issues
+
+```typescript
+// ❌ WRONG - No menu close after selection
+// Menu stays open, confusing UX
+
+// ✅ CORRECT - Close menu after selection
+dropdown.menuVisible = false;
+```
+
+#### Ref Issues
+
+```typescript
+// ❌ WRONG - Missing null check
+const dropdown = dropdownRef.current;
+dropdown.addEventListener(...); // Can throw if null
+
+// ✅ CORRECT - Proper null checking
+const dropdown = dropdownRef.current;
+if (!dropdown) return;
+dropdown.addEventListener(...);
+```
+
+### Performance Considerations
+
+#### useEffect Dependencies
+
+```typescript
+// ❌ WRONG - Missing dependencies (ESLint warning)
+useEffect(() => {
+  // Uses logEvent but doesn't include it
+}, []);
+
+// ✅ CORRECT - Include all dependencies
+useEffect(() => {
+  // Event handler setup
+}, [logEvent, selectedValue]);
+```
+
+#### Event Cleanup
+
+```typescript
+// ✅ CRITICAL - Always clean up event listeners
+useEffect(() => {
+  dropdown.addEventListener("itemSelect", handleItemSelect);
+  return () => {
+    dropdown.removeEventListener("itemSelect", handleItemSelect);
+  };
+}, []);
+```
+
+### Related Documentation
+
+- **Working Example**: `app/button-demo/page.tsx` (lines 97-155, dropdown implementations)
+- **Inspiration Source**: `app/components/ThemeSwitcherDropdown.tsx` (complete pattern)
+- **Context Integration**: `app/contexts/ThemeContext.tsx` (state management)
+- **Component Definition**: `app/components/ModusDropdownMenu.tsx` (wrapper component)
+- **Failed Approach**: Previous ModusSelect implementation (replaced)
+
+### Future Considerations
+
+#### ModusSelect Improvements
+
+- Monitor Modus Web Components releases for ModusSelect event handling fixes
+- Test new versions to see if `onInputChange` becomes more reliable
+- Consider reverting to ModusSelect if issues are resolved
+
+#### Pattern Standardization
+
+- Use ModusDropdownMenu pattern as standard for all interactive dropdowns
+- Create reusable wrapper components for common dropdown patterns
+- Document this pattern in component library guidelines
+
+---
+
+**Last Updated**: January 2025  
+**Discovered During**: Button Demo Interactive Builder Implementation  
+**Status**: ModusDropdownMenu Pattern Adopted, ModusSelect Deprecated for Interactive Use
+
+# Modus Select vs Dropdown Menu - Event Handling Issues
+
+## 🚨 CRITICAL: ModusSelect Event Handling Problems
+
+### Problem Description
+
+The `ModusSelect` component has **unreliable event handling** when used in interactive forms, especially when testing with Chrome DevTools automation:
+
+1. **Inconsistent `onInputChange` events**: Events don't fire reliably when values change
+2. **Chrome DevTools `fill` command fails**: Using DevTools to change select values doesn't trigger proper events
+3. **State synchronization issues**: React state doesn't update when select values change
+4. **Preview/generated code not updating**: Dependent UI elements don't refresh when select changes
+
+### Root Cause Analysis
+
+#### Investigation Process
+
+1. **Initial implementation**: Used `ModusSelect` with `onInputChange` event handler
+2. **Testing revealed**: Preview button and generated code weren't updating
+3. **DevTools testing showed**: `fill` command changed visual state but didn't trigger events
+4. **Manual update button**: Added workaround but still didn't solve core issue
+5. **Breakthrough**: Examined `ThemeSwitcherDropdown.tsx` using `ModusDropdownMenu`
+6. **Solution discovered**: `ModusDropdownMenu` with `itemSelect` event works reliably
+
+#### Technical Comparison
+
+```typescript
+// ❌ PROBLEMATIC - ModusSelect with onInputChange
+<ModusSelect
+  label="Variant"
+  value={builderConfig.variant}
+  options={[
+    { text: "Filled", value: "filled" },
+    { text: "Outlined", value: "outlined" },
+  ]}
+  onInputChange={(event) => {
+    const select = event.target as HTMLModusWcSelectElement;
+    // This event often doesn't fire or fires with stale values
+    setBuilderConfig(prev => ({ ...prev, variant: select.value }));
+  }}
+/>
+
+// ✅ RELIABLE - ModusDropdownMenu with itemSelect
+<ModusDropdownMenu
+  ref={variantDropdownRef}
+  buttonVariant="outlined"
+  menuPlacement="bottom-start"
+>
+  <div slot="button" className="flex items-center justify-between w-full">
+    <div className="flex-1 text-left">
+      {builderConfig.variant === "filled" && "Filled"}
+      {builderConfig.variant === "outlined" && "Outlined"}
+    </div>
+    <i className="modus-icons">expand_more</i>
+  </div>
+  <div slot="menu">
+    <ModusWcMenuItem value="filled" label="Filled" />
+    <ModusWcMenuItem value="outlined" label="Outlined" />
+  </div>
+</ModusDropdownMenu>
+```
+
+### Solution Pattern: ModusDropdownMenu Implementation
+
+#### Required Setup Pattern
+
+```typescript
+import { useRef, useEffect } from "react";
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+
+// 1. Create ref for dropdown
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+
+// 2. Setup event listener with useEffect
+useEffect(
+  () => {
+    const dropdown = dropdownRef.current;
+    if (!dropdown) return;
+
+    const handleItemSelect = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const selectedValue = customEvent.detail?.value as YourValueType;
+      if (selectedValue) {
+        // Update state with selected value
+        setConfig((prev) => ({ ...prev, property: selectedValue }));
+        // Optionally close menu
+        dropdown.menuVisible = false;
+      }
+    };
+
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+  },
+  [
+    /* dependencies */
+  ]
+);
+```
+
+#### Complete Working Example (Based on ThemeSwitcherDropdown)
+
+```typescript
+function ConfigurableDropdown() {
+  const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+  const [selectedValue, setSelectedValue] = useState("default");
+
+  useEffect(() => {
+    const dropdown = dropdownRef.current;
+    if (!dropdown) return;
+
+    const handleItemSelect = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const newValue = customEvent.detail?.value;
+      if (newValue && newValue !== selectedValue) {
+        setSelectedValue(newValue);
+        dropdown.menuVisible = false; // Close menu after selection
+      }
+    };
+
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+  }, [selectedValue]);
+
+  const options = [
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ];
+
+  const getCurrentLabel = () => {
+    const current = options.find((opt) => opt.value === selectedValue);
+    return current ? current.label : "Select...";
+  };
+
+  return (
+    <ModusWcDropdownMenu
+      ref={dropdownRef}
+      buttonVariant="outlined"
+      menuPlacement="bottom-start"
+    >
+      <div
+        slot="button"
+        className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
+      >
+        <div className="flex-1 text-left text-sm">{getCurrentLabel()}</div>
+        <i className="modus-icons text-base flex-shrink-0">expand_more</i>
+      </div>
+      <div slot="menu">
+        {options.map((option) => (
+          <ModusWcMenuItem
+            key={option.value}
+            label={option.label}
+            value={option.value}
+            selected={selectedValue === option.value}
+          />
+        ))}
+      </div>
+    </ModusWcDropdownMenu>
+  );
+}
+```
+
+### Key Differences: ModusSelect vs ModusDropdownMenu
+
+| Aspect                        | ModusSelect                     | ModusDropdownMenu               |
+| ----------------------------- | ------------------------------- | ------------------------------- |
+| **Event Reliability**         | ❌ Inconsistent `onInputChange` | ✅ Reliable `itemSelect`        |
+| **DevTools Compatibility**    | ❌ `fill` command fails         | ✅ Works with user interaction  |
+| **State Synchronization**     | ❌ Often out of sync            | ✅ Always synchronized          |
+| **Implementation Complexity** | ✅ Simple prop-based            | ⚠️ Requires refs + useEffect    |
+| **Customization**             | ⚠️ Limited styling options      | ✅ Full control over appearance |
+| **Menu Control**              | ❌ No programmatic control      | ✅ Can control `menuVisible`    |
+
+### Inspiration Sources
+
+#### ThemeSwitcherDropdown.tsx Pattern
+
+The breakthrough came from examining how `ThemeSwitcherDropdown.tsx` successfully implements dropdown functionality:
+
+```typescript
+// Key patterns from ThemeSwitcherDropdown:
+// 1. useRef for dropdown element
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+
+// 2. useEffect for event listener setup
+useEffect(() => {
+  const dropdown = dropdownRef.current;
+  if (dropdown) {
+    const handleItemSelect = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const selectedValue = customEvent.detail?.value as Theme;
+      // 3. Reliable event.detail.value access
+      setTheme(selectedValue);
+      dropdown.menuVisible = false; // 4. Programmatic menu control
+    };
+    dropdown.addEventListener("itemSelect", handleItemSelect);
+    return () => dropdown.removeEventListener("itemSelect", handleItemSelect);
+  }
+}, [theme, setTheme]);
+```
+
+#### ThemeContext.tsx Integration
+
+Shows how dropdown selections can reliably update global state and persist to localStorage.
+
+### Migration Strategy
+
+#### When to Use ModusDropdownMenu Instead of ModusSelect
+
+✅ **Use ModusDropdownMenu when:**
+
+- Building interactive forms/builders
+- Need reliable event handling
+- Require custom styling/layout
+- Want programmatic menu control
+- Testing with automation tools
+
+⚠️ **Consider ModusSelect when:**
+
+- Simple, static forms
+- No complex event handling needed
+- Standard select appearance is sufficient
+- No automation testing required
+
+#### Migration Steps
+
+1. **Replace ModusSelect import:**
+
+```typescript
+// Remove:
+import ModusSelect from "../components/ModusSelect";
+
+// Add:
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+```
+
+2. **Add refs and state:**
+
+```typescript
+const dropdownRef = useRef<HTMLModusWcDropdownMenuElement>(null);
+```
+
+3. **Replace component structure:**
+
+```typescript
+// From: <ModusSelect options={...} onInputChange={...} />
+// To: <ModusWcDropdownMenu ref={...}>...</ModusWcDropdownMenu>
+```
+
+4. **Add useEffect event handling:**
+
+```typescript
+useEffect(() => {
+  // Event listener setup as shown above
+}, [dependencies]);
+```
+
+### Testing Strategy
+
+#### Reliable Testing Patterns
+
+```typescript
+// ✅ WORKS - Direct click testing
+await click(menuButtonUID);
+await click(menuItemUID);
+
+// ❌ UNRELIABLE - Fill command with ModusSelect
+await fill(selectUID, "value"); // Often fails to trigger events
+
+// ✅ WORKS - User interaction simulation
+// ModusDropdownMenu responds correctly to actual clicks
+```
+
+#### Verification Checklist
+
+- [ ] ✅ Dropdown opens when button clicked
+- [ ] ✅ Menu items are selectable
+- [ ] ✅ Selection updates React state immediately
+- [ ] ✅ Dependent UI updates automatically
+- [ ] ✅ Event logging shows correct values
+- [ ] ✅ Menu closes after selection
+
+### Common Pitfalls
+
+#### Event Handler Issues
+
+```typescript
+// ❌ WRONG - Missing event detail access
+const handleItemSelect = (event: Event) => {
+  // Missing: event.detail.value extraction
+  setState(someHardcodedValue);
+};
+
+// ✅ CORRECT - Proper event detail handling
+const handleItemSelect = (event: Event) => {
+  const customEvent = event as CustomEvent;
+  const selectedValue = customEvent.detail?.value;
+  if (selectedValue) {
+    setState(selectedValue);
+  }
+};
+```
+
+#### Menu Control Issues
+
+```typescript
+// ❌ WRONG - No menu close after selection
+// Menu stays open, confusing UX
+
+// ✅ CORRECT - Close menu after selection
+dropdown.menuVisible = false;
+```
+
+#### Ref Issues
+
+```typescript
+// ❌ WRONG - Missing null check
+const dropdown = dropdownRef.current;
+dropdown.addEventListener(...); // Can throw if null
+
+// ✅ CORRECT - Proper null checking
+const dropdown = dropdownRef.current;
+if (!dropdown) return;
+dropdown.addEventListener(...);
+```
+
+### Performance Considerations
+
+#### useEffect Dependencies
+
+```typescript
+// ❌ WRONG - Missing dependencies (ESLint warning)
+useEffect(() => {
+  // Uses logEvent but doesn't include it
+}, []);
+
+// ✅ CORRECT - Include all dependencies
+useEffect(() => {
+  // Event handler setup
+}, [logEvent, selectedValue]);
+```
+
+#### Event Cleanup
+
+```typescript
+// ✅ CRITICAL - Always clean up event listeners
+useEffect(() => {
+  dropdown.addEventListener("itemSelect", handleItemSelect);
+  return () => {
+    dropdown.removeEventListener("itemSelect", handleItemSelect);
+  };
+}, []);
+```
+
+### Related Documentation
+
+- **Working Example**: `app/button-demo/page.tsx` (lines 97-155, dropdown implementations)
+- **Inspiration Source**: `app/components/ThemeSwitcherDropdown.tsx` (complete pattern)
+- **Context Integration**: `app/contexts/ThemeContext.tsx` (state management)
+- **Component Definition**: `app/components/ModusDropdownMenu.tsx` (wrapper component)
+- **Failed Approach**: Previous ModusSelect implementation (replaced)
+
+### Future Considerations
+
+#### ModusSelect Improvements
+
+- Monitor Modus Web Components releases for ModusSelect event handling fixes
+- Test new versions to see if `onInputChange` becomes more reliable
+- Consider reverting to ModusSelect if issues are resolved
+
+#### Pattern Standardization
+
+- Use ModusDropdownMenu pattern as standard for all interactive dropdowns
+- Create reusable wrapper components for common dropdown patterns
+- Document this pattern in component library guidelines
+
+---
+
+**Last Updated**: January 2025  
+**Discovered During**: Button Demo Interactive Builder Implementation  
+**Status**: ModusDropdownMenu Pattern Adopted, ModusSelect Deprecated for Interactive Use
