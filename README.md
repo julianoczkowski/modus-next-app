@@ -45,6 +45,25 @@ This boilerplate comes pre-configured with powerful AI development tools to supe
 
 > **Note:** The `.cursor/` directory contains MCP server configurations and development rules that enhance your AI-assisted development experience. These tools provide instant access to Modus documentation and maintain code quality standards automatically.
 
+### VS Code GitHub Copilot Integration
+
+This boilerplate includes comprehensive GitHub Copilot instructions for VS Code users:
+
+- **📚 Copilot Instructions** - Located in `.github/copilot-instructions.md` with complete development guidelines
+- **📖 Detailed Guides** - Nine specialized instruction files in `.github/instructions/` covering:
+  - Development workflow and testing procedures
+  - Implementation guide standards for major features
+  - Border styling patterns (Tailwind v4 workarounds)
+  - Color system compliance (9 Modus colors)
+  - Icon usage (500+ validated Modus icons)
+  - Semantic HTML avoidance (div-first approach)
+  - State management for Modus Web Components
+  - Tailwind CSS usage patterns
+  - Theme system implementation
+- **🤖 Auto-Applied** - GitHub Copilot automatically reads these instructions in VS Code to provide context-aware suggestions that follow project standards
+
+> **Location:** All GitHub Copilot instructions are in `.github/copilot-instructions.md` and `.github/instructions/*.instructions.md`
+
 ## What's Included
 
 This boilerplate provides a complete foundation for building Next.js applications with Modus Web Components:
