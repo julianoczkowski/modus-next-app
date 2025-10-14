@@ -6,29 +6,44 @@ applyTo: "**"
 
 This document provides comprehensive guidance on using Modus Icons in this Next.js project with proper implementation patterns and accessibility practices.
 
-## 🚨 CRITICAL: Icon Usage Pattern
+## 🚨 CRITICAL: Icon Usage Patterns
 
-### The Standard Pattern
+### Two Valid Patterns
 
-**ALWAYS use the ModusIcon component from `/app/components/ModusIcon.tsx`:**
+This project supports **two ways** to use Modus Icons, each for different use cases:
+
+#### Pattern 1: Standard `<i>` Element (Most Common) ✅
+
+**Use for:** Simple icon display with Tailwind styling
+
+```tsx
+// Basic usage
+<i className="modus-icons">save_disk</i>
+
+// With Tailwind classes for spacing and colors
+<i className="modus-icons mr-2">download</i>
+<i className="modus-icons text-primary text-lg">home</i>
+<i className="modus-icons text-success">check_circle</i>
+```
+
+#### Pattern 2: ModusIcon Component (Advanced) ✅
+
+**Use for:** When you need prop-based configuration, programmatic control, or complex accessibility
 
 ```tsx
 import ModusIcon from "@/app/components/ModusIcon";
 
-// Basic usage
-<ModusIcon name="save_disk" />
-
-// With size
+// With size prop
 <ModusIcon name="settings" size="lg" />
 
-// Non-decorative (adds accessibility)
-<ModusIcon name="search" decorative={false} ariaLabel="Search" />
+// With color and accessibility
+<ModusIcon name="search" color="var(--primary)" decorative={false} ariaLabel="Search" />
 
-// With custom styling
-<ModusIcon name="check" color="var(--success)" size="md" />
+// With custom class
+<ModusIcon name="check" customClass="animate-pulse" />
 ```
 
-### Component Interface
+### ModusIcon Component Interface
 
 ```typescript
 interface ModusIconProps {
@@ -37,65 +52,73 @@ interface ModusIconProps {
   decorative?: boolean; // Default: true
   customClass?: string; // Additional CSS classes
   ariaLabel?: string; // Required if decorative={false}
-  color?: string; // CSS color value
+  color?: string; // CSS color value (e.g., "var(--primary)")
 }
 ```
 
+### When to Use Each Pattern
+
+| Use Case                    | Pattern     | Example                                                             |
+| --------------------------- | ----------- | ------------------------------------------------------------------- |
+| Simple icon in text/button  | `<i>`       | `<i className="modus-icons mr-2">save_disk</i>`                     |
+| Icon with Tailwind styling  | `<i>`       | `<i className="modus-icons text-primary text-xl">star</i>`          |
+| Icon needing size prop      | `ModusIcon` | `<ModusIcon name="home" size="lg" />`                               |
+| Icon with custom color prop | `ModusIcon` | `<ModusIcon name="check" color="var(--success)" />`                 |
+| Icon needing accessibility  | `ModusIcon` | `<ModusIcon name="search" decorative={false} ariaLabel="Search" />` |
+
 ## ✅ Correct Icon Usage
 
-### Pattern 1: Icon with Text (Left)
+### Using `<i>` Element (Standard Pattern)
 
 ```tsx
-import ModusIcon from "@/app/components/ModusIcon";
-
-// Icon on the left of text
-<ModusWcButton color="primary" className="flex items-center gap-2">
-  <ModusIcon name="save_disk" size="sm" />
+// Icon with text (left)
+<ModusWcButton color="primary">
+  <i className="modus-icons mr-2">save_disk</i>
   Save File
 </ModusWcButton>
 
 <div className="flex items-center gap-2">
-  <ModusIcon name="download" size="sm" />
+  <i className="modus-icons">download</i>
   <div>Download Report</div>
 </div>
-```
 
-### Pattern 2: Icon with Text (Right)
-
-```tsx
-// Icon on the right of text
-<ModusWcButton className="flex items-center gap-2">
+// Icon with text (right)
+<ModusWcButton>
   <div>Next Step</div>
-  <ModusIcon name="arrow_right" size="sm" />
+  <i className="modus-icons ml-2">arrow_right</i>
 </ModusWcButton>
 
-<a className="flex items-center gap-2">
-  <div>Learn More</div>
-  <ModusIcon name="launch" size="sm" />
-</a>
+// Icon only
+<ModusWcButton button-style="borderless" aria-label="Settings">
+  <i className="modus-icons">settings</i>
+</ModusWcButton>
+
+// Icon with Tailwind styling
+<i className="modus-icons text-primary text-lg">home</i>
+<i className="modus-icons text-success">check</i>
+<i className="modus-icons text-destructive">warning</i>
 ```
 
-### Pattern 3: Icon Only
+### Using ModusIcon Component (Advanced Pattern)
 
 ```tsx
-// Standalone icon
+import ModusIcon from "@/app/components/ModusIcon";
+
+// With size prop
+<ModusIcon name="home" size="lg" />
+<ModusIcon name="check" size="sm" />
+
+// With color prop
+<ModusIcon name="check" color="var(--success)" />
+<ModusIcon name="warning" color="var(--destructive)" />
+
+// With accessibility
 <ModusWcButton button-style="borderless" aria-label="Settings">
   <ModusIcon name="settings" decorative={false} ariaLabel="Settings" />
 </ModusWcButton>
 
-<div className="text-primary">
-  <ModusIcon name="check_circle" color="var(--primary)" />
-</div>
-```
-
-### Pattern 4: Icon with Styling
-
-```tsx
-// Icon with colors and sizes
-<ModusIcon name="home" color="var(--primary)" size="lg" />
-<ModusIcon name="check" color="var(--success)" size="md" />
-<ModusIcon name="warning" color="var(--destructive)" size="md" />
-<ModusIcon name="info" color="var(--muted-foreground)" size="sm" />
+// With custom class
+<ModusIcon name="check" customClass="animate-pulse" />
 ```
 
 ## 📋 Complete Icon Categories
@@ -431,16 +454,17 @@ export default function FileList({ files }: { files: any[] }) {
 
 ## 🚫 Common Violations
 
-### Violation 1: Not Using ModusIcon Component
+### Violation 1: Missing or Wrong Class Name
 
 ```tsx
-// ❌ WRONG - Using raw <i> element
-<i className="modus-icons">save_disk</i>
-
-// ❌ WRONG - Missing class
+// ❌ WRONG - Missing modus-icons class
 <i>save_disk</i>
 
-// ✅ CORRECT - Use ModusIcon component
+// ❌ WRONG - Incorrect class name
+<i className="modus-icon">save_disk</i>
+
+// ✅ CORRECT - Both patterns are valid
+<i className="modus-icons">save_disk</i>
 <ModusIcon name="save_disk" />
 ```
 
@@ -455,31 +479,35 @@ export default function FileList({ files }: { files: any[] }) {
 <i className="material-icons">home</i>
 <span className="material-icons-outlined">settings</span>
 
-// ✅ CORRECT - ModusIcon component
+// ✅ CORRECT - Modus Icons (both patterns work)
+<i className="modus-icons">save_disk</i>
 <ModusIcon name="save_disk" />
-<ModusIcon name="download" />
-<ModusIcon name="home" />
+```
+
+### Violation 3: Using Wrong HTML Element
+
+```tsx
+// ❌ WRONG - Using div or span with modus-icons
+<div className="modus-icons">home</div>
+<span className="modus-icons">settings</span>
+
+// ✅ CORRECT - Use <i> or ModusIcon component
+<i className="modus-icons">home</i>
 <ModusIcon name="settings" />
 ```
 
-### Violation 3: Manual Styling Instead of Props
+### Violation 4: Missing Accessibility for Icon-Only Buttons
 
 ```tsx
-// ❌ WRONG - Manual CSS classes
-<i className="modus-icons text-2xl text-primary">home</i>
+// ❌ WRONG - Icon-only button without aria-label
+<ModusWcButton button-style="borderless">
+  <i className="modus-icons">search</i>
+</ModusWcButton>
 
-// ✅ CORRECT - Use component props
-<ModusIcon name="home" size="lg" color="var(--primary)" />
-```
-
-### Violation 4: Missing Accessibility
-
-```tsx
-// ❌ WRONG - No accessibility props
-<ModusIcon name="search" />  // In a button without aria-label
-
-// ✅ CORRECT - Use ModusIcon component
-<ModusIcon name="save_disk" decorative={false} ariaLabel="Search" />
+// ✅ CORRECT - Always include aria-label
+<ModusWcButton button-style="borderless" aria-label="Search">
+  <i className="modus-icons">search</i>
+</ModusWcButton>
 ```
 
 ## ♿ Accessibility Best Practices
@@ -596,9 +624,9 @@ npm run lint:icons
 ### DON'T ❌
 
 1. **Don't use other icon libraries** (Font Awesome, Material Icons)
-2. **Don't use raw `<i>` elements** - always use ModusIcon component
-3. **Don't manually style** icons with Tailwind classes
-4. **Don't forget accessibility** (set `decorative={false}` for icon-only buttons)
+2. **Don't use wrong HTML element** (`<div>` or `<span>` for icons)
+3. **Don't forget modus-icons class** when using `<i>` elements
+4. **Don't forget accessibility** (aria-label for icon-only buttons)
 
 ## 📖 Related Documentation
 
@@ -610,26 +638,27 @@ npm run lint:icons
 ## 🎯 Quick Reference
 
 ```tsx
-// Standard patterns
-<ModusIcon name="save_disk" />
+// Standard `<i>` element pattern (most common)
+<i className="modus-icons">save_disk</i>
+<i className="modus-icons mr-2">download</i>
+<i className="modus-icons text-primary text-lg">star</i>
+
+// ModusIcon component (for prop-based config)
 <ModusIcon name="settings" size="lg" />
 <ModusIcon name="check" color="var(--success)" />
 
 // With layout
 <div className="flex items-center gap-2">
-  <ModusIcon name="download" size="sm" />
+  <i className="modus-icons">download</i>
   <div>Download</div>
 </div>
 
-// Accessibility
-<ModusWcButton aria-label="Search">
-  <ModusIcon name="search" decorative={false} ariaLabel="Search" />
+// Accessibility (icon-only buttons)
+<ModusWcButton button-style="borderless" aria-label="Search">
+  <i className="modus-icons">search</i>
 </ModusWcButton>
-
-// Decorative
-<ModusIcon name="check" />  // decorative={true} is default
 ```
 
 ---
 
-**Remember:** Always use the ModusIcon component from `/app/components/ModusIcon.tsx`. Never use raw `<i>` elements with modus-icons class directly. This ensures consistent prop-based configuration, proper TypeScript support, and standardized accessibility handling.
+**Remember:** You can use either pattern - `<i className="modus-icons">icon_name</i>` for simple cases with Tailwind styling, or `<ModusIcon>` component when you need prop-based configuration (size, color, accessibility). Both are valid approaches.
