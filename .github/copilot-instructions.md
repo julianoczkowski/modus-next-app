@@ -13,6 +13,33 @@ This is a Next.js 15 application demonstrating Trimble's Modus Web Components de
 - `app/contexts/ThemeContext.tsx` - 4-theme system management
 - `app/globals.css` - Design system color mappings to CSS variables
 
+## 📚 Comprehensive Documentation
+
+**ALWAYS reference these instruction files in `.github/instructions/` for detailed guidance:**
+
+| File                                     | Purpose                                                  | When to Use                           |
+| ---------------------------------------- | -------------------------------------------------------- | ------------------------------------- |
+| `development_workflow.instructions.md`   | Pre-development linting, testing workflow, quality gates | **BEFORE** starting any code changes  |
+| `implementation_guides.instructions.md`  | Creating implementation guides for major features        | **BEFORE** starting features >2 hours |
+| `modus-borders.instructions.md`          | Border styling with Tailwind v4 workaround               | When adding borders to elements       |
+| `modus-colors.instructions.md`           | 9-color design system with usage examples                | When choosing colors for UI           |
+| `modus-icons.instructions.md`            | Icon usage patterns (500+ icons)                         | When adding icons to components       |
+| `modus-semantic-html.instructions.md`    | Div-first approach, avoiding semantic HTML               | When structuring HTML markup          |
+| `modus-state-management.instructions.md` | Web Component state management patterns                  | When using Modus Web Components       |
+| `modus-tailwind-usage.instructions.md`   | Tailwind CSS patterns and best practices                 | When styling components               |
+| `modus-themes.instructions.md`           | Theme system implementation (4 themes)                   | When implementing theme support       |
+
+**These files contain:**
+
+- ✅ Complete real-world examples with full code
+- ✅ Common violations with corrections
+- ✅ Step-by-step implementation patterns
+- ✅ Debugging checklists and troubleshooting guides
+- ✅ Best practices DO/DON'T lists
+- ✅ Testing strategies and quality gates
+
+**Critical:** These instruction files are authoritative and comprehensive. Always consult them for detailed implementation guidance beyond the quick reference patterns shown below.
+
 ## 🚨 CRITICAL: Development Workflow & Testing
 
 ### MANDATORY: Run Linting Before Changes
