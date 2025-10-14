@@ -526,49 +526,6 @@ export default function ButtonDemoPage() {
         </div>
       </div>
 
-      {/* Form Integration */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Form Integration
-        </div>
-        <form onSubmit={handleFormSubmit} className="max-w-lg">
-          <div className="mb-4">
-            <label htmlFor="demo-input">Sample Input:</label>
-            <input
-              id="demo-input"
-              value={formData.name}
-              onChange={(e) => setFormData({ name: e.target.value })}
-              type="text"
-              placeholder="Enter your name"
-              className="w-full p-3 rounded bg-background text-foreground text-base"
-              style={{ border: "1px solid var(--border)" }}
-            />
-          </div>
-
-          <div className="flex gap-4 flex-wrap">
-            <ModusWcButton type="submit" color="primary">
-              <i className="modus-icons mr-2">check</i>
-              Submit
-            </ModusWcButton>
-            <ModusWcButton
-              type="button"
-              variant="outlined"
-              onButtonClick={resetForm}
-            >
-              <i className="modus-icons mr-2">refresh</i>
-              Reset
-            </ModusWcButton>
-            <ModusWcButton type="button" variant="borderless" color="secondary">
-              <i className="modus-icons mr-2">cancel_circle</i>
-              Cancel
-            </ModusWcButton>
-          </div>
-        </form>
-      </div>
-
       {/* Interactive Demo */}
       <div
         className="mb-12 p-8 bg-card rounded-lg"
@@ -583,24 +540,27 @@ export default function ButtonDemoPage() {
               Configure your button settings using the dropdowns below:
             </div>
             <div className="flex flex-col gap-2">
-              <div className="text-sm font-medium text-foreground mb-1">
+              <div className="text-md font-medium text-foreground mb-1">
                 Variant
               </div>
               <ModusWcDropdownMenu
                 ref={variantDropdownRef}
                 buttonVariant="outlined"
                 menuPlacement="bottom-start"
+                aria-label="Variant dropdown"
+                menuSize="md"
+                buttonSize="lg"
               >
                 <div
                   slot="button"
                   className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
                 >
-                  <div className="flex-1 text-left text-sm">
+                  <div className="flex-1 text-left text-md">
                     {builderConfig.variant === "filled" && "Filled"}
                     {builderConfig.variant === "outlined" && "Outlined"}
                     {builderConfig.variant === "borderless" && "Borderless"}
                   </div>
-                  <i className="modus-icons text-base flex-shrink-0">
+                  <i className="modus-icons text-md flex-shrink-0">
                     expand_more
                   </i>
                 </div>
@@ -625,7 +585,7 @@ export default function ButtonDemoPage() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <div className="text-sm font-medium text-foreground mb-1">
+              <div className="text-md font-medium text-foreground mb-1">
                 Color
               </div>
               <ModusWcDropdownMenu
@@ -637,14 +597,14 @@ export default function ButtonDemoPage() {
                   slot="button"
                   className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
                 >
-                  <div className="flex-1 text-left text-sm">
+                  <div className="flex-1 text-left text-md">
                     {builderConfig.color === "primary" && "Primary"}
                     {builderConfig.color === "secondary" && "Secondary"}
                     {builderConfig.color === "tertiary" && "Tertiary"}
                     {builderConfig.color === "warning" && "Warning"}
                     {builderConfig.color === "danger" && "Danger"}
                   </div>
-                  <i className="modus-icons text-base flex-shrink-0">
+                  <i className="modus-icons text-md flex-shrink-0">
                     expand_more
                   </i>
                 </div>
@@ -679,7 +639,7 @@ export default function ButtonDemoPage() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <div className="text-sm font-medium text-foreground mb-1">
+              <div className="text-md font-medium text-foreground mb-1">
                 Size
               </div>
               <ModusWcDropdownMenu
@@ -691,13 +651,13 @@ export default function ButtonDemoPage() {
                   slot="button"
                   className="flex items-center justify-between w-full min-w-[140px] px-3 py-2 gap-2"
                 >
-                  <div className="flex-1 text-left text-sm">
+                  <div className="flex-1 text-left text-md">
                     {builderConfig.size === "xs" && "Extra Small"}
                     {builderConfig.size === "sm" && "Small"}
                     {builderConfig.size === "md" && "Medium"}
                     {builderConfig.size === "lg" && "Large"}
                   </div>
-                  <i className="modus-icons text-base flex-shrink-0">
+                  <i className="modus-icons text-md flex-shrink-0">
                     expand_more
                   </i>
                 </div>
@@ -758,20 +718,6 @@ export default function ButtonDemoPage() {
                   logEvent(`Full Width changed to: ${isChecked}`);
                 }}
               />
-            </div>
-
-            <div className="flex flex-col gap-2 mt-4">
-              <div className="text-sm text-muted-foreground mb-2">
-                Click below to force a preview refresh if needed:
-              </div>
-              <ModusButton
-                color="primary"
-                variant="filled"
-                onButtonClick={handleManualUpdate}
-              >
-                <i className="modus-icons mr-2">refresh</i>
-                Update Preview
-              </ModusButton>
             </div>
           </div>
 
