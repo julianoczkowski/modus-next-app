@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# NPM Monorepo Structure
+# Root dependencies (hoisted)
 /node_modules
 /.pnp
 .pnp.*
@@ -11,35 +12,67 @@
 !.yarn/versions
 packages/*/node_modules
 
-# testing
-/coverage
+# Package-specific node_modules (if any)
+/packages/*/node_modules
 
-# next.js
+# Testing
+/coverage
+/packages/*/coverage
+
+# Next.js build outputs
 /.next/
 /out/
-packages/*/.next/
-packages/*/out/
+/packages/*/.next/
+/packages/*/out/
 
-# production
+# Production builds
 /build
-packages/*/build
+/packages/*/build
 
-# misc
+# Misc
 .DS_Store
 *.pem
+.vscode/settings.json
 
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# Environment files
 .env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# vercel
+# Deployment platforms
 .vercel
+.netlify
 
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
+/packages/*/next-env.d.ts
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# AWS Amplify
+amplify.yml
+amplify/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
