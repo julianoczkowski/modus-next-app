@@ -1,46 +1,27 @@
 version: 1
-applications:
-  - appRoot: packages/app
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            # Set Node.js version (recommended for Next.js 15)
-            - nvm use 20
-            # Install dependencies for the entire workspace
-            - npm ci --ignore-scripts
-            # Install Husky separately to avoid prepare script issues
-            - npm install husky --save-dev
-            # Verify workspace structure and dependencies
-            - echo "Building Next.js app from packages/app"
-            - ls -la packages/app/
-            - echo "Checking workspace dependencies..."
-            - npm list --workspace=modus-next-app
-        build:
-          commands:
-            # Set environment variables for production build
-            - export NODE_ENV=production
-            - export NEXT_TELEMETRY_DISABLED=1
-            # Build the main app workspace with Turbopack
-            - npm run build --workspace=modus-next-app
-            # Verify build output and file structure
-            - echo "Build completed successfully"
-            - ls -la packages/app/.next/
-            - echo "Checking build artifacts..."
-            - ls -la packages/app/.next/static/
-      artifacts:
-        # Point to the Next.js build output in the app workspace
-        baseDirectory: packages/app/.next
-        files:
-          - "**/*"
-      cache:
-        paths:
-          # Cache workspace dependencies
-          - node_modules/**/*
-          - packages/app/node_modules/**/*
-          # Cache Next.js build cache (Turbopack cache)
-          - packages/app/.next/cache/**/*
-          # Cache npm cache
-          - ~/.npm/**/*
-          # Cache package-lock.json for faster installs
-          - package-lock.json
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Install dependencies for the entire workspace
+        - npm ci --ignore-scripts
+        # Install Husky separately to avoid prepare script issues
+        - npm install husky --save-dev
+    build:
+      commands:
+        # Build the main app workspace
+        - npm run build --workspace=modus-next-app
+  artifacts:
+    # Point to the Next.js build output in the app workspace
+    baseDirectory: packages/app/.next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      # Cache workspace dependencies
+      - node_modules/**/*
+      - packages/app/node_modules/**/*
+      # Cache Next.js build cache
+      - packages/app/.next/cache/**/*
+      # Cache npm cache
+      - ~/.npm/**/*
