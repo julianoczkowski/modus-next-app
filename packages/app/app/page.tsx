@@ -16,7 +16,7 @@ export default function Home() {
               className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-light"
             />
             <Image
-              src="/nextjs-icon.svg"
+              src="/nextjs-icon-white.svg"
               alt="Next.js Logo"
               width={80}
               height={80}

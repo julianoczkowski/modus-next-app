@@ -12,14 +12,14 @@ export default function AppFooter() {
             alt="Next.js Logo"
             width={24}
             height={24}
-            className="drop-shadow-sm nextjs-logo-light"
+            className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-light"
           />
           <Image
-            src="/nextjs-icon.svg"
+            src="/nextjs-icon-white.svg"
             alt="Next.js Logo"
             width={24}
             height={24}
-            className="drop-shadow-sm nextjs-logo-dark hidden"
+            className="drop-shadow-lg transition-transform duration-300 hover:scale-105 nextjs-logo-dark hidden"
           />
           <div className="text-sm text-foreground">
             &copy; 2025 Modus 2.0 Next.js App - Built with Next.js
