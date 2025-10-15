@@ -90,25 +90,36 @@ Every implementation guide MUST include these sections:
 ### Component Architecture
 
 - High-level component structure
-- Data flow diagrams
-- State management approach
+- Next.js App Router patterns
+- React Server Components vs Client Components
+- State management approach (React Context, useState, useEffect)
+- Modus Web Components integration patterns
 
 ### Dependencies & Integrations
 
 - New dependencies required
 - External API integrations
 - Modus Web Components usage
+- Next.js API routes and middleware
+- React 19 compatibility considerations
 
 ### File Structure Changes
 
 ```text
-src/
+packages/app/
+├── app/
+│ ├── new-feature/
+│ │ └── page.tsx                    # Next.js page component
+│ └── api/
+│     └── new-endpoint/
+│         └── route.ts              # API route handler
 ├── components/
-│ └── NewComponent.vue
-├── views/
-│ └── NewView.vue
-└── stores/
-└── newFeature.ts
+│ ├── ModusNewComponent.tsx         # Modus wrapper component
+│ └── NewFeatureComponent.tsx       # Custom component
+├── contexts/
+│ └── NewFeatureContext.tsx         # React context (if needed)
+└── types/
+    └── newFeature.d.ts            # TypeScript definitions
 ```
 ````
 
@@ -117,8 +128,18 @@ src/
 ### Modus Components Used
 
 - List specific Modus Web Components
-- Color variables and theming approach
+- Color variables and theming approach (design system colors only)
 - Accessibility considerations
+- Event handling patterns (ref-based approach)
+- Client component requirements ("use client" directive)
+
+### Next.js Specific Considerations
+
+- Server vs Client Components strategy
+- Hydration safety patterns for Modus components
+- Theme switching implementation
+- Tailwind CSS integration with design system
+- Border usage (inline styles, not Tailwind classes)
 
 ## 🔧 Implementation Plan
 
@@ -138,18 +159,32 @@ src/
 - [ ] Task 1
 - [ ] Task 2
 
+### Phase 4: Quality Assurance (MANDATORY)
+
+- [ ] Run `npm run lint:colors` (0 violations required)
+- [ ] Run `npm run lint:icons` (0 violations required)
+- [ ] Run `npm run lint:semantic` (0 violations required)
+- [ ] Run `npm run lint:styles` (0 violations required)
+- [ ] Chrome DevTools MCP testing completed
+- [ ] All 4 themes tested (modus-classic-light, modus-classic-dark, modus-modern-light, modus-modern-dark)
+- [ ] Responsive design verified
+
 ## 🧪 Testing Strategy
 
 ### Unit Testing
 
-- Components to test
-- Test scenarios
-- Mock requirements
+- React components to test
+- Next.js page components
+- API route handlers
+- Test scenarios and mock requirements
+- Jest and React Testing Library setup
 
 ### Integration Testing
 
-- API integration tests
-- Component interaction tests
+- Next.js API route integration tests
+- Modus Web Components interaction tests
+- Client-Server component integration
+- Chrome DevTools MCP testing (mandatory)
 
 ### Accessibility Testing
 
@@ -161,15 +196,19 @@ src/
 
 ### Build Process
 
-- Any build changes required
+- Next.js build configuration changes
+- Turbopack optimization considerations
 - Environment variables needed
-- Asset optimization
+- Asset optimization and static generation
+- NPM workspace dependencies
 
 ### Performance Impact
 
-- Bundle size impact
+- Next.js bundle size impact
+- React Server Components performance benefits
 - Runtime performance considerations
-- Caching strategies
+- Caching strategies (Next.js caching, CDN)
+- Modus Web Components loading optimization
 
 ## 📚 Documentation Updates
 
@@ -228,7 +267,9 @@ _[Update after accessibility testing]_
 ### Documentation Links
 
 - [Modus Web Components Storybook](https://trimble-oss.github.io/modus-wc-2.0/main/)
-- [Vue 3 Documentation](https://vuejs.org/)
+- [Next.js 15 Documentation](https://nextjs.org/docs)
+- [React 19 Documentation](https://react.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [Project-specific documentation links]
 
 ### Related Implementation Guides
@@ -239,8 +280,7 @@ _[Update after accessibility testing]_
 
 **Last Updated:** YYYY-MM-DD
 
-````
-
+````markdown
 ## 🔄 Implementation Guide Lifecycle
 
 ### 📝 Pre-Development Phase
@@ -250,14 +290,15 @@ _[Update after accessibility testing]_
    ```bash
    # Create new guide with proper naming
    touch implementation_guides/feature-name-$(date +%Y-%m-%d).md
+   ```
 ````
 
-2. **Fill Out Complete Template**
+1. **Fill Out Complete Template**
 
    - All sections must be completed before coding begins
    - Get team/stakeholder review of the plan
 
-3. **During Development**
+2. **During Development**
 
    - Document any deviations from original plan
 
@@ -340,6 +381,9 @@ _[Update after accessibility testing]_
 - [ ] ✅ Testing strategy defined
 - [ ] ✅ Performance impact estimated
 - [ ] ✅ Accessibility requirements documented
+- [ ] ✅ Next.js App Router patterns planned
+- [ ] ✅ Server vs Client Components strategy defined
+- [ ] ✅ Modus Web Components integration approach documented
 
 **During Development:**
 
@@ -348,6 +392,9 @@ _[Update after accessibility testing]_
 - [ ] ✅ Solutions recorded with implementation details
 - [ ] ✅ Architecture updated if deviations occur
 - [ ] ✅ Performance observations noted
+- [ ] ✅ Linting commands run regularly (`npm run lint:colors`, etc.)
+- [ ] ✅ Chrome DevTools MCP testing performed
+- [ ] ✅ Theme compatibility verified
 
 **After Implementation:**
 
@@ -357,6 +404,10 @@ _[Update after accessibility testing]_
 - [ ] ✅ Accessibility audit results documented
 - [ ] ✅ Future improvements identified
 - [ ] ✅ Status updated to "Complete"
+- [ ] ✅ All linting commands pass (0 violations)
+- [ ] ✅ Chrome DevTools MCP testing completed successfully
+- [ ] ✅ All 4 themes tested and working
+- [ ] ✅ Responsive design verified
 
 ## 🎯 Success Metrics
 

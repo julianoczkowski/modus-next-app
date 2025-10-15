@@ -3,25 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/app",
+    "packages/demos"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint",
-    "type-check": "node scripts/check-typescript.js",
-    "lint:colors": "node scripts/check-modus-colors.js",
-    "lint:icons": "node scripts/check-modus-icons.js",
-    "lint:styles": "node scripts/check-inline-styles.js",
-    "lint:semantic": "node scripts/check-semantic-html.js",
-    "lint:borders": "node scripts/check-border-violations.js",
+    "dev": "npm run dev --workspace=modus-next-app",
+    "dev:demos": "npm run dev --workspace=@modus-next-app/demos",
+    "build": "npm run build --workspaces",
+    "start": "npm run start --workspace=modus-next-app",
+    "lint": "npm run lint --workspaces",
+    "type-check": "node scripts/check-typescript.js packages/app packages/demos",
+    "lint:colors": "node scripts/check-modus-colors.js packages/app packages/demos",
+    "lint:icons": "node scripts/check-modus-icons.js packages/app packages/demos",
+    "lint:styles": "node scripts/check-inline-styles.js packages/app packages/demos",
+    "lint:semantic": "node scripts/check-semantic-html.js packages/app packages/demos",
+    "lint:borders": "node scripts/check-border-violations.js packages/app packages/demos",
     "prepare": "husky"
-  },
-  "dependencies": {
-    "@trimble-oss/modus-icons": "^1.17.1",
-    "@trimble-oss/moduswebcomponents-react": "^1.0.0-react19",
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -38,31 +36,26 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "app/**/*.{tsx,ts,jsx,js,css,scss}": [
+    "packages/app/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run type-check",
       "npm run lint:colors",
       "npm run lint:icons",
       "npm run lint:styles",
       "npm run lint:semantic"
     ],
-    "components/**/*.{tsx,ts,jsx,js,css,scss}": [
+    "packages/demos/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run type-check",
       "npm run lint:colors",
       "npm run lint:icons",
       "npm run lint:styles",
       "npm run lint:semantic"
     ],
-    "src/**/*.{tsx,ts,jsx,js,css,scss}": [
+    "scripts/**/*.{tsx,ts,jsx,js,css,scss}": [
       "npm run type-check",
       "npm run lint:colors",
       "npm run lint:icons",
       "npm run lint:styles",
       "npm run lint:semantic"
-    ],
-    "styles/**/*.{css,scss}": [
-      "npm run lint:colors",
-      "npm run lint:icons",
-      "npm run lint:styles"
     ],
     "*.{css,scss}": [
       "npm run lint:colors",

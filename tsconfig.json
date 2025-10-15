@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "modus-next-app/*": ["./packages/app/*"]
     }
   },
   "include": [
@@ -27,7 +28,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "types/**/*.d.ts"
+    "packages/app/**/*.ts",
+    "packages/app/**/*.tsx",
+    "packages/demos/**/*.ts",
+    "packages/demos/**/*.tsx",
+    "packages/app/types/**/*.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "packages/*/node_modules"]
 }

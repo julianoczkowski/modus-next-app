@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 application built with React 19, integrating Trimble's Modus Web Components design system. The project demonstrates modern web development patterns with server-side rendering, client-side interactivity, and comprehensive theme support.
+This is a Next.js 15 application built with React 19, integrating Trimble's Modus Web Components design system. The project is structured as an NPM workspace monorepo with a production-ready main app and an optional demos workspace. It demonstrates modern web development patterns with server-side rendering, client-side interactivity, and comprehensive theme support.
 
 **Tech Stack:**
 
@@ -339,29 +339,49 @@ Field Systems icon set (623 icons) - see https://modus-icons.trimble.com/field-s
 ## File Structure
 
 ```
-app/
-├── layout.tsx                    # Root layout with providers
-├── page.tsx                      # Homepage
-├── globals.css                   # Design system + Tailwind config
-├── components/
-│   ├── ModusProvider.tsx         # Modus setup (client component)
-│   ├── AppHeader.tsx             # Global header
-│   ├── AppFooter.tsx             # Global footer
-│   ├── ModusButton.tsx           # Example configurable component
-│   └── ModusAccordion.tsx        # Example complex component
-├── contexts/
-│   └── ThemeContext.tsx          # Theme management
-└── [feature]-demo/               # Demo pages for components
-    └── page.tsx
-
-scripts/
-└── check-modus-colors.js         # Color linting script
-
-.cursor/rules/                    # Cursor IDE rules (reference for patterns)
-├── modus-nextjs-integration.mdc
-├── modus-nextjs-best-practices.mdc
-├── modus-color-usage-nextjs.mdc
-└── modus-dropdown-event-handling.mdc
+modus-next-app/                   # Root workspace
+├── packages/
+│   ├── app/                      # Main Next.js boilerplate (REQUIRED)
+│   │   ├── .next/                # Next.js build output
+│   │   ├── app/                  # Next.js app directory
+│   │   │   ├── error.tsx         # Error page
+│   │   │   ├── favicon.ico       # Site favicon
+│   │   │   ├── globals.css       # Design system + Tailwind config
+│   │   │   ├── layout.tsx        # Root layout with providers
+│   │   │   ├── not-found.tsx     # 404 page
+│   │   │   └── page.tsx          # Homepage
+│   │   ├── components/           # 40+ Modus wrapper components
+│   │   │   ├── ModusProvider.tsx         # Modus setup (client component)
+│   │   │   ├── AppHeader.tsx             # Global header
+│   │   │   ├── AppFooter.tsx             # Global footer
+│   │   │   ├── ModusButton.tsx           # Example configurable component
+│   │   │   └── ModusAccordion.tsx        # Example complex component
+│   │   ├── contexts/             # Theme management
+│   │   │   └── ThemeContext.tsx
+│   │   ├── public/               # Public assets
+│   │   ├── types/                # TypeScript definitions
+│   │   ├── next-env.d.ts         # Next.js TypeScript definitions
+│   │   ├── next.config.ts        # Next.js configuration
+│   │   ├── package.json          # App dependencies
+│   │   ├── postcss.config.mjs    # PostCSS configuration
+│   │   ├── README.md             # App documentation
+│   │   └── tsconfig.json         # TypeScript configuration
+│   └── demos/                    # OPTIONAL demos workspace
+│       ├── .next/                # Next.js build output
+│       ├── app/                  # Demos app directory
+│       │   ├── [component]-demo/ # Component examples
+│       │   └── page.tsx          # Demos homepage
+│       ├── public/               # Public assets (copied from main app)
+│       ├── next-env.d.ts         # Next.js TypeScript definitions
+│       ├── next.config.ts        # Next.js configuration
+│       ├── package.json          # Demos dependencies
+│       ├── postcss.config.mjs    # PostCSS configuration
+│       ├── README.md             # Demos documentation
+│       └── tsconfig.json         # TypeScript configuration
+├── scripts/                      # Shared linting scripts
+│   └── check-modus-colors.js     # Color linting script
+├── .cursor/                      # AI development rules
+└── package.json                  # Workspace root configuration
 ```
 
 ## Key Constraints

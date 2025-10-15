@@ -41,17 +41,14 @@ const CORRECT_BORDER_PATTERNS = {
     'style={{ borderRight: "1px solid var(--border)" }}',
 };
 
-// Files to check
-const FILE_PATTERNS = [
-  "app/**/*.tsx",
-  "app/**/*.ts",
-  "app/**/*.jsx",
-  "app/**/*.js",
-  "components/**/*.tsx",
-  "components/**/*.ts",
-  "components/**/*.jsx",
-  "components/**/*.js",
-];
+// Get workspace paths from command line arguments or use defaults
+const WORKSPACE_PATHS =
+  process.argv.slice(2).length > 0
+    ? process.argv.slice(2)
+    : ["packages/app", "packages/demos"];
+
+// Files to check (will be prefixed with workspace paths)
+const FILE_PATTERNS = ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"];
 
 // Files to exclude
 const EXCLUDE_PATTERNS = [
@@ -70,11 +67,17 @@ async function findBorderViolations() {
   const violations = [];
 
   try {
-    // Get all files to check
+    // Get all files to check across workspaces
     const allFiles = [];
-    for (const pattern of FILE_PATTERNS) {
-      const files = await glob(pattern, { ignore: EXCLUDE_PATTERNS });
-      allFiles.push(...files);
+    for (const workspacePath of WORKSPACE_PATHS) {
+      const workspaceFiles = await glob(
+        FILE_PATTERNS.map((pattern) => `${workspacePath}/${pattern}`),
+        {
+          ignore: EXCLUDE_PATTERNS,
+          absolute: true,
+        }
+      );
+      allFiles.push(...workspaceFiles);
     }
 
     // Remove duplicates

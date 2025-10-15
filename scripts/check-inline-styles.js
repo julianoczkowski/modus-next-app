@@ -137,25 +137,19 @@ const TAILWIND_ALTERNATIVES = {
   'borderRadius: "16px"': "rounded-2xl",
 };
 
-// Files to check
+// Get workspace paths from command line arguments or use defaults
+const WORKSPACE_PATHS =
+  process.argv.slice(2).length > 0
+    ? process.argv.slice(2)
+    : ["packages/app", "packages/demos"];
+
+// Files to check (will be prefixed with workspace paths)
 const FILE_PATTERNS = [
-  "app/**/*.tsx",
-  "app/**/*.ts",
-  "app/**/*.js",
-  "app/**/*.css",
-  "components/**/*.tsx",
-  "components/**/*.ts",
-  "components/**/*.js",
-  "src/**/*.tsx",
-  "src/**/*.ts",
-  "src/**/*.js",
-  "src/**/*.css",
-  "src/**/*.scss",
-  "styles/**/*.css",
-  "styles/**/*.scss",
-  "*.tsx",
-  "*.ts",
-  "*.js",
+  "**/*.tsx",
+  "**/*.ts",
+  "**/*.js",
+  "**/*.css",
+  "**/*.scss",
 ];
 
 // Files to exclude
@@ -278,11 +272,20 @@ async function main() {
   let allViolations = [];
 
   try {
-    // Get all files to check
-    const files = await glob(FILE_PATTERNS, {
-      ignore: EXCLUDE_PATTERNS,
-      absolute: true,
-    });
+    // Get all files to check across workspaces
+    const allFiles = [];
+    for (const workspacePath of WORKSPACE_PATHS) {
+      const workspaceFiles = await glob(
+        FILE_PATTERNS.map((pattern) => `${workspacePath}/${pattern}`),
+        {
+          ignore: EXCLUDE_PATTERNS,
+          absolute: true,
+        }
+      );
+      allFiles.push(...workspaceFiles);
+    }
+
+    const files = allFiles;
 
     // Check each file
     for (const file of files) {
