@@ -1,6 +1,6 @@
 # Project Overview
 
-This is a Next.js 15 application demonstrating Trimble's Modus Web Components design system integration with modern React patterns. It features React 19, TypeScript support, comprehensive component examples, and strict design system compliance enforced by automated linting.
+This is a Next.js 15 application demonstrating Trimble's Modus Web Components design system integration with modern React patterns. It's structured as an NPM workspace monorepo with a production-ready main app and an optional demos workspace. It features React 19, TypeScript support, comprehensive component examples, and strict design system compliance enforced by automated linting.
 
 **Main Technologies:**
 
@@ -13,7 +13,12 @@ This is a Next.js 15 application demonstrating Trimble's Modus Web Components de
 
 **Architecture:**
 
-The project follows the Next.js App Router architecture with server-side rendering and client-side interactivity. The main application code is located in the `app` directory. Reusable React components are in `app/components`, and global styles are in `app/globals.css`. The `ThemeContext` in `app/contexts/ThemeContext.tsx` manages 4-theme system switching.
+The project is structured as an NPM workspace monorepo with two packages:
+
+- **Main App** (`packages/app`) - Production-ready Next.js boilerplate with 40+ Modus components (REQUIRED)
+- **Demos Workspace** (`packages/demos`) - Interactive component examples and implementation patterns (OPTIONAL)
+
+The main application follows the Next.js App Router architecture with server-side rendering and client-side interactivity. The main application code is located in `packages/app/app/`. Reusable React components are in `packages/app/components/`, and global styles are in `packages/app/app/globals.css`. The `ThemeContext` in `packages/app/contexts/ThemeContext.tsx` manages 4-theme system switching.
 
 ## 🚨 CRITICAL: Development Workflow & Testing
 

@@ -6,7 +6,34 @@
 
 # Modus Next.js Boilerplate
 
-A production-ready Next.js 15 boilerplate/starter template with Modus 2 Web Components integration, featuring React 19, TypeScript support, comprehensive component examples, and modern development practices. Perfect for quickly bootstrapping new applications with the Modus Design System.
+A production-ready Next.js 15 boilerplate with Modus 2 Web Components integration, featuring React 19, TypeScript support, and modern development practices. This NPM workspace monorepo provides a clean main app for production use and an optional demos workspace for component exploration.
+
+## 🏗️ Workspace Architecture
+
+This project is structured as an NPM workspace monorepo with two packages:
+
+- **`packages/app`** - Main Next.js boilerplate with 40+ Modus components (REQUIRED - production-ready)
+- **`packages/demos`** - Interactive component examples and implementation patterns (OPTIONAL)
+
+### Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start main app (port 3000)
+npm run dev
+
+# Start demos workspace (port 3001) - optional
+npm run dev:demos
+```
+
+### Workspace Benefits
+
+- **Clean Main App** - Production-ready boilerplate without demo clutter (REQUIRED)
+- **Optional Demos** - Install demos workspace only if you want component examples (OPTIONAL)
+- **Shared Resources** - Linting scripts, rules, and configurations at root level
+- **Independent Development** - Each workspace can be developed and deployed separately
 
 ## 📋 Built-in Development Rules
 
@@ -66,17 +93,30 @@ This boilerplate includes comprehensive GitHub Copilot instructions for VS Code 
 
 ## What's Included
 
-This boilerplate provides a complete foundation for building Next.js applications with Modus Web Components:
+### Main App (`packages/app`) - REQUIRED
 
 - ✅ **Next.js 15 + React 19** - Modern framework with App Router and full type safety
 - ✅ **Modus 2 Web Components** - Complete integration with the latest Modus design system
-- ✅ **Standard Icon Usage** - Official Modus icon implementation with CDN delivery
-- ✅ **Theme Switching** - Support for all Modus themes (Classic/Modern, Light/Dark)
-- ✅ **Component Library** - 40+ pre-built Modus components ready to use
-- ✅ **Accessibility** - WCAG 2.1 AA compliant with proper ARIA support
-- ✅ **Performance Optimized** - Turbopack, code splitting, and optimized builds
-- ✅ **Development Tools** - ESLint, TypeScript, and hot module replacement configured
+- ✅ **40+ Pre-built Components** - Ready-to-use Modus wrapper components
+- ✅ **Theme Support** - All 4 Modus themes (Classic/Modern, Light/Dark)
+- ✅ **TypeScript** - Full type safety with Modus component definitions
+- ✅ **Tailwind CSS 4** - Design system integration with Modus colors
 - ✅ **Production Ready** - Optimized build configuration and deployment setup
+
+### Demos Workspace (`packages/demos`) - OPTIONAL
+
+- ✅ **Interactive Examples** - Comprehensive demos of all Modus components
+- ✅ **Implementation Patterns** - Best practices for using Modus Web Components
+- ✅ **Event Handling** - Examples of proper event handling with refs
+- ✅ **Theme Integration** - How to implement theme switching
+- ✅ **Accessibility** - Proper ARIA usage and keyboard navigation
+
+### Shared Resources (Root Level)
+
+- ✅ **Development Tools** - ESLint, TypeScript, and hot module replacement configured
+- ✅ **Linting Scripts** - Automated quality enforcement across workspaces
+- ✅ **AI Development** - MCP servers and development rules for AI assistants
+- ✅ **Performance Optimized** - Turbopack, code splitting, and optimized builds
 
 ## 🎨 Figma to Code Integration
 
@@ -116,43 +156,83 @@ If you're working with Figma designs and want AI-assisted coding that understand
    npm install
    ```
 
-3. **Start the development server:**
+3. **Start the main app:**
 
    ```bash
    npm run dev
    ```
 
 4. **Open your browser:**
-   Navigate to your localhost usually it is [http://localhost:3000](http://localhost:3000)
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Optional: Install Demos Workspace
+
+To explore component examples and implementation patterns (OPTIONAL):
+
+```bash
+cd packages/demos
+npm install
+npm run dev
+```
+
+Then navigate to [http://localhost:3001](http://localhost:3001)
+
+> **Note:** The demos workspace is completely optional. The main app works perfectly without it.
 
 ### Build for Production
 
 ```bash
+# Build main app
 npm run build
-npm start
+
+# Build all workspaces
+npm run build --workspaces
 ```
 
 ## Project Structure
 
-This boilerplate follows Next.js 15 best practices with a clean, scalable architecture:
+This boilerplate follows Next.js 15 best practices with a clean, scalable workspace architecture:
 
 ```text
-modus-next-app/
-├── app/
-│   ├── components/         # Reusable React components
-│   │   ├── ModusButton.tsx # Button wrapper component
-│   │   ├── ModusIcon.tsx   # Icon wrapper component
-│   │   └── ...             # 40+ Modus components
-│   ├── contexts/           # React contexts
-│   │   └── ThemeContext.tsx # Theme management
-│   ├── globals.css         # Global styles and design system
-│   ├── layout.tsx          # Root layout component
-│   └── page.tsx            # Homepage
-├── public/                 # Public assets
-├── scripts/                # Build and utility scripts
-├── types/                  # TypeScript definitions
-│   └── modus.d.ts          # Modus component types
-└── .gitignore             # Git ignore configuration
+modus-next-app/                   # Root workspace
+├── packages/
+│   ├── app/                      # Main Next.js boilerplate (REQUIRED)
+│   │   ├── .next/                # Next.js build output
+│   │   ├── app/                  # Next.js app directory
+│   │   │   ├── error.tsx         # Error page
+│   │   │   ├── favicon.ico       # Site favicon
+│   │   │   ├── globals.css       # Global styles and design system
+│   │   │   ├── layout.tsx        # Root layout component
+│   │   │   ├── not-found.tsx    # 404 page
+│   │   │   └── page.tsx          # Homepage
+│   │   ├── components/           # 40+ Modus wrapper components
+│   │   ├── contexts/             # React contexts
+│   │   ├── public/               # Public assets
+│   │   ├── types/                # TypeScript definitions
+│   │   ├── next-env.d.ts         # Next.js TypeScript definitions
+│   │   ├── next.config.ts        # Next.js configuration
+│   │   ├── package.json          # App dependencies
+│   │   ├── postcss.config.mjs    # PostCSS configuration
+│   │   ├── README.md             # App documentation
+│   │   └── tsconfig.json         # TypeScript configuration
+│   └── demos/                    # OPTIONAL demos workspace
+│       ├── .next/                # Next.js build output
+│       ├── app/                  # Demos app directory
+│       │   ├── button-demo/      # Button examples
+│       │   ├── card-demo/        # Card examples
+│       │   ├── ...               # All component demos
+│       │   └── page.tsx          # Demos homepage
+│       ├── public/               # Public assets (copied from main app)
+│       ├── next-env.d.ts         # Next.js TypeScript definitions
+│       ├── next.config.ts        # Next.js configuration
+│       ├── package.json          # Demos dependencies
+│       ├── postcss.config.mjs    # PostCSS configuration
+│       ├── README.md             # Demos documentation
+│       └── tsconfig.json         # TypeScript configuration
+├── scripts/                      # Shared linting scripts
+├── .cursor/                      # AI development rules
+├── package.json                  # Workspace root configuration
+└── README.md                    # This file
 ```
 
 ## Using This Boilerplate

@@ -4,9 +4,12 @@ This file provides comprehensive guidance for AI coding agents working with this
 
 ## Project Overview
 
-**Purpose:** Next.js 15 application demonstrating Trimble's Modus Web Components design system integration with modern React patterns.
+**Purpose:** NPM workspace monorepo with a production-ready Next.js 15 boilerplate and optional demos workspace for Modus Web Components exploration.
 
-**Architecture:** Server-side rendering with client-side interactivity, comprehensive theme support, and strict design system compliance.
+**Architecture:** NPM workspace monorepo with two packages:
+
+- **Main App** (`packages/app`) - Production-ready Next.js boilerplate with 40+ Modus components (REQUIRED)
+- **Demos Workspace** (`packages/demos`) - Interactive component examples and implementation patterns (OPTIONAL)
 
 **Key Technologies:**
 
@@ -16,6 +19,7 @@ This file provides comprehensive guidance for AI coding agents working with this
 - Tailwind CSS 4
 - Modus Web Components React package
 - Modus Icons (Field Systems)
+- NPM Workspaces (monorepo structure)
 
 ## 🚨 CRITICAL: Development Workflow & Testing
 
@@ -49,10 +53,16 @@ npm run dev
 ### Core Development
 
 ```bash
-npm install              # Install dependencies
-npm run dev             # Start development server (Turbopack enabled)
-npm run build           # Production build (Turbopack enabled)
-npm start               # Start production server
+# Workspace root commands
+npm install              # Install all workspace dependencies
+npm run dev             # Start main app (port 3000)
+npm run dev:demos       # Start demos workspace (port 3001)
+npm run build           # Build all workspaces
+npm start               # Start main app production server
+
+# Individual workspace commands
+cd packages/app && npm run dev        # Main app only
+cd packages/demos && npm run dev      # Demos only
 ```
 
 ### Quality Assurance
@@ -263,25 +273,51 @@ if (!mounted) return <div>Loading...</div>;
 
 ## File Structure Standards
 
+### Workspace Structure
+
 ```text
-app/
-├── layout.tsx                    # Global layout (header/footer included)
-├── page.tsx                      # Homepage
-├── globals.css                   # Design system + Tailwind
-├── components/
-│   ├── ModusProvider.tsx         # Modus setup (client)
-│   ├── AppHeader.tsx             # Global header
-│   ├── AppFooter.tsx             # Global footer
-│   └── Modus[Component].tsx      # Configurable components
-├── contexts/
-│   └── ThemeContext.tsx          # Theme management
-└── [feature]-demo/               # Component demos
-    └── page.tsx
+modus-next-app/                   # Root workspace
+├── packages/
+│   ├── app/                      # Main Next.js boilerplate (REQUIRED)
+│   │   ├── .next/                # Next.js build output
+│   │   ├── app/                  # Next.js app directory
+│   │   │   ├── error.tsx         # Error page
+│   │   │   ├── favicon.ico       # Site favicon
+│   │   │   ├── globals.css       # Design system + Tailwind
+│   │   │   ├── layout.tsx        # Global layout (header/footer included)
+│   │   │   ├── not-found.tsx     # 404 page
+│   │   │   └── page.tsx          # Homepage
+│   │   ├── components/           # 40+ Modus wrapper components
+│   │   ├── contexts/             # Theme management
+│   │   ├── public/               # Public assets
+│   │   ├── types/                # TypeScript definitions
+│   │   ├── next-env.d.ts         # Next.js TypeScript definitions
+│   │   ├── next.config.ts        # Next.js configuration
+│   │   ├── package.json          # App dependencies
+│   │   ├── postcss.config.mjs    # PostCSS configuration
+│   │   ├── README.md             # App documentation
+│   │   └── tsconfig.json         # TypeScript configuration
+│   └── demos/                    # OPTIONAL demos workspace
+│       ├── .next/                # Next.js build output
+│       ├── app/                  # Demos app directory
+│       │   ├── [component]-demo/ # Component examples
+│       │   └── page.tsx          # Demos homepage
+│       ├── public/               # Public assets (copied from main app)
+│       ├── next-env.d.ts         # Next.js TypeScript definitions
+│       ├── next.config.ts        # Next.js configuration
+│       ├── package.json          # Demos dependencies
+│       ├── postcss.config.mjs    # PostCSS configuration
+│       ├── README.md             # Demos documentation
+│       └── tsconfig.json         # TypeScript configuration
+├── scripts/                      # Shared linting scripts
+├── .cursor/                      # AI development rules
+└── package.json                  # Workspace root configuration
 ```
 
 **Layout Rules:**
 
-- Global header/footer in `app/layout.tsx`
+- Main app: Global header/footer in `packages/app/app/layout.tsx`
+- Demos: Wraps main app layout in `packages/demos/app/layout.tsx`
 - Pages should NOT include header/footer
 - Main content: `<main className="flex-1">`
 

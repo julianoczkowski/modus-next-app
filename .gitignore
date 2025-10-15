@@ -9,6 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+packages/*/node_modules
 
 # testing
 /coverage
@@ -16,9 +17,12 @@
 # next.js
 /.next/
 /out/
+packages/*/.next/
+packages/*/out/
 
 # production
 /build
+packages/*/build
 
 # misc
 .DS_Store
