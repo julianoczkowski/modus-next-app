@@ -8,7 +8,9 @@ applications:
             # Set Node.js version (recommended for Next.js 15)
             - nvm use 20
             # Install dependencies for the entire workspace
-            - npm ci
+            - npm ci --ignore-scripts
+            # Install Husky separately to avoid prepare script issues
+            - npm install husky --save-dev
             # Verify workspace structure and dependencies
             - echo "Building Next.js app from packages/app"
             - ls -la packages/app/
