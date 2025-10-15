@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Install dependencies for the entire workspace
+        # Install dependencies for the entire workspace (hoisted to root)
         - npm ci
     build:
       commands:
@@ -16,9 +16,8 @@ frontend:
       - "**/*"
   cache:
     paths:
-      # Cache workspace dependencies
+      # Cache hoisted workspace dependencies (root node_modules)
       - node_modules/**/*
-      - packages/app/node_modules/**/*
       # Cache Next.js build cache
       - packages/app/.next/cache/**/*
       # Cache npm cache
