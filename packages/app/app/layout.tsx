@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ModusProvider>
-            <AppHeader />
+            <AppHeader workspace="app" />
             <div className="flex-1">{children}</div>
             <AppFooter />
           </ModusProvider>

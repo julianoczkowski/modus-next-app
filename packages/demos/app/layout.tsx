@@ -24,7 +24,7 @@ export default function DemosLayout({
         <ModusProvider>
           <ThemeProvider>
             <div className="min-h-screen flex flex-col bg-background">
-              <AppHeader />
+              <AppHeader workspace="demos" />
               <div className="flex-1">{children}</div>
               <AppFooter />
             </div>

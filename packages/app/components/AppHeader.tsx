@@ -4,7 +4,11 @@ import { useRouter } from "next/navigation";
 import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
 import ThemeSwitcherDropdown from "./ThemeSwitcherDropdown";
 
-export default function AppHeader() {
+interface AppHeaderProps {
+  workspace?: "app" | "demos";
+}
+
+export default function AppHeader({ workspace = "app" }: AppHeaderProps) {
   const router = useRouter();
 
   const handleNavigation = (path: string) => {
@@ -34,30 +38,64 @@ export default function AppHeader() {
           >
             Home
           </ModusWcButton>
-          <ModusWcButton
-            color="primary"
-            variant="outlined"
-            size="sm"
-            onButtonClick={() => handleNavigation("/button-demo")}
-          >
-            Button Demo
-          </ModusWcButton>
-          <ModusWcButton
-            color="primary"
-            variant="outlined"
-            size="sm"
-            onButtonClick={() => handleNavigation("/color-palette")}
-          >
-            Colors
-          </ModusWcButton>
-          <ModusWcButton
-            color="primary"
-            variant="outlined"
-            size="sm"
-            onButtonClick={() => handleNavigation("/components-demo")}
-          >
-            Components
-          </ModusWcButton>
+
+          {workspace === "app" ? (
+            <>
+              <ModusWcButton
+                color="primary"
+                variant="outlined"
+                size="sm"
+                onButtonClick={() =>
+                  window.open(
+                    "https://trimble-oss.github.io/modus-wc-2.0/main/",
+                    "_blank"
+                  )
+                }
+              >
+                Modus Docs
+              </ModusWcButton>
+              <ModusWcButton
+                color="primary"
+                variant="outlined"
+                size="sm"
+                onButtonClick={() =>
+                  window.open(
+                    "https://github.com/julianoczkowski/modus-next-app",
+                    "_blank"
+                  )
+                }
+              >
+                GitHub
+              </ModusWcButton>
+            </>
+          ) : (
+            <>
+              <ModusWcButton
+                color="primary"
+                variant="outlined"
+                size="sm"
+                onButtonClick={() => handleNavigation("/button-demo")}
+              >
+                Button Demo
+              </ModusWcButton>
+              <ModusWcButton
+                color="primary"
+                variant="outlined"
+                size="sm"
+                onButtonClick={() => handleNavigation("/color-palette")}
+              >
+                Color Palette
+              </ModusWcButton>
+              <ModusWcButton
+                color="primary"
+                variant="outlined"
+                size="sm"
+                onButtonClick={() => handleNavigation("/components-demo")}
+              >
+                All Components
+              </ModusWcButton>
+            </>
+          )}
         </div>
         <div className="flex items-center min-w-[140px] order-1 md:order-2">
           <ThemeSwitcherDropdown />
