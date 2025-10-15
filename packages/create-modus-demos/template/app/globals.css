@@ -1,0 +1,43 @@
+@import url("https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.17.0/dist/field-systems/fonts/modus-icons.css");
+@import "tailwindcss";
+
+/* Design System Colors */
+:root {
+  /* Base Colors (theme-adaptive) */
+  --background: var(--modus-wc-color-base-page);
+  --foreground: var(--modus-wc-color-base-content);
+  --card: var(--modus-wc-color-base-100);
+  --card-foreground: var(--modus-wc-color-base-content);
+  --border: var(--modus-wc-color-base-200);
+  --muted: var(--modus-wc-color-base-200);
+  --muted-foreground: var(--modus-wc-color-base-content);
+  --secondary: var(--modus-wc-color-base-300);
+  --secondary-foreground: var(--modus-wc-color-base-content);
+
+  /* Semantic Colors (theme-consistent) */
+  --primary: var(--modus-wc-color-info);
+  --primary-foreground: var(--modus-wc-color-base-page);
+  --destructive: var(--modus-wc-color-error);
+  --destructive-foreground: var(--modus-wc-color-base-page);
+  --warning: var(--modus-wc-color-warning);
+  --warning-foreground: var(--modus-wc-color-base-page);
+  --success: var(--modus-wc-color-success);
+  --success-foreground: var(--modus-wc-color-base-page);
+}
+
+/* Theme-specific logo visibility */
+.nextjs-logo-light {
+  display: block;
+}
+
+.nextjs-logo-dark {
+  display: none;
+}
+
+[data-theme*="dark"] .nextjs-logo-light {
+  display: none;
+}
+
+[data-theme*="dark"] .nextjs-logo-dark {
+  display: block;
+}

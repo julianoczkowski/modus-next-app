@@ -28,6 +28,16 @@ npm run dev
 npm run dev:demos
 ```
 
+### Add the demos later
+
+If you started with only the main app and want to pull the demos into your project later, run the scaffolding CLI:
+
+```bash
+npx create-modus-demos
+```
+
+The command copies the demos workspace into `packages/demos`, registers it as a workspace, and wires up the supporting npm scripts so you can run `npm run dev:demos` right away.
+
 ### Workspace Benefits
 
 - **Clean Main App** - Production-ready boilerplate without demo clutter (REQUIRED)

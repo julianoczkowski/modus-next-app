@@ -1,0 +1,19 @@
+{
+  "name": "create-modus-demos",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "create-modus-demos": "bin/create-modus-demos.js"
+  },
+  "files": [
+    "bin",
+    "template"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "modus",
+    "nextjs",
+    "scaffold",
+    "template"
+  ]
+}
