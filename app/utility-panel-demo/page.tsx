@@ -107,7 +107,23 @@ export default function UtilityPanelDemoPage() {
             <div className="flex-shrink-0">
               <ModusUtilityPanel
                 expanded={expanded}
-                headerText="Project Settings"
+                headerSlot={
+                  <div className="flex items-center justify-between w-full">
+                    <div className="text-xl font-bold text-foreground">
+                      Project Settings
+                    </div>
+                    <ModusButton
+                      size="sm"
+                      color="secondary"
+                      variant="borderless"
+                      shape="circle"
+                      icon="close"
+                      iconPosition="only"
+                      ariaLabel="Close panel"
+                      onButtonClick={() => setExpanded(false)}
+                    />
+                  </div>
+                }
                 position="right"
                 panelWidth="312px"
                 pushContent={true}
