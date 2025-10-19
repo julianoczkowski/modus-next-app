@@ -108,7 +108,7 @@ export default function UtilityPanelDemoPage() {
               <ModusUtilityPanel
                 expanded={expanded}
                 headerSlot={
-                  <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center justify-between w-full min-w-full max-w-full">
                     <div className="text-xl font-bold text-foreground">
                       Project Settings
                     </div>

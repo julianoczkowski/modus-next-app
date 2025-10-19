@@ -133,7 +133,11 @@ export default function ModusUtilityPanel({
       aria-expanded={ariaExpanded}
       style={style}
     >
-      {renderedHeader && <div slot="header">{renderedHeader}</div>}
+      {renderedHeader && (
+        <div slot="header" className="w-full min-w-full max-w-full block">
+          {renderedHeader}
+        </div>
+      )}
       <div slot="body">{children}</div>
       {footerSlot && <div slot="footer">{footerSlot}</div>}
     </ModusWcUtilityPanel>
