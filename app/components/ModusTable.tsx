@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ModusWcTable } from "@trimble-oss/moduswebcomponents-react";
 
 export interface TableColumn {
@@ -9,7 +9,7 @@ export interface TableColumn {
   accessor: string;
   width?: string;
   sortable?: boolean;
-  editor?: "text" | "number" | "date" | "custom";
+  editor?: "number" | "text" | "autocomplete" | "date" | "custom";
   cellRenderer?: (value: unknown, row: unknown) => string | HTMLElement;
   customEditorRenderer?: (
     value: unknown,
@@ -84,12 +84,22 @@ export default function ModusTable({
   onRowSelectionChange,
 }: ModusTableProps) {
   const tableRef = useRef<HTMLModusWcTableElement>(null);
+  const [mounted, setMounted] = useState(false);
 
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Event handlers setup - moved to after component initialization
   useEffect(() => {
     const table = tableRef.current;
-    if (!table) return;
+    if (!table || !mounted) return;
+
+    console.log("Setting up event listeners on initialized table");
 
     const handleCellEditStart = (event: Event) => {
+      console.log("Cell edit start event received:", event);
       const customEvent = event as CustomEvent<{
         rowIndex: number;
         colId: string;
@@ -98,6 +108,7 @@ export default function ModusTable({
     };
 
     const handleCellEditCommit = (event: Event) => {
+      console.log("Cell edit commit event received:", event);
       const customEvent = event as CustomEvent<{
         rowIndex: number;
         colId: string;
@@ -165,6 +176,7 @@ export default function ModusTable({
         );
     };
   }, [
+    mounted,
     onCellEditStart,
     onCellEditCommit,
     onSortChange,
@@ -172,6 +184,30 @@ export default function ModusTable({
     onRowClick,
     onRowSelectionChange,
   ]);
+
+  // Ensure props are set on the web component after mounting
+  useEffect(() => {
+    const table = tableRef.current;
+    if (!table || !mounted) return;
+
+    console.log("Setting props on web component:", { columns, data, editable });
+
+    // Force update the web component with the props
+    if (columns && columns.length > 0) {
+      table.columns = columns;
+    }
+    if (data && data.length > 0) {
+      table.data = data;
+    }
+    if (editable !== undefined) {
+      table.editable = editable;
+    }
+  }, [mounted, columns, data, editable]);
+
+  // Don't render until mounted to avoid hydration issues
+  if (!mounted) {
+    return <div className="animate-pulse h-32 bg-muted rounded"></div>;
+  }
 
   return (
     <ModusWcTable

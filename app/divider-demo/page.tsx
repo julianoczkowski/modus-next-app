@@ -1,205 +1,54 @@
 "use client";
 
+import DemoExample from "../components/DemoExample";
+import DemoPage from "../components/DemoPage";
 import ModusDivider from "../components/ModusDivider";
 
 export default function DividerDemoPage() {
   return (
-    <div className="max-w-6xl mx-auto p-8 space-y-12">
-      <div className="text-center space-y-4">
-        <div className="text-4xl font-semibold text-foreground">
-          Modus Divider Component Demo
-        </div>
-        <div className="text-lg text-foreground opacity-80 leading-relaxed max-w-3xl mx-auto">
-          Use dividers to create lightweight separation between sections, align
-          short helper text along a line, and support both horizontal and
-          vertical layouts without relying on custom CSS.
-        </div>
-      </div>
-
-      <div
-        className="bg-card rounded-lg p-8 space-y-8"
-        style={{ border: "1px solid var(--border)" }}
+    <DemoPage
+      title="Modus Divider"
+      description="Dividers create subtle separation between related groups of content. Use them sparingly to support visual rhythm."
+    >
+      <DemoExample
+        title="Section break"
+        description="Horizontal dividers work well between stacked card sections."
       >
-        <div className="space-y-2">
-          <div className="text-2xl font-semibold text-foreground">
-            Horizontal dividers
+        <div className="flex flex-col gap-4">
+          <div className="text-base text-foreground font-medium">Sprint goals</div>
+          <div className="text-sm text-foreground opacity-80">
+            Align the launch checklist, finalize localization strings, and prep the enablement deck for field teams.
           </div>
-          <div className="text-sm text-foreground opacity-75 leading-relaxed">
-            Horizontal dividers stretch to fill the container. Combine the{" "}
-            <div className="font-medium">content</div> and{" "}
-            <div className="font-medium">position</div> props to place short
-            text along the line.
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div
-            className="bg-background rounded-lg p-6 space-y-4"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">
-              Content free
-            </div>
-            <div className="space-y-4">
-              <div className="text-foreground opacity-80">
-                Quarterly summary
-              </div>
-              <ModusDivider ariaHidden thickness="md" />
-              <div className="text-foreground opacity-80">
-                Financial performance
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bg-background rounded-lg p-6 space-y-4"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">
-              With label
-            </div>
-            <div className="space-y-4">
-              <div className="text-foreground opacity-80">
-                Continue with corporate credentials
-              </div>
-              <ModusDivider
-                content="or"
-                position="center"
-                ariaLabel="Divider between sign-in methods"
-                thickness="md"
-              />
-              <div className="text-foreground opacity-80">
-                Use Trimble ID account
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bg-background rounded-lg p-6 space-y-4"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">
-              Positioned text
-            </div>
-            <div className="space-y-4">
-              <div className="text-foreground opacity-80 flex justify-between">
-                <div>Setup</div>
-                <div className="text-sm opacity-70">Completed</div>
-              </div>
-              <ModusDivider
-                content="phase 2"
-                position="start"
-                ariaLabel="Divider marking phase two"
-                color="primary"
-                thickness="lg"
-              />
-              <div className="text-foreground opacity-80">
-                Enable integrations &amp; notifications
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bg-background rounded-lg p-6 space-y-4"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">
-              Fixed width
-            </div>
-            <div className="space-y-4 text-center">
-              <div className="text-foreground opacity-80">
-                Review new submissions
-              </div>
-              <div className="flex justify-center">
-                <ModusDivider
-                  responsive={false}
-                  orientation="horizontal"
-                  color="high-contrast"
-                  ariaHidden
-                  customClass="w-32"
-                  thickness="md"
-                />
-              </div>
-              <div className="text-foreground opacity-80">
-                Summary metrics refresh hourly
-              </div>
-            </div>
+          <ModusDivider />
+          <div className="text-sm text-foreground opacity-80">
+            Next review: Wednesday 10:00 AM Pacific with the cross-functional crew.
           </div>
         </div>
-      </div>
-
-      <div
-        className="bg-card rounded-lg p-8 space-y-8"
-        style={{ border: "1px solid var(--border)" }}
+      </DemoExample>
+      <DemoExample
+        title="Compact layout"
+        description="Vertical dividers help separate quick stats in a row."
       >
-        <div className="space-y-2">
-          <div className="text-2xl font-semibold text-foreground">
-            Vertical dividers
+        <div
+          className="flex items-center gap-4 rounded-lg bg-card p-4"
+          style={{ border: "1px solid var(--border)" }}
+        >
+          <div className="flex flex-col">
+            <div className="text-sm text-foreground opacity-80">Revenue</div>
+            <div className="text-lg font-semibold text-foreground">$420k</div>
           </div>
-          <div className="text-sm text-foreground opacity-75 leading-relaxed">
-            Vertical dividers align to the height of a flex or grid container.
-            Use them to create lightweight column separation without additional
-            borders.
+          <ModusDivider orientation="vertical" thickness="md" />
+          <div className="flex flex-col">
+            <div className="text-sm text-foreground opacity-80">Conversion</div>
+            <div className="text-lg font-semibold text-foreground">32%</div>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div
-            className="bg-background rounded-lg p-6 space-y-6"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">
-              Basic flex layout
-            </div>
-            <div className="flex items-center gap-4 text-foreground opacity-80 h-24">
-              <div className="flex-1">
-                <div className="font-semibold mb-1">Status</div>
-                <div className="text-sm opacity-70">
-                  All systems operational
-                </div>
-              </div>
-              <ModusDivider orientation="vertical" ariaHidden thickness="md" />
-              <div className="flex-1">
-                <div className="font-semibold mb-1">Next update</div>
-                <div className="text-sm opacity-70">14:30 UTC</div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bg-background rounded-lg p-6 space-y-6"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <div className="text-sm uppercase tracking-wide text-muted-foreground">
-              Positioned label
-            </div>
-            <div className="flex items-stretch gap-4 text-foreground opacity-80 h-36">
-              <div className="flex-1 space-y-2">
-                <div className="font-semibold">Workflow steps</div>
-                <div className="text-sm opacity-70">
-                  Assemble incoming inspections and assign field owners.
-                </div>
-              </div>
-              <ModusDivider
-                orientation="vertical"
-                content="handoff"
-                position="end"
-                color="warning"
-                ariaLabel="Divider indicating workflow handoff"
-                responsive={false}
-                customClass="h-full"
-                thickness="lg"
-              />
-              <div className="flex-1 space-y-2">
-                <div className="font-semibold">Verifications</div>
-                <div className="text-sm opacity-70">
-                  Validate project risk scoring before publishing to teams.
-                </div>
-              </div>
-            </div>
+          <ModusDivider orientation="vertical" thickness="md" />
+          <div className="flex flex-col">
+            <div className="text-sm text-foreground opacity-80">Active trials</div>
+            <div className="text-lg font-semibold text-foreground">58</div>
           </div>
         </div>
-      </div>
-    </div>
+      </DemoExample>
+    </DemoPage>
   );
 }

@@ -1,533 +1,491 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import ModusTable, { TableColumn, TableData } from "../components/ModusTable";
-import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+import { useState } from "react";
+import DemoExample from "../components/DemoExample";
+import DemoPage from "../components/DemoPage";
+import ModusTable, { TableColumn } from "../components/ModusTable";
 
-interface EventLog {
-  timestamp: string;
-  message: string;
-  type: "info" | "success" | "warning" | "error";
-}
+// Basic team data
+const teamColumns = [
+  { id: "name", header: "Name", accessor: "name", width: "40%" },
+  { id: "role", header: "Role", accessor: "role" },
+  { id: "status", header: "Status", accessor: "status" },
+];
+
+const teamData = [
+  { id: "1", name: "Alex Rivera", role: "Project Lead", status: "Active" },
+  { id: "2", name: "Brianna Lee", role: "UX Researcher", status: "In review" },
+  { id: "3", name: "Chris Patel", role: "Developer", status: "Active" },
+  { id: "4", name: "Morgan Diaz", role: "Analyst", status: "Blocked" },
+];
+
+// Product inventory data for pagination example
+const productColumns = [
+  { id: "product", header: "Product", accessor: "product", width: "50%" },
+  { id: "category", header: "Category", accessor: "category" },
+  { id: "price", header: "Price", accessor: "price", sortable: true },
+  { id: "stock", header: "Stock", accessor: "stock", sortable: true },
+];
+
+const productData = Array.from({ length: 25 }, (_, i) => ({
+  id: `p${i + 1}`,
+  product: `Product ${i + 1}`,
+  category: ["Electronics", "Clothing", "Books", "Home", "Sports"][i % 5],
+  price: (i + 1) * 10,
+  stock: Math.floor(Math.random() * 100) + 1,
+}));
+
+// Employee data for selection example
+const employeeColumns = [
+  { id: "name", header: "Name", accessor: "name", width: "30%" },
+  { id: "department", header: "Department", accessor: "department" },
+  { id: "salary", header: "Salary", accessor: "salary", sortable: true },
+  {
+    id: "experience",
+    header: "Experience",
+    accessor: "experience",
+    sortable: true,
+  },
+];
+
+const employeeData = [
+  {
+    id: "1",
+    name: "Sarah Johnson",
+    department: "Engineering",
+    salary: 95000,
+    experience: "5 years",
+  },
+  {
+    id: "2",
+    name: "Michael Chen",
+    department: "Marketing",
+    salary: 75000,
+    experience: "3 years",
+  },
+  {
+    id: "3",
+    name: "Emily Davis",
+    department: "Engineering",
+    salary: 110000,
+    experience: "8 years",
+  },
+  {
+    id: "4",
+    name: "David Wilson",
+    department: "Sales",
+    salary: 65000,
+    experience: "2 years",
+  },
+  {
+    id: "5",
+    name: "Lisa Brown",
+    department: "HR",
+    salary: 70000,
+    experience: "4 years",
+  },
+];
+
+// Task data for editable example
+const taskColumns: TableColumn[] = [
+  {
+    id: "id",
+    header: "ID",
+    accessor: "id",
+    width: "60px",
+    // No editor property - makes this column non-editable
+  },
+  {
+    id: "task",
+    header: "Task",
+    accessor: "task",
+    width: "40%",
+    editor: "custom",
+    customEditorRenderer: (
+      value: unknown,
+      onCommit: (value: unknown) => void
+    ) => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = String(value || "");
+      input.style.width = "100%";
+      input.style.border = "1px solid var(--border)";
+      input.style.padding = "4px 8px";
+      input.style.borderRadius = "4px";
+      input.style.fontSize = "14px";
+
+      // Auto-focus and select text
+      setTimeout(() => {
+        input.focus();
+        input.select();
+      }, 0);
+
+      // Commit on Enter or blur
+      const commitValue = () => {
+        onCommit(input.value);
+      };
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          commitValue();
+        }
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onCommit(value); // Revert to original value
+        }
+      });
+
+      input.addEventListener("blur", commitValue);
+
+      return input;
+    },
+  },
+  {
+    id: "assignee",
+    header: "Assignee",
+    accessor: "assignee",
+    editor: "custom",
+    customEditorRenderer: (
+      value: unknown,
+      onCommit: (value: unknown) => void
+    ) => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = String(value || "");
+      input.style.width = "100%";
+      input.style.border = "1px solid var(--border)";
+      input.style.padding = "4px 8px";
+      input.style.borderRadius = "4px";
+      input.style.fontSize = "14px";
+
+      setTimeout(() => {
+        input.focus();
+        input.select();
+      }, 0);
+
+      const commitValue = () => {
+        onCommit(input.value);
+      };
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          commitValue();
+        }
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onCommit(value);
+        }
+      });
+
+      input.addEventListener("blur", commitValue);
+
+      return input;
+    },
+  },
+  {
+    id: "priority",
+    header: "Priority",
+    accessor: "priority",
+    editor: "custom",
+    customEditorRenderer: (
+      value: unknown,
+      onCommit: (value: unknown) => void
+    ) => {
+      const select = document.createElement("select");
+      select.style.width = "100%";
+      select.style.border = "1px solid var(--border)";
+      select.style.padding = "4px 8px";
+      select.style.borderRadius = "4px";
+      select.style.fontSize = "14px";
+
+      const options = ["Low", "Medium", "High"];
+      options.forEach((option) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = option;
+        optionElement.textContent = option;
+        optionElement.selected = option === value;
+        select.appendChild(optionElement);
+      });
+
+      setTimeout(() => {
+        select.focus();
+      }, 0);
+
+      const commitValue = () => {
+        onCommit(select.value);
+      };
+
+      select.addEventListener("change", commitValue);
+      select.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          commitValue();
+        }
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onCommit(value);
+        }
+      });
+
+      select.addEventListener("blur", commitValue);
+
+      return select;
+    },
+  },
+  {
+    id: "status",
+    header: "Status",
+    accessor: "status",
+    editor: "custom",
+    customEditorRenderer: (
+      value: unknown,
+      onCommit: (value: unknown) => void
+    ) => {
+      const select = document.createElement("select");
+      select.style.width = "100%";
+      select.style.border = "1px solid var(--border)";
+      select.style.padding = "4px 8px";
+      select.style.borderRadius = "4px";
+      select.style.fontSize = "14px";
+
+      const options = ["Pending", "In Progress", "Completed", "Scheduled"];
+      options.forEach((option) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = option;
+        optionElement.textContent = option;
+        optionElement.selected = option === value;
+        select.appendChild(optionElement);
+      });
+
+      setTimeout(() => {
+        select.focus();
+      }, 0);
+
+      const commitValue = () => {
+        onCommit(select.value);
+      };
+
+      select.addEventListener("change", commitValue);
+      select.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          commitValue();
+        }
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onCommit(value);
+        }
+      });
+
+      select.addEventListener("blur", commitValue);
+
+      return select;
+    },
+  },
+];
+
+const initialTaskData = [
+  {
+    id: "1",
+    task: "Design new dashboard",
+    assignee: "Alex Rivera",
+    priority: "High",
+    status: "In Progress",
+  },
+  {
+    id: "2",
+    task: "Update documentation",
+    assignee: "Brianna Lee",
+    priority: "Medium",
+    status: "Pending",
+  },
+  {
+    id: "3",
+    task: "Code review",
+    assignee: "Chris Patel",
+    priority: "High",
+    status: "Completed",
+  },
+  {
+    id: "4",
+    task: "User testing",
+    assignee: "Morgan Diaz",
+    priority: "Low",
+    status: "Scheduled",
+  },
+];
 
 export default function TableDemoPage() {
-  const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
-  const [selectedRows, setSelectedRows] = useState<string[]>([]);
+  const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(10);
+  const [taskData, setTaskData] = useState(initialTaskData);
 
-  const logEvent = useCallback(
-    (message: string, type: EventLog["type"] = "info") => {
-      const timestamp = new Date().toLocaleTimeString();
-      setEventLogs((prev) => {
-        const newLogs = [{ timestamp, message, type }, ...prev];
-        return newLogs.slice(0, 20); // Keep last 20 events
-      });
-    },
-    []
-  );
-
-  const clearLogs = () => {
-    setEventLogs([]);
+  const handleEmployeeSelection = (
+    event: CustomEvent<{ selectedRows: unknown[]; selectedRowIds: string[] }>
+  ) => {
+    setSelectedEmployees(event.detail.selectedRowIds);
   };
 
-  // Sample data for different table examples
-  const employeeData: TableData[] = [
-    {
-      id: "1",
-      name: "Alice Johnson",
-      role: "Software Engineer",
-      department: "Engineering",
-      salary: 95000,
-      startDate: "2022-01-15",
-      status: "active",
-    },
-    {
-      id: "2",
-      name: "Bob Smith",
-      role: "Product Manager",
-      department: "Product",
-      salary: 110000,
-      startDate: "2021-03-22",
-      status: "active",
-    },
-    {
-      id: "3",
-      name: "Carol Davis",
-      role: "UX Designer",
-      department: "Design",
-      salary: 85000,
-      startDate: "2022-06-10",
-      status: "active",
-    },
-    {
-      id: "4",
-      name: "David Wilson",
-      role: "Data Scientist",
-      department: "Engineering",
-      salary: 105000,
-      startDate: "2021-11-08",
-      status: "active",
-    },
-    {
-      id: "5",
-      name: "Eva Brown",
-      role: "Marketing Manager",
-      department: "Marketing",
-      salary: 75000,
-      startDate: "2023-02-14",
-      status: "active",
-    },
-    {
-      id: "6",
-      name: "Frank Miller",
-      role: "DevOps Engineer",
-      department: "Engineering",
-      salary: 98000,
-      startDate: "2022-09-05",
-      status: "active",
-    },
-    {
-      id: "7",
-      name: "Grace Lee",
-      role: "HR Specialist",
-      department: "Human Resources",
-      salary: 70000,
-      startDate: "2023-01-20",
-      status: "active",
-    },
-    {
-      id: "8",
-      name: "Henry Taylor",
-      role: "Sales Director",
-      department: "Sales",
-      salary: 120000,
-      startDate: "2020-07-12",
-      status: "active",
-    },
-    {
-      id: "9",
-      name: "Ivy Chen",
-      role: "Frontend Developer",
-      department: "Engineering",
-      salary: 92000,
-      startDate: "2022-04-18",
-      status: "active",
-    },
-    {
-      id: "10",
-      name: "Jack Anderson",
-      role: "Backend Developer",
-      department: "Engineering",
-      salary: 94000,
-      startDate: "2021-12-03",
-      status: "active",
-    },
-  ];
+  const handlePaginationChange = (
+    event: CustomEvent<{ currentPage: number; pageSize: number }>
+  ) => {
+    setCurrentPage(event.detail.currentPage);
+    setPageSize(event.detail.pageSize);
+  };
 
-  const productData: TableData[] = [
-    {
-      id: "p1",
-      name: "Laptop Pro",
-      category: "Electronics",
-      price: 1299.99,
-      stock: 45,
-      rating: 4.8,
-      featured: true,
-    },
-    {
-      id: "p2",
-      name: "Wireless Mouse",
-      category: "Accessories",
-      price: 29.99,
-      stock: 120,
-      rating: 4.5,
-      featured: false,
-    },
-    {
-      id: "p3",
-      name: "Mechanical Keyboard",
-      category: "Accessories",
-      price: 149.99,
-      stock: 78,
-      rating: 4.7,
-      featured: true,
-    },
-    {
-      id: "p4",
-      name: "4K Monitor",
-      category: "Electronics",
-      price: 399.99,
-      stock: 23,
-      rating: 4.9,
-      featured: true,
-    },
-    {
-      id: "p5",
-      name: "USB-C Hub",
-      category: "Accessories",
-      price: 79.99,
-      stock: 67,
-      rating: 4.3,
-      featured: false,
-    },
-  ];
+  const handleCellEditStart = (
+    event: CustomEvent<{ rowIndex: number; colId: string }>
+  ) => {
+    console.log("Cell edit started:", event.detail);
+  };
 
-  // Column definitions
-  const employeeColumns: TableColumn[] = [
-    { id: "id", header: "ID", accessor: "id", width: "60px", sortable: true },
-    { id: "name", header: "Name", accessor: "name", sortable: true },
-    { id: "role", header: "Role", accessor: "role", sortable: true },
-    {
-      id: "department",
-      header: "Department",
-      accessor: "department",
-      sortable: true,
-    },
-    { id: "salary", header: "Salary", accessor: "salary", sortable: true },
-    {
-      id: "startDate",
-      header: "Start Date",
-      accessor: "startDate",
-      sortable: true,
-    },
-    { id: "status", header: "Status", accessor: "status", sortable: true },
-  ];
+  const handleCellEditCommit = (
+    event: CustomEvent<{
+      rowIndex: number;
+      colId: string;
+      newValue: unknown;
+      updatedRow: unknown;
+    }>
+  ) => {
+    console.log("Cell edited:", event.detail);
+    const { rowIndex, colId, newValue, updatedRow } = event.detail;
+    console.log(`Row ${rowIndex}, Column ${colId} updated to:`, newValue);
+    console.log("Updated row:", updatedRow);
 
-  const productColumns: TableColumn[] = [
-    { id: "name", header: "Product", accessor: "name", sortable: true },
-    {
-      id: "category",
-      header: "Category",
-      accessor: "category",
-      sortable: true,
-    },
-    { id: "price", header: "Price", accessor: "price", sortable: true },
-    { id: "stock", header: "Stock", accessor: "stock", sortable: true },
-    { id: "rating", header: "Rating", accessor: "rating", sortable: true },
-    {
-      id: "featured",
-      header: "Featured",
-      accessor: "featured",
-      sortable: true,
-    },
-  ];
-
-  // Event handlers
-  const handleRowSelectionChange = useCallback(
-    (
-      event: CustomEvent<{ selectedRows: unknown[]; selectedRowIds: string[] }>
-    ) => {
-      const { selectedRowIds } = event.detail;
-      setSelectedRows(selectedRowIds);
-      logEvent(
-        `Selected ${selectedRowIds.length} row(s): ${selectedRowIds.join(
-          ", "
-        )}`,
-        "info"
-      );
-    },
-    [logEvent]
-  );
-
-  const handleSortChange = useCallback(
-    (
-      event: CustomEvent<Array<{ columnId: string; direction: "asc" | "desc" }>>
-    ) => {
-      const sortInfo = event.detail;
-      const sortString = sortInfo
-        .map((s) => `${s.columnId} (${s.direction})`)
-        .join(", ");
-      logEvent(`Table sorted by: ${sortString}`, "info");
-    },
-    [logEvent]
-  );
-
-  const handlePaginationChange = useCallback(
-    (event: CustomEvent<{ currentPage: number; pageSize: number }>) => {
-      const { currentPage: newPage, pageSize: newPageSize } = event.detail;
-      setCurrentPage(newPage);
-      setPageSize(newPageSize);
-      logEvent(`Page changed to ${newPage}, page size: ${newPageSize}`, "info");
-    },
-    [logEvent]
-  );
-
-  const handleRowClick = useCallback(
-    (event: CustomEvent<{ row: unknown; index: number }>) => {
-      const { row, index } = event.detail;
-      const rowData = row as TableData;
-      logEvent(
-        `Row ${index + 1} clicked: ${rowData.name || rowData.id}`,
-        "info"
-      );
-    },
-    [logEvent]
-  );
-
-  const handleCellEditCommit = useCallback(
-    (
-      event: CustomEvent<{
-        rowIndex: number;
-        colId: string;
-        newValue: unknown;
-        updatedRow: unknown;
-      }>
-    ) => {
-      const { rowIndex, colId, newValue } = event.detail;
-      logEvent(
-        `Cell edited: Row ${
-          rowIndex + 1
-        }, Column ${colId}, New value: ${newValue}`,
-        "success"
-      );
-    },
-    [logEvent]
-  );
+    // Create new data array with the updated row (immutable update)
+    setTaskData((prevData) => {
+      const newData = [...prevData];
+      newData[rowIndex] = { ...newData[rowIndex], [colId]: newValue };
+      return newData;
+    });
+  };
 
   return (
-    <div className="max-w-7xl mx-auto p-8">
-      <div className="text-center mb-12">
-        <div className="text-4xl font-semibold mb-4 text-foreground">
-          Modus Table Demo
-        </div>
-        <div className="text-lg leading-relaxed text-foreground text-center">
-          Explore the Modus Table component with sorting, pagination, selection,
-          and editing capabilities.
-        </div>
-      </div>
-
-      {/* Basic Table */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+    <DemoPage
+      title="Modus Table"
+      description="Tables structure datasets for scanning and comparison. Limit the number of columns and prioritize the most actionable information."
+    >
+      <DemoExample
+        title="Basic Table"
+        description="Comfortable density balances readability with information density."
       >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Basic Sortable Table
-        </div>
-        <div className="text-foreground mb-6">
-          A simple table with sorting enabled. Click column headers to sort.
-        </div>
         <ModusTable
-          columns={employeeColumns}
-          data={employeeData}
-          aria-label="Employee table"
-          onSortChange={handleSortChange}
-          onRowClick={handleRowClick}
-        />
-      </div>
-
-      {/* Paginated Table */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Paginated Table with Selection
-        </div>
-        <div className="text-foreground mb-6">
-          Table with pagination, row selection, and zebra striping.
-        </div>
-        <ModusTable
-          columns={employeeColumns}
-          data={employeeData}
-          paginated
-          selectable="multi"
-          zebra
+          columns={teamColumns}
+          data={teamData}
           density="comfortable"
-          currentPage={currentPage}
-          pageSizeOptions={[5, 10, 15]}
-          selectedRowIds={selectedRows}
-          aria-label="Paginated employee table"
-          onPaginationChange={handlePaginationChange}
-          onRowSelectionChange={handleRowSelectionChange}
-          onSortChange={handleSortChange}
-          onRowClick={handleRowClick}
+          zebra
+          hover
         />
-        {selectedRows.length > 0 && (
-          <div className="mt-4 p-4 bg-muted rounded-lg">
-            <div className="text-sm text-foreground">
-              <strong>Selected Rows:</strong> {selectedRows.length} row(s)
-              selected
-            </div>
-          </div>
-        )}
-      </div>
+      </DemoExample>
 
-      {/* Compact Product Table */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+      <DemoExample
+        title="Compact Density with Zebra Striping"
+        description="Compact density maximizes information density for data-heavy tables."
       >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Compact Product Table
-        </div>
-        <div className="text-foreground mb-6">
-          Compact density table with hover effects and single row selection.
-        </div>
+        <ModusTable
+          columns={productColumns}
+          data={productData.slice(0, 8)}
+          density="compact"
+          zebra
+          hover={false}
+        />
+      </DemoExample>
+
+      <DemoExample
+        title="Paginated Table"
+        description="Pagination helps manage large datasets by showing a subset of rows with navigation controls."
+      >
         <ModusTable
           columns={productColumns}
           data={productData}
-          selectable="single"
-          density="compact"
-          hover
-          aria-label="Product table"
-          onRowSelectionChange={handleRowSelectionChange}
-          onSortChange={handleSortChange}
-          onRowClick={handleRowClick}
+          paginated
+          currentPage={currentPage}
+          pageSizeOptions={[5, 10, 15, 20]}
+          showPageSizeSelector
+          onPaginationChange={handlePaginationChange}
+          density="comfortable"
+          zebra
         />
-      </div>
+      </DemoExample>
 
-      {/* Editable Table */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+      <DemoExample
+        title="Multi-Select Table"
+        description="Enable row selection with checkboxes for bulk operations."
       >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Editable Table
-        </div>
-        <div className="text-foreground mb-6">
-          Table with inline editing capabilities. Click on cells to edit them.
-        </div>
         <ModusTable
-          columns={[
-            {
-              id: "name",
-              header: "Product Name",
-              accessor: "name",
-              sortable: true,
-              editor: "text",
-            },
-            {
-              id: "price",
-              header: "Price",
-              accessor: "price",
-              sortable: true,
-              editor: "number",
-            },
-            {
-              id: "stock",
-              header: "Stock",
-              accessor: "stock",
-              sortable: true,
-              editor: "number",
-            },
-            {
-              id: "featured",
-              header: "Featured",
-              accessor: "featured",
-              sortable: true,
-            },
-          ]}
-          data={productData}
-          editable
+          columns={employeeColumns}
+          data={employeeData}
+          selectable="multi"
+          selectedRowIds={selectedEmployees}
+          onRowSelectionChange={handleEmployeeSelection}
+          density="comfortable"
           hover
-          aria-label="Editable product table"
-          onCellEditStart={(event) => {
-            const { rowIndex, colId } = event.detail;
-            logEvent(
-              `Started editing: Row ${rowIndex + 1}, Column ${colId}`,
-              "info"
-            );
-          }}
-          onCellEditCommit={handleCellEditCommit}
-          onSortChange={handleSortChange}
-          onRowClick={handleRowClick}
         />
-      </div>
+        {selectedEmployees.length > 0 && (
+          <div className="mt-4 p-3 bg-muted rounded-lg">
+            <div className="text-sm text-muted-foreground">
+              Selected {selectedEmployees.length} employee(s):{" "}
+              {selectedEmployees.join(", ")}
+            </div>
+          </div>
+        )}
+      </DemoExample>
 
-      {/* Event Log */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+      <DemoExample
+        title="Single Select Table"
+        description="Single selection mode uses radio buttons for choosing one row."
       >
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-2xl font-semibold text-foreground">
-            Event Log
-          </div>
-          <ModusWcButton
-            variant="borderless"
-            color="secondary"
-            onButtonClick={clearLogs}
-            disabled={eventLogs.length === 0}
-          >
-            <i className="modus-icons mr-2">delete</i>
-            Clear Logs
-          </ModusWcButton>
-        </div>
-        <div
-          className="max-h-64 overflow-y-auto rounded p-4 bg-background"
-          style={{ border: "1px solid var(--border)" }}
-        >
-          {eventLogs.map((log, index) => (
-            <div key={index} className="flex gap-4 mb-2 font-mono text-sm">
-              <div className="text-foreground min-w-20">{log.timestamp}</div>
-              <div
-                className={`${
-                  log.type === "success"
-                    ? "text-success"
-                    : log.type === "warning"
-                    ? "text-warning"
-                    : log.type === "error"
-                    ? "text-destructive"
-                    : "text-foreground"
-                }`}
-              >
-                {log.message}
-              </div>
-            </div>
-          ))}
-          {eventLogs.length === 0 && (
-            <div className="text-foreground italic text-center p-8">
-              Interact with the tables to see events logged here...
-            </div>
-          )}
-        </div>
-      </div>
+        <ModusTable
+          columns={employeeColumns}
+          data={employeeData.slice(0, 4)}
+          selectable="single"
+          density="relaxed"
+          hover
+        />
+      </DemoExample>
 
-      {/* Usage Examples */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+      <DemoExample
+        title="Editable Table"
+        description="Enable inline editing for data modification. Click on any cell to edit."
       >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Usage Examples
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <div className="text-lg font-semibold mb-2 text-foreground">
-              Basic Usage
-            </div>
-            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
-              {`<ModusTable
-  columns={columns}
-  data={data}
-  aria-label="My table"
-  onSortChange={handleSort}
-  onRowClick={handleRowClick}
-/>`}
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-semibold mb-2 text-foreground">
-              Advanced Usage
-            </div>
-            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
-              {`<ModusTable
-  columns={columns}
-  data={data}
-  paginated
-  selectable="multi"
-  zebra
-  density="compact"
-  editable
-  onRowSelectionChange={handleSelection}
-  onCellEditCommit={handleEdit}
-/>`}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <ModusTable
+          columns={taskColumns}
+          data={taskData}
+          editable
+          onCellEditStart={handleCellEditStart}
+          onCellEditCommit={handleCellEditCommit}
+          density="relaxed"
+          hover
+        />
+      </DemoExample>
+
+      <DemoExample
+        title="Sortable Table"
+        description="All columns are sortable by default. Click headers to sort data."
+      >
+        <ModusTable
+          columns={employeeColumns}
+          data={employeeData}
+          sortable
+          density="comfortable"
+          zebra
+        />
+      </DemoExample>
+
+      <DemoExample
+        title="Relaxed Density"
+        description="Relaxed density provides more spacing for better readability."
+      >
+        <ModusTable
+          columns={teamColumns}
+          data={teamData}
+          density="relaxed"
+          hover
+        />
+      </DemoExample>
+    </DemoPage>
   );
 }

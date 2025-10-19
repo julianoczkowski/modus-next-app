@@ -11,8 +11,7 @@ interface ModusLoaderProps {
     | "success"
     | "warning"
     | "error"
-    | "info"
-    | "neutral";
+    | "info";
   size?: "xs" | "sm" | "md" | "lg";
   customClass?: string;
   ariaLabel?: string;

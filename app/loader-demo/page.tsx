@@ -1,463 +1,138 @@
 "use client";
 
-import { ModusWcButton } from "@trimble-oss/moduswebcomponents-react";
+import DemoExample from "../components/DemoExample";
+import DemoPage from "../components/DemoPage";
 import ModusLoader from "../components/ModusLoader";
 
-export default function LoaderDemo() {
-  const variants: Array<
-    "spinner" | "ball" | "bars" | "dots" | "infinity" | "ring"
-  > = ["spinner", "ball", "bars", "dots", "infinity", "ring"];
-
-  const colors: Array<
-    | "primary"
-    | "secondary"
-    | "accent"
-    | "success"
-    | "warning"
-    | "error"
-    | "info"
-    | "neutral"
-  > = [
-    "primary",
-    "secondary",
-    "accent",
-    "success",
-    "warning",
-    "error",
-    "info",
-    "neutral",
-  ];
-
-  const sizes: Array<"xs" | "sm" | "md" | "lg"> = ["xs", "sm", "md", "lg"];
-
+export default function LoaderDemoPage() {
   return (
-    <div className="max-w-6xl mx-auto p-8">
-      <div className="text-center mb-12">
-        <div className="text-4xl font-semibold text-foreground mb-4">
-          Modus Loader Component Demo
-        </div>
-        <div className="text-lg text-foreground opacity-80">
-          Visual indicators for loading states with 6 animation variants, 4
-          sizes, and 8 color options
-        </div>
-      </div>
-
-      {/* Basic Usage */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+    <DemoPage
+      title="Modus Loader"
+      description="Loaders communicate that content is on the way. Select a variant that fits the space and avoid pairing multiple animations together."
+    >
+      <DemoExample
+        title="All Variants"
+        description="Six different animation styles to choose from based on your use case."
       >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Basic Usage
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" size="md" />
+            <div className="text-sm text-foreground opacity-80">Spinner</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="ball" size="md" />
+            <div className="text-sm text-foreground opacity-80">Ball</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="bars" size="md" />
+            <div className="text-sm text-foreground opacity-80">Bars</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="dots" size="md" />
+            <div className="text-sm text-foreground opacity-80">Dots</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="infinity" size="md" />
+            <div className="text-sm text-foreground opacity-80">Infinity</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="ring" size="md" />
+            <div className="text-sm text-foreground opacity-80">Ring</div>
+          </div>
         </div>
+      </DemoExample>
+
+      <DemoExample
+        title="Color Options"
+        description="Theme-aware colors that automatically adapt to light and dark themes."
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="primary" size="md" />
+            <div className="text-sm text-foreground opacity-80">Primary</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="secondary" size="md" />
+            <div className="text-sm text-foreground opacity-80">Secondary</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="accent" size="md" />
+            <div className="text-sm text-foreground opacity-80">Accent</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="success" size="md" />
+            <div className="text-sm text-foreground opacity-80">Success</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="warning" size="md" />
+            <div className="text-sm text-foreground opacity-80">Warning</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="error" size="md" />
+            <div className="text-sm text-foreground opacity-80">Error</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" color="info" size="md" />
+            <div className="text-sm text-foreground opacity-80">Info</div>
+          </div>
+        </div>
+      </DemoExample>
+
+      <DemoExample
+        title="Size Options"
+        description="Four size tokens from extra small to large for different contexts."
+      >
         <div className="flex items-center justify-center gap-8">
-          <ModusLoader />
-          <ModusLoader variant="ball" />
-          <ModusLoader variant="bars" />
-          <ModusLoader variant="dots" />
-          <ModusLoader variant="infinity" />
-          <ModusLoader variant="ring" />
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" size="xs" />
+            <div className="text-sm text-foreground opacity-80">XS (16px)</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" size="sm" />
+            <div className="text-sm text-foreground opacity-80">SM (20px)</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" size="md" />
+            <div className="text-sm text-foreground opacity-80">MD (24px)</div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <ModusLoader variant="spinner" size="lg" />
+            <div className="text-sm text-foreground opacity-80">LG (32px)</div>
+          </div>
         </div>
-        <div className="text-sm text-foreground opacity-70 mt-4 text-center">
-          Default loader (spinner) and all 6 animation variants
-        </div>
-      </div>
+      </DemoExample>
 
-      {/* All Variants */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
+      <DemoExample
+        title="Usage Examples"
+        description="Common patterns for using loaders in real applications."
       >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          All Animation Variants
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-          {variants.map((variant) => (
-            <div key={variant} className="flex flex-col items-center gap-3">
-              <ModusLoader variant={variant} size="lg" />
-              <div className="text-sm text-foreground opacity-70 capitalize text-center">
-                {variant}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="text-sm text-foreground opacity-70 mt-4 text-center">
-          6 different animation styles: spinner, ball, bars, dots, infinity,
-          ring
-        </div>
-      </div>
-
-      {/* Size Variations */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Size Variations
-        </div>
-        <div className="space-y-8">
-          {variants.map((variant) => (
-            <div key={variant}>
-              <div className="text-lg font-medium text-foreground mb-4 capitalize">
-                {variant} Variant
-              </div>
-              <div className="flex items-center justify-center gap-8">
-                {sizes.map((size) => (
-                  <div key={size} className="flex flex-col items-center gap-2">
-                    <ModusLoader variant={variant} size={size} />
-                    <div className="text-xs text-foreground opacity-70">
-                      {size}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="text-sm text-foreground opacity-70 mt-4 text-center">
-          Size tokens: xs (16px), sm (20px), md (24px), lg (32px)
-        </div>
-      </div>
-
-      {/* Color Variations */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Color Variations
-        </div>
-        <div className="space-y-8">
-          {variants.map((variant) => (
-            <div key={variant}>
-              <div className="text-lg font-medium text-foreground mb-4 capitalize">
-                {variant} Variant
-              </div>
-              <div className="flex items-center justify-center gap-6 flex-wrap">
-                {colors.map((color) => (
-                  <div key={color} className="flex flex-col items-center gap-2">
-                    <ModusLoader variant={variant} color={color} size="md" />
-                    <div className="text-xs text-foreground opacity-70 capitalize">
-                      {color}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="text-sm text-foreground opacity-70 mt-4 text-center">
-          8 theme-aware colors: primary, secondary, accent, success, warning,
-          error, info, neutral
-        </div>
-      </div>
-
-      {/* Usage Examples */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Usage Examples
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div className="text-lg font-medium text-foreground mb-4">
-              Button Loading State
-            </div>
-            <div className="flex gap-4">
-              <ModusWcButton color="primary" disabled>
-                <ModusLoader size="sm" color="primary" />
-                Loading...
-              </ModusWcButton>
-              <ModusWcButton color="secondary" disabled>
-                <ModusLoader size="sm" color="secondary" />
-                Saving...
-              </ModusWcButton>
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-4">
-              Page Loading State
-            </div>
-            <div className="flex flex-col items-center gap-4 p-6 bg-muted rounded">
-              <ModusLoader variant="infinity" size="lg" color="primary" />
-              <div className="text-foreground">Loading content...</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Loading States */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Loading States
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-6 bg-muted rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="spinner" size="sm" color="primary" />
-              <div className="text-foreground font-medium">
-                Processing Request
-              </div>
-            </div>
-            <div className="text-sm text-foreground opacity-70">
-              Your request is being processed...
-            </div>
-          </div>
-          <div className="p-6 bg-muted rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="dots" size="sm" color="info" />
-              <div className="text-foreground font-medium">Uploading File</div>
-            </div>
-            <div className="text-sm text-foreground opacity-70">
-              Please wait while your file uploads...
-            </div>
-          </div>
-          <div className="p-6 bg-muted rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="bars" size="sm" color="secondary" />
-              <div className="text-foreground font-medium">Saving Changes</div>
-            </div>
-            <div className="text-sm text-foreground opacity-70">
-              Your changes are being saved...
-            </div>
-          </div>
-          <div className="p-6 bg-muted rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="ball" size="sm" color="warning" />
-              <div className="text-foreground font-medium">Validating Data</div>
-            </div>
-            <div className="text-sm text-foreground opacity-70">
-              Checking your input for errors...
-            </div>
-          </div>
-          <div className="p-6 bg-muted rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="ring" size="sm" color="secondary" />
-              <div className="text-foreground font-medium">Connecting</div>
-            </div>
-            <div className="text-sm text-foreground opacity-70">
-              Establishing connection...
-            </div>
-          </div>
-          <div className="p-6 bg-muted rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <ModusLoader variant="infinity" size="sm" color="secondary" />
-              <div className="text-foreground font-medium">Retrying</div>
-            </div>
-            <div className="text-sm text-foreground opacity-70">
-              Attempting to reconnect...
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Custom Styling */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Custom Styling
-        </div>
         <div className="space-y-6">
-          <div>
-            <div className="text-lg font-medium text-foreground mb-4">
-              Custom Size
-            </div>
-            <div className="flex items-center justify-center gap-6">
-              <ModusLoader
-                variant="spinner"
-                customClass="w-12 h-12"
-                ariaLabel="Large custom loader"
-              />
-              <ModusLoader
-                variant="ball"
-                customClass="w-16 h-16"
-                ariaLabel="Extra large custom loader"
-              />
-              <ModusLoader
-                variant="infinity"
-                customClass="w-20 h-20"
-                ariaLabel="Huge custom loader"
-              />
+          <div className="flex items-center gap-3">
+            <ModusLoader variant="spinner" size="md" />
+            <div className="text-sm text-foreground opacity-80">
+              Syncing records…
             </div>
           </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-4">
-              Custom Colors
+          <div className="flex items-center gap-2">
+            <ModusLoader variant="dots" size="sm" color="secondary" />
+            <div className="text-sm text-foreground opacity-80">
+              Preparing report
             </div>
-            <div className="flex items-center justify-center gap-6">
-              <ModusLoader
-                variant="spinner"
-                customClass="text-info"
-                ariaLabel="Info colored loader"
-              />
-              <ModusLoader
-                variant="dots"
-                customClass="text-secondary"
-                ariaLabel="Error colored loader"
-              />
-              <ModusLoader
-                variant="ring"
-                customClass="text-secondary"
-                ariaLabel="Accent colored loader"
-              />
+          </div>
+          <div className="flex items-center gap-3">
+            <ModusLoader variant="bars" size="sm" color="success" />
+            <div className="text-sm text-foreground opacity-80">
+              Upload complete
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <ModusLoader variant="ring" size="lg" color="warning" />
+            <div className="text-lg text-foreground">
+              Processing large dataset…
             </div>
           </div>
         </div>
-        <div className="text-sm text-foreground opacity-70 mt-4 text-center">
-          Custom sizing and colors using CSS classes
-        </div>
-      </div>
-
-      {/* Accessibility Examples */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Accessibility Examples
-        </div>
-        <div className="space-y-6">
-          <div>
-            <div className="text-lg font-medium text-foreground mb-4">
-              Descriptive Labels
-            </div>
-            <div className="flex items-center justify-center gap-6">
-              <ModusLoader variant="spinner" ariaLabel="Loading user profile" />
-              <ModusLoader variant="bars" ariaLabel="Uploading document" />
-              <ModusLoader variant="dots" ariaLabel="Processing payment" />
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-4">
-              Context-Aware Labels
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-muted rounded">
-                <div className="flex items-center gap-3 mb-2">
-                  <ModusLoader size="sm" ariaLabel="Loading search results" />
-                  <div className="text-foreground">Searching...</div>
-                </div>
-                <div className="text-sm text-foreground opacity-70">
-                  Finding matches for your query
-                </div>
-              </div>
-              <div className="p-4 bg-muted rounded">
-                <div className="flex items-center gap-3 mb-2">
-                  <ModusLoader size="sm" ariaLabel="Saving form data" />
-                  <div className="text-foreground">Saving...</div>
-                </div>
-                <div className="text-sm text-foreground opacity-70">
-                  Your changes are being saved
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="text-sm text-foreground opacity-70 mt-4 text-center">
-          Always provide descriptive aria-label attributes for screen readers
-        </div>
-      </div>
-
-      {/* Performance Note */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Performance
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <div className="text-lg font-medium text-foreground mb-3">
-              Multiple Loaders
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              <ModusLoader variant="spinner" size="sm" />
-              <ModusLoader variant="ball" size="sm" />
-              <ModusLoader variant="bars" size="sm" />
-              <ModusLoader variant="dots" size="sm" />
-              <ModusLoader variant="infinity" size="sm" />
-              <ModusLoader variant="ring" size="sm" />
-            </div>
-            <div className="text-sm text-foreground opacity-70 mt-2">
-              Pure CSS animations - minimal performance impact
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-3">
-              Layout Integration
-            </div>
-            <div className="flex items-center justify-between p-4 bg-muted rounded">
-              <div className="text-foreground">Processing items...</div>
-              <ModusLoader variant="spinner" size="sm" />
-            </div>
-            <div className="text-sm text-foreground opacity-70 mt-2">
-              Inline-block elements - easy to align and position
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Code Examples */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold text-foreground mb-6">
-          Code Examples
-        </div>
-        <div className="space-y-4">
-          <div>
-            <div className="text-lg font-medium text-foreground mb-2">
-              Basic Usage
-            </div>
-            <div className="bg-muted p-4 rounded text-sm font-mono text-foreground">
-              {`<ModusLoader />`}
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-2">
-              With Variant and Size
-            </div>
-            <div className="bg-muted p-4 rounded text-sm font-mono text-foreground">
-              {`<ModusLoader variant="dots" size="lg" />`}
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-2">
-              With Color and Custom Class
-            </div>
-            <div className="bg-muted p-4 rounded text-sm font-mono text-foreground">
-              {`<ModusLoader 
-  variant="infinity" 
-  color="secondary" 
-  customClass="w-16 h-16"
-  ariaLabel="Loading data"
-/>`}
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-medium text-foreground mb-2">
-              All Variants
-            </div>
-            <div className="bg-muted p-4 rounded text-sm font-mono text-foreground">
-              {`<ModusLoader variant="spinner" />
-<ModusLoader variant="ball" />
-<ModusLoader variant="bars" />
-<ModusLoader variant="dots" />
-<ModusLoader variant="infinity" />
-<ModusLoader variant="ring" />`}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </DemoExample>
+    </DemoPage>
   );
 }

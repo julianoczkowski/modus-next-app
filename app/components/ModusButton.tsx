@@ -17,7 +17,7 @@ interface ModusButtonProps {
   type?: "button" | "submit" | "reset";
 
   // Content
-  children: ReactNode;
+  children?: ReactNode;
   icon?: string;
   iconPosition?: "left" | "right" | "only";
 

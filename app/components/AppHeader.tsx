@@ -12,13 +12,7 @@ export default function AppHeader() {
   };
 
   return (
-    <div
-      className="w-full"
-      style={{
-        borderBottomWidth: "1px",
-        borderBottomColor: "var(--modus-wc-color-base-200)",
-      }}
-    >
+    <div className="w-full" style={{ borderBottom: "1px solid var(--border)" }}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-4 gap-4 md:gap-0">
         <div className="flex-shrink-0">
           <div className="text-xl md:text-2xl font-semibold m-0 text-foreground">

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
+import { CSSProperties, useCallback, useEffect, useMemo, useRef } from "react";
 import { ModusWcUtilityPanel } from "@trimble-oss/moduswebcomponents-react";
 
 type UtilityPanelPosition = "left" | "right";
@@ -59,11 +53,12 @@ export default function ModusUtilityPanel({
     return undefined;
   }, [targetElement, targetSelector]);
 
-
   useEffect(() => {
     return () => {
       if (resolvedTarget) {
-        resolvedTarget.classList.remove("modus-wc-utility-panel-push-target-left");
+        resolvedTarget.classList.remove(
+          "modus-wc-utility-panel-push-target-left"
+        );
       }
     };
   }, [resolvedTarget]);
@@ -113,8 +108,7 @@ export default function ModusUtilityPanel({
     position === "left" ? "modus-utility-panel--left" : undefined;
 
   const combinedClass =
-    [className, positionClass].filter(Boolean).join(" ") ||
-    undefined;
+    [className, positionClass].filter(Boolean).join(" ") || undefined;
 
   const style = useMemo<CSSProperties | undefined>(() => {
     if (!panelWidth) return undefined;
@@ -123,7 +117,11 @@ export default function ModusUtilityPanel({
     } as CSSProperties;
   }, [panelWidth]);
 
-  const renderedHeader = headerSlot ?? (headerText ? <div className="text-sm font-semibold text-foreground">{headerText}</div> : null);
+  const renderedHeader =
+    headerSlot ??
+    (headerText ? (
+      <div className="text-xl font-bold text-foreground">{headerText}</div>
+    ) : null);
 
   return (
     <ModusWcUtilityPanel
@@ -135,9 +133,17 @@ export default function ModusUtilityPanel({
       aria-expanded={ariaExpanded}
       style={style}
     >
-      {renderedHeader && <div slot="header">{renderedHeader}</div>}
+      {renderedHeader && (
+        <div slot="header" className="w-full min-w-full max-w-full block">
+          {renderedHeader}
+        </div>
+      )}
       <div slot="body">{children}</div>
-      {footerSlot && <div slot="footer">{footerSlot}</div>}
+      {footerSlot && (
+        <div slot="footer" className="w-full min-w-full max-w-full block">
+          {footerSlot}
+        </div>
+      )}
     </ModusWcUtilityPanel>
   );
 }

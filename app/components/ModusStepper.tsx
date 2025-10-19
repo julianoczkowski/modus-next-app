@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { ModusWcStepper } from "@trimble-oss/moduswebcomponents-react";
 
 export type StepperColor =

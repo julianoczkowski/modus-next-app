@@ -238,7 +238,7 @@ const componentDemos: ComponentDemo[] = [
       "Progress indicator for multi-step workflows with horizontal and vertical orientations",
     url: "/stepper-demo",
     category: "Navigation",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Switch",
@@ -254,7 +254,7 @@ const componentDemos: ComponentDemo[] = [
       "Tab navigation with icons, disabled states, and multiple visual styles",
     url: "/tabs-demo",
     category: "Navigation",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Textarea",
@@ -262,7 +262,7 @@ const componentDemos: ComponentDemo[] = [
       "Multi-line text field with helper messages, validation, and clearable controls",
     url: "/textarea-demo",
     category: "Forms",
-    status: "ready",
+    status: "demo",
   },
   {
     name: "Text Input",
@@ -440,76 +440,6 @@ export default function ComponentsDemoPage() {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Quick Stats */}
-      <div
-        className="mt-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Component Statistics
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-foreground mb-2">
-              {componentDemos.length}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Total Components
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-foreground mb-2">
-              {componentDemos.filter((c) => c.status === "ready").length}
-            </div>
-            <div className="text-sm text-muted-foreground">Ready</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-foreground mb-2">
-              {categories.length - 1}
-            </div>
-            <div className="text-sm text-muted-foreground">Categories</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">100%</div>
-            <div className="text-sm text-muted-foreground">
-              Modus Design System
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Usage Examples */}
-      <div
-        className="mt-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
-        <div className="text-2xl font-semibold mb-4 text-foreground">
-          Getting Started
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <div className="text-lg font-semibold mb-2 text-foreground">
-              Installation
-            </div>
-            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
-              {`npm install @trimble-oss/moduswebcomponents-react`}
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-semibold mb-2 text-foreground">
-              Basic Usage
-            </div>
-            <div className="bg-background p-4 rounded text-sm text-foreground overflow-x-auto">
-              {`import { ModusWcButton } from '@trimble-oss/moduswebcomponents-react';
-
-<ModusWcButton color="primary">
-  Click me
-</ModusWcButton>`}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -251,6 +251,23 @@
   height: 100%;
 }
 
+/* Custom modal styling */
+.expanded-modal .modus-wc-modal-box {
+  width: 80%;
+  height: 60%;
+  max-width: none;
+  max-height: none;
+}
+
+/* Custom progress bar styling */
+.thin-progress {
+  height: 0.25rem;
+}
+
+.thick-progress {
+  height: 1rem;
+}
+
 /* Utility panel positioning helpers */
 modus-wc-utility-panel.modus-utility-panel--left .modus-wc-utility-panel {
   left: calc(var(--modus-wc-utility-panel-width, 312px) * -1 - 12px);

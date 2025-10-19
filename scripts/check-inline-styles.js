@@ -24,6 +24,9 @@ const INLINE_STYLE_PATTERNS = [
   // Text colors
   /style=\{[^}]*color[^}]*\}/g,
 
+  // CSS Variables (should use design system colors instead)
+  /style=\{[^}]*var\(--[^}]*\}/g,
+
   // Spacing (margins, padding)
   /style=\{[^}]*margin[^}]*\}/g,
   /style=\{[^}]*padding[^}]*\}/g,
@@ -69,22 +72,23 @@ const INLINE_STYLE_PATTERNS = [
 
 // Tailwind alternatives for common inline styles
 const TAILWIND_ALTERNATIVES = {
-  // Background colors
-  'backgroundColor: "var(--modus-wc-color-base-page)"': "bg-background",
-  'backgroundColor: "var(--modus-wc-color-base-100)"': "bg-card",
-  'backgroundColor: "var(--modus-wc-color-base-200)"': "bg-muted",
-  'backgroundColor: "var(--modus-wc-color-base-300)"': "bg-secondary",
-  'backgroundColor: "var(--modus-wc-color-info)"': "bg-primary",
-  'backgroundColor: "var(--modus-wc-color-success)"': "bg-success",
-  'backgroundColor: "var(--modus-wc-color-error)"': "bg-destructive",
-  'backgroundColor: "var(--modus-wc-color-warning)"': "bg-warning",
+  // Background colors - Design System Colors
+  'backgroundColor: "var(--background)"': "bg-background",
+  'backgroundColor: "var(--card)"': "bg-card",
+  'backgroundColor: "var(--muted)"': "bg-muted",
+  'backgroundColor: "var(--secondary)"': "bg-secondary",
+  'backgroundColor: "var(--primary)"': "bg-primary",
+  'backgroundColor: "var(--success)"': "bg-success",
+  'backgroundColor: "var(--destructive)"': "bg-destructive",
+  'backgroundColor: "var(--warning)"': "bg-warning",
 
-  // Text colors
-  'color: "var(--modus-wc-color-base-content)"': "text-foreground",
-  'color: "var(--modus-wc-color-info)"': "text-primary",
-  'color: "var(--modus-wc-color-success)"': "text-success",
-  'color: "var(--modus-wc-color-error)"': "text-destructive",
-  'color: "var(--modus-wc-color-warning)"': "text-warning",
+  // Text colors - Design System Colors
+  'color: "var(--foreground)"': "text-foreground",
+  'color: "var(--primary)"': "text-primary",
+  'color: "var(--success)"': "text-success",
+  'color: "var(--destructive)"': "text-destructive",
+  'color: "var(--warning)"': "text-warning",
+  'color: "var(--muted-foreground)"': "text-muted-foreground",
 
   // Spacing
   'marginRight: "8px"': "mr-2",
@@ -165,6 +169,8 @@ const EXCLUDE_PATTERNS = [
   "dist/**",
   "**/*.d.ts",
   "scripts/**",
+  "app/globals.css", // Exclude globals.css as it contains the design system definitions
+  "app/color-palette/**", // Exclude color-palette as it demonstrates the color system
 ];
 
 function isBorderRelatedStyle(styleContent) {
@@ -175,6 +181,10 @@ function isBorderRelatedStyle(styleContent) {
     /borderRightWidth/g,
     /borderBottomWidth/g,
     /borderLeftWidth/g,
+    /borderTop/g,
+    /borderRight/g,
+    /borderBottom/g,
+    /borderLeft/g,
     /border:\s*["']?\d+px/g,
     /border:\s*["']?\d+px\s+solid/g,
     /border:\s*["']?\d+px\s+solid\s+var\(--border\)/g,

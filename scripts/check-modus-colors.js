@@ -32,20 +32,46 @@ const TAILWIND_COLOR_PATTERNS = [
 
   // CSS rgb/rgba colors (basic ones)
   /rgb\(\s*(255,\s*0,\s*0|0,\s*255,\s*0|0,\s*0,\s*255|255,\s*255,\s*0|255,\s*0,\s*255|0,\s*255,\s*255|255,\s*255,\s*255|0,\s*0,\s*0)\s*\)/gi,
+
+  // CSS Variables (should use design system colors instead)
+  /var\(--modus-wc-color-[^)]*\)/g,
+  // Allow border-related CSS variables (exception for Tailwind v4 conflicts)
+  /var\(--(?!border|ring|input|radius)[^)]*\)/g,
 ];
 
-// Modus CSS custom properties (for suggestions)
-const MODUS_COLOR_SUGGESTIONS = {
-  red: "var(--modus-wc-color-error)",
-  green: "var(--modus-wc-color-success)",
-  blue: "var(--modus-wc-color-info)",
-  info: "var(--modus-wc-color-info)",
-  yellow: "var(--modus-wc-color-warning)",
-  black: "var(--modus-wc-color-base-content)",
-  white: "var(--modus-wc-color-base-page)",
-  gray100: "var(--modus-wc-color-base-100)",
-  gray200: "var(--modus-wc-color-base-200)",
-  gray300: "var(--modus-wc-color-base-300)",
+// Design System Color Suggestions (from globals.css)
+const DESIGN_SYSTEM_COLOR_SUGGESTIONS = {
+  // Background colors
+  red: "bg-destructive",
+  green: "bg-success",
+  blue: "bg-primary",
+  info: "bg-primary",
+  yellow: "bg-warning",
+  black: "bg-background",
+  white: "bg-background",
+  gray100: "bg-card",
+  gray200: "bg-muted",
+  gray300: "bg-secondary",
+
+  // Text colors
+  "text-red": "text-destructive",
+  "text-green": "text-success",
+  "text-blue": "text-primary",
+  "text-yellow": "text-warning",
+  "text-black": "text-foreground",
+  "text-white": "text-foreground",
+  "text-gray": "text-muted-foreground",
+
+  // CSS Variables to Design System
+  "var(--modus-wc-color-base-page)": "bg-background",
+  "var(--modus-wc-color-base-100)": "bg-card",
+  "var(--modus-wc-color-base-200)": "bg-muted",
+  "var(--modus-wc-color-base-300)": "bg-secondary",
+  "var(--modus-wc-color-base-content)": "text-foreground",
+  "var(--modus-wc-color-info)": "bg-primary",
+  "var(--modus-wc-color-success)": "bg-success",
+  "var(--modus-wc-color-error)": "bg-destructive",
+  "var(--modus-wc-color-warning)": "bg-warning",
 };
 
 // Files to check
@@ -72,6 +98,8 @@ const EXCLUDE_PATTERNS = [
   ".next/**",
   "dist/**",
   "**/*.d.ts",
+  "app/globals.css", // Exclude globals.css as it contains the design system definitions
+  "app/color-palette/**", // Exclude color-palette as it demonstrates the color system
 ];
 
 async function checkFile(filePath) {
@@ -87,7 +115,9 @@ async function checkFile(filePath) {
       // Get color suggestion
       const colorName = match[1] || extractColorFromHex(match[0]);
       const suggestion =
-        MODUS_COLOR_SUGGESTIONS[colorName] || "var(--modus-wc-color-info)";
+        DESIGN_SYSTEM_COLOR_SUGGESTIONS[colorName] ||
+        DESIGN_SYSTEM_COLOR_SUGGESTIONS[match[0]] ||
+        "bg-primary";
 
       violations.push({
         file: filePath,
@@ -95,7 +125,7 @@ async function checkFile(filePath) {
         column,
         match: match[0],
         suggestion,
-        message: `Use Modus color variable instead of "${match[0]}". Consider: ${suggestion}`,
+        message: `Use design system color instead of "${match[0]}". Consider: ${suggestion}`,
       });
     }
 
@@ -135,7 +165,9 @@ function extractColorFromHex(hex) {
 }
 
 async function main() {
-  console.log("🎨 Checking for non-Modus color usage in Next.js app...\n");
+  console.log(
+    "🎨 Checking for design system color compliance in Next.js app...\n"
+  );
 
   let allViolations = [];
 
@@ -160,7 +192,7 @@ async function main() {
 
     // Report results
     if (allViolations.length === 0) {
-      console.log("✅ All files are using Modus color variables correctly!");
+      console.log("✅ All files are using design system colors correctly!");
       process.exit(0);
     } else {
       console.log(`❌ Found ${allViolations.length} color violations:\n`);
@@ -187,31 +219,26 @@ async function main() {
         console.log();
       }
 
-      console.log("💡 Modus Color Reference (9 colors only):");
-      console.log("  Use CSS variables instead of hex values:");
+      console.log("💡 Design System Color Reference (from globals.css):");
+      console.log("  Use Tailwind classes with design system colors:");
       console.log(
-        "  1. Base Page: var(--modus-wc-color-base-page) - #fff (light) / #000 (dark)"
+        "  ✅ Background: bg-background, bg-card, bg-muted, bg-secondary, bg-primary, bg-success, bg-destructive, bg-warning"
       );
       console.log(
-        "  2. Base 100: var(--modus-wc-color-base-100) - #f1f1f6 (light) / #252a2e (dark)"
+        "  ✅ Text: text-foreground, text-primary, text-success, text-destructive, text-warning, text-muted-foreground"
       );
       console.log(
-        "  3. Base 200: var(--modus-wc-color-base-200) - #cbcdd6 (light) / #464b52 (dark)"
+        '  ✅ Borders: style={{ border: "1px solid var(--border)" }}'
       );
       console.log(
-        "  4. Base 300: var(--modus-wc-color-base-300) - #b7b9c3 (light) / #353a40 (dark)"
+        '  ✅ Component props: color="primary", color="secondary", color="tertiary", color="warning", color="danger"'
       );
       console.log(
-        "  5. Base Content: var(--modus-wc-color-base-content) - #171c1e (light) / #cbcdd6 (dark)"
+        "  📝 Note: Use design system colors instead of CSS variables or hardcoded values"
       );
-      console.log("  6. Info: var(--modus-wc-color-info) - #0063a3");
-      console.log("  7. Success: var(--modus-wc-color-success) - #1e8a44");
-      console.log("  8. Error: var(--modus-wc-color-error) - #da212c");
-      console.log("  9. Warning: var(--modus-wc-color-warning) - #fbad26");
       console.log(
-        "  Component props: primary, secondary, tertiary, warning, danger (buttons)"
+        "  📖 Documentation: See globals.css for complete color mapping"
       );
-      console.log("  See: https://trimble-oss.github.io/modus-wc-2.0/main/");
 
       process.exit(1);
     }
