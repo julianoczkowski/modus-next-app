@@ -43,15 +43,6 @@ export default function ModusTabs({
       return;
     }
 
-    tabsElement.tabs = tabs.map((tab) => ({ ...tab }));
-  }, [tabs]);
-
-  useEffect(() => {
-    const tabsElement = tabsRef.current;
-    if (!tabsElement) {
-      return;
-    }
-
     tabsElement.activeTabIndex = activeTabIndex;
   }, [activeTabIndex]);
 
@@ -88,6 +79,7 @@ export default function ModusTabs({
       custom-class={customClass}
       active-tab-index={activeTabIndex}
       aria-label={ariaLabel}
+      tabs={tabs}
     >
       {panels.map((panel, index) => (
         <div key={index} slot={`tab-${index}`}>

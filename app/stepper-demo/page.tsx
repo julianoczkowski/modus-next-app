@@ -5,16 +5,44 @@ import DemoPage from "../components/DemoPage";
 import ModusStepper, { ModusStepperItem } from "../components/ModusStepper";
 
 const onboardingSteps: ModusStepperItem[] = [
-  { label: "Account", content: "Create account", color: "primary" },
-  { label: "Workspace", content: "Workspace details", color: "primary" },
-  { label: "Invite", content: "Invite team", color: "primary" },
-  { label: "Launch", content: "Go live", color: "accent" },
+  {
+    label: "Account",
+    content: "1",
+    color: "primary",
+  },
+  {
+    label: "Workspace",
+    content: "2",
+    color: "primary",
+  },
+  {
+    label: "Invite",
+    content: "3",
+    color: "primary",
+  },
+  {
+    label: "Launch",
+    content: "4",
+    color: "accent",
+  },
 ];
 
 const verticalSteps: ModusStepperItem[] = [
-  { label: "Draft", content: "Draft", color: "info" },
-  { label: "Review", content: "Review", color: "warning" },
-  { label: "Approved", content: "Approved", color: "success" },
+  {
+    label: "Draft",
+    content: "✏", // Unicode pencil
+    color: "info",
+  },
+  {
+    label: "Review",
+    content: "👁", // Unicode eye
+    color: "warning",
+  },
+  {
+    label: "Approved",
+    content: "✓", // Unicode checkmark
+    color: "success",
+  },
 ];
 
 export default function StepperDemoPage() {
@@ -25,13 +53,22 @@ export default function StepperDemoPage() {
     >
       <DemoExample
         title="Horizontal stepper"
-        description="Use for onboarding or processes that follow a left-to-right progression."
+        description={
+          <div className="flex items-center gap-2">
+            Use for onboarding or processes that follow a left-to-right
+            progression.
+          </div>
+        }
       >
         <ModusStepper steps={onboardingSteps} />
       </DemoExample>
       <DemoExample
         title="Vertical stepper"
-        description="Great for status-driven flows such as approvals."
+        description={
+          <div className="flex items-center gap-2">
+            Great for status-driven flows such as approvals.
+          </div>
+        }
       >
         <ModusStepper steps={verticalSteps} orientation="vertical" />
       </DemoExample>

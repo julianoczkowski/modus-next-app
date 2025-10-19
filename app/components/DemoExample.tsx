@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 interface DemoExampleProps {
   title: string;
-  description: string;
+  description: string | ReactNode;
   children: ReactNode;
 }
 
