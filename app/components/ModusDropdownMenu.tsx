@@ -1,10 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef, ReactNode } from "react";
-import { ModusWcDropdownMenu } from "@trimble-oss/moduswebcomponents-react";
+import {
+  ModusWcDropdownMenu,
+  ModusWcMenuItem,
+} from "@trimble-oss/moduswebcomponents-react";
+import { MenuItem } from "./ModusMenu";
 
 export interface ModusDropdownMenuProps {
   children?: ReactNode;
+  menuItems?: MenuItem[];
   buttonColor?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
   buttonSize?: "xs" | "sm" | "md" | "lg";
   buttonVariant?: "filled" | "outlined" | "borderless";
@@ -27,12 +32,14 @@ export interface ModusDropdownMenuProps {
     | "right-end";
   menuSize?: "sm" | "md" | "lg";
   menuVisible?: boolean;
+  buttonContent?: ReactNode;
   onMenuVisibilityChange?: (event: CustomEvent<{ isVisible: boolean }>) => void;
   onItemSelect?: (event: CustomEvent<{ value: string }>) => void;
 }
 
 export default function ModusDropdownMenu({
   children,
+  menuItems,
   buttonColor = "primary",
   buttonSize = "md",
   buttonVariant = "filled",
@@ -43,6 +50,7 @@ export default function ModusDropdownMenu({
   menuPlacement = "bottom-start",
   menuSize = "md",
   menuVisible = false,
+  buttonContent,
   onMenuVisibilityChange,
   onItemSelect,
 }: ModusDropdownMenuProps) {
@@ -97,7 +105,23 @@ export default function ModusDropdownMenu({
       menuSize={menuSize}
       menuVisible={menuVisible}
     >
-      {children}
+      {buttonContent && <div slot="button">{buttonContent}</div>}
+      <div slot="menu">
+        {menuItems
+          ? menuItems.map((item) => (
+              <ModusWcMenuItem
+                key={item.value}
+                label={item.label}
+                value={item.value}
+                sub-label={item.subLabel}
+                start-icon={item.startIcon}
+                selected={item.selected}
+                disabled={item.disabled}
+                bordered={item.bordered}
+              />
+            ))
+          : children}
+      </div>
     </ModusWcDropdownMenu>
   );
 }

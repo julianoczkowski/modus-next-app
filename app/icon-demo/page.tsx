@@ -4,7 +4,7 @@ import DemoExample from "../components/DemoExample";
 import DemoPage from "../components/DemoPage";
 import ModusIcon from "../components/ModusIcon";
 
-const navigationIcons = ["dashboard", "insights", "map", "notifications"];
+const navigationIcons = ["dashboard", "bar_graph", "map", "notifications"];
 
 export default function IconDemoPage() {
   return (
@@ -35,10 +35,18 @@ export default function IconDemoPage() {
         description="Color reinforces the meaning of each state."
       >
         <div className="flex gap-3">
-          <ModusIcon name="check_circle" size="lg" decorative={false} color="var(--modus-success-500)" />
-          <ModusIcon name="warning" size="lg" decorative={false} color="var(--modus-warning-500)" />
-          <ModusIcon name="error" size="lg" decorative={false} color="var(--modus-danger-500)" />
-          <ModusIcon name="info" size="lg" decorative={false} color="var(--modus-primary-500)" />
+          <div className="text-success">
+            <ModusIcon name="check_circle" size="lg" decorative={false} />
+          </div>
+          <div className="text-warning">
+            <ModusIcon name="warning" size="lg" decorative={false} />
+          </div>
+          <div className="text-destructive">
+            <ModusIcon name="cancel_circle" size="lg" decorative={false} />
+          </div>
+          <div className="text-primary">
+            <ModusIcon name="info" size="lg" decorative={false} />
+          </div>
         </div>
       </DemoExample>
     </DemoPage>

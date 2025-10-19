@@ -127,26 +127,25 @@ return <ModusWcComponent ref={componentRef} />;
 
 ### 3. Design System Colors (ENFORCED BY LINTING)
 
-**ONLY ALLOWED:** 9 Modus CSS variables
+**🎯 CRITICAL: Use Design System Tailwind Classes from globals.css**
 
-```css
-/* Base Colors (theme-adaptive) */
-var(--modus-wc-color-base-page)      /* Backgrounds */
-var(--modus-wc-color-base-100)       /* Cards */
-var(--modus-wc-color-base-200)       /* Borders */
-var(--modus-wc-color-base-300)       /* Secondary UI */
-var(--modus-wc-color-base-content)   /* Text */
+**ONLY ALLOWED:** Design system Tailwind classes (mapped from Modus CSS variables in `globals.css`)
 
-/* Semantic Colors (theme-consistent) */
-var(--modus-wc-color-info)           /* Primary */
-var(--modus-wc-color-success)        /* Success */
-var(--modus-wc-color-error)          /* Error */
-var(--modus-wc-color-warning)        /* Warning */
+```tsx
+// ✅ CORRECT - Use design system Tailwind classes
+<div className="bg-background text-foreground">
+<div className="bg-card text-card-foreground">
+<div className="bg-primary text-primary-foreground">
+<div className="bg-success text-success-foreground">
+<div className="bg-destructive text-destructive-foreground">
+<div className="bg-warning text-warning-foreground">
+<div className="bg-muted text-muted-foreground">
+<div className="bg-secondary text-secondary-foreground">
 ```
 
-**Design System Mapping (Use Tailwind Classes):**
+**Design System Mapping (from globals.css):**
 
-The 9 Modus CSS variables are mapped to Tailwind classes in `globals.css`:
+The design system maps Modus CSS variables to Tailwind classes:
 
 ```css
 /* Base Colors (theme-adaptive) */
@@ -167,13 +166,15 @@ The 9 Modus CSS variables are mapped to Tailwind classes in `globals.css`:
 **Usage Examples:**
 
 ```tsx
-// ✅ CORRECT - Use mapped Tailwind classes
+// ✅ CORRECT - Use design system Tailwind classes
 <div className="bg-background text-foreground" style={{ border: "1px solid var(--border)"}}>
 <div className="bg-primary text-primary-foreground">
 <div className="bg-card text-card-foreground">
 <div className="bg-muted text-muted-foreground">
 
 // ❌ FORBIDDEN (Will fail lint)
+<div style={{ backgroundColor: "var(--modus-wc-color-base-page)" }}>
+<div style={{ color: "var(--modus-wc-color-info)" }}>
 <div style={{ backgroundColor: "#ffffff" }}>
 <div className="bg-blue-500 text-red-400">
 ```
@@ -210,7 +211,7 @@ interface ModusButtonProps {
 // ❌ WRONG - Tailwind border classes don't work in v4
 <div className="border border-border">
 
-// ✅ CORRECT - Use inline styles for borders
+// ✅ CORRECT - Use inline styles for borders with design system colors
 <div style={{ border: "1px solid var(--border)" }}>
 <div style={{ border: "2px dashed var(--border)" }}>
 ```

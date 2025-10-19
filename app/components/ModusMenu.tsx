@@ -86,11 +86,16 @@ export default function ModusMenu({
           label={item.label}
           value={item.value}
           sub-label={item.subLabel}
-          start-icon={item.startIcon}
           selected={selectedValue === item.value || item.selected}
           disabled={item.disabled}
           bordered={item.bordered}
-        />
+        >
+          {item.startIcon && (
+            <i className="modus-icons" slot="start-icon">
+              {item.startIcon}
+            </i>
+          )}
+        </ModusWcMenuItem>
       ))}
     </ModusWcMenu>
   );

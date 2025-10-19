@@ -27,7 +27,7 @@ export default function InputFeedbackDemoPage() {
         <ModusInputFeedback
           level="error"
           message="Enter a date within the active project window."
-          icon="error"
+          icon="cancel_circle"
         />
       </DemoExample>
     </DemoPage>
