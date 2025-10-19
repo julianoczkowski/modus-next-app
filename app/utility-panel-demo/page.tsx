@@ -136,7 +136,7 @@ export default function UtilityPanelDemoPage() {
                       onButtonClick={() => setExpanded(false)}
                     >
                       Close
-                    </ModusButton>{" "}
+                    </ModusButton>
                     <ModusButton
                       size="md"
                       color="primary"
