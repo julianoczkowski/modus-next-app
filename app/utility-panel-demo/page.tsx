@@ -129,20 +129,20 @@ export default function UtilityPanelDemoPage() {
                 pushContent={true}
                 onToggle={handleToggle}
                 footerSlot={
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 justify-end">
                     <ModusButton
-                      size="sm"
-                      color="primary"
-                      onButtonClick={handleSave}
-                    >
-                      Save Settings
-                    </ModusButton>
-                    <ModusButton
-                      size="sm"
+                      size="md"
                       color="secondary"
                       onButtonClick={() => setExpanded(false)}
                     >
                       Close
+                    </ModusButton>{" "}
+                    <ModusButton
+                      size="md"
+                      color="primary"
+                      onButtonClick={handleSave}
+                    >
+                      Save Settings
                     </ModusButton>
                   </div>
                 }

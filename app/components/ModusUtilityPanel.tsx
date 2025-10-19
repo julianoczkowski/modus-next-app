@@ -139,7 +139,11 @@ export default function ModusUtilityPanel({
         </div>
       )}
       <div slot="body">{children}</div>
-      {footerSlot && <div slot="footer">{footerSlot}</div>}
+      {footerSlot && (
+        <div slot="footer" className="w-full min-w-full max-w-full block">
+          {footerSlot}
+        </div>
+      )}
     </ModusWcUtilityPanel>
   );
 }
