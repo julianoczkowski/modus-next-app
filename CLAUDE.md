@@ -238,12 +238,21 @@ interface ModusButtonProps {
 
 ## Theme System Implementation
 
-**4 Supported Themes:**
+**6 Supported Themes:**
+
+### Standard Modus Themes (4 themes)
 
 - `modus-classic-light`
 - `modus-classic-dark`
 - `modus-modern-light`
 - `modus-modern-dark`
+
+### Trimble Connect Themes (2 themes)
+
+- `connect-light` - For Trimble Connect Web Applications
+- `connect-dark` - For Trimble Connect Web Applications
+
+> **Important:** Connect themes should only be used when building Trimble Connect Web Applications. For general applications, use the standard Modus themes.
 
 **Implementation:**
 

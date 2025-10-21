@@ -7,24 +7,36 @@ alwaysApply: false
 
 ## 🎨 Overview
 
-This document provides comprehensive guidelines for implementing and using Modus Design System themes in Next.js applications. The integration supports all 4 Modus themes with proper SSR compatibility, theme persistence, and Next.js best practices.
+This document provides comprehensive guidelines for implementing and using Modus Design System themes in Next.js applications. The integration supports all 6 themes (4 Modus + 2 Connect) with proper SSR compatibility, theme persistence, and Next.js best practices.
 
 ## 🎯 Available Modus Themes
 
-### 4 Theme Options
+### 6 Theme Options
+
+#### Standard Modus Themes (4 themes)
 
 ```typescript
 export type Theme =
   | "modus-classic-light" // Traditional light theme
   | "modus-classic-dark" // Traditional dark theme
   | "modus-modern-light" // Contemporary light theme
-  | "modus-modern-dark"; // Contemporary dark theme
+  | "modus-modern-dark" // Contemporary dark theme
+  | "connect-light" // Trimble Connect light theme
+  | "connect-dark"; // Trimble Connect dark theme
 ```
+
+#### Trimble Connect Themes (2 themes)
+
+- `connect-light` - For Trimble Connect Web Applications
+- `connect-dark` - For Trimble Connect Web Applications
+
+> **Important:** Connect themes should only be used when building Trimble Connect Web Applications. For general applications, use the standard Modus themes.
 
 ### Theme Characteristics
 
 - **Classic**: Traditional Modus design with established patterns
 - **Modern**: Contemporary design with updated styling
+- **Connect**: Specialized themes for Trimble Connect Web Applications
 - **Light/Dark**: Automatic color scheme adaptation
 - **Consistent**: All themes use the same 9 Modus CSS variables
 
@@ -49,7 +61,9 @@ export type Theme =
   | "modus-classic-light"
   | "modus-classic-dark"
   | "modus-modern-light"
-  | "modus-modern-dark";
+  | "modus-modern-dark"
+  | "connect-light"
+  | "connect-dark";
 
 interface ThemeContextType {
   theme: Theme;
@@ -594,4 +608,4 @@ test("theme switching works correctly", () => {
 
 ---
 
-**Remember: The Modus theme system provides a powerful foundation for creating consistent, accessible, and beautiful user interfaces. Follow these patterns to ensure proper integration with Next.js and optimal user experience across all 4 supported themes.**
+**Remember: The Modus theme system provides a powerful foundation for creating consistent, accessible, and beautiful user interfaces. Follow these patterns to ensure proper integration with Next.js and optimal user experience across all 6 supported themes (4 Modus + 2 Connect). Connect themes should only be used for Trimble Connect Web Applications.**

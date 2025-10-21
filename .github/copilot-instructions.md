@@ -253,7 +253,10 @@ Husky runs `lint:colors` on staged files - all violations must be resolved befor
 
 ### Theme System
 
-4 themes via `data-theme` attribute: `modus-classic-light|dark`, `modus-modern-light|dark`
+6 themes via `data-theme` attribute:
+
+- **Standard Modus themes**: `modus-classic-light|dark`, `modus-modern-light|dark`
+- **Trimble Connect themes**: `connect-light|dark` (for Trimble Connect Web Applications only)
 
 ### Hydration Safety Pattern
 

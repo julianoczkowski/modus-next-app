@@ -10,20 +10,32 @@ This document provides comprehensive guidance on implementing and using the Modu
 
 ### Available Themes
 
-This application supports **4 Modus themes**:
+This application supports **6 themes** total:
+
+#### Standard Modus Themes (4 themes)
 
 ```typescript
 export type Theme =
   | "modus-classic-light" // Traditional light theme (default)
   | "modus-classic-dark" // Traditional dark theme
   | "modus-modern-light" // Contemporary light theme
-  | "modus-modern-dark"; // Contemporary dark theme
+  | "modus-modern-dark" // Contemporary dark theme
+  | "connect-light" // Trimble Connect light theme
+  | "connect-dark"; // Trimble Connect dark theme
 ```
+
+#### Trimble Connect Themes (2 themes)
+
+- `connect-light` - For Trimble Connect Web Applications
+- `connect-dark` - For Trimble Connect Web Applications
+
+> **Important:** Connect themes should only be used when building Trimble Connect Web Applications. For general applications, use the standard Modus themes.
 
 ### Theme Characteristics
 
 - **Classic Themes**: Traditional Modus design with established patterns
 - **Modern Themes**: Contemporary design with updated styling (11px border radius vs 4px)
+- **Connect Themes**: Specialized themes for Trimble Connect Web Applications
 - **Light/Dark Modes**: Automatic color scheme adaptation via CSS variables
 - **Consistent Colors**: All themes use the same 9 Modus CSS variables with different values
 
@@ -48,7 +60,9 @@ export type Theme =
   | "modus-classic-light"
   | "modus-classic-dark"
   | "modus-modern-light"
-  | "modus-modern-dark";
+  | "modus-modern-dark"
+  | "connect-light"
+  | "connect-dark";
 
 interface ThemeContextType {
   theme: Theme;
@@ -85,6 +99,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         "modus-classic-dark",
         "modus-modern-light",
         "modus-modern-dark",
+        "connect-light",
+        "connect-dark",
       ].includes(savedTheme)
     ) {
       setThemeState(savedTheme);
@@ -206,6 +222,16 @@ function ThemeSwitcherContent({
       label: "Modern Dark",
       description: "Contemporary dark theme",
     },
+    {
+      value: "connect-light",
+      label: "Connect Light",
+      description: "Trimble Connect light theme",
+    },
+    {
+      value: "connect-dark",
+      label: "Connect Dark",
+      description: "Trimble Connect dark theme",
+    },
   ];
 
   return (
@@ -216,7 +242,8 @@ function ThemeSwitcherContent({
             Theme Switcher
           </div>
           <div className="text-sm text-foreground/80">
-            Choose your preferred theme from the 4 available Modus themes
+            Choose your preferred theme from the 6 available themes (4 Modus + 2
+            Connect)
           </div>
         </div>
       )}
@@ -739,7 +766,7 @@ export default function ThemeCard({
 
 ### Manual Testing Checklist
 
-- [ ] ✅ **All 4 Themes Work**: Test Classic Light, Classic Dark, Modern Light, Modern Dark
+- [ ] ✅ **All 6 Themes Work**: Test Classic Light, Classic Dark, Modern Light, Modern Dark, Connect Light, Connect Dark
 - [ ] ✅ **Theme Persistence**: Theme choice persists across page refreshes
 - [ ] ✅ **Visual Consistency**: All components adapt properly to theme changes
 - [ ] ✅ **No Console Errors**: No React hooks, hydration, or undefined errors
@@ -747,6 +774,7 @@ export default function ThemeCard({
 - [ ] ✅ **Modus Components**: All Modus Web Components work in all themes
 - [ ] ✅ **Color Compliance**: Only Modus CSS variables used (no hardcoded colors)
 - [ ] ✅ **Border Radius**: Modern themes use 11px, Classic themes use 4px
+- [ ] ✅ **Connect Themes**: Test Connect themes if building Trimble Connect Web Applications
 - [ ] ✅ **Responsive Design**: Theme switcher works on mobile and desktop
 - [ ] ✅ **Accessibility**: Proper ARIA labels and keyboard navigation
 
@@ -772,7 +800,7 @@ export default function ThemeCard({
 5. **Don't forget localStorage integration** (themes won't persist)
 6. **Don't create custom theme logic** (use ThemeContext)
 7. **Don't use semantic HTML** (use div with Tailwind)
-8. **Don't test with only one theme** (test all 4)
+8. **Don't test with only one theme** (test all 6)
 
 ## 📖 Related Documentation
 
@@ -816,4 +844,4 @@ if (!mounted) return <LoadingSkeleton />;
 
 ---
 
-**Remember:** The Modus theme system provides 4 distinct themes with automatic color adaptation. Always use the ThemeContext, protect against hydration mismatches, and test with all 4 themes to ensure consistent user experience.
+**Remember:** The Modus theme system provides 6 distinct themes (4 Modus + 2 Connect) with automatic color adaptation. Always use the ThemeContext, protect against hydration mismatches, and test with all 6 themes to ensure consistent user experience. Connect themes should only be used for Trimble Connect Web Applications.

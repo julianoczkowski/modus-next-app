@@ -59,6 +59,16 @@ function ThemeSwitcherDropdownContent({
       label: "Modern Dark",
       description: "Contemporary dark theme",
     },
+    {
+      value: "connect-light",
+      label: "Connect Light",
+      description: "Connect light theme",
+    },
+    {
+      value: "connect-dark",
+      label: "Connect Dark",
+      description: "Connect dark theme",
+    },
   ];
 
   const getCurrentThemeLabel = () => {

@@ -12,7 +12,9 @@ export type Theme =
   | "modus-classic-light"
   | "modus-classic-dark"
   | "modus-modern-light"
-  | "modus-modern-dark";
+  | "modus-modern-dark"
+  | "connect-light"
+  | "connect-dark";
 
 interface ThemeContextType {
   theme: Theme;
@@ -40,6 +42,8 @@ const VALID_THEMES: Theme[] = [
   "modus-classic-dark",
   "modus-modern-light",
   "modus-modern-dark",
+  "connect-light",
+  "connect-dark",
 ];
 
 export function ThemeProvider({ children }: ThemeProviderProps) {

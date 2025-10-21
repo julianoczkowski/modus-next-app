@@ -345,10 +345,21 @@ The application now includes the complete list of all official Modus icons with 
 
 ### Available Themes
 
+This boilerplate supports **6 themes** total:
+
+#### Standard Modus Themes (4 themes)
+
 - `modus-classic-light` (default)
 - `modus-classic-dark`
 - `modus-modern-light`
 - `modus-modern-dark`
+
+#### Trimble Connect Themes (2 themes)
+
+- `connect-light` - For Trimble Connect Web Applications
+- `connect-dark` - For Trimble Connect Web Applications
+
+> **Note:** Connect themes should only be used when building Trimble Connect Web Applications. For general applications, use the standard Modus themes.
 
 ### Theme Switching
 

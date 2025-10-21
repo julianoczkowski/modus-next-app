@@ -13,7 +13,7 @@ This is a Next.js 15 application demonstrating Trimble's Modus Web Components de
 
 **Architecture:**
 
-The project follows the Next.js App Router architecture with server-side rendering and client-side interactivity. The main application code is located in the `app` directory. Reusable React components are in `app/components`, and global styles are in `app/globals.css`. The `ThemeContext` in `app/contexts/ThemeContext.tsx` manages 4-theme system switching.
+The project follows the Next.js App Router architecture with server-side rendering and client-side interactivity. The main application code is located in the `app` directory. Reusable React components are in `app/components`, and global styles are in `app/globals.css`. The `ThemeContext` in `app/contexts/ThemeContext.tsx` manages 6-theme system switching (4 standard Modus themes + 2 Trimble Connect themes).
 
 ## 🚨 CRITICAL: Development Workflow & Testing
 
@@ -248,3 +248,4 @@ interface ModusButtonProps {
 - [ ] ✅ All interactive elements work correctly
 - [ ] ✅ Responsive design tested
 - [ ] ✅ Theme compatibility verified (if themes present)
+- [ ] ✅ Connect themes tested (if building Trimble Connect Web Applications)
