@@ -171,7 +171,7 @@ The design system maps Modus CSS variables to Tailwind classes:
 
 ```tsx
 // ✅ CORRECT - Use design system Tailwind classes
-<div className="bg-background text-foreground" style={{ border: "1px solid var(--border)"}}>
+<div className="bg-background text-foreground border-default">
 <div className="bg-primary text-primary-foreground">
 <div className="bg-card text-card-foreground">
 <div className="bg-muted text-muted-foreground">
@@ -206,7 +206,7 @@ interface ModusButtonProps {
 **Preferred Approach:** Tailwind utility classes with design system colors
 
 ```tsx
-<div className="max-w-5xl mx-auto p-8 bg-card rounded-lg" style={{ border: "1px solid var(--border)" }}>
+<div className="max-w-5xl mx-auto p-8 bg-card rounded-lg border-default">
 ```
 
 **Critical Border Rule:**
@@ -215,14 +215,14 @@ interface ModusButtonProps {
 // ❌ WRONG - Tailwind border classes don't work in v4
 <div className="border border-border">
 
-// ✅ CORRECT - Use inline styles for borders with design system colors
-<div style={{ border: "1px solid var(--border)" }}>
-<div style={{ border: "2px dashed var(--border)" }}>
+// ✅ CORRECT - Use our border utility classes with design system colors
+<div className="border-default">
+<div className="border-dashed">
 ```
 
 **Avoid:**
 
-- Inline styles (except dynamic values and borders)
+- Inline styles (except dynamic values)
 - CSS modules
 - Semantic HTML elements (`<h1>`, `<section>`) - use `<div>` with Tailwind
 
@@ -477,7 +477,7 @@ if (!mounted) return <LoadingSkeleton />;
 1. **🚨 ALWAYS run linting commands before making changes**
 2. **🧪 Use Chrome DevTools MCP for testing implementations**
 3. **📋 Create implementation guides for major features**
-4. **🎨 Use inline styles for borders (not Tailwind classes)**
+4. **🎨 Use border utility classes (not Tailwind border classes)**
 5. **📝 Use div elements (not semantic HTML) for consistent Tailwind styling**
 6. **🎛️ Let Modus components handle their own state (don't control from React)**
 7. **🔧 Use ref-based event handling for Modus Web Components**

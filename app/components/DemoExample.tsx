@@ -14,10 +14,7 @@ export default function DemoExample({
   children,
 }: DemoExampleProps) {
   return (
-    <div
-      className="flex flex-col gap-4 rounded-lg bg-card p-6"
-      style={{ border: "1px solid var(--border)" }}
-    >
+    <div className="flex flex-col gap-4 rounded-lg bg-card p-6 border-default">
       <div className="flex flex-col gap-1">
         <div className="text-lg font-medium text-foreground">{title}</div>
         <div className="text-sm text-foreground opacity-80">{description}</div>

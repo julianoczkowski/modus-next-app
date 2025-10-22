@@ -37,10 +37,7 @@ export default function Home() {
         {/* Features Section */}
         <div className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-            <div
-              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card"
-              style={{ border: "2px solid var(--border)" }}
-            >
+            <div className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card border-thick">
               <div className="flex items-start gap-4 flex-1">
                 <i className="modus-icons text-2xl flex-shrink-0 mt-1 text-foreground">
                   coffee_cup
@@ -61,10 +58,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div
-              className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card"
-              style={{ border: "2px dashed var(--border)" }}
-            >
+            <div className="rounded-xl p-6 flex flex-col gap-4 color-card bg-card border-thick-dashed">
               <div className="flex items-start gap-4 flex-1">
                 <i className="modus-icons text-2xl flex-shrink-0 mt-1 text-foreground">
                   palette
@@ -102,10 +96,7 @@ export default function Home() {
               Watch this video to discover more about this boilerplate
             </div>
           </div>
-          <div
-            className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video bg-card"
-            style={{ border: "1px solid var(--border)" }}
-          >
+          <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video bg-card border-default">
             <iframe
               src="https://www.youtube.com/embed/aG7Eu7SkKZA?si=KDI-XcSlRNr70bS5"
               title="Boilerplate Video"

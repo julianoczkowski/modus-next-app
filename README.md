@@ -557,7 +557,7 @@ This boilerplate includes Tailwind CSS 4 with design system integration:
 
 ```tsx
 // Use Tailwind classes with design system colors
-<div className="bg-card border border-border rounded-lg p-6">
+<div className="bg-card border-default rounded-lg p-6">
   <h2 className="text-2xl font-semibold text-foreground">Title</h2>
   <p className="text-muted-foreground">Description</p>
 </div>

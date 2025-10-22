@@ -47,7 +47,7 @@ style={{ backgroundColor: "#ffffff" }}        // Use: className="bg-background"
 className="bg-blue-500"                       // Use: className="bg-primary"
 <h1 className="text-4xl">Title</h1>          // Use: <div className="text-4xl">Title</div>
 <i className="fa fa-home"></i>               // Use: <i className="modus-icons">home</i>
-className="border border-border"             // Use: style={{ border: "1px solid var(--border)" }}
+className="border border-border"             // Use: className="border-default"
 ```
 
 ## 🎯 Quality Gates (All Must Pass)

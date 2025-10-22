@@ -365,10 +365,7 @@ export default function ComponentsDemoPage() {
       </div>
 
       {/* Category Filter */}
-      <div
-        className="mb-12 p-8 bg-card rounded-lg"
-        style={{ border: "1px solid var(--border)" }}
-      >
+      <div className="mb-12 p-8 bg-card rounded-lg border-default">
         <div className="text-2xl font-semibold mb-4 text-foreground">
           Filter by Category
         </div>
@@ -396,8 +393,7 @@ export default function ComponentsDemoPage() {
         {filteredComponents.map((component) => (
           <div
             key={component.url}
-            className="bg-card rounded-lg p-6 hover:shadow-lg transition-all duration-200"
-            style={{ border: "1px solid var(--border)" }}
+            className="bg-card rounded-lg p-6 hover:shadow-lg transition-all duration-200 border-default"
           >
             <div className="flex items-start justify-between mb-4">
               <div>

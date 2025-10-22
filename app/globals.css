@@ -268,6 +268,67 @@
   height: 1rem;
 }
 
+/* Smart Border Utilities - Tailwind v4 Compatible
+ * 
+ * Problem: Tailwind v4's `border` class defaults to `border-width: 0px`, making borders invisible
+ * Solution: Custom utility classes that properly set border width, style, and color
+ * 
+ * Usage Examples:
+ * - .border-default        → 1px solid border
+ * - .border-thick          → 2px solid border  
+ * - .border-dashed         → 1px dashed border
+ * - .border-thick-dashed   → 2px dashed border
+ * - .border-bottom-default → 1px solid bottom border only
+ * 
+ * Benefits:
+ * - Uses design system colors (var(--border))
+ * - Theme-aware (automatically adapts to light/dark themes)
+ * - Consistent with project patterns
+ * - No inline styles needed
+ * - Linting compliant
+ * - Replaces problematic Tailwind border classes
+ * 
+ * Migration from Tailwind:
+ * - border border-border → .border-default
+ * - border-2 border-border → .border-thick
+ * - border-t border-border → .border-top-default
+ * - border-b border-border → .border-bottom-default
+ */
+
+/* All-sides borders */
+.border-default {
+  border: 1px solid var(--border);
+}
+
+.border-thick {
+  border: 2px solid var(--border);
+}
+
+.border-dashed {
+  border: 1px dashed var(--border);
+}
+
+.border-thick-dashed {
+  border: 2px dashed var(--border);
+}
+
+/* Single-side borders */
+.border-bottom-default {
+  border-bottom: 1px solid var(--border);
+}
+
+.border-top-default {
+  border-top: 1px solid var(--border);
+}
+
+.border-left-default {
+  border-left: 1px solid var(--border);
+}
+
+.border-right-default {
+  border-right: 1px solid var(--border);
+}
+
 /* Utility panel positioning helpers */
 modus-wc-utility-panel.modus-utility-panel--left .modus-wc-utility-panel {
   left: calc(var(--modus-wc-utility-panel-width, 312px) * -1 - 12px);

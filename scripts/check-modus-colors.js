@@ -228,7 +228,7 @@ async function main() {
         "  ✅ Text: text-foreground, text-primary, text-success, text-destructive, text-warning, text-muted-foreground"
       );
       console.log(
-        '  ✅ Borders: style={{ border: "1px solid var(--border)" }}'
+        "  ✅ Borders: Use border utility classes (border-default, border-thick, border-dashed)"
       );
       console.log(
         '  ✅ Component props: color="primary", color="secondary", color="tertiary", color="warning", color="danger"'

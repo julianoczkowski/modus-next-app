@@ -4,13 +4,14 @@ alwaysApply: true
 
 # Borders - Essential Rules
 
-## ✅ ALWAYS Use Inline Styles for Borders
+## ✅ ALWAYS Use Smart Border Utility Classes
 
 ```tsx
-// ✅ CORRECT - Inline styles with design system colors
-<div className="bg-card p-4 rounded-lg" style={{ border: "1px solid var(--border)" }}>
-<div style={{ border: "2px dashed var(--border)" }}>
-<div style={{ borderTop: "1px solid var(--border)" }}>
+// ✅ CORRECT - Use our custom border utilities
+<div className="bg-card p-4 rounded-lg border-default">
+<div className="border-thick">
+<div className="border-dashed">
+<div className="border-top-default">
 ```
 
 ## ⚠️ Why Not Tailwind Border Classes
@@ -21,29 +22,38 @@ Tailwind v4's `border` class sets `border-width: 0px` by default, making borders
 // ❌ WRONG - No visible border
 <div className="border border-border">
 
-// ✅ CORRECT - Visible border
-<div style={{ border: "1px solid var(--border)" }}>
+// ✅ CORRECT - Use our utility classes
+<div className="border-default">
 ```
 
 ## 🎯 Common Border Patterns
 
 ```tsx
 // Standard border
-style={{ border: "1px solid var(--border)" }}
+className = "border-default";
 
 // Thick border
-style={{ border: "2px solid var(--border)" }}
+className = "border-thick";
 
 // Dashed border
-style={{ border: "1px dashed var(--border)" }}
+className = "border-dashed";
 
 // Top border only
-style={{ borderTop: "2px solid var(--border)" }}
+className = "border-top-default";
+
+// Bottom border only
+className = "border-bottom-default";
+
+// Left border only
+className = "border-left-default";
+
+// Right border only
+className = "border-right-default";
 ```
 
 ## 🎯 Key Rule
 
-**Borders are the ONLY exception** to the "maximize Tailwind classes" rule due to Tailwind v4 limitations.
+**Use our smart border utility classes** instead of Tailwind border classes or inline styles.
 
 ## 📚 Reference Documentation
 

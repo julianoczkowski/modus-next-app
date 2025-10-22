@@ -8,7 +8,8 @@
  *
  * It flags common inline style patterns and suggests Tailwind alternatives.
  *
- * EXCEPTIONS: Border-related styles are allowed due to Tailwind v4 + Modus conflicts
+ * EXCEPTIONS: Border-related styles are allowed due to Tailwind v4 + Modus conflicts.
+ * However, inline border styles should be replaced with our border utility classes.
  */
 
 import fs from "fs";
@@ -353,6 +354,9 @@ async function main() {
       console.log("  ✅ Effects: opacity-50, rounded-lg, shadow-lg");
       console.log(
         "  📝 Note: Border styles (borderWidth, border) are allowed due to Tailwind v4 conflicts"
+      );
+      console.log(
+        "  🎯 Use border utility classes: border-default, border-thick, border-dashed, etc."
       );
       console.log("  📖 Documentation: https://tailwindcss.com/docs");
 
