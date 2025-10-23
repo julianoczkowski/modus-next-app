@@ -56,7 +56,6 @@ const SEMANTIC_HTML_PATTERNS = [
   /<ins(?:\s+[^>]*)?>/g,
   /<sub(?:\s+[^>]*)?>/g,
   /<sup(?:\s+[^>]*)?>/g,
-  /<code(?:\s+[^>]*)?>/g,
   /<pre(?:\s+[^>]*)?>/g,
   /<kbd(?:\s+[^>]*)?>/g,
   /<samp(?:\s+[^>]*)?>/g,
@@ -163,7 +162,6 @@ const TAILWIND_ALTERNATIVES = {
   "<ins": '<div className="underline',
   "<sub": '<div className="text-xs align-sub',
   "<sup": '<div className="text-xs align-super',
-  "<code": '<div className="bg-muted px-1 py-0.5 rounded text-sm font-mono',
   "<pre":
     '<div className="bg-muted p-4 rounded text-sm font-mono overflow-x-auto',
   "<kbd": '<div className="bg-muted px-2 py-1 rounded text-sm font-mono border',

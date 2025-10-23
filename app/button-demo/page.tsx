@@ -1,8 +1,8 @@
 "use client";
 
-import DemoExample from "../components/DemoExample";
-import DemoPage from "../components/DemoPage";
-import ModusButton from "../components/ModusButton";
+import DemoExample from "@/app/components/DemoExample";
+import DemoPage from "@/app/components/DemoPage";
+import ModusButton from "@/app/components/ModusButton";
 
 export default function ButtonDemoPage() {
   return (

@@ -48,7 +48,7 @@ export default function AppHeader() {
             color="primary"
             variant="outlined"
             size="sm"
-            onButtonClick={() => handleNavigation("/components-demo")}
+            onButtonClick={() => handleNavigation("/demos/components-demo")}
           >
             Components
           </ModusWcButton>
