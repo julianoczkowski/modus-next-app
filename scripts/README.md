@@ -172,9 +172,9 @@ npm run lint:semantic
 
 **What it suggests:**
 
-- Proper inline styles: `style={{ border: "1px solid var(--border)" }}`
+- Border utility classes: `border-default`, `border-thick`, `border-dashed`
 - Design system colors: `var(--border)`, `var(--input)`, `var(--ring)`
-- Specific side borders: `style={{ borderTop: "1px solid var(--border)" }}`
+- Specific side borders: `border-top-default`, `border-bottom-default`, `border-left-default`, `border-right-default`
 
 **Usage:**
 
