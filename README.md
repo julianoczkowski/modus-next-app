@@ -25,7 +25,7 @@ This boilerplate comes with comprehensive development rules and standards to ens
 
 > **Location:** All rules are stored in `.cursor/rules/` and automatically guide your development workflow through AI assistants.
 
-![Modus Next.js Boilerplate Teaser](readme_assets/teaser.gif)
+<!-- ![Modus Next.js Boilerplate Teaser](readme_assets/teaser.gif) -->
 
 ## 🤖 AI Development Enhanced
 
@@ -73,6 +73,7 @@ This boilerplate provides a complete foundation for building Next.js application
 - ✅ **Standard Icon Usage** - Official Modus icon implementation with CDN delivery
 - ✅ **Theme Switching** - Support for all Modus themes (Classic/Modern, Light/Dark)
 - ✅ **Component Library** - 40+ pre-built Modus components ready to use
+- ✅ **Demo Package** - Install `@julianoczkowski/modus-nextjs-demos` for comprehensive examples
 - ✅ **Accessibility** - WCAG 2.1 AA compliant with proper ARIA support
 - ✅ **Performance Optimized** - Turbopack, code splitting, and optimized builds
 - ✅ **Development Tools** - ESLint, TypeScript, and hot module replacement configured
@@ -155,6 +156,8 @@ modus-next-app/
 └── .gitignore             # Git ignore configuration
 ```
 
+> **💡 Demo Pages:** For comprehensive component examples and interactive demos, install the `@julianoczkowski/modus-nextjs-demos` package. See the [Demo Package](#demo-pages--examples) section for details.
+
 ## Using This Boilerplate
 
 ### Customizing for Your Project
@@ -175,6 +178,21 @@ modus-next-app/
    - Modify `next.config.ts` for your deployment needs
    - Update environment variables as needed
    - Configure additional build optimizations
+
+### Demo Package
+
+![Modus Web Components Demo](readme_assets/teaser_comp.gif)
+
+To access comprehensive demo pages showcasing all Modus Web Components in action, install the official demo package:
+
+```bash
+npm install @julianoczkowski/modus-nextjs-demos
+```
+
+This package provides:
+
+- **Interactive Component Demos** - Live examples of all 40+ Modus components
+- **Theme Showcases** - See components across all 6 supported themes
 
 ### Available Modus Components
 
@@ -240,8 +258,6 @@ This boilerplate includes 40+ pre-built Modus components ready to use:
 
 - **ModusModal** - Blocking dialog overlays
 - **ModusThemeSwitcher** - Theme toggle controls
-
-![Modus Web Components Demo](readme_assets/teaser_comp.gif)
 
 ## Modus Web Components Integration
 
