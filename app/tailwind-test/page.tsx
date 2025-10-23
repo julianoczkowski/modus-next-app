@@ -228,7 +228,7 @@ export default function TailwindTestPage() {
                 </div>
                 <div className="bg-background p-4 border border-border">
                   <div className="text-sm">
-                    This should have a border but doesn't
+                    This should have a border but doesn&apos;t
                   </div>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function TailwindTestPage() {
                 </div>
                 <div className="bg-background p-4 border-2 border-border">
                   <div className="text-sm">
-                    This should have a thick border but doesn't
+                    This should have a thick border but doesn&apos;t
                   </div>
                 </div>
               </div>

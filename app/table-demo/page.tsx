@@ -320,7 +320,6 @@ const initialTaskData = [
 export default function TableDemoPage() {
   const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
   const [taskData, setTaskData] = useState(initialTaskData);
 
   const handleEmployeeSelection = (
@@ -333,7 +332,6 @@ export default function TableDemoPage() {
     event: CustomEvent<{ currentPage: number; pageSize: number }>
   ) => {
     setCurrentPage(event.detail.currentPage);
-    setPageSize(event.detail.pageSize);
   };
 
   const handleCellEditStart = (
